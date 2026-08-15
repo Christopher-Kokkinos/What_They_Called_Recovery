@@ -2,6 +2,7 @@ WHAT THEY CALLED RECOVERY — KDP WORKFLOW STATUS
 
 Publication target: Amazon Kindle Direct Publishing (KDP) — reflowable Kindle ebook
 Current authoritative working tree: Phase 4 PASS — organised
+Current working branch: agent/phase-5-kindle-create
 
 PHASE STATUS
 Phase 0 — Publication lock and baseline: PASS
@@ -9,10 +10,13 @@ Phase 1 — Assemble reflowable master source: PASS
 Phase 2 — Final copy-edit and style sheet: PASS
 Phase 3 — Post-copy-edit regression verification: PASS
 Phase 4 — Kindle-ready document preparation: PASS
-Phase 5 — Kindle Create build: NEXT
+Phase 5 — Kindle Create build: IN PROGRESS
 
 ACTIVE PRODUCTION SOURCE
 Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx
+
+PHASE 5 OBJECTIVE
+Build and validate the reflowable Kindle project from the Phase 4 publication DOCX using Kindle Create. Confirm all 46 chapter titles, TOC/navigation, front matter, representative chapter openings, scene breaks, italics, and monospaced/notebook material. Save the editable Kindle Create project and export the KPF. Record the Kindle Create version and validation evidence in Reports/. No manuscript wording changes are authorised during conversion.
 
 CONTROLLED DEFERMENTS
 - Final author/pen-name line for title/copyright metadata: Phase 7.

@@ -1,0 +1,28 @@
+WTCR KDP WORKSPACE STRUCTURE — PHASE 4
+
+ROOT ZONES
+Active/
+  Controls/     Current roadmap, workflow status, working manifest and workspace rules.
+  Editorial/    Current locked style sheet still needed for downstream QA.
+  Production/   Current publication DOCX only.
+
+Reference/
+  Baselines/    Locked baseline manifest.
+  Locked_Phase7_Manuscript/  Canonical 46 chapter PDFs, read-only reference.
+
+Reports/
+  Historical/   Earlier manuscript-development/audit evidence.
+  Phase1/ ... Phase4/  Phase-specific logs and verification evidence.
+
+Archive/
+  Production_Baselines/  Superseded editorial/production masters.
+  Manifests/     Superseded manifests.
+  Roadmaps/      Superseded historical roadmaps.
+  Phase2_Exports/ and Concept_Covers/  Legacy outputs not used for active production.
+
+RULES
+1. Active contains only material being used now or required in a planned future phase.
+2. Reference is read-only validation material, not an editing workspace.
+3. Reports contains logs, audits and evidence; reports do not live in Active.
+4. Archive is immutable. To reuse archived material, copy/promote it into Active; never edit it in place.
+5. On each phase transition, superseded active production files and manifests move to Archive.

@@ -1,0 +1,73 @@
+WHAT THEY CALLED RECOVERY
+PHASE 6 - PRODUCTION CONSISTENCY LOG
+Date: 13 August 2026
+Scope: Chapters 1-46
+
+OBJECTIVE
+Standardise production presentation only. Preserve the Phase 5 manuscript wording, canon, plot, character intent and scene order while removing layout/typography inconsistency and residual production defects.
+
+SOURCE AUDIT FINDINGS
+- 46 chapter PDFs present and numbered consecutively.
+- 1,361 source PDF pages in total.
+- Three page formats were present:
+  * US Letter: 27 chapters
+  * A5: 11 chapters
+  * A4: 8 chapters
+- Chapter-title separators were mixed between em dash and hyphen.
+- Scene breaks were mixed between "* * *", "***" and "---".
+- Chapters 24-30 used straight quotation marks/apostrophes while the surrounding manuscript used typographic quotation marks.
+- Legacy PDF ligature characters (principally U+FB00 "ff") survived in Chapters 8, 11-20 and 22.
+- Chapter 30 contained one genuine punctuation defect: the dialogue line "No child initials. was missing its closing quotation mark.
+- Two filenames did not correctly reflect the displayed chapter title:
+  * Chapter_15_The_Grandmother.pdf -> chapter title is No Grandmother.
+  * Chapter_22_The_Death_Warrent.pdf -> Warrant was misspelled in the filename.
+
+PRODUCTION STANDARD APPLIED
+- Page size: A4 throughout.
+- Body type: DejaVu Serif, 11.5 pt, consistent leading and paragraph spacing.
+- Chapter title: centred bold, "CHAPTER N — Title".
+- Page number: centred footer.
+- Block-paragraph manuscript layout retained; no first-line indentation introduced.
+- Curly double quotation marks and curly apostrophes used throughout natural-language prose/dialogue.
+- Existing meaningful em/en dashes retained.
+- Scene break standard: "* * *" throughout.
+- Existing bold, italic and monospaced/evidence formatting retained where present in the source PDFs.
+
+NORMALISATION ACTIONS
+- Retypeset all 46 chapters to the same A4 house layout.
+- Normalised all 331 scene breaks to "* * *".
+- Normalised chapter heading punctuation to em dash across Chapters 1-46.
+- Converted the straight dialogue quotation/apostrophe convention in Chapters 24-30 to the manuscript house style.
+- Normalised legacy ligature characters to searchable ordinary letter sequences.
+- Removed discretionary line-break hyphenation introduced by earlier PDF typesetting.
+- Restored five true compound hyphens that must remain after reflow:
+  * Street-cleaning
+  * forty-seven
+  * non-prescription
+  * high-visibility
+  * signal-blocking
+- Corrected Chapter 30 dialogue punctuation to: “No child initials.”
+- Renamed:
+  * Chapter_15_The_Grandmother.pdf -> Chapter_15_No_Grandmother.pdf
+  * Chapter_22_The_Death_Warrent.pdf -> Chapter_22_The_Death_Warrant.pdf
+
+DUPLICATE/RESIDUE CHECK
+- No bracketed placeholders, TODO/FIXME markers, roadmap language or revision instructions remain inside the manuscript.
+- Apparent repeated lines/paragraphs were reviewed. They are intentional dialogue echoes, repeated transmitted messages, or deliberate rhetorical repetition; none was deleted.
+- Story-context uses of words such as "draft", "rewrite", "revision", "placeholder" and "chapter" were retained because they belong to the fictional text rather than the editorial process.
+
+VERIFICATION GATES
+PASS - 46 output chapter PDFs present.
+PASS - 1,195 output pages, all A4 (page-count reduction is reflow only).
+PASS - Extracted output text matches the source manuscript after only the documented typography/reflow normalisations and the single Chapter 30 punctuation correction.
+PASS - Opening and closing curly quotation mark counts balance manuscript-wide.
+PASS - No straight double quotation marks remain.
+PASS - No legacy ff/fi/fl ligature code points remain.
+PASS - All 331 scene breaks use one standard.
+PASS - All chapter headings use the same format.
+PASS - File sequence remains Chapters 1-46.
+PASS - First, middle and final pages across the full set were rendered and visually reviewed.
+PASS - Specific pages containing final hyphen/quotation corrections were re-rendered and visually checked.
+
+PHASE 6 RESULT
+Production consistency pass complete. No plot, canon or substantive prose revision was introduced by this phase. The manuscript is now ready for Phase 7: sequential verification and cold-read audit.

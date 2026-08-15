@@ -1,0 +1,39 @@
+WHAT THEY CALLED RECOVERY — KDP PHASE 4 VERIFICATION
+
+STATUS: PASS
+DATE: 15 August 2026
+
+PHASE OBJECTIVE
+Prepare a structurally clean, reflow-safe publication DOCX for Kindle Create without changing manuscript wording.
+
+RESULT
+- Phase 4 publication DOCX created in Active/Production.
+- Phase 2 editorial master moved to Archive/Production_Baselines.
+- Five front-matter paragraphs added: title page plus minimal copyright page.
+- Author/pen name deliberately remains unset because the roadmap reserves that decision for Phase 7. No visible placeholder was inserted.
+- Back matter: none added because none has been approved.
+- Manuscript text after front matter matches the Phase 2 master exactly: True.
+- 46/46 chapter headings remain Heading 1 and start on a new page/screen.
+- 331/331 scene breaks preserved.
+- 377 first paragraphs after chapter/scene breaks use a dedicated no-indent style.
+- Normal body paragraphs use a structural 0.2-inch first-line indent, zero before/after spacing and single line spacing.
+- Hard tabs: 0. Repeated-space layout paragraphs: 0. Blank layout paragraphs: 0.
+- Tracked changes/comments/fields/text boxes/images/headers/footers/page numbers: none.
+- Cover image is not embedded in the manuscript.
+- Visible TOC intentionally deferred to Phase 5; Heading 1 structure is ready for Kindle Create chapter detection.
+
+RENDER QA
+- Full DOCX render: 681 pages.
+- Blank pages: 0.
+- Edge/clipping flags: 0.
+- Minimum rendered ink margins: L53 / T50 / R54 / B52 px at 72 dpi.
+- Title, copyright, Chapter 1 opening, scene-break page, monospaced notebook passage and final page visually inspected.
+
+CURRENT KDP REQUIREMENT CHECK
+Rechecked 15 August 2026 against official Amazon KDP Help. DOC/DOCX remains supported; Kindle Create imports DOC(X) as reflowable content, converts page breaks to sections, detects chapter-title candidates for navigation/TOC, and KDP recommends structural paragraph indents rather than tabs. The final Kindle layout must still be tested in Kindle Create and Kindle Previewer in Phases 5–6.
+
+PASS GATE
+The publication DOCX is structurally clean, reflow-safe and ready to import into Kindle Create without relying on fixed-page formatting. PASS.
+
+NEXT PHASE
+Phase 5 — Kindle Create build.

@@ -1,0 +1,44 @@
+WHAT THEY CALLED RECOVERY — KDP PHASE 2 COPY-EDIT VERIFICATION
+
+Status: PASS
+Publication target: Amazon KDP reflowable Kindle ebook
+
+BASELINE
+- Phase 1 reflowable master remained the rollback/source baseline.
+- Phase 2 master contains copy-edit and source-boundary repairs only; no story/developmental changes were authorised.
+
+STYLE SHEET
+- British English locked for narration and UK-set adult dialogue.
+- Character lexical identity protected; Zoe may retain natural American vocabulary.
+- UK restaurant rule locked: waiter/waitress for identified local staff; member of staff when unidentified; server retained only where speaker/business context supports it.
+- Chapter 7 Zoe line using “server” intentionally retained.
+
+COPY-EDIT LOG
+- Logged interventions: 109
+- paragraph-boundary repair: 44
+- terminology: 25
+- punctuation: 15
+- source-production repair: 14
+- capitalisation: 7
+- hyphenation: 2
+- spelling: 1
+- copy-edit/source-production repair: 1
+
+QA
+- 46 Heading 1 chapter headings present.
+- 331 scene breaks preserved.
+- Curly quotation parity check: PASS (0 unmatched paragraphs).
+- Ellipsis glyph check: PASS (0 single-glyph ellipses).
+- British spelling/terminology consistency sweeps: PASS.
+- Rendered master: 884 pages.
+- Render-page pixel inspection: 884/884 readable images; 0 blank pages; 0 content-edge clipping flags.
+- Targeted visual checks performed on edited restaurant terminology, notebook/data boundaries, and Chapter 37 dialogue repair.
+- Regression diff check found no unexplained large text deletion; all structural/wording interventions are represented in the copy-edit log.
+
+PASS GATE
+- All 46 chapters copy-edited under the locked style sheet.
+- Unresolved copy-edit queries: 0.
+- Style sheet complete and internally consistent.
+
+NEXT EXECUTABLE PHASE
+- Phase 3 — Regression verification against the locked Phase 1 / Phase 7 references and the complete Phase 2 change log.

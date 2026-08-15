@@ -1,0 +1,71 @@
+{
+  "phase": "KDP Phase 2 — Final copy-edit and style sheet",
+  "status": "PASS",
+  "publication_target": "Amazon KDP reflowable Kindle ebook",
+  "baseline_master": "What_They_Called_Recovery_KDP_Reflowable_Master_Phase1(1).docx",
+  "phase2_master": "What_They_Called_Recovery_KDP_Master_Phase2_FINAL.docx",
+  "logged_interventions": 109,
+  "intervention_types": {
+    "terminology": 25,
+    "punctuation": 15,
+    "hyphenation": 2,
+    "spelling": 1,
+    "paragraph-boundary repair": 44,
+    "source-production repair": 14,
+    "copy-edit/source-production repair": 1,
+    "capitalisation": 7
+  },
+  "chapters_with_logged_changes": [
+    4,
+    5,
+    6,
+    10,
+    11,
+    12,
+    15,
+    17,
+    19,
+    20,
+    21,
+    22,
+    24,
+    25,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    40,
+    41,
+    42,
+    45
+  ],
+  "structure": {
+    "chapter_headings_heading1": 46,
+    "scene_breaks": 331,
+    "rendered_pages_for_QA": 884,
+    "blank_render_pages": 0,
+    "render_pages_touching_page_edge": 0
+  },
+  "style_checks": {
+    "server_occurrences_remaining": 1,
+    "server_rule": "The single remaining server occurrence is Zoe’s American dialogue in Chapter 7; UK local restaurant narration/dialogue uses waitress/waiter or member of staff as context requires.",
+    "ellipsis_glyph_occurrences": 0,
+    "unmatched_curly_quote_paragraphs": 0,
+    "multistorey_occurrences": 0,
+    "multi_storey_occurrences": 3
+  },
+  "unresolved_copyedit_queries": 0,
+  "story_or_developmental_changes": 0,
+  "next_phase": "Phase 3 — Regression verification",
+  "sha256": {
+    "phase1_master": "5a0a35bd4311fc3bc6d2eca2db9a0c851e66f0b70db13e20d38c7d8d21b0ff85",
+    "phase2_master": "f70cc911aef0c7394a3ea01de5da921e898768cd4c302c0068aae08d50814039"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "phase": "Phase 4 — Kindle-ready document preparation",
+  "status": "PASS",
+  "date": "2026-08-15",
+  "source": "Phase 3 organised working tree / Phase 2 copy-edited master",
+  "publication_docx": "Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx",
+  "front_matter": [
+    "What They Called Recovery",
+    "Copyright © 2026",
+    "All rights reserved.",
+    "This is a work of fiction.",
+    "First Kindle edition, 2026."
+  ],
+  "author_name_status": "Intentionally deferred to Phase 7 metadata lock; no placeholder inserted into reader-facing DOCX.",
+  "back_matter": "None added; none approved.",
+  "manuscript_text_exact_vs_phase2_after_front_matter": true,
+  "paragraphs_phase2": 26965,
+  "paragraphs_phase4": 26970,
+  "front_matter_paragraphs_added": 5,
+  "chapter_headings_heading1": 46,
+  "chapter_headings_all_page_break_before": true,
+  "scene_breaks": 331,
+  "first_paragraph_no_indent_style_count": 377,
+  "blank_paragraphs": 0,
+  "paragraphs_with_double_spaces": 0,
+  "tab_characters": 0,
+  "normal_style_first_line_twips": "288",
+  "normal_style_after_spacing_twips": "0",
+  "normal_style_line_spacing_twips": "240",
+  "forbidden_or_fixed_layout_constructs": {
+    "tracked_insertions": 0,
+    "tracked_deletions": 0,
+    "comments_part": false,
+    "fields": 0,
+    "tab_elements": 0,
+    "manual_break_elements": 0,
+    "drawings": 0,
+    "textboxes": 0,
+    "headers": 0,
+    "footers": 0,
+    "images": 0,
+    "track_revisions_setting": false
+  },
+  "render_qa": {
+    "pages": 681,
+    "page_size_px_at_72dpi": [
+      612,
+      792
+    ],
+    "blank_pages": 0,
+    "edge_clipping_flags": 0,
+    "minimum_ink_margins_px": {
+      "left": 53,
+      "top": 50,
+      "right": 54,
+      "bottom": 52
+    },
+    "representative_pages_visually_checked": [
+      "title page",
+      "copyright page",
+      "Chapter 1 opening",
+      "scene break",
+      "monospaced notebook passage",
+      "final page"
+    ]
+  },
+  "kdp_requirements_rechecked": "2026-08-15 against official Amazon KDP Help: eBook Manuscript Formatting Guide; Prepare Reflowable and Print Books with Kindle Create; Supported eBook Formats; Reflowable Text Guidelines.",
+  "toc": "No visible TOC inserted in Phase 4. Heading 1 chapter structure is prepared for Kindle Create detection; Interactive/visible TOC is Phase 5.",
+  "cover": "No cover embedded in manuscript DOCX; cover remains a separate later publication artifact.",
+  "phase5_readiness": "Ready to import into Kindle Create as a reflowable DOCX."
+}

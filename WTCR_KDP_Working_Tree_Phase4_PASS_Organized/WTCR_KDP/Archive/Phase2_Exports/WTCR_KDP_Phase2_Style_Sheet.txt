@@ -1,0 +1,25 @@
+WHAT THEY CALLED RECOVERY — KDP PHASE 2 STYLE SHEET
+Status: LOCKED
+
+EDITORIAL SCOPE
+- British English default for narration and UK adult dialogue.
+- Character voice may override; Zoe may retain natural American lexical choices.
+- Copy-edit only; no developmental rewriting; all wording changes logged.
+
+RESTAURANT TERMINOLOGY
+- UK local setting: waiter/waitress when known; member of staff when unidentified; server reserved for Zoe’s US voice or explicit business terminology.
+
+PREFERRED SPELLINGS
+- colour, behaviour, centre, defence, grey, organise, realise, recognise, analyse, travelling, cancelled, labelled, catalogue; learned retained; okay; email; website; percent.
+
+PUNCTUATION
+- Curly double dialogue quotes; single nested quotes; closed em dash in prose; spaced dash only in displayed data/labels; ellipsis is three periods (...).
+
+HYPHENATION
+- multi-storey; lock-up; lay-by; sat-nav; Wi-Fi; pay-as-you-go; check-in; high-visibility; rear-view mirror; adult-child. Open: hard drive, write blocker, child lock.
+
+STRUCTURE
+- Heading 1 for chapters; scene breaks = * * *; displayed data remains semantically separate; reflowable source, no PDF-style manual layout.
+
+CHANGE CONTROL
+- No story/structural changes. Every wording change logged. No unresolved copy-edit query at Phase 2 gate.

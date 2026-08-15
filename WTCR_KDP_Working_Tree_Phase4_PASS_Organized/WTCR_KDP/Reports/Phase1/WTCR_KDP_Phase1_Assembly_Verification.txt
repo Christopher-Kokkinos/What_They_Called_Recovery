@@ -1,0 +1,22 @@
+WHAT THEY CALLED RECOVERY — KDP PHASE 1 ASSEMBLY VERIFICATION
+Date: 14 August 2026
+
+Status: PASS
+
+chapter_count: 46
+heading1_count: 46
+chapter_sequence_ok: True
+normalized_text_match_count: 46/46
+scene_break_count: 331
+italic_chars_preserved: 175
+rendered_proof_pages: 883
+rendered_proof_blank_pages: 0
+rendered_proof_out_of_bounds_text_blocks: 0
+rendered_proof_chapter_headings: 46
+rendered_proof_scene_markers: 331
+
+Editorial changes: NONE.
+
+The master DOCX was assembled from the locked Phase 7 PDFs only. PDF page numbers and forced line wraps were removed. Chapter headings, scene breaks, italics and monospaced notes were structurally preserved. Clear page-boundary continuations were rejoined; ambiguous page-boundary paragraph identity was not guessed and is explicitly reserved for later reflow QA.
+
+PASS GATE: PASS

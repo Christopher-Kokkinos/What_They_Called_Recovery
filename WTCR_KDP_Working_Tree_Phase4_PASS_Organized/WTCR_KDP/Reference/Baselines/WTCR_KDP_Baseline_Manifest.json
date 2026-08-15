@@ -1,0 +1,336 @@
+{
+  "project": "What They Called Recovery",
+  "workflow": "KDP Final Publication Preparation",
+  "roadmap_version": "1.0",
+  "baseline_date": "2026-08-14",
+  "publication_target": "Amazon KDP reflowable Kindle ebook",
+  "canonical_reference": "Phase 7 complete 46-chapter PDF manuscript",
+  "chapter_count": 46,
+  "chapter_numbering_continuous": true,
+  "phase_0_status": "PASS",
+  "next_phase": "Phase 1 \u2014 Assemble the reflowable master source",
+  "chapters": [
+    {
+      "chapter": 1,
+      "file": "Manuscript/Chapter_01_Late_Again.pdf",
+      "bytes": 72811,
+      "sha256": "01e0fc33aab044735bf348c2a1769196c9aec8fc8af2a8041e54519e202cc860",
+      "pages": 20
+    },
+    {
+      "chapter": 2,
+      "file": "Manuscript/Chapter_02_The_Girl_At_Arrivals.pdf",
+      "bytes": 73483,
+      "sha256": "142ce38d4b8c8d306fc922f5f66744be44e724d42f013d6608406e540503e118",
+      "pages": 22
+    },
+    {
+      "chapter": 3,
+      "file": "Manuscript/Chapter_03_Back_Seat.pdf",
+      "bytes": 75756,
+      "sha256": "13bc9cbb34f7c2065b83502a0cec46c5526b6f57c77ad72dc036643de779985e",
+      "pages": 25
+    },
+    {
+      "chapter": 4,
+      "file": "Manuscript/Chapter_04_Cain.pdf",
+      "bytes": 79996,
+      "sha256": "d6764e53cb525d6ee499a69452001ec4e9997c8dae7821ca16a3cff93033d145",
+      "pages": 29
+    },
+    {
+      "chapter": 5,
+      "file": "Manuscript/Chapter_05_Three_Minutes.pdf",
+      "bytes": 62023,
+      "sha256": "cda2a142916a8f6d5ebb183634c4ae8bc93ef51fb5d54263efd4ea9e5909a28e",
+      "pages": 15
+    },
+    {
+      "chapter": 6,
+      "file": "Manuscript/Chapter_06_Walk_Normally.pdf",
+      "bytes": 284449,
+      "sha256": "242e917617e8cac208f852a2e0878cd862f17622e72bfaacc2d2b1693accc8b1",
+      "pages": 11
+    },
+    {
+      "chapter": 7,
+      "file": "Manuscript/Chapter_07_Private_Number.pdf",
+      "bytes": 65132,
+      "sha256": "ddf00d93f66db746414556b16e5f22f6014c5a7bf6006fb605d4ef351c85448b",
+      "pages": 18
+    },
+    {
+      "chapter": 8,
+      "file": "Manuscript/Chapter_08_Taken.pdf",
+      "bytes": 297489,
+      "sha256": "ea8e7eb929aac175dc8769505d36703d6588382c7c7917104ba3c0f3c2765b4b",
+      "pages": 9
+    },
+    {
+      "chapter": 9,
+      "file": "Manuscript/Chapter_09_Prepared.pdf",
+      "bytes": 66677,
+      "sha256": "95f7463440dfd5aca441e8aa35bf2cf824b27bde0305b639906c634ec48f5fb5",
+      "pages": 6
+    },
+    {
+      "chapter": 10,
+      "file": "Manuscript/Chapter_10_Still_Awake.pdf",
+      "bytes": 53561,
+      "sha256": "9a0a6e2f3d2e775644de37e7419a6e307b53cbaa63ee2324e25849d1a96d0e64",
+      "pages": 7
+    },
+    {
+      "chapter": 11,
+      "file": "Manuscript/Chapter_11_The_Showing.pdf",
+      "bytes": 69603,
+      "sha256": "fac2c786f981780f6dafa55bd8b575cab697331f1c7d94c862209b748e38180f",
+      "pages": 17
+    },
+    {
+      "chapter": 12,
+      "file": "Manuscript/Chapter_12_Home.pdf",
+      "bytes": 71315,
+      "sha256": "734441ef529d6db5c35b9656847243c858efb7278db5b30f02f9b34034b7fd0b",
+      "pages": 19
+    },
+    {
+      "chapter": 13,
+      "file": "Manuscript/Chapter_13_The_Decoy.pdf",
+      "bytes": 73592,
+      "sha256": "9b0ff8575ec7abb6cb1858108d39ff313a6f03f907b13ee1991193f256f23ec1",
+      "pages": 20
+    },
+    {
+      "chapter": 14,
+      "file": "Manuscript/Chapter_14_The_Flight.pdf",
+      "bytes": 71847,
+      "sha256": "7b4877d06f527af4b4165acd4c75b5507f358d7bc0531e5c28b8f4421b811959",
+      "pages": 20
+    },
+    {
+      "chapter": 15,
+      "file": "Manuscript/Chapter_15_No_Grandmother.pdf",
+      "bytes": 68691,
+      "sha256": "0120cba6b0a8fec1d8fe7d916f5c3106a851a666ce133372055d23b854c2ceed",
+      "pages": 19
+    },
+    {
+      "chapter": 16,
+      "file": "Manuscript/Chapter_16_The_Contract.pdf",
+      "bytes": 72954,
+      "sha256": "2c48cdd0de1aa5e4ed9d453111eb11a21a48dd56462ecfde3d7aa5b8d0d76737",
+      "pages": 22
+    },
+    {
+      "chapter": 17,
+      "file": "Manuscript/Chapter_17_First_Lesson.pdf",
+      "bytes": 85954,
+      "sha256": "76b059e896c32a17d937d915139d0321080cf23ab34b44360653ccfc495ba15c",
+      "pages": 32
+    },
+    {
+      "chapter": 18,
+      "file": "Manuscript/Chapter_18_Three_Hunters.pdf",
+      "bytes": 84432,
+      "sha256": "a836ecbf29c19524f0f2b8ca069adfaed4a87e11fa07460aa4e5d83f33090a43",
+      "pages": 29
+    },
+    {
+      "chapter": 19,
+      "file": "Manuscript/Chapter_19_Dont_Look_At_The_Threat.pdf",
+      "bytes": 98168,
+      "sha256": "0e4f822bbd1083f8bc61f62eed5fff416e09072f25def05793074c0f53e99eee",
+      "pages": 39
+    },
+    {
+      "chapter": 20,
+      "file": "Manuscript/Chapter_20_The_First_Mistake.pdf",
+      "bytes": 93208,
+      "sha256": "8b6053649ea2994b39048184c495b364c67f1b6a78c3e9ccb3a27aa65adc5e34",
+      "pages": 38
+    },
+    {
+      "chapter": 21,
+      "file": "Manuscript/Chapter_21_The_Boy_Before.pdf",
+      "bytes": 84734,
+      "sha256": "f39e1adc9d4ca97cfdc9602a46f30a73d605a6af31f5c81d26a9405a17bdce2b",
+      "pages": 32
+    },
+    {
+      "chapter": 22,
+      "file": "Manuscript/Chapter_22_The_Death_Warrant.pdf",
+      "bytes": 79909,
+      "sha256": "e7a270a10774a3f982d478724f14918f2615c2b119406d29d2ea6bbc113c6f11",
+      "pages": 28
+    },
+    {
+      "chapter": 23,
+      "file": "Manuscript/Chapter_23_No_Longer_Running.pdf",
+      "bytes": 103274,
+      "sha256": "55968bd469fbabb62061bf46d884784025b4fff03e1ca749d31d42966e69ac61",
+      "pages": 44
+    },
+    {
+      "chapter": 24,
+      "file": "Manuscript/Chapter_24_The_Index.pdf",
+      "bytes": 96332,
+      "sha256": "bc5b0775d78375fa4b43bee85a6195cc6cf4394ab3822339ba9679637508096a",
+      "pages": 26
+    },
+    {
+      "chapter": 25,
+      "file": "Manuscript/Chapter_25_Old_Routes.pdf",
+      "bytes": 98806,
+      "sha256": "8610281baf2611a97a782388a09eed540d6175ac006765a6a8def6dc60fbe610",
+      "pages": 29
+    },
+    {
+      "chapter": 26,
+      "file": "Manuscript/Chapter_26_The_Override.pdf",
+      "bytes": 89048,
+      "sha256": "8bbeec00db6eb418a213bb5c43014bf16b7b42875c66661d90dc0aa535c387ff",
+      "pages": 35
+    },
+    {
+      "chapter": 27,
+      "file": "Manuscript/Chapter_27_The_Recipients.pdf",
+      "bytes": 98760,
+      "sha256": "6abe940091b6c09b436ababde8d6e7f018b681d628726e576f6d8b7021fd3db5",
+      "pages": 46
+    },
+    {
+      "chapter": 28,
+      "file": "Manuscript/Chapter_28_The_Query.pdf",
+      "bytes": 86684,
+      "sha256": "ebd2a35aa3df8408de7bfc4716876f8b53b6176e90604826e71914143b73d3e8",
+      "pages": 36
+    },
+    {
+      "chapter": 29,
+      "file": "Manuscript/Chapter_29_The_Mirror.pdf",
+      "bytes": 91438,
+      "sha256": "dceebd88d332c576aaf82e01f0629fd60a20cd42acc8f7a62853391cfd2924a0",
+      "pages": 40
+    },
+    {
+      "chapter": 30,
+      "file": "Manuscript/Chapter_30_The_Order.pdf",
+      "bytes": 87449,
+      "sha256": "cd700b6e855f2561fc434ae834ed3cbb171936126c99cb548edb337c18c5382e",
+      "pages": 36
+    },
+    {
+      "chapter": 31,
+      "file": "Manuscript/Chapter_31_The_Profile.pdf",
+      "bytes": 91235,
+      "sha256": "ccaa6ffc4e052e021cc5b4caa8f1ecaeb63925b375206bb3ea0a5f474e3a9eae",
+      "pages": 39
+    },
+    {
+      "chapter": 32,
+      "file": "Manuscript/Chapter_32_The_Reaction.pdf",
+      "bytes": 94574,
+      "sha256": "0bdc19001963115814fc4e02c7264c4d29aedaf89d7f51a46607a75c659440e9",
+      "pages": 40
+    },
+    {
+      "chapter": 33,
+      "file": "Manuscript/Chapter_33_The_Household.pdf",
+      "bytes": 92062,
+      "sha256": "61b30d86960101109b81d92a28e4cb250fc373b9b35c5785a4484a68307042db",
+      "pages": 39
+    },
+    {
+      "chapter": 34,
+      "file": "Manuscript/Chapter_34_The_Real_Organisation.pdf",
+      "bytes": 88319,
+      "sha256": "bfd6f05a195062c35308acafba8498dc4b97b613e35e2a0c4651098954aa6cca",
+      "pages": 35
+    },
+    {
+      "chapter": 35,
+      "file": "Manuscript/Chapter_35_The_Missing_Order.pdf",
+      "bytes": 80359,
+      "sha256": "40e79f5475488be9f8802af5621fbc32bcd64c56b4bdd9dc99abd0b439e237b1",
+      "pages": 29
+    },
+    {
+      "chapter": 36,
+      "file": "Manuscript/Chapter_36_The_Old_Job.pdf",
+      "bytes": 88734,
+      "sha256": "71720d1b742773e454d9e3144ffa0d7d524dce388965cabe37b6a0619c78a291",
+      "pages": 35
+    },
+    {
+      "chapter": 37,
+      "file": "Manuscript/Chapter_37_The_Collision.pdf",
+      "bytes": 76100,
+      "sha256": "269855e4063525d3910aa48a6b9a871fd1f9a4f04897c9d821eac27ab235b470",
+      "pages": 21
+    },
+    {
+      "chapter": 38,
+      "file": "Manuscript/Chapter_38_The_Cost.pdf",
+      "bytes": 82865,
+      "sha256": "a7ce00ee50f588b4ba4005b885ebda4a7dd93fe579bfe5d6e8f9da0498e61784",
+      "pages": 31
+    },
+    {
+      "chapter": 39,
+      "file": "Manuscript/Chapter_39_The_Match.pdf",
+      "bytes": 78889,
+      "sha256": "787d50ba0e83595b8c2a3b6ecdfaa42fb7c9fd871adf8d7d1fb8e20c3deca390",
+      "pages": 28
+    },
+    {
+      "chapter": 40,
+      "file": "Manuscript/Chapter_40_Through_Glass.pdf",
+      "bytes": 77306,
+      "sha256": "d0aa2f5cfcaca0c64d4c9920d5fda3f4b02bc29b48503c0aa35d1d91943db430",
+      "pages": 26
+    },
+    {
+      "chapter": 41,
+      "file": "Manuscript/Chapter_41_Jackie.pdf",
+      "bytes": 75055,
+      "sha256": "0cf19ec735596e3e057be73b2d587892f97c63a511438ce8ed738830b883a23e",
+      "pages": 25
+    },
+    {
+      "chapter": 42,
+      "file": "Manuscript/Chapter_42_The_Second_Decoy.pdf",
+      "bytes": 88579,
+      "sha256": "1a6e7a923b8ebc2a54091d732dfd646ebafe23e3c3202d45af6cb423b94267d8",
+      "pages": 34
+    },
+    {
+      "chapter": 43,
+      "file": "Manuscript/Chapter_43_Inside_Outside.pdf",
+      "bytes": 81224,
+      "sha256": "aefaec8c1a5f0c263d99a51494d163be1b9f8393c6c6bf7072f011d4e8e7ec6c",
+      "pages": 31
+    },
+    {
+      "chapter": 44,
+      "file": "Manuscript/Chapter_44_Loyalty_Fracture.pdf",
+      "bytes": 80368,
+      "sha256": "f6f6ff7bf2b1bd8a666cf67cf01f80412bb904abe3d4d47c39dda285193659ab",
+      "pages": 29
+    },
+    {
+      "chapter": 45,
+      "file": "Manuscript/Chapter_45_Controlled_Detonation.pdf",
+      "bytes": 91538,
+      "sha256": "8bbb856173912566b4c8008fb3c321df8a9b4cc3e9b164bfcf442de23268c669",
+      "pages": 38
+    },
+    {
+      "chapter": 46,
+      "file": "Manuscript/Chapter_46_The_Direction.pdf",
+      "bytes": 73982,
+      "sha256": "098d7448fecf9b430898c6785587cb72daf81b1e15d9f1bd7d482bc2941ded17",
+      "pages": 24
+    }
+  ]
+}

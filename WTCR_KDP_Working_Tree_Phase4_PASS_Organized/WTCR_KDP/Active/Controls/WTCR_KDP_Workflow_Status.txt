@@ -1,0 +1,27 @@
+WHAT THEY CALLED RECOVERY — KDP WORKFLOW STATUS
+
+Publication target: Amazon Kindle Direct Publishing (KDP) — reflowable Kindle ebook
+Current authoritative working tree: Phase 4 PASS — organised
+
+PHASE STATUS
+Phase 0 — Publication lock and baseline: PASS
+Phase 1 — Assemble reflowable master source: PASS
+Phase 2 — Final copy-edit and style sheet: PASS
+Phase 3 — Post-copy-edit regression verification: PASS
+Phase 4 — Kindle-ready document preparation: PASS
+Phase 5 — Kindle Create build: NEXT
+
+ACTIVE PRODUCTION SOURCE
+Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx
+
+CONTROLLED DEFERMENTS
+- Final author/pen-name line for title/copyright metadata: Phase 7.
+- Visible/interactive Kindle TOC construction: Phase 5.
+- Final cover: Phase 7.
+- Back matter: none approved.
+
+WORKSPACE RULE
+Active = only current or planned-forward work.
+Reference = locked source still needed for verification.
+Reports = logs, audit evidence and phase verification.
+Archive = superseded/legacy material; immutable in place.

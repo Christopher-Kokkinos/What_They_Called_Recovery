@@ -1,0 +1,462 @@
+[
+  {
+    "chapter": 1,
+    "title": "Late Again",
+    "file": "Chapter_01_Late_Again.pdf",
+    "pages": 20,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 2,
+    "title": "The Girl at Arrivals",
+    "file": "Chapter_02_The_Girl_At_Arrivals.pdf",
+    "pages": 22,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 3,
+    "title": "Back Seat",
+    "file": "Chapter_03_Back_Seat.pdf",
+    "pages": 22,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 4,
+    "title": "Cain",
+    "file": "Chapter_04_Cain.pdf",
+    "pages": 26,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 5,
+    "title": "Three Minutes",
+    "file": "Chapter_05_Three_Minutes.pdf",
+    "pages": 13,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 6,
+    "title": "Walk Normally",
+    "file": "Chapter_06_Walk_Normally.pdf",
+    "pages": 11,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 7,
+    "title": "Private Number",
+    "file": "Chapter_07_Private_Number.pdf",
+    "pages": 15,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 8,
+    "title": "Taken",
+    "file": "Chapter_08_Taken.pdf",
+    "pages": 9,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 9,
+    "title": "Prepared",
+    "file": "Chapter_09_Prepared.pdf",
+    "pages": 6,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 10,
+    "title": "Still Awake",
+    "file": "Chapter_10_Still_Awake.pdf",
+    "pages": 7,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 11,
+    "title": "The Showing",
+    "file": "Chapter_11_The_Showing.pdf",
+    "pages": 17,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 12,
+    "title": "Home",
+    "file": "Chapter_12_Home.pdf",
+    "pages": 19,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 13,
+    "title": "The Decoy",
+    "file": "Chapter_13_The_Decoy.pdf",
+    "pages": 20,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 14,
+    "title": "The Flight",
+    "file": "Chapter_14_The_Flight.pdf",
+    "pages": 20,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 15,
+    "title": "No Grandmother",
+    "file": "Chapter_15_No_Grandmother.pdf",
+    "pages": 17,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 16,
+    "title": "The Contract",
+    "file": "Chapter_16_The_Contract.pdf",
+    "pages": 22,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 17,
+    "title": "First Lesson",
+    "file": "Chapter_17_First_Lesson.pdf",
+    "pages": 31,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 18,
+    "title": "Three Hunters",
+    "file": "Chapter_18_Three_Hunters.pdf",
+    "pages": 29,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 19,
+    "title": "Don’t Look at the Threat",
+    "file": "Chapter_19_Dont_Look_At_The_Threat.pdf",
+    "pages": 39,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 20,
+    "title": "The First Mistake",
+    "file": "Chapter_20_The_First_Mistake.pdf",
+    "pages": 37,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 21,
+    "title": "The Boy Before",
+    "file": "Chapter_21_The_Boy_Before.pdf",
+    "pages": 31,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 22,
+    "title": "The Death Warrant",
+    "file": "Chapter_22_The_Death_Warrant.pdf",
+    "pages": 26,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 23,
+    "title": "No Longer Running",
+    "file": "Chapter_23_No_Longer_Running.pdf",
+    "pages": 43,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 24,
+    "title": "The Index",
+    "file": "Chapter_24_The_Index.pdf",
+    "pages": 26,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 25,
+    "title": "Old Routes",
+    "file": "Chapter_25_Old_Routes.pdf",
+    "pages": 25,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 26,
+    "title": "The Override",
+    "file": "Chapter_26_The_Override.pdf",
+    "pages": 34,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 27,
+    "title": "The Recipients",
+    "file": "Chapter_27_The_Recipients.pdf",
+    "pages": 43,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 28,
+    "title": "The Query",
+    "file": "Chapter_28_The_Query.pdf",
+    "pages": 34,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 29,
+    "title": "The Mirror",
+    "file": "Chapter_29_The_Mirror.pdf",
+    "pages": 38,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 30,
+    "title": "The Order",
+    "file": "Chapter_30_The_Order.pdf",
+    "pages": 33,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 31,
+    "title": "The Profile",
+    "file": "Chapter_31_The_Profile.pdf",
+    "pages": 38,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 32,
+    "title": "The Reaction",
+    "file": "Chapter_32_The_Reaction.pdf",
+    "pages": 36,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 33,
+    "title": "The Household",
+    "file": "Chapter_33_The_Household.pdf",
+    "pages": 37,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 34,
+    "title": "The Real Organisation",
+    "file": "Chapter_34_The_Real_Organisation.pdf",
+    "pages": 35,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 35,
+    "title": "The Missing Order",
+    "file": "Chapter_35_The_Missing_Order.pdf",
+    "pages": 29,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 36,
+    "title": "The Old Job",
+    "file": "Chapter_36_The_Old_Job.pdf",
+    "pages": 32,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 37,
+    "title": "The Collision",
+    "file": "Chapter_37_The_Collision.pdf",
+    "pages": 13,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 38,
+    "title": "The Cost",
+    "file": "Chapter_38_The_Cost.pdf",
+    "pages": 27,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 39,
+    "title": "The Match",
+    "file": "Chapter_39_The_Match.pdf",
+    "pages": 26,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 40,
+    "title": "Through Glass",
+    "file": "Chapter_40_Through_Glass.pdf",
+    "pages": 22,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 41,
+    "title": "Jackie",
+    "file": "Chapter_41_Jackie.pdf",
+    "pages": 23,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 42,
+    "title": "The Second Decoy",
+    "file": "Chapter_42_The_Second_Decoy.pdf",
+    "pages": 32,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 43,
+    "title": "Inside / Outside",
+    "file": "Chapter_43_Inside_Outside.pdf",
+    "pages": 27,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 44,
+    "title": "Loyalty Fracture",
+    "file": "Chapter_44_Loyalty_Fracture.pdf",
+    "pages": 27,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 45,
+    "title": "Controlled Detonation",
+    "file": "Chapter_45_Controlled_Detonation.pdf",
+    "pages": 36,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  },
+  {
+    "chapter": 46,
+    "title": "The Direction",
+    "file": "Chapter_46_The_Direction.pdf",
+    "pages": 20,
+    "page_size": [
+      595.28,
+      841.89
+    ]
+  }
+]

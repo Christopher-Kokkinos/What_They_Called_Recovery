@@ -1,0 +1,451 @@
+{
+  "phase": "KDP Phase 1 — Assemble the reflowable master source",
+  "date": "2026-08-14",
+  "status": "PASS",
+  "summary": {
+    "chapter_count": 46,
+    "heading1_count": 46,
+    "chapter_sequence_ok": true,
+    "normalized_text_matches_canonical_pdfs": true,
+    "normalized_text_match_count": 46,
+    "scene_break_count": 331,
+    "italic_chars_preserved": 175,
+    "source_italic_chars": 175,
+    "monospace_chars_in_docx": 876,
+    "source_monospace_span_chars": 875,
+    "rendered_proof_pages": 883,
+    "rendered_proof_blank_pages": 0,
+    "rendered_proof_out_of_bounds_text_blocks": 0,
+    "rendered_proof_chapter_headings": 46,
+    "rendered_proof_scene_markers": 331,
+    "editorial_changes": "NONE",
+    "pass": true
+  },
+  "verification_method": [
+    "Assembled from the locked Phase 7 canonical PDFs in chapter order 1–46.",
+    "Chapter titles converted to semantic Heading 1 paragraphs with true page breaks before Chapters 2–46.",
+    "PDF page numbers and forced line wrapping removed; explicit * * * scene breaks retained as semantic scene-break paragraphs.",
+    "Italic and monospaced source spans preserved from PDF font data.",
+    "Clear syntactic continuations split only by PDF page boundaries were rejoined; ambiguous page-boundary paragraph identity was not guessed and remains a Phase 4 reflow-QA item.",
+    "Independent chapter-by-chapter normalized text comparison between the final DOCX and the 46 canonical PDFs returned 46/46 exact matches.",
+    "DOCX was rendered to an 883-page proof PDF. The rendered proof contains 0 blank pages, 0 text blocks outside page bounds, 46 chapter headings and 331 scene markers."
+  ],
+  "note_on_monospace_count": "The DOCX has one additional monospace character because a semantic joining space was inserted between two wrapped PDF lines while inheriting the surrounding monospace run. Normalized story text remains an exact match to the PDF.",
+  "chapters": [
+    {
+      "chapter": 1,
+      "pdf": "Chapter_01_Late_Again.pdf",
+      "pdf_norm_sha256": "dc9d43dd28f4d351907c57cae45dc9fe946107b583c369c6639ee0613a60e423",
+      "docx_norm_sha256": "dc9d43dd28f4d351907c57cae45dc9fe946107b583c369c6639ee0613a60e423",
+      "match": true,
+      "pdf_chars": 20749,
+      "docx_chars": 20749
+    },
+    {
+      "chapter": 2,
+      "pdf": "Chapter_02_The_Girl_At_Arrivals.pdf",
+      "pdf_norm_sha256": "1a526a70c2ad39f81f5860e51db2a1ae4ec4e92a1a604031311fca583d4df768",
+      "docx_norm_sha256": "1a526a70c2ad39f81f5860e51db2a1ae4ec4e92a1a604031311fca583d4df768",
+      "match": true,
+      "pdf_chars": 20418,
+      "docx_chars": 20418
+    },
+    {
+      "chapter": 3,
+      "pdf": "Chapter_03_Back_Seat.pdf",
+      "pdf_norm_sha256": "4b2184a1d215e5d8d33c36367c76c76311923871634e870404e9136aee756959",
+      "docx_norm_sha256": "4b2184a1d215e5d8d33c36367c76c76311923871634e870404e9136aee756959",
+      "match": true,
+      "pdf_chars": 20792,
+      "docx_chars": 20792
+    },
+    {
+      "chapter": 4,
+      "pdf": "Chapter_04_Cain.pdf",
+      "pdf_norm_sha256": "0c160b312458ea95a230df90ca1a5070e00abf0fce6c97c93aa65fa551674ef8",
+      "docx_norm_sha256": "0c160b312458ea95a230df90ca1a5070e00abf0fce6c97c93aa65fa551674ef8",
+      "match": true,
+      "pdf_chars": 23225,
+      "docx_chars": 23225
+    },
+    {
+      "chapter": 5,
+      "pdf": "Chapter_05_Three_Minutes.pdf",
+      "pdf_norm_sha256": "b6c746a0edc708a4ba48bbf383250459d414a8e154cc13e0a40446b7f089d5f9",
+      "docx_norm_sha256": "b6c746a0edc708a4ba48bbf383250459d414a8e154cc13e0a40446b7f089d5f9",
+      "match": true,
+      "pdf_chars": 11812,
+      "docx_chars": 11812
+    },
+    {
+      "chapter": 6,
+      "pdf": "Chapter_06_Walk_Normally.pdf",
+      "pdf_norm_sha256": "5629b326b79af17f89040fcd80f1c424d310afb18f75ca4fb426f665ea5d79e1",
+      "docx_norm_sha256": "5629b326b79af17f89040fcd80f1c424d310afb18f75ca4fb426f665ea5d79e1",
+      "match": true,
+      "pdf_chars": 9481,
+      "docx_chars": 9481
+    },
+    {
+      "chapter": 7,
+      "pdf": "Chapter_07_Private_Number.pdf",
+      "pdf_norm_sha256": "9e53a3099b019624fd07b44d5d3d565a867ecbbc905d05481c25d966a2f668e2",
+      "docx_norm_sha256": "9e53a3099b019624fd07b44d5d3d565a867ecbbc905d05481c25d966a2f668e2",
+      "match": true,
+      "pdf_chars": 12900,
+      "docx_chars": 12900
+    },
+    {
+      "chapter": 8,
+      "pdf": "Chapter_08_Taken.pdf",
+      "pdf_norm_sha256": "78de6b9076e06b7e466be702f8e2ff060aaf29300b4068e64475ea428e65d383",
+      "docx_norm_sha256": "78de6b9076e06b7e466be702f8e2ff060aaf29300b4068e64475ea428e65d383",
+      "match": true,
+      "pdf_chars": 9167,
+      "docx_chars": 9167
+    },
+    {
+      "chapter": 9,
+      "pdf": "Chapter_09_Prepared.pdf",
+      "pdf_norm_sha256": "d5d083710699720886399f389ed8a72480de8ef9dea3aeb831596f3e95905a56",
+      "docx_norm_sha256": "d5d083710699720886399f389ed8a72480de8ef9dea3aeb831596f3e95905a56",
+      "match": true,
+      "pdf_chars": 6118,
+      "docx_chars": 6118
+    },
+    {
+      "chapter": 10,
+      "pdf": "Chapter_10_Still_Awake.pdf",
+      "pdf_norm_sha256": "e1a545263177a5a7871ec4138ac53e2edbaa1dd65c2fb965a2eddea4c36c3a53",
+      "docx_norm_sha256": "e1a545263177a5a7871ec4138ac53e2edbaa1dd65c2fb965a2eddea4c36c3a53",
+      "match": true,
+      "pdf_chars": 7597,
+      "docx_chars": 7597
+    },
+    {
+      "chapter": 11,
+      "pdf": "Chapter_11_The_Showing.pdf",
+      "pdf_norm_sha256": "e292d7054235a0fd3e6f19b6fe4d65b7eaa5a9740854a3c8b085a186d2f65da1",
+      "docx_norm_sha256": "e292d7054235a0fd3e6f19b6fe4d65b7eaa5a9740854a3c8b085a186d2f65da1",
+      "match": true,
+      "pdf_chars": 20466,
+      "docx_chars": 20466
+    },
+    {
+      "chapter": 12,
+      "pdf": "Chapter_12_Home.pdf",
+      "pdf_norm_sha256": "b45c4c91b234095682309f6a21631eefe94193cb32d9327fec4e4e3810f8924c",
+      "docx_norm_sha256": "b45c4c91b234095682309f6a21631eefe94193cb32d9327fec4e4e3810f8924c",
+      "match": true,
+      "pdf_chars": 20510,
+      "docx_chars": 20510
+    },
+    {
+      "chapter": 13,
+      "pdf": "Chapter_13_The_Decoy.pdf",
+      "pdf_norm_sha256": "c84b742606e45e59cd515ffb4b84cde5b567331f18552163b424794c0d39ff15",
+      "docx_norm_sha256": "c84b742606e45e59cd515ffb4b84cde5b567331f18552163b424794c0d39ff15",
+      "match": true,
+      "pdf_chars": 22543,
+      "docx_chars": 22543
+    },
+    {
+      "chapter": 14,
+      "pdf": "Chapter_14_The_Flight.pdf",
+      "pdf_norm_sha256": "4dc4182ed2f44453b8e77e5245e2acce37effef48660925560825ae3dd407383",
+      "docx_norm_sha256": "4dc4182ed2f44453b8e77e5245e2acce37effef48660925560825ae3dd407383",
+      "match": true,
+      "pdf_chars": 20242,
+      "docx_chars": 20242
+    },
+    {
+      "chapter": 15,
+      "pdf": "Chapter_15_No_Grandmother.pdf",
+      "pdf_norm_sha256": "531463b28c193f9cc92aa71e58ff741c30ff3bc44532f7bd147cf3348cb365c9",
+      "docx_norm_sha256": "531463b28c193f9cc92aa71e58ff741c30ff3bc44532f7bd147cf3348cb365c9",
+      "match": true,
+      "pdf_chars": 16665,
+      "docx_chars": 16665
+    },
+    {
+      "chapter": 16,
+      "pdf": "Chapter_16_The_Contract.pdf",
+      "pdf_norm_sha256": "3c1bb9edd6fda8cb0cfee7272a742d9cbd180b2f73b2e9b53815d51973582442",
+      "docx_norm_sha256": "3c1bb9edd6fda8cb0cfee7272a742d9cbd180b2f73b2e9b53815d51973582442",
+      "match": true,
+      "pdf_chars": 19650,
+      "docx_chars": 19650
+    },
+    {
+      "chapter": 17,
+      "pdf": "Chapter_17_First_Lesson.pdf",
+      "pdf_norm_sha256": "b3ad2045ffea3bdce36d5ea79b22734381fb6b8b57bf42592755bf14528c656f",
+      "docx_norm_sha256": "b3ad2045ffea3bdce36d5ea79b22734381fb6b8b57bf42592755bf14528c656f",
+      "match": true,
+      "pdf_chars": 27820,
+      "docx_chars": 27820
+    },
+    {
+      "chapter": 18,
+      "pdf": "Chapter_18_Three_Hunters.pdf",
+      "pdf_norm_sha256": "08a70b3a48e7b682dfbc5fb50e18ba48f532e0f30ad41226fb32f1640e451216",
+      "docx_norm_sha256": "08a70b3a48e7b682dfbc5fb50e18ba48f532e0f30ad41226fb32f1640e451216",
+      "match": true,
+      "pdf_chars": 28397,
+      "docx_chars": 28397
+    },
+    {
+      "chapter": 19,
+      "pdf": "Chapter_19_Dont_Look_At_The_Threat.pdf",
+      "pdf_norm_sha256": "7ce49ccf08c67ebf36b09f0095adec575475c87b3dff708afa87d3938cecd2ca",
+      "docx_norm_sha256": "7ce49ccf08c67ebf36b09f0095adec575475c87b3dff708afa87d3938cecd2ca",
+      "match": true,
+      "pdf_chars": 37448,
+      "docx_chars": 37448
+    },
+    {
+      "chapter": 20,
+      "pdf": "Chapter_20_The_First_Mistake.pdf",
+      "pdf_norm_sha256": "7b1110b7b31c7aeec2e4c6b2d93373d6dc8b54c778fb150741e1ca1b8ad389d1",
+      "docx_norm_sha256": "7b1110b7b31c7aeec2e4c6b2d93373d6dc8b54c778fb150741e1ca1b8ad389d1",
+      "match": true,
+      "pdf_chars": 32121,
+      "docx_chars": 32121
+    },
+    {
+      "chapter": 21,
+      "pdf": "Chapter_21_The_Boy_Before.pdf",
+      "pdf_norm_sha256": "954a9e6a0d61342a8d90f5f0324e334b3e11ded4be7ddbfd27f72dbfb57e6543",
+      "docx_norm_sha256": "954a9e6a0d61342a8d90f5f0324e334b3e11ded4be7ddbfd27f72dbfb57e6543",
+      "match": true,
+      "pdf_chars": 25967,
+      "docx_chars": 25967
+    },
+    {
+      "chapter": 22,
+      "pdf": "Chapter_22_The_Death_Warrant.pdf",
+      "pdf_norm_sha256": "308172515443156115e5c9de883a58f30be690e32e61e2083af279a056c2f628",
+      "docx_norm_sha256": "308172515443156115e5c9de883a58f30be690e32e61e2083af279a056c2f628",
+      "match": true,
+      "pdf_chars": 23177,
+      "docx_chars": 23177
+    },
+    {
+      "chapter": 23,
+      "pdf": "Chapter_23_No_Longer_Running.pdf",
+      "pdf_norm_sha256": "7b13da7e711254d43e660e527734d0476d4b1a6f73dd4b554978442cbc6c1c2f",
+      "docx_norm_sha256": "7b13da7e711254d43e660e527734d0476d4b1a6f73dd4b554978442cbc6c1c2f",
+      "match": true,
+      "pdf_chars": 39799,
+      "docx_chars": 39799
+    },
+    {
+      "chapter": 24,
+      "pdf": "Chapter_24_The_Index.pdf",
+      "pdf_norm_sha256": "61a4c14104618738adf4d6efd60151c85400158fe000a17ab888c3655cfda205",
+      "docx_norm_sha256": "61a4c14104618738adf4d6efd60151c85400158fe000a17ab888c3655cfda205",
+      "match": true,
+      "pdf_chars": 21055,
+      "docx_chars": 21055
+    },
+    {
+      "chapter": 25,
+      "pdf": "Chapter_25_Old_Routes.pdf",
+      "pdf_norm_sha256": "3602a64365ef52744e2d44d42fa895c5b7a0d66138f9e7855309f502ce5af886",
+      "docx_norm_sha256": "3602a64365ef52744e2d44d42fa895c5b7a0d66138f9e7855309f502ce5af886",
+      "match": true,
+      "pdf_chars": 21772,
+      "docx_chars": 21772
+    },
+    {
+      "chapter": 26,
+      "pdf": "Chapter_26_The_Override.pdf",
+      "pdf_norm_sha256": "caf6ee1bc3125380e5ebad13361ca2d47d96732b8e9ca0d70933be0bff8369aa",
+      "docx_norm_sha256": "caf6ee1bc3125380e5ebad13361ca2d47d96732b8e9ca0d70933be0bff8369aa",
+      "match": true,
+      "pdf_chars": 28151,
+      "docx_chars": 28151
+    },
+    {
+      "chapter": 27,
+      "pdf": "Chapter_27_The_Recipients.pdf",
+      "pdf_norm_sha256": "edb6487b129e072849e91efe48fe6ac25a9c195e35f65b941f8f641f6657ad0d",
+      "docx_norm_sha256": "edb6487b129e072849e91efe48fe6ac25a9c195e35f65b941f8f641f6657ad0d",
+      "match": true,
+      "pdf_chars": 30117,
+      "docx_chars": 30117
+    },
+    {
+      "chapter": 28,
+      "pdf": "Chapter_28_The_Query.pdf",
+      "pdf_norm_sha256": "c22e8c4d94939f8abed09704f5379e87727a54d5c59a1b20fdd78ec45806a311",
+      "docx_norm_sha256": "c22e8c4d94939f8abed09704f5379e87727a54d5c59a1b20fdd78ec45806a311",
+      "match": true,
+      "pdf_chars": 23404,
+      "docx_chars": 23404
+    },
+    {
+      "chapter": 29,
+      "pdf": "Chapter_29_The_Mirror.pdf",
+      "pdf_norm_sha256": "885ddbc2b6b4bf48659d07e971944260614e4f0c74ce9fc9f6c33399b81c6f7c",
+      "docx_norm_sha256": "885ddbc2b6b4bf48659d07e971944260614e4f0c74ce9fc9f6c33399b81c6f7c",
+      "match": true,
+      "pdf_chars": 26158,
+      "docx_chars": 26158
+    },
+    {
+      "chapter": 30,
+      "pdf": "Chapter_30_The_Order.pdf",
+      "pdf_norm_sha256": "b13e3a44971ede373078d3e855df6ba4bc9b030ed1eb3ed6136bafb193b804fb",
+      "docx_norm_sha256": "b13e3a44971ede373078d3e855df6ba4bc9b030ed1eb3ed6136bafb193b804fb",
+      "match": true,
+      "pdf_chars": 24900,
+      "docx_chars": 24900
+    },
+    {
+      "chapter": 31,
+      "pdf": "Chapter_31_The_Profile.pdf",
+      "pdf_norm_sha256": "cc55678cff7a8b5daef77c0806ca022cc0a9f891f4c2cca495b89e0b41387486",
+      "docx_norm_sha256": "cc55678cff7a8b5daef77c0806ca022cc0a9f891f4c2cca495b89e0b41387486",
+      "match": true,
+      "pdf_chars": 27209,
+      "docx_chars": 27209
+    },
+    {
+      "chapter": 32,
+      "pdf": "Chapter_32_The_Reaction.pdf",
+      "pdf_norm_sha256": "4fb23bf6c28d458b8a4636f84507bb5f77d32cfc4f676b897011cc38fa5ba406",
+      "docx_norm_sha256": "4fb23bf6c28d458b8a4636f84507bb5f77d32cfc4f676b897011cc38fa5ba406",
+      "match": true,
+      "pdf_chars": 29970,
+      "docx_chars": 29970
+    },
+    {
+      "chapter": 33,
+      "pdf": "Chapter_33_The_Household.pdf",
+      "pdf_norm_sha256": "06d689e953b5a27723d9d5b3eb67ab5e1eb3149b76d0db59980cb882cd1df3db",
+      "docx_norm_sha256": "06d689e953b5a27723d9d5b3eb67ab5e1eb3149b76d0db59980cb882cd1df3db",
+      "match": true,
+      "pdf_chars": 28949,
+      "docx_chars": 28949
+    },
+    {
+      "chapter": 34,
+      "pdf": "Chapter_34_The_Real_Organisation.pdf",
+      "pdf_norm_sha256": "3dfeb4d8d6ea5c168699338248ec55175f91dcd9acd913d5080ef70864f2d96c",
+      "docx_norm_sha256": "3dfeb4d8d6ea5c168699338248ec55175f91dcd9acd913d5080ef70864f2d96c",
+      "match": true,
+      "pdf_chars": 27290,
+      "docx_chars": 27290
+    },
+    {
+      "chapter": 35,
+      "pdf": "Chapter_35_The_Missing_Order.pdf",
+      "pdf_norm_sha256": "cec7ed2c2e45113e28e8d087329b438ab31b88fc80906abb9cd9187638fb8892",
+      "docx_norm_sha256": "cec7ed2c2e45113e28e8d087329b438ab31b88fc80906abb9cd9187638fb8892",
+      "match": true,
+      "pdf_chars": 21961,
+      "docx_chars": 21961
+    },
+    {
+      "chapter": 36,
+      "pdf": "Chapter_36_The_Old_Job.pdf",
+      "pdf_norm_sha256": "0a1fff72a9269b5b793d052509caba4be563ec446a7a1f3408fc2db4139d3ed3",
+      "docx_norm_sha256": "0a1fff72a9269b5b793d052509caba4be563ec446a7a1f3408fc2db4139d3ed3",
+      "match": true,
+      "pdf_chars": 28317,
+      "docx_chars": 28317
+    },
+    {
+      "chapter": 37,
+      "pdf": "Chapter_37_The_Collision.pdf",
+      "pdf_norm_sha256": "55a8b02c6cbd7a95561e5c917150393ac6786a932ee841e69273f5bef657bc43",
+      "docx_norm_sha256": "55a8b02c6cbd7a95561e5c917150393ac6786a932ee841e69273f5bef657bc43",
+      "match": true,
+      "pdf_chars": 24424,
+      "docx_chars": 24424
+    },
+    {
+      "chapter": 38,
+      "pdf": "Chapter_38_The_Cost.pdf",
+      "pdf_norm_sha256": "8fbb51e098e37873e9a7337307e0f2895e16f2ded5287b63101106eea583b386",
+      "docx_norm_sha256": "8fbb51e098e37873e9a7337307e0f2895e16f2ded5287b63101106eea583b386",
+      "match": true,
+      "pdf_chars": 24010,
+      "docx_chars": 24010
+    },
+    {
+      "chapter": 39,
+      "pdf": "Chapter_39_The_Match.pdf",
+      "pdf_norm_sha256": "283e89fc9bb74e2ab5f846e0625ac5693f0ec5dca3937a5f065b77ffd1170b77",
+      "docx_norm_sha256": "283e89fc9bb74e2ab5f846e0625ac5693f0ec5dca3937a5f065b77ffd1170b77",
+      "match": true,
+      "pdf_chars": 21362,
+      "docx_chars": 21362
+    },
+    {
+      "chapter": 40,
+      "pdf": "Chapter_40_Through_Glass.pdf",
+      "pdf_norm_sha256": "ed28808b5fbc9a1e12f79ca61bcc0574885bd2774cb6460388fc0117d75aa6cc",
+      "docx_norm_sha256": "ed28808b5fbc9a1e12f79ca61bcc0574885bd2774cb6460388fc0117d75aa6cc",
+      "match": true,
+      "pdf_chars": 21341,
+      "docx_chars": 21341
+    },
+    {
+      "chapter": 41,
+      "pdf": "Chapter_41_Jackie.pdf",
+      "pdf_norm_sha256": "9f3e3cf52c71939a08cb84bf8577105e857a4067c98ed53ce368a80cd791743f",
+      "docx_norm_sha256": "9f3e3cf52c71939a08cb84bf8577105e857a4067c98ed53ce368a80cd791743f",
+      "match": true,
+      "pdf_chars": 19460,
+      "docx_chars": 19460
+    },
+    {
+      "chapter": 42,
+      "pdf": "Chapter_42_The_Second_Decoy.pdf",
+      "pdf_norm_sha256": "6e04f35a82e3728e8f2ae821b0fe2f7497a68eb5ab2bfecd73f00c653b9d0c68",
+      "docx_norm_sha256": "6e04f35a82e3728e8f2ae821b0fe2f7497a68eb5ab2bfecd73f00c653b9d0c68",
+      "match": true,
+      "pdf_chars": 27824,
+      "docx_chars": 27824
+    },
+    {
+      "chapter": 43,
+      "pdf": "Chapter_43_Inside_Outside.pdf",
+      "pdf_norm_sha256": "13033eb607939c1f681a0d56321f85cce87140d71f87b3cd4952e98a7a0f9835",
+      "docx_norm_sha256": "13033eb607939c1f681a0d56321f85cce87140d71f87b3cd4952e98a7a0f9835",
+      "match": true,
+      "pdf_chars": 20999,
+      "docx_chars": 20999
+    },
+    {
+      "chapter": 44,
+      "pdf": "Chapter_44_Loyalty_Fracture.pdf",
+      "pdf_norm_sha256": "42566199c9b8da00529df359e4345ce550edd2c4762861ac66ef3d703eaa4022",
+      "docx_norm_sha256": "42566199c9b8da00529df359e4345ce550edd2c4762861ac66ef3d703eaa4022",
+      "match": true,
+      "pdf_chars": 22247,
+      "docx_chars": 22247
+    },
+    {
+      "chapter": 45,
+      "pdf": "Chapter_45_Controlled_Detonation.pdf",
+      "pdf_norm_sha256": "076dba6b51691bebb490986d4a3095905d5aa95f3131272eccc49a916681778f",
+      "docx_norm_sha256": "076dba6b51691bebb490986d4a3095905d5aa95f3131272eccc49a916681778f",
+      "match": true,
+      "pdf_chars": 28337,
+      "docx_chars": 28337
+    },
+    {
+      "chapter": 46,
+      "pdf": "Chapter_46_The_Direction.pdf",
+      "pdf_norm_sha256": "a4ec316e74f11f9c991bc5bed0f999782be22d346c64a51dda8a1eca16ba59d5",
+      "docx_norm_sha256": "a4ec316e74f11f9c991bc5bed0f999782be22d346c64a51dda8a1eca16ba59d5",
+      "match": true,
+      "pdf_chars": 18417,
+      "docx_chars": 18417
+    }
+  ],
+  "master_docx_sha256": "5a0a35bd4311fc3bc6d2eca2db9a0c851e66f0b70db13e20d38c7d8d21b0ff85"
+}

@@ -1,0 +1,526 @@
+{
+  "phase": "KDP Phase 3 — Post-copy-edit regression verification",
+  "date": "2026-08-14",
+  "status": "PASS",
+  "pass_gate": {
+    "every_text_change_accounted_for": true,
+    "new_critical_continuity_defects": 0,
+    "new_high_continuity_defects": 0,
+    "pass": true
+  },
+  "change_accounting": {
+    "logged_phase2_interventions": 109,
+    "replay_method": "Phase 1 chapter text serialized with paragraph boundaries; Phase 2 log replayed in recorded order; reconstructed result compared exactly with Phase 2 master.",
+    "replay_issues": [],
+    "chapter_mismatches_after_replay": [],
+    "exact_reconstruction": true,
+    "phase1_vs_canonical_pdfs_46_of_46_normalized_match": true
+  },
+  "structural": {
+    "chapter_count_phase1": 46,
+    "chapter_count_phase2": 46,
+    "chapter_sequence_phase2": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46
+    ],
+    "scene_breaks_phase1": 331,
+    "scene_breaks_phase2": 331
+  },
+  "continuity": {
+    "principal_name_counts": {
+      "Zoe": {
+        "phase1": 2260,
+        "phase2": 2260
+      },
+      "Elias": {
+        "phase1": 1535,
+        "phase2": 1535
+      },
+      "Mac": {
+        "phase1": 628,
+        "phase2": 628
+      },
+      "Cain": {
+        "phase1": 306,
+        "phase2": 306
+      },
+      "Jackie": {
+        "phase1": 403,
+        "phase2": 403
+      },
+      "Helen": {
+        "phase1": 467,
+        "phase2": 467
+      },
+      "Brian": {
+        "phase1": 317,
+        "phase2": 317
+      },
+      "Voss": {
+        "phase1": 592,
+        "phase2": 592
+      },
+      "Vale": {
+        "phase1": 650,
+        "phase2": 650
+      },
+      "Reyes": {
+        "phase1": 225,
+        "phase2": 225
+      },
+      "Samuel": {
+        "phase1": 2,
+        "phase2": 2
+      },
+      "Sam": {
+        "phase1": 38,
+        "phase2": 38
+      },
+      "Ruth": {
+        "phase1": 88,
+        "phase2": 88
+      },
+      "Elaine": {
+        "phase1": 42,
+        "phase2": 42
+      },
+      "Martin": {
+        "phase1": 10,
+        "phase2": 10
+      }
+    },
+    "weekday_counts": {
+      "Monday": {
+        "phase1": 40,
+        "phase2": 40
+      },
+      "Tuesday": {
+        "phase1": 21,
+        "phase2": 21
+      },
+      "Wednesday": {
+        "phase1": 14,
+        "phase2": 14
+      },
+      "Thursday": {
+        "phase1": 13,
+        "phase2": 13
+      },
+      "Friday": {
+        "phase1": 16,
+        "phase2": 16
+      },
+      "Saturday": {
+        "phase1": 9,
+        "phase2": 9
+      },
+      "Sunday": {
+        "phase1": 15,
+        "phase2": 15
+      }
+    },
+    "age_time_counts": {
+      "thirteen": {
+        "phase1": 50,
+        "phase2": 50
+      },
+      "thirteen-year-old": {
+        "phase1": 13,
+        "phase2": 13
+      },
+      "fourteen": {
+        "phase1": 14,
+        "phase2": 14
+      },
+      "five years": {
+        "phase1": 34,
+        "phase2": 34
+      },
+      "five-year": {
+        "phase1": 2,
+        "phase2": 2
+      },
+      "eleven years": {
+        "phase1": 1,
+        "phase2": 1
+      },
+      "eleven-year": {
+        "phase1": 0,
+        "phase2": 0
+      },
+      "11 years": {
+        "phase1": 0,
+        "phase2": 0
+      }
+    },
+    "recurring_object_counts": {
+      "backpack": {
+        "phase1": 174,
+        "phase2": 174
+      },
+      "notebook": {
+        "phase1": 119,
+        "phase2": 119
+      },
+      "write blocker": {
+        "phase1": 1,
+        "phase2": 1
+      },
+      "wired mouse": {
+        "phase1": 1,
+        "phase2": 1
+      },
+      "mouse": {
+        "phase1": 3,
+        "phase2": 3
+      },
+      "adapter cable": {
+        "phase1": 1,
+        "phase2": 1
+      },
+      "adapter cables": {
+        "phase1": 1,
+        "phase2": 1
+      },
+      "cables": {
+        "phase1": 3,
+        "phase2": 3
+      },
+      "laptop": {
+        "phase1": 43,
+        "phase2": 43
+      },
+      "tracker": {
+        "phase1": 51,
+        "phase2": 51
+      },
+      "working copy": {
+        "phase1": 12,
+        "phase2": 12
+      },
+      "archive drive": {
+        "phase1": 1,
+        "phase2": 1
+      }
+    },
+    "principal_name_counts_stable": true,
+    "weekday_counts_stable": true,
+    "age_time_counts_stable": true,
+    "recurring_object_counts_stable": true,
+    "targeted_previous_fixes": {
+      "Chapter 24 retains “After more than two weeks”": true,
+      "Chapter 28 retains “For years they monitored me”": true,
+      "Chapter 2 obsolete overhead-compartment escort version absent": true,
+      "Chapter 4 withheld-number uncertainty fix retained": true,
+      "Chapter 4 floor-plan clarification retained": true,
+      "Chapter 5 “They know you” retained": true,
+      "Chapter 6 seventy-foot geometry retained": true,
+      "Chapter 6 confirmation wording retained": true,
+      "Chapter 7 premature Sam reveal remains absent": true,
+      "Chapter 7 future cottage meta-reference remains absent": true,
+      "Chapter 8 “She barely slept” retained": true,
+      "Chapter 8 Cain-name knowledge fix retained": true,
+      "Chapter 9 Wednesday-night chronology fix retained": true,
+      "Chapter 11 obsolete second photograph-recognition beat absent": true,
+      "Chapter 28 “The grab” retained and “Her running” absent": true
+    },
+    "unsupported_second_display_hits": {
+      "second screen": 0,
+      "second monitor": 0,
+      "another screen": 0
+    },
+    "in_story_chapter_number_meta_refs": [],
+    "jackie_brothers_and_sisters_error_hits": 0,
+    "jackie_brother_and_sisters_hits": 8,
+    "eleven_years_contexts": [
+      {
+        "chapter": 18,
+        "context": " long.” Vale joined the call from a records office in a market town outside the valley. “The visible cottage is held by a company dissolved eleven years ago,” she said. “Land Registry correspondence leads to an accountant who died six years ago. Companies House gives me two older registered "
+      }
+    ],
+    "restaurant_server_remaining_contexts": [
+      {
+        "chapter": 7,
+        "text": "“You didn’t tell the server I was lying.”"
+      }
+    ]
+  },
+  "transition_audit": {
+    "handoffs_reviewed": 45,
+    "results": [
+      {
+        "from_chapter": 1,
+        "to_chapter": 2,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 2,
+        "to_chapter": 3,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 3,
+        "to_chapter": 4,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 4,
+        "to_chapter": 5,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 5,
+        "to_chapter": 6,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 6,
+        "to_chapter": 7,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 7,
+        "to_chapter": 8,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 8,
+        "to_chapter": 9,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 9,
+        "to_chapter": 10,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 10,
+        "to_chapter": 11,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 11,
+        "to_chapter": 12,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 12,
+        "to_chapter": 13,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 13,
+        "to_chapter": 14,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 14,
+        "to_chapter": 15,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 15,
+        "to_chapter": 16,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 16,
+        "to_chapter": 17,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 17,
+        "to_chapter": 18,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 18,
+        "to_chapter": 19,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 19,
+        "to_chapter": 20,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 20,
+        "to_chapter": 21,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 21,
+        "to_chapter": 22,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 22,
+        "to_chapter": 23,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 23,
+        "to_chapter": 24,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 24,
+        "to_chapter": 25,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 25,
+        "to_chapter": 26,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 26,
+        "to_chapter": 27,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 27,
+        "to_chapter": 28,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 28,
+        "to_chapter": 29,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 29,
+        "to_chapter": 30,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 30,
+        "to_chapter": 31,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 31,
+        "to_chapter": 32,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 32,
+        "to_chapter": 33,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 33,
+        "to_chapter": 34,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 34,
+        "to_chapter": 35,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 35,
+        "to_chapter": 36,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 36,
+        "to_chapter": 37,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 37,
+        "to_chapter": 38,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 38,
+        "to_chapter": 39,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 39,
+        "to_chapter": 40,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 40,
+        "to_chapter": 41,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 41,
+        "to_chapter": 42,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 42,
+        "to_chapter": 43,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 43,
+        "to_chapter": 44,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 44,
+        "to_chapter": 45,
+        "status": "PASS"
+      },
+      {
+        "from_chapter": 45,
+        "to_chapter": 46,
+        "status": "PASS"
+      }
+    ],
+    "phase2_edits_touching_first_or_last_four_nonempty_paragraphs": [],
+    "conclusion": "All 45 chapter handoffs cold-read in Phase 2 master; no edit-introduced discontinuity found."
+  },
+  "story_integrity_conclusion": "No Phase 2 copy-edit changed plot, character knowledge, chronology or reveal order. No new Critical or High continuity defect found.",
+  "next_phase": "Phase 4 — Kindle-ready document preparation"
+}

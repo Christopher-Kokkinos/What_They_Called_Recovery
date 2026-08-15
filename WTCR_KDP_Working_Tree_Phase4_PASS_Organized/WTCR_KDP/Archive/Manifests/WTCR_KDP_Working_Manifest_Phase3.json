@@ -1,0 +1,475 @@
+{
+  "generated": "2026-08-14",
+  "phase": "KDP Phase 3 PASS",
+  "root_policy": [
+    "Active",
+    "Reference",
+    "Reports",
+    "Archive"
+  ],
+  "file_count_excluding_manifest": 77,
+  "files": [
+    {
+      "path": "Active/Controls/WTCR_KDP_Final_Publication_Preparation_Roadmap.docx",
+      "size": 42796,
+      "sha256": "8386621cd97c5585eb8df462202e0b7a7d2ac8e48d3a618bda2edb59c1b28c32",
+      "zone": "Active"
+    },
+    {
+      "path": "Active/Controls/WTCR_KDP_Final_Publication_Preparation_Roadmap.pdf",
+      "size": 136370,
+      "sha256": "7b8a2faeab0f33ba03ddde6105a88b20f10cd33d0f811f4962e0f12d6e2abf5e",
+      "zone": "Active"
+    },
+    {
+      "path": "Active/Controls/WTCR_KDP_Workflow_Status.txt",
+      "size": 1263,
+      "sha256": "258b2d1f2445850d86cf6d76b6f919e3d8840ed06987026097be39d09fc73a56",
+      "zone": "Active"
+    },
+    {
+      "path": "Active/Controls/WTCR_KDP_Workspace_Structure.txt",
+      "size": 1342,
+      "sha256": "00711d051266fda446c3873be08dc59fa315ee7747cc487f3b2dec1bb5f03af0",
+      "zone": "Active"
+    },
+    {
+      "path": "Active/Editorial/WTCR_KDP_Phase2_Style_Sheet.docx",
+      "size": 39862,
+      "sha256": "1b3a39ac75e2f0b66b90f966d5b90d0996643043cb0bb371a16599f56fb21bee",
+      "zone": "Active"
+    },
+    {
+      "path": "Active/Production/What_They_Called_Recovery_KDP_Master_Phase2_Copyedited.docx",
+      "size": 491529,
+      "sha256": "f70cc911aef0c7394a3ea01de5da921e898768cd4c302c0068aae08d50814039",
+      "zone": "Active"
+    },
+    {
+      "path": "Archive/Concept_Covers/image_1786252625189.jpeg",
+      "size": 623294,
+      "sha256": "107c28058742be63439d46ae4c5dec7e87a83804d0094439f5c01ea6c86d86bc",
+      "zone": "Archive"
+    },
+    {
+      "path": "Archive/Manifests/WTCR_Phase_6_Final_Manifest.json",
+      "size": 7799,
+      "sha256": "f4d193e335585797707f7b0598388f3923b1a454cf2aab40fcd292265a00629d",
+      "zone": "Archive"
+    },
+    {
+      "path": "Archive/Manifests/WTCR_Phase_7_Working_Manifest.json",
+      "size": 10571,
+      "sha256": "3bd0832a3ab1aafff6e765688d462f41f0ba443cac151a1e54cbde2afb4c3809",
+      "zone": "Archive"
+    },
+    {
+      "path": "Archive/Phase2_Exports/WTCR_KDP_Phase2_Style_Sheet.pdf",
+      "size": 83219,
+      "sha256": "6c08540e937e485041812d26e901fccfa4fb6f1e545ad7c942b8d15ec18719fb",
+      "zone": "Archive"
+    },
+    {
+      "path": "Archive/Phase2_Exports/WTCR_KDP_Phase2_Style_Sheet.txt",
+      "size": 1302,
+      "sha256": "9e5dcb2526f9dcd9342cdd3ab360a5fbeea2910b1a8bf145596cc0901e465697",
+      "zone": "Archive"
+    },
+    {
+      "path": "Archive/Production_Baselines/What_They_Called_Recovery_KDP_Reflowable_Master_Phase1.docx",
+      "size": 491039,
+      "sha256": "5a0a35bd4311fc3bc6d2eca2db9a0c851e66f0b70db13e20d38c7d8d21b0ff85",
+      "zone": "Archive"
+    },
+    {
+      "path": "Archive/Roadmaps/Second_Half_Continuation_Plan_v2_Shadow_Safeguarding_Integrated.pdf",
+      "size": 127064,
+      "sha256": "418fbc51fcfa21d8cc5f0ce090f2bd4e896d1ec9c71aa9c545399361e0ae3d74",
+      "zone": "Archive"
+    },
+    {
+      "path": "Archive/Roadmaps/What_They_Called_Recovery_Post_Audit_Edit_Roadmap.pdf",
+      "size": 150452,
+      "sha256": "7c97230a7aecc0e333c5d642cbb2d00fcd94d20e2958d2717bbf734868d7678a",
+      "zone": "Archive"
+    },
+    {
+      "path": "Archive/Roadmaps/What_They_Called_Recovery_Readability_Rewrite_Roadmap.pdf",
+      "size": 61488,
+      "sha256": "47e4d55ac3836fde8a5267f3a9ee36b42900372ed9c89cf4e3d4be71b6085257",
+      "zone": "Archive"
+    },
+    {
+      "path": "Reference/Baselines/WTCR_KDP_Baseline_Manifest.json",
+      "size": 10322,
+      "sha256": "609a35b99f5104dfe34bb1b647ddf965885cbe5a836861097f4969fcf6f4312d",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_01_Late_Again.pdf",
+      "size": 72811,
+      "sha256": "01e0fc33aab044735bf348c2a1769196c9aec8fc8af2a8041e54519e202cc860",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_02_The_Girl_At_Arrivals.pdf",
+      "size": 73483,
+      "sha256": "142ce38d4b8c8d306fc922f5f66744be44e724d42f013d6608406e540503e118",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_03_Back_Seat.pdf",
+      "size": 75756,
+      "sha256": "13bc9cbb34f7c2065b83502a0cec46c5526b6f57c77ad72dc036643de779985e",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_04_Cain.pdf",
+      "size": 79996,
+      "sha256": "d6764e53cb525d6ee499a69452001ec4e9997c8dae7821ca16a3cff93033d145",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_05_Three_Minutes.pdf",
+      "size": 62023,
+      "sha256": "cda2a142916a8f6d5ebb183634c4ae8bc93ef51fb5d54263efd4ea9e5909a28e",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_06_Walk_Normally.pdf",
+      "size": 284449,
+      "sha256": "242e917617e8cac208f852a2e0878cd862f17622e72bfaacc2d2b1693accc8b1",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_07_Private_Number.pdf",
+      "size": 65132,
+      "sha256": "ddf00d93f66db746414556b16e5f22f6014c5a7bf6006fb605d4ef351c85448b",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_08_Taken.pdf",
+      "size": 297489,
+      "sha256": "ea8e7eb929aac175dc8769505d36703d6588382c7c7917104ba3c0f3c2765b4b",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_09_Prepared.pdf",
+      "size": 66677,
+      "sha256": "95f7463440dfd5aca441e8aa35bf2cf824b27bde0305b639906c634ec48f5fb5",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_10_Still_Awake.pdf",
+      "size": 53561,
+      "sha256": "9a0a6e2f3d2e775644de37e7419a6e307b53cbaa63ee2324e25849d1a96d0e64",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_11_The_Showing.pdf",
+      "size": 69603,
+      "sha256": "fac2c786f981780f6dafa55bd8b575cab697331f1c7d94c862209b748e38180f",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_12_Home.pdf",
+      "size": 71315,
+      "sha256": "734441ef529d6db5c35b9656847243c858efb7278db5b30f02f9b34034b7fd0b",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_13_The_Decoy.pdf",
+      "size": 73592,
+      "sha256": "9b0ff8575ec7abb6cb1858108d39ff313a6f03f907b13ee1991193f256f23ec1",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_14_The_Flight.pdf",
+      "size": 71847,
+      "sha256": "7b4877d06f527af4b4165acd4c75b5507f358d7bc0531e5c28b8f4421b811959",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_15_No_Grandmother.pdf",
+      "size": 68691,
+      "sha256": "0120cba6b0a8fec1d8fe7d916f5c3106a851a666ce133372055d23b854c2ceed",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_16_The_Contract.pdf",
+      "size": 72954,
+      "sha256": "2c48cdd0de1aa5e4ed9d453111eb11a21a48dd56462ecfde3d7aa5b8d0d76737",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_17_First_Lesson.pdf",
+      "size": 85954,
+      "sha256": "76b059e896c32a17d937d915139d0321080cf23ab34b44360653ccfc495ba15c",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_18_Three_Hunters.pdf",
+      "size": 84432,
+      "sha256": "a836ecbf29c19524f0f2b8ca069adfaed4a87e11fa07460aa4e5d83f33090a43",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_19_Dont_Look_At_The_Threat.pdf",
+      "size": 98168,
+      "sha256": "0e4f822bbd1083f8bc61f62eed5fff416e09072f25def05793074c0f53e99eee",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_20_The_First_Mistake.pdf",
+      "size": 93208,
+      "sha256": "8b6053649ea2994b39048184c495b364c67f1b6a78c3e9ccb3a27aa65adc5e34",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_21_The_Boy_Before.pdf",
+      "size": 84734,
+      "sha256": "f39e1adc9d4ca97cfdc9602a46f30a73d605a6af31f5c81d26a9405a17bdce2b",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_22_The_Death_Warrant.pdf",
+      "size": 79909,
+      "sha256": "e7a270a10774a3f982d478724f14918f2615c2b119406d29d2ea6bbc113c6f11",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_23_No_Longer_Running.pdf",
+      "size": 103274,
+      "sha256": "55968bd469fbabb62061bf46d884784025b4fff03e1ca749d31d42966e69ac61",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_24_The_Index.pdf",
+      "size": 96332,
+      "sha256": "bc5b0775d78375fa4b43bee85a6195cc6cf4394ab3822339ba9679637508096a",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_25_Old_Routes.pdf",
+      "size": 98806,
+      "sha256": "8610281baf2611a97a782388a09eed540d6175ac006765a6a8def6dc60fbe610",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_26_The_Override.pdf",
+      "size": 89048,
+      "sha256": "8bbeec00db6eb418a213bb5c43014bf16b7b42875c66661d90dc0aa535c387ff",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_27_The_Recipients.pdf",
+      "size": 98760,
+      "sha256": "6abe940091b6c09b436ababde8d6e7f018b681d628726e576f6d8b7021fd3db5",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_28_The_Query.pdf",
+      "size": 86684,
+      "sha256": "ebd2a35aa3df8408de7bfc4716876f8b53b6176e90604826e71914143b73d3e8",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_29_The_Mirror.pdf",
+      "size": 91438,
+      "sha256": "dceebd88d332c576aaf82e01f0629fd60a20cd42acc8f7a62853391cfd2924a0",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_30_The_Order.pdf",
+      "size": 87449,
+      "sha256": "cd700b6e855f2561fc434ae834ed3cbb171936126c99cb548edb337c18c5382e",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_31_The_Profile.pdf",
+      "size": 91235,
+      "sha256": "ccaa6ffc4e052e021cc5b4caa8f1ecaeb63925b375206bb3ea0a5f474e3a9eae",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_32_The_Reaction.pdf",
+      "size": 94574,
+      "sha256": "0bdc19001963115814fc4e02c7264c4d29aedaf89d7f51a46607a75c659440e9",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_33_The_Household.pdf",
+      "size": 92062,
+      "sha256": "61b30d86960101109b81d92a28e4cb250fc373b9b35c5785a4484a68307042db",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_34_The_Real_Organisation.pdf",
+      "size": 88319,
+      "sha256": "bfd6f05a195062c35308acafba8498dc4b97b613e35e2a0c4651098954aa6cca",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_35_The_Missing_Order.pdf",
+      "size": 80359,
+      "sha256": "40e79f5475488be9f8802af5621fbc32bcd64c56b4bdd9dc99abd0b439e237b1",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_36_The_Old_Job.pdf",
+      "size": 88734,
+      "sha256": "71720d1b742773e454d9e3144ffa0d7d524dce388965cabe37b6a0619c78a291",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_37_The_Collision.pdf",
+      "size": 76100,
+      "sha256": "269855e4063525d3910aa48a6b9a871fd1f9a4f04897c9d821eac27ab235b470",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_38_The_Cost.pdf",
+      "size": 82865,
+      "sha256": "a7ce00ee50f588b4ba4005b885ebda4a7dd93fe579bfe5d6e8f9da0498e61784",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_39_The_Match.pdf",
+      "size": 78889,
+      "sha256": "787d50ba0e83595b8c2a3b6ecdfaa42fb7c9fd871adf8d7d1fb8e20c3deca390",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_40_Through_Glass.pdf",
+      "size": 77306,
+      "sha256": "d0aa2f5cfcaca0c64d4c9920d5fda3f4b02bc29b48503c0aa35d1d91943db430",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_41_Jackie.pdf",
+      "size": 75055,
+      "sha256": "0cf19ec735596e3e057be73b2d587892f97c63a511438ce8ed738830b883a23e",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_42_The_Second_Decoy.pdf",
+      "size": 88579,
+      "sha256": "1a6e7a923b8ebc2a54091d732dfd646ebafe23e3c3202d45af6cb423b94267d8",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_43_Inside_Outside.pdf",
+      "size": 81224,
+      "sha256": "aefaec8c1a5f0c263d99a51494d163be1b9f8393c6c6bf7072f011d4e8e7ec6c",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_44_Loyalty_Fracture.pdf",
+      "size": 80368,
+      "sha256": "f6f6ff7bf2b1bd8a666cf67cf01f80412bb904abe3d4d47c39dda285193659ab",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_45_Controlled_Detonation.pdf",
+      "size": 91538,
+      "sha256": "8bbb856173912566b4c8008fb3c321df8a9b4cc3e9b164bfcf442de23268c669",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reference/Locked_Phase7_Manuscript/Chapter_46_The_Direction.pdf",
+      "size": 73982,
+      "sha256": "098d7448fecf9b430898c6785587cb72daf81b1e15d9f1bd7d482bc2941ded17",
+      "zone": "Reference"
+    },
+    {
+      "path": "Reports/Historical/Phase5/WTCR_Phase_5_Edit_Log.txt",
+      "size": 5114,
+      "sha256": "e50a995f8022f6de4b2d2dfc55c27e5d5a046d1ac47e543a379a92381939b5a3",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Historical/Phase6/WTCR_Phase_6_Production_Log.txt",
+      "size": 4263,
+      "sha256": "054aca551e753c66a7f9a1acea3cc57d9f51a3699b748bf462abb910d74e69d2",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Historical/Phase7/WTCR_Phase_7_Audit_Log.txt",
+      "size": 30124,
+      "sha256": "2849e3b4190e1b41c97a136146d8d472c4e8735dbdeca9986c2bbae554feb945",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Historical/Phase7/WTCR_Phase_7_Completion_Edit_Stats.json",
+      "size": 4511,
+      "sha256": "61a41fffe5ba5cd6f8d4be6aa860d12e249ebbb3bd7ad5348a38f3b66f82fb5e",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Historical/Phase7/WTCR_Phase_7_Continuation_Summary.txt",
+      "size": 2750,
+      "sha256": "d7f10326168b5aba4c54837e50fbcd16a72363b4946f479d6a3435e74a12fa96",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Historical/Phase7/WTCR_Phase_7_Final_Audit_Report.txt",
+      "size": 3344,
+      "sha256": "6120bd957dfef679764d4488dfe9a877218bd71fd59427ff9b4fe2c47e52fb8b",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase1/WTCR_KDP_Phase1_Assembly_Verification.json",
+      "size": 17581,
+      "sha256": "ef82ea5482d03da53687185e85b96353c81cbcf440e0c478488d04ddb2277004",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase1/WTCR_KDP_Phase1_Assembly_Verification.txt",
+      "size": 827,
+      "sha256": "26884a96aaeca8f50f7e503477932277c819eb22c86cb05d864ad6d9f180f714",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase2/WTCR_KDP_Phase2_Copyedit_Log.csv",
+      "size": 55945,
+      "sha256": "b706a840ac9d7ef562d268ec5a8f48327a22e25b64301fc68af55d07ec8b65b0",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase2/WTCR_KDP_Phase2_Copyedit_Log.json",
+      "size": 74901,
+      "sha256": "de22fbdce0b787ffa8a22174e8c194806b9bc766996b0c4510ff5a352da6aa79",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase2/WTCR_KDP_Phase2_Copyedit_Verification.json",
+      "size": 1800,
+      "sha256": "adb677402a83217c9c42142ed676bfd44df92565c1e9d9c505010e0de99e38bf",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase2/WTCR_KDP_Phase2_Copyedit_Verification.txt",
+      "size": 1915,
+      "sha256": "40eaffa463501bacd5861bac465666198656e206469f46ebc5d284ecc0871262",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase3/WTCR_KDP_Phase3_Regression_Verification.json",
+      "size": 11288,
+      "sha256": "36e93a2575750377c8696011e29ed33694432d7020fd9fdc99f7429b51a32318",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase3/WTCR_KDP_Phase3_Regression_Verification.txt",
+      "size": 1746,
+      "sha256": "d20ecc8b3d05300deb850cb67c5d29eed5534d21ff18d490ad5e002c7c56a3f4",
+      "zone": "Reports"
+    },
+    {
+      "path": "Reports/Phase3/WTCR_KDP_Phase3_Transition_Audit.txt",
+      "size": 1601,
+      "sha256": "939c57cb9c84de27559ea1a2243eb661a0f596c928d2a58b791f732daf88212b",
+      "zone": "Reports"
+    }
+  ]
+}

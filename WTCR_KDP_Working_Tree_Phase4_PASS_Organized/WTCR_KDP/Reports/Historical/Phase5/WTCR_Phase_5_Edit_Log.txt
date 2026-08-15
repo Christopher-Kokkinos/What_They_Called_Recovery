@@ -1,0 +1,64 @@
+WHAT THEY CALLED RECOVERY - PHASE 5 EDIT LOG
+Date: 13 August 2026
+Scope: targeted prose/voice refinement; no structural rewrite.
+
+Applied changes: 51 line-level edits across 17 chapters.
+Verification note: Phase 5 QA found and closed one residual Phase 1 chronology cluster in Chapter 33 (eleven-year retainer -> five-year retainer and associated dialogue).
+
+Primary repetition counts across Chapters 1-46 after Phase 5:
+- "That was enough": 13 (down from 33)
+- explicit "read ... twice" constructions: 19 (down from 29)
+- "Tomorrow": 46 (down from 62; retained where scheduling/dialogue/end-beat function remains useful)
+
+EDITS
+Ch25 p32 [transition] Tomorrow they would look for the moment somebody changed the direction.  ->  The moment somebody changed the direction was where they had to look.
+Ch26 p28 [repetition] That was enough reason to remove it.  ->  Reason enough to remove it.
+Ch26 p33 [repetition] Zoe read the page twice.  ->  Zoe went over the page again.
+Ch26 p35 [transition] Tomorrow she would find out who had been waiting on the other side.  ->  Somebody had been waiting on the other side. She intended to find out who.
+Ch27 p02 [repetition] That was enough.  ->  Good enough.
+Ch27 p06 [repetition] Zoe read the words twice.  ->  Zoe read the words again.
+Ch27 p44 [transition] Tomorrow we find out what woke mine up.  ->  Then we find out what woke mine up.
+Ch28 p16 [repetition] Zoe read the label twice.  ->  Zoe went back over the label.
+Ch28 p26 [repetition] That was enough to make the letters useful without  ->  It made the letters useful without
+Ch28 p37 [repetition] That was enough.  ->  She left it there.
+Ch28 p53 [transition] Tomorrow, they would build the first mirror.  ->  The first mirror came next.
+Ch29 p18 [repetition] Zoe read the fields twice.  ->  Zoe worked through the fields slowly.
+Ch29 p26 [repetition] He read it twice.  ->  He checked it again.
+Ch29 p32 [repetition] Zoe read it twice.  ->  Zoe lingered on it.
+Ch29 p34 [repetition] That was enough.  ->  She left it at that.
+Ch29 p36 [repetition] That was enough.  ->  The man saw it.
+Ch29 p57 [transition] Tomorrow they would look at the false order.  ->  The false order was next.
+Ch29 p12 [look_cluster] Zoe looked back.  ->  Zoe held his gaze.
+Ch30 p23 [repetition] That was enough.  ->  She added nothing else.
+Ch31 p49 [transition] Tomorrow she would give three different parts of the  ->  She would give three different parts of the
+Ch32 p19 [repetition] Zoe read it twice.  ->  Zoe went back over the wording.
+Ch32 p36 [repetition] That was enough.  ->  She left it there.
+Ch32 p37 [repetition] Zoe read it twice.  ->  Zoe stopped on the phrase.
+Ch32 p49 [transition] That was what made tomorrow worse.  ->  That was why what came next felt worse.
+Ch32 p49 [transition] Tomorrow was about something else.  ->  The next question was about something else.
+Ch33 p28 [chronology_gate] Eleven-year retainer.  ->  Five-year retainer.
+Ch33 p28 [chronology_gate] “Eleven.”  ->  “Five.”
+Ch33 p28 [chronology_gate] “Same length as Zoe.”  ->  “Same span as Zoe’s placement.”
+Ch33 p30 [chronology_gate] Eleven-year retainer. Same  ->  Five-year retainer. Same
+Ch33 p51 [transition] Tomorrow they would stop studying the part that had lied.  ->  They had studied the lie long enough.
+Ch34 p20 [repetition] That was enough.  ->  Zoe let it rest.
+Ch34 p32 [repetition] That was enough.  ->  She did not need more.
+Ch34 p44 [transition] Tomorrow they would find one of the lies that claimed to  ->  They would find one of the lies that claimed to
+Ch35 p15 [repetition] For now, that was enough.  ->  For now, that would do.
+Ch35 p30 [transition] Tomorrow belonged to the people who had acted on  ->  Next came the people who had acted on
+Ch35 p31 [transition] Tomorrow they would look at what happened when ordinary  ->  They would look at what happened when ordinary
+Ch38 p32 [transition] Tomorrow she would open something she had deliberately left closed.  ->  She would open something she had deliberately left closed.
+Ch39 p09 [repetition] That was enough.  ->  She had what she needed.
+Ch39 p24 [repetition] That was enough.  ->  She understood.
+Ch39 p32 [transition] That was tomorrow.  ->  Elias had none to give.
+Ch40 p06 [repetition] That was enough.  ->  Zoe let it stand.
+Ch40 p08 [repetition] That was enough.  ->  That settled it.
+Ch40 p17 [repetition] That was enough.  ->  The sequence was clear.
+Ch41 p29 [repetition] That was enough.  ->  Zoe stopped there.
+Ch41 p31 [transition] Tomorrow they would work out what came next.  ->  What came next could wait until morning.
+Ch42 p02 [repetition] That was enough.  ->  She left the page alone.
+Ch42 p05 [repetition] That was enough.  ->  Zoe did not need more.
+Ch42 p41 [repetition] Zoe read it twice.  ->  Zoe went back over the line.
+Ch45 p02 [repetition] That was enough.  ->  No more.
+Ch45 p28 [repetition] Zoe read that section twice.  ->  Zoe went back over the section.
+Ch45 p42 [transition] Tomorrow it would become evidence somebody else had a legal duty to  ->  By morning it would be evidence somebody else had a legal duty to

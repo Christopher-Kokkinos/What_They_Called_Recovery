@@ -1,0 +1,9 @@
+~$*.docx
+*.tmp
+*.temp
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+.vscode/*.log
+Reports/Diffs/*.tmp

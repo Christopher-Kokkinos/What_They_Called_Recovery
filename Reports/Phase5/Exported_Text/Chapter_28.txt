@@ -1,0 +1,1597 @@
+CHAPTER 28 — The Query
+
+Saturday morning arrived with rain against the window and somebody reversing a lorry outside.
+
+The lorry beeped every four seconds.
+
+Zoe counted seventeen beeps before opening her eyes.
+
+Eighteen.
+
+Nineteen.
+
+Twenty.
+
+She rolled onto her back.
+
+“Whoever invented that noise hated sleep.”
+
+Elias sat at the small table beside the window with coffee.
+
+Of course he had coffee.
+
+“You’re awake.”
+
+“No. I’m complaining unconsciously.”
+
+The lorry beeped again.
+
+Twenty-one.
+
+Zoe pulled the duvet over her head.
+
+“How long have you been up?”
+
+“An hour.”
+
+“Illegal.”
+
+“Probably.”
+
+That made her lower the duvet.
+
+He was reading the notes from the night before.
+
+Not the drive.
+
+Not her folder.
+
+Just the page that ended with the Monday review.
+
+Yesterday the question had been too large.
+
+Who had become frightened that somebody else might find her?
+
+This morning there was a smaller one.
+
+A better one.
+
+What happened first?
+
+“Breakfast?” Zoe asked.
+
+“There’s a cafe opposite.”
+
+“Good?”
+
+“No idea.”
+
+“Then why say it like evidence?”
+
+“It exists.”
+
+“Low standard.”
+
+The lorry beeped again.
+
+“Twenty-two.”
+
+* * *
+
+The cafe served tea in mugs thick enough to survive war.
+
+Zoe ordered pancakes because the menu said American style and she wanted to know what that meant.
+
+It meant three small pancakes, too much syrup and one strawberry cut into four pieces as if fruit had become expensive overnight.
+
+Elias ordered eggs.
+
+Zoe watched him inspect them.
+
+“Those don’t bounce.”
+
+“You tested yours.”
+
+“Accidentally.”
+
+“Still data.”
+
+She stared at him.
+
+“That was a joke.”
+
+“No.”
+
+“It definitely was.”
+
+He ate.
+
+She smiled.
+
+Outside, rain turned the road silver.
+
+The beige estate sat two streets away because Elias did not park where they slept.
+
+The original drive remained with Zoe.
+
+The working copy was with Elias.
+
+The second copy remained somewhere else entirely.
+
+Three copies.
+
+Three places.
+
+No single mistake could erase everything.
+
+That had started as Elias’s kind of thinking.
+
+It was becoming hers.
+
+Zoe cut a pancake.
+
+“So. Monday.”
+
+Elias waited. “Something outside touched my case.” “Yes.” “Before RECOVER.” “That’s what the transition shows.” “But we don’t know what.” “Not yet.” She started guessing. “School.” “Possible.” “Doctor.” “Possible.” “Police.” “Possible.” “Court.” “Possible.” “Alien invasion.”
+
+“Keep that below police.”
+
+She pointed her fork at him.
+
+“Not impossible.”
+
+“Statistically unhelpful.”
+
+“Same thing adults say when they’re frightened of the truth.”
+
+“Eat your pancakes.”
+
+That was almost another joke.
+
+She let him have it.
+
+The question was easier while it could still be aliens.
+
+* * *
+
+Saturday changed the city.
+
+Offices that had been anonymous during the week were locked.
+
+Reception desks empty.
+
+Blinds down.
+
+Elias chose a self-storage complex instead.
+
+Not a storage unit.
+
+A meeting room beside reception that the company rented by the hour.
+
+Twenty pounds for three hours.
+
+Glass wall.
+
+Table.
+
+Four chairs.
+
+People carrying boxes past the door.
+
+CCTV everywhere.
+
+Zoe disliked the cameras until Elias said that was partly why he had chosen the place.
+
+“If someone comes in?”
+
+“They’re recorded.”
+
+“If someone follows us?”
+
+“Recorded.”
+
+“If the company keeps footage?”
+
+“Probably.”
+
+“Then we’re recorded.”
+
+“Yes.”
+
+“That sounds bad.”
+
+“Sometimes being seen is safer than disappearing.”
+
+Zoe considered that.
+
+Different problem.
+
+Different rule.
+
+She liked that rules could change when the reason changed with them.
+
+They closed the blind from inside.
+
+Elias set up the isolated laptop.
+
+Zoe opened the notebook.
+
+“External.”
+
+He filtered the catalogue.
+
+Thousands of external events appeared.
+
+School queries.
+
+Medical updates.
+
+Placement confirmations.
+
+Legal correspondence.
+
+Transport requests.
+
+Review notices.
+
+Zoe leaned closer.
+
+“So EXT just means it came from outside.”
+
+“Right.”
+
+“Not automatically bad.”
+
+“No.”
+
+She wrote nothing.
+
+That one did not need a slogan.
+
+They filtered for her root.
+
+A17-04221
+
+One external event mattered.
+
+Monday.
+
+The day before the van.
+
+The transition they already knew:
+
+MONITOR -> REVIEW | L3 | EXT | MON | CLOSED
+
+Zoe stared at EXT.
+
+“Something made that happen.”
+
+“Yes.”
+
+“Another log?”
+
+“Probably.”
+
+They searched filenames.
+
+EXT_LINK.DB Nothing useful.
+
+REF_QUEUE.DB
+
+Maybe.
+
+Then:
+
+QUERY_AUDIT.DB
+
+Zoe pointed.
+
+“That.”
+
+Elias checked the structure first.
+
+No names.
+
+No addresses.
+
+No medical data.
+
+Just query records.
+
+“Open mine.”
+
+One entry appeared.
+
+The audit gave it an ID:
+
+Q-882104
+
+It had come from an external government source.
+
+Its class was:
+
+LEGACY PLACEMENT VERIFICATION
+
+Reference:
+
+CE/41/771
+
+Target:
+
+P06-11803
+
+Received: MON 09:14
+
+Routed:
+
+MON 09:16
+
+Status:
+
+CLOSED
+
+Response:
+
+REFERRED
+
+Flag:
+
+LPI
+
+Zoe read the target again.
+
+P06-11803.
+
+Helen and Brian’s placement.
+
+Not Zoe Harper.
+
+Not A17-04221.
+
+“They weren’t asking about me.”
+
+“Not directly.”
+
+“They were asking about the placement.”
+
+“That’s what it says.”
+
+She searched the flag.
+
+LPI - LEGACY PLACEMENT INTEGRITY
+
+Zoe frowned.
+
+“Integrity.”
+
+“A check.”
+
+“Whether something is real.”
+
+“Often.”
+
+“So somebody in government asked if that placement was real.”
+
+“That’s a reasonable reading.”
+
+She wrote:
+
+MON 09:14 - govt asks to verify P06-11803
+
+Then:
+
+why?
+
+The audit held a linked note.
+
+SUPPORTING BASIS: SEIZED MATERIAL REVIEW
+
+Zoe stopped.
+
+“Seized.”
+
+“Yes.”
+
+“Police seize things.”
+
+“Other agencies do too.”
+
+“What material?”
+
+“Not here.”
+
+“Where from?”
+
+“Not here.”
+
+“Who from?”
+
+“Not here.”
+
+Blank spaces.
+
+She used to hate them because they felt like failure.
+
+Now she knew they were safer than answers she invented herself.
+
+She wrote: seized material - don’t know what / where / whose
+
+“CE?” she asked. “Unknown.” “Child exploitation.” “Could be.” “Central evidence.” “Could.” “Criminal enforcement.” “Could.” “Cheese emergency.” Elias looked at her. “Low probability.” “Not impossible.” “Correct.” She smiled. Then looked at the time again. Monday. 09:14. The day before she was taken.
+
+* * *
+
+They followed the query through the system.
+
+It arrived at 09:14.
+
+At 09:16 it entered the ordinary review queue.
+
+At 09:17 a second event appeared somewhere else.
+
+LEGACY ALERT GENERATED
+
+Recipient:
+
+INTEGRITY WATCH
+
+Priority:
+
+SILENT
+
+Zoe sat back.
+
+“They watch the questions.”
+
+Elias looked at the line.
+
+“Apparently.”
+
+“Not just the old cases.”
+
+“No.”
+
+For years her record had sat under MONITOR.
+
+The hidden system had also been watching the legitimate systems around it.
+
+Waiting to see who touched the past.
+
+“An alarm.”
+
+“Yes.”
+
+At 09:18, the alert moved into:
+
+RESTRICTED REVIEW
+
+Eight minutes later:
+
+RESTRICTED LEGACY REVIEW
+
+Zoe went back over the label.
+
+“That’s the shadow bit.”
+
+Elias said nothing.
+
+She looked at him.
+
+“Not their word.”
+
+“No.”
+
+“Good.”
+
+The official definition was even duller:
+
+RESTRICTED LEGACY PLACEMENT RISK
+
+ASSESSMENT
+
+“What risk?”
+
+“Not defined.”
+
+“To me?”
+
+“Unknown.”
+
+“The placement?”
+
+“Unknown.”
+
+“The people hiding it?”
+
+“Unknown.”
+
+Zoe rubbed her eyes.
+
+“Still a lot of unknown.”
+
+“Less than yesterday.”
+
+That helped.
+
+A little.
+
+The restricted review checked three things she could read.
+
+The placement.
+
+The sponsor.
+
+Exposure.
+
+The placement came back:
+
+P06-11803 - ACTIVE / STABLE
+
+The sponsor:
+
+AC019 - ACTIVE
+
+Then:
+
+EXTERNAL LEGAL INTEREST - CONFIRMED
+
+Zoe went still.
+
+“They knew somebody official was looking.”
+
+“That’s what this says.”
+
+At 09:42:
+
+RISK CLASS: ESCALATED
+
+At 09:51:
+
+RECOVERY REVIEW REQUESTED
+
+At 10:06:
+
+OVR3 REQUEST At 10:18:
+
+OVR3 APPROVED
+
+At 10:21:
+
+RECOVER - OPEN
+
+Zoe copied the times.
+
+09:14.
+
+A question arrived.
+
+10:21.
+
+RECOVER opened.
+
+She counted once in her head.
+
+Then again.
+
+“Sixty-seven minutes.”
+
+Elias looked at the page.
+
+“Yes.”
+
+“For years they monitored me.”
+
+He waited.
+
+“Then somebody asks if the placement is real, and sixty-seven minutes later I’m a recovery.”
+
+“That’s the sequence.”
+
+Zoe put the pen down.
+
+“They didn’t decide because of me.”
+
+“No evidence you caused it.”
+
+“Not because I did something.”
+
+“No.”
+
+“Not because I said something.”
+
+“No.”
+
+“Someone else asked a question.”
+
+“Yes.”
+
+A horrible kind of relief moved through her.
+
+She had not caused Monday.
+
+She had not become dangerous by noticing the wrong person or saying the wrong thing.
+
+The placement had become dangerous because somebody outside had started looking at it.
+
+“They thought I could be found.”
+
+Elias considered the wording.
+
+“They believed the placement could be examined.”
+
+Zoe nodded.
+
+Better.
+
+More accurate.
+
+Still terrible.
+
+“So they came to remove the evidence.”
+
+“We don’t know the intended end state.”
+
+“Elias.”
+
+“We don’t.”
+
+“They abducted me the next day.”
+
+“Yes.”
+
+“Cain had my file.”
+
+“Yes.”
+
+“RECOVER opened after this query.”
+
+“The timing is strong evidence of a connection.”
+
+“That’s a very Elias sentence.”
+
+“It is also the correct one.”
+
+She looked at the times again.
+
+He was right.
+
+The archive could show the trigger.
+
+It could not yet prove what RECOVER was ultimately supposed to end with.
+
+Another house.
+
+A changed identity.
+
+A sealed file.
+
+Cain.
+
+Something worse.
+
+She wrote:
+
+WHY NOW: govt query -> restricted review ->
+
+RECOVER
+
+Below it:
+
+Strong link. Don’t invent the ending.
+
+* * *
+
+The first query had received an answer.
+
+That surprised her.
+
+At 11:03, the ordinary side sent:
+
+RECORD UNAVAILABLE - ARCHIVE MIGRATION
+
+Zoe frowned.
+
+“Lie?”
+
+“Not necessarily.”
+
+“My record exists.”
+
+“In this system.”
+
+“Hidden.”
+
+“Yes.”
+
+“So the normal system might actually not have it.”
+
+“Exactly.”
+
+That was worse in a different way.
+
+The lie could survive because parts of the legitimate system genuinely did not know the truth.
+
+“Whoever asked got nothing.”
+
+“Apparently.”
+
+“Did they leave it?”
+
+Elias searched.
+
+No.
+
+At 13:37, a follow-up arrived.
+
+Q-882104-F1
+
+Same reference family.
+
+Same target:
+
+P06-11803
+
+New class:
+
+DOCUMENT AUTHORITY CONFIRMATION
+
+Zoe read it.
+
+“They asked again.”
+
+“The first answer didn’t settle it.”
+
+“They wanted to know what gave anyone the right to place me there.”
+
+“That is a reasonable reading.”
+
+At 13:42, the follow-up was diverted into the restricted process.
+
+At 13:46:
+
+CONTACT HOLD
+
+At 14:02:
+
+DO NOT RELEASE
+
+Authority:
+
+OVR3
+
+At 14:11:
+
+QUERY DEFERRED
+
+No final answer appeared anywhere in the snapshot.
+
+Zoe stared at the screen.
+
+“When they took me Tuesday, whoever asked still hadn’t got the authority confirmation.”
+
+“Not in this archive.”
+
+“Someone was still looking.”
+
+“Someone was looking at that point.”
+
+“And they might have asked again.”
+
+“Possible.”
+
+This time she accepted possible.
+
+The snapshot was old.
+
+She could not turn Monday into today just because she wanted somebody outside to still be there.
+
+But someone had touched the wall from the other side.
+
+And the hidden system had moved.
+
+* * *
+
+At eleven forty-eight, Voss found CE in a file he almost skipped.
+
+Vale did not let him.
+
+She had become interested in everything they once ignored.
+
+The job was three years old.
+
+Adult witness relocation.
+
+Legitimate.
+
+Court verified.
+
+Police liaison.
+
+No child.
+
+The document reference began:
+
+CE/19/
+
+Vale tapped the page.
+
+“Same family?”
+
+“Maybe.”
+
+“Can we identify it?”
+
+Voss turned to the issuing unit at the bottom.
+
+Central Evidence Liaison
+
+Vale leaned back.
+
+“CE.”
+
+“Yes.”
+
+“Government?”
+
+“Police and joint evidence work.”
+
+“Same as Zoe’s reference?”
+
+“We don’t know that.”
+
+“But it can be.”
+
+“It can.”
+
+It made the letters useful without making them proof.
+
+External government references could appear in legitimate work without announcing what investigation sat behind them.
+
+Voss had seen them before.
+
+Trusted them.
+
+Never wondered what happened when one of those references touched the organisations that hired him.
+
+Vale looked at the false-order file.
+
+“If somebody outside started checking an old placement...”
+
+Voss followed her thought.
+
+“...the people maintaining it might see the check.”
+
+“If they monitor the traffic.”
+
+“Yes.”
+
+“And if the check could expose the placement?”
+
+Voss did not answer.
+
+Vale did.
+
+“Move the evidence.”
+
+He looked at her.
+
+“And anyone who could identify it.”
+
+The room changed.
+
+Not because the words were new.
+
+Because they fit.
+
+Voss thought of Zoe.
+
+Elias.
+
+Mac saying recovery as though the word ended every moral question.
+
+“Find every job that began shortly after an external verification.”
+
+Vale stared at the boxes.
+
+“That’s a lot.”
+
+“Yes.”
+
+“You think they’ve done this before.”
+
+Voss opened the next file.
+
+“I think systems repeat what works.”
+
+* * *
+
+At twelve fifteen, Zoe found the sponsor alert.
+
+She had not been looking for it.
+
+That made it worse.
+
+After RECOVER opened, the restricted process issued:
+
+SPONSOR ADVISORY
+
+Sponsor:
+
+AC019
+
+Time: MON 16:48
+
+Delivery:
+
+VOICE
+
+Status:
+
+ACK
+
+Zoe stopped.
+
+Monday evening.
+
+Helen’s phone buzzing.
+
+Her face changing.
+
+The hallway.
+
+Fragments came back exactly because she had not understood them then.
+
+“...didn’t expect this...”
+
+“...no, she hasn’t said anything...”
+
+“...yes, I’ll keep an eye out...” Later: “...do you think it’s about her?” “...I don’t know... I hope not...” Zoe’s stomach tightened. Different room. Same feeling. “Sixteen forty-eight,” she said. Elias did not answer. “AC019.” “Likely Mac.” “Likely.” She forced herself to say it. “Not proven.” “No.” “Voice. Acknowledged.” “Yes.” “No transcript.”
+
+“No.”
+
+“No number.”
+
+“No.”
+
+“No name for who answered.”
+
+“No.”
+
+“Helen got a call later.”
+
+“Yes.”
+
+Zoe pressed the pen into the paper.
+
+“Could be connected.”
+
+“It could.”
+
+She wrote:
+
+16:48 - AC019 warned by voice
+
+Then:
+
+Helen call later. Maybe connected. DON’T KNOW.
+
+The words looked ugly.
+
+Good.
+
+They were supposed to.
+
+If Mac had warned Helen or Brian, then they knew something before the van came.
+
+But how much?
+
+A security problem?
+
+A records query?
+
+An instruction to watch Zoe?
+
+An illegal recovery?
+
+The archive did not say.
+
+Zoe refused to make it say more.
+
+It did not get to make her unfair.
+
+Not even to them.
+
+Especially not to them.
+
+* * *
+
+There was no transcript of the sponsor advisory.
+
+Only metadata.
+
+The missing content annoyed Zoe.
+
+It also protected her from reading something she might not have been ready to know.
+
+“What happens next?”
+
+Elias followed the chain.
+
+At 18:06:
+
+SURVEILLANCE CONFIRMATION
+
+Route:
+
+E2-4
+
+Status:
+
+ACTIVE
+
+Zoe’s skin tightened.
+
+“The car.”
+
+“Possibly.”
+
+“The dark one outside the house.”
+
+“The timing fits.”
+
+She remembered it two houses down.
+
+Engine off.
+
+Still.
+
+A shape she had noticed and then told herself not to notice.
+
+The log did not give a registration number.
+
+It did not say street.
+
+It did not prove that exact car.
+
+But the connection was hard to ignore.
+
+She wrote:
+
+18:06 surveillance active
+
+Underneath:
+
+dark car at house - likely
+
+Then came the next event.
+
+RECOVERY WINDOW - TUE 15:00-18:00
+
+Zoe stopped breathing properly.
+
+School finished inside that window.
+
+The pavement.
+
+The van.
+
+The man.
+
+The grab.
+
+All of it reduced to three hours in a schedule.
+
+She stared until the letters blurred.
+
+“They planned Tuesday.”
+
+Elias did not correct her.
+
+There was nothing useful to correct.
+
+She closed the table.
+
+The plain desktop appeared.
+
+Her notes remained. Monday 09:14. Question. Restricted review. RECOVER. Sponsor warning. Surveillance. Tuesday 15:00-18:00. Van.
+
+She had spent days asking why. The answer was not because she misbehaved. Not because Cain suddenly wanted her. Not because Mac remembered her. Not because she had become special. Someone outside had asked the wrong question. Or the right one. And the hidden system had reacted. “They were scared of a form.”
+
+“A query.”
+
+“Same thing.”
+
+“Not always.”
+
+“You know what I mean.”
+
+Elias leaned back.
+
+“Questions create records.”
+
+Zoe waited.
+
+“Records can be compared.”
+
+She looked at the false placement, the missing authority, the bridge, the recipient profiles.
+
+“And comparisons show when things don’t fit.”
+
+“Exactly.”
+
+The query had not proved the placement was illegal.
+
+It had not exposed the system.
+
+It had simply forced the system to do something.
+
+Zoe looked down at the page.
+
+“The question made them move.”
+
+Neither of them spoke.
+
+She wrote it in large letters.
+
+THE QUESTION MADE THEM MOVE
+
+Then underlined it once.
+
+She left it there.
+
+* * *
+
+They stopped at one.
+
+Not because they were finished.
+
+Because the room booking ended, and Zoe had finally learned that being exhausted made difficult evidence look simpler than it was.
+
+They packed.
+
+The original stayed with her.
+
+The working copy went away.
+
+Outside the meeting room, a family argued over a storage trolley.
+
+The father insisted a sofa would fit through the unit door.
+
+The mother said it had not fit in the car and therefore could not fit through a smaller opening.
+
+A boy sat on a cardboard box eating crisps and watching them.
+
+Zoe smiled. Elias noticed. “What?”
+
+“Nothing.”
+
+“Rarely true.”
+
+“I’m watching a marriage collapse over a sofa.”
+
+Elias glanced at the sofa. “It will fit.”
+
+“You’re taking his side?”
+
+“Geometry.”
+
+“Traitor.”
+
+They walked out. Rain had stopped. The beige estate waited where they had left it. No repeated vehicle. No face Zoe recognised. No obvious tail. Elias checked anyway.
+
+So did she.
+
+Not because he told her.
+
+Because she knew how.
+
+* * *
+
+They drove north for forty minutes without discussing the query.
+
+Buildings gave way to industrial estates.
+
+Then fields.
+
+The radio stayed off.
+
+At a petrol station, Elias bought fuel.
+
+Zoe came back with water and a packet of the same boiled sweets that had been in the glove compartment when they bought the car.
+
+She held them up.
+
+“Replacement evidence.”
+
+“You ate the original.”
+
+“One.”
+
+“You stole one.”
+
+“Acquired.”
+
+“From a vehicle we bought.”
+
+“So legally transferred.”
+
+“Questionable.”
+
+She got into the car. The joke lasted until the door closed. Then she looked at the dashboard. “Why don’t we just tell them?”
+
+“Who?”
+
+“Whoever sent the query.”
+
+Elias took a moment. “We don’t know who that is.”
+
+“Government.”
+
+“Government is not a person.”
+
+“Police, then.”
+
+“Maybe.”
+
+“They were already checking.”
+
+“Yes.”
+
+“So give them the drive.”
+
+He looked through the windscreen before answering.
+
+“We know a legitimate-looking query entered the system. We don’t know the individual behind it. We don’t know who else can see that channel. We don’t know whether the monitoring was automatic or whether somebody inside a legitimate institution helped the restricted side.”
+
+Zoe listened.
+
+“If we send the whole archive to the wrong place, we could hand it back to people connected to it.”
+
+“Yes.”
+
+“And if it’s the right place?”
+
+“Then dropping a huge, partly unverified conspiracy into their hands could bury the one clean contradiction they already found.”
+
+“Why?”
+
+“Because one narrow question is easy to verify. Thousands of records, unknown codes, child data and allegations are harder to control, harder to protect and easier to mishandle.”
+
+Zoe did not like it.
+
+That did not make it wrong.
+
+“So first we find a route outside.”
+
+“A route we can test.”
+
+The word changed something. “Test how?”
+
+“One fact.”
+
+“To who?”
+
+“Someone outside the restricted chain.”
+
+“That’s vague.”
+
+“It is.”
+
+She thought about Monday. One official request. One placement. One question. The hidden system had moved in sixty-seven minutes. “What if we do the same thing?”
+
+Elias looked at her. “Carefully.”
+
+“Ask something small.”
+
+“Yes.”
+
+“Then watch.”
+
+“For changes.”
+
+She opened the notebook.
+
+Under THE QUESTION MADE THEM MOVE, she wrote:
+
+Can we make them move on purpose?
+
+The question frightened her.
+
+That was probably why it mattered.
+
+* * *
+
+At four ten, Mac received a call he had been expecting since Wednesday.
+
+Not from Cain.
+
+Not from Voss.
+
+Not from the replacement team.
+
+From a solicitor who never used names on the telephone.
+
+Mac stood in an underground car park with one hand in his coat pocket.
+
+Rainwater dripped from the concrete ramp behind him.
+
+The solicitor spoke for less than a minute.
+
+The old verification request had not disappeared.
+
+A follow-up existed.
+
+External.
+
+Same reference family.
+
+Still unresolved.
+
+“Who touched it?” Mac asked.
+
+“Unknown.”
+
+“Find out.”
+
+“That is becoming difficult.”
+
+“Then make it less difficult.”
+
+Silence.
+
+The solicitor said, “You understand the issue is no longer only the placement.”
+
+Mac looked across the empty row of cars.
+
+“Yes.”
+
+“The archive?”
+
+“Contained.”
+
+The word came automatically.
+
+The solicitor waited.
+
+Mac heard the lie after he said it.
+
+Not contained.
+
+Not while Zoe had the drive.
+
+Not while Elias had survived.
+
+Not while Voss and Vale had walked away.
+
+Not while Reyes was dead.
+
+Not while a government query still existed somewhere in a legitimate system waiting for an answer.
+
+“How long?” Mac asked.
+
+“Before the follow-up escalates?”
+
+“Yes.”
+
+“Unknown.”
+
+Mac hated the word.
+
+“Treat it as immediate.”
+
+He ended the call.
+
+For a moment he stood beneath the fluorescent lights.
+
+The first plan had been simple.
+
+Recover the girl.
+
+Remove the placement problem.
+
+Return the file.
+
+Nothing public.
+
+Nothing permanent.
+
+Then Zoe escaped.
+
+Then the archive disappeared.
+
+Then Elias refused to behave like a contractor.
+
+Then Reyes died.
+
+Now every unfinished action had become an opening.
+
+Mac took out his phone.
+
+Selected one contact.
+
+Stopped.
+
+Selected another.
+
+The system had survived because nobody carried enough information to destroy everyone else.
+
+Need-to-know.
+
+Separate functions.
+
+Separate routes.
+
+Separate people.
+
+That worked while everyone followed the boundaries.
+
+Pressure made people reach across them.
+
+Pressure made them call people they were not supposed to call.
+
+Mac knew that.
+
+He also knew he was about to do exactly that.
+
+He pressed dial.
+
+* * *
+
+At five thirty-eight, Zoe and Elias sat in the beige estate overlooking a reservoir.
+
+They had nowhere important to be.
+
+That was deliberate.
+
+Low cloud had broken.
+
+The water turned silver.
+
+A dog ran along the bank after a red ball and ignored its owner completely.
+
+Zoe had the notebook on her knees.
+
+Instead of three neat boxes, she wrote three words down the page.
+
+ASK
+
+WATCH
+
+DON’T GUESS
+
+Elias looked at them.
+
+“Better.”
+
+“Than what?”
+
+“Nothing.”
+
+“Good answer.”
+
+She tapped ASK.
+
+“No child name.”
+
+“No.”
+
+“No current address.”
+
+“No medical.”
+
+“No current location.”
+
+“No accusation.”
+
+She looked at him.
+
+“You’re doing the yes thing.”
+
+He shut his mouth.
+
+Zoe smiled.
+
+“One narrow fact,” she said. “Something independently checkable.” “Something the hidden side might care about.” “But not something that tells them what we have.” “Right.” “And then we watch.” “Not just what people say.” “What changes.” Calls. Company records. Money. People moving. Somebody contacting Voss. Somebody contacting Helen and Brian. She did not write the last one. Her stomach had already noticed it. “What fact?” she asked. “Tomorrow.”
+
+Zoe sighed.
+
+“Everything is tomorrow.”
+
+“Useful habit.”
+
+“For old people.”
+
+“You are thirteen.”
+
+“Exactly.”
+
+The dog finally returned the ball.
+
+Then refused to release it.
+
+Its owner pulled.
+
+The dog pulled back.
+
+Neither won.
+
+Zoe thought about the query.
+
+No gun.
+
+No threat.
+
+No accusation.
+
+A few lines entered a legitimate system at nine fourteen on a Monday morning.
+
+Sixty-seven minutes later, RECOVER opened.
+
+By evening, surveillance was active.
+
+The next afternoon, a van came for her.
+
+The question had not exposed the system.
+
+It had frightened it.
+
+That was different.
+
+And useful.
+
+“We don’t have to know everything before we ask something,” Zoe said.
+
+Elias looked at her.
+
+“No.”
+
+“But we do have to know who the question could hurt.”
+
+“Yes.”
+
+She wrote that down.
+
+Know what the question can hurt.
+
+This one stayed.
+
+The reservoir remained still.
+
+Until now, Zoe had been reading what the system had already done.
+
+A placement.
+
+An override.
+
+A bridge.
+
+A match.
+
+A query.
+
+All of it behind them.
+
+Monday had shown her something else.
+
+The people hiding inside the system had rules too.
+
+They watched.
+
+They reacted.
+
+They protected certain connections.
+
+And when something touched those connections, they moved.
+
+Movement left traces.
+
+Zoe closed the notebook.
+
+She did not need to chase everyone at once.
+
+She did not need to know everything first.
+
+She needed one careful question.
+
+Then she needed to watch.
+
+The first mirror came next.

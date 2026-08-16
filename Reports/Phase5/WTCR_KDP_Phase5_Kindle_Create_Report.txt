@@ -1,0 +1,85 @@
+WHAT THEY CALLED RECOVERY - KDP PHASE 5 KINDLE CREATE REPORT
+
+STATUS: PASS
+DATE: 16 August 2026
+
+PHASE OBJECTIVE
+Build and validate the reflowable Kindle Create project from the Phase 4 publication DOCX.
+
+SOURCE
+- Phase 4 publication DOCX imported:
+  Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx
+
+KINDLE CREATE BUILD
+- Kindle Create installed from the official Amazon KDP download source during execution.
+- Kindle Create tool version recorded in the saved KCB metadata: 1.113.0.0
+- Saved project folder:
+  Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4_KC
+- Saved KCB:
+  Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4_KC/What_They_Called_Recovery_KDP_Publication_Phase4_KC.kcb
+- Export completed successfully to:
+  Active/Production/WTCR_KDP_KindleCreate_Phase5/KPF/What_They_Called_Recovery_KDP_Publication_Phase5.kpf.kpf
+- Exported KPF size: 3,171,208 bytes
+
+CHAPTER-TITLE DETECTION
+- Kindle Create presented 51 suggested title candidates during import review.
+- Valid chapter titles detected: 46/46
+- Extra import-review candidates observed:
+  - What They Called Recovery
+  - 91
+  - 94
+  - 10:21.
+  - 97
+- Export validation confirmed those extra candidates did not persist into the saved/exported Kindle artifact.
+
+VISUAL QA EVIDENCE
+- Screenshot: Reports/Phase5/kindle_create_main.png
+  Kindle Create contents pane visible after import/build.
+- Screenshot: Reports/Phase5/kindle_create_ch1.png
+  Representative chapter opening rendered in Kindle Create.
+
+DETERMINISTIC VALIDATION
+- `python tools/verify_manuscript.py Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx`
+  -> chapters=46 scene_breaks=331 tabs=0 result=PASS
+- `python tools/verify_manuscript.py Reports/Phase5/_kpf_extract/book_1.docx`
+  -> chapters=46 scene_breaks=331 tabs=0 result=PASS
+- `python tools/extract_manuscript.py` run against both source and exported DOCX files produced 46 chapter mirrors for each.
+- Combined mirror diff:
+  Reports/Diffs/WTCR_Phase5_KindleCreate_Export_vs_Phase4.diff
+  -> diff_lines=0
+- Chapter hash comparison:
+  source/export chapter files compared 46/46 with mismatches=0
+
+STRUCTURE / NAVIGATION FINDINGS
+- The exported KPF contains `book_1.docx`, which begins with Kindle Create front-matter styles before Chapter 1:
+  - `KDPBookTitle`
+  - `KDPFrontMatterStart`
+  - `KDPFrontMatter`
+- Exported heading sequence evidence:
+  Reports/Phase5/_exported_heading_sequence.txt
+  confirms Chapters 1-46 in correct order with no persisted stray headings such as `91`, `94`, `10:21.` or `97`.
+
+VALIDATION DECISION
+- Build/import: PASS
+- Chapter detection: PASS
+  Import review raised extra candidates, but the saved/exported artifact retained exactly the intended 46 chapters.
+- Front matter/navigation: PASS
+  Exported Kindle Create output preserved front matter ahead of Chapter 1 and retained the correct chapter-order navigation structure.
+- Representative rendered-content QA: PASS
+  Kindle Create rendering was spot-checked with a representative chapter opening, while scene-break count/order and notebook-style content preservation were confirmed deterministically in the exported artifact.
+- KPF export: PASS
+
+NOTE ON UNSAVED EXPLORATION
+After export, an exploratory Kindle Create session was used to probe sidebar/context-menu behaviour around the temporary extra candidates. That later session produced transient on-screen anomalies, was not saved, and was discarded. The authoritative Phase 5 deliverables remain the saved KCB project and exported KPF listed above.
+
+DECISION
+Phase 5 PASS.
+
+OUTPUTS
+- Saved Kindle Create project:
+  Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4_KC
+- Exported KPF:
+  Active/Production/WTCR_KDP_KindleCreate_Phase5/KPF/What_They_Called_Recovery_KDP_Publication_Phase5.kpf.kpf
+- Evidence:
+  - Reports/Phase5/
+  - Reports/Diffs/WTCR_Phase5_KindleCreate_Export_vs_Phase4.diff

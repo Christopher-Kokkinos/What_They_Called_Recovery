@@ -1,0 +1,78 @@
+{
+  "phase": "Phase 5 - Kindle Create build",
+  "status": "PASS",
+  "date": "2026-08-16",
+  "source_docx": "Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx",
+  "kindle_create": {
+    "tool_version": "1.113.0.0",
+    "project_folder": "Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4_KC",
+    "kcb_path": "Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4_KC/What_They_Called_Recovery_KDP_Publication_Phase4_KC.kcb",
+    "action_log_path": "Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4_KC/action.log",
+    "import_success": true,
+    "save_success": true,
+    "post_export_exploration_saved": false
+  },
+  "export": {
+    "success": true,
+    "kpf_path": "Active/Production/WTCR_KDP_KindleCreate_Phase5/KPF/What_They_Called_Recovery_KDP_Publication_Phase5.kpf.kpf",
+    "kpf_size_bytes": 3171208
+  },
+  "chapter_detection": {
+    "suggested_title_candidates": 51,
+    "valid_chapter_titles_detected": 46,
+    "extra_candidates_seen_during_import_review": [
+      "What They Called Recovery",
+      "91",
+      "94",
+      "10:21.",
+      "97"
+    ],
+    "persisted_in_export": false
+  },
+  "visual_evidence": {
+    "screenshots": [
+      "Reports/Phase5/kindle_create_main.png",
+      "Reports/Phase5/kindle_create_ch1.png"
+    ],
+    "observations": [
+      "Kindle Create import/build UI was observed directly.",
+      "A representative chapter opening rendered correctly in Kindle Create.",
+      "Later sidebar anomalies occurred only in an unsaved exploratory session and were discarded."
+    ]
+  },
+  "deterministic_validation": {
+    "source_verify_command": "python tools/verify_manuscript.py Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx",
+    "source_verify_result": "chapters=46 scene_breaks=331 tabs=0 result=PASS",
+    "export_verify_command": "python tools/verify_manuscript.py Reports/Phase5/_kpf_extract/book_1.docx",
+    "export_verify_result": "chapters=46 scene_breaks=331 tabs=0 result=PASS",
+    "source_extract_command": "python tools/extract_manuscript.py Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx --output Reports/Manuscript_Text",
+    "export_extract_command": "python tools/extract_manuscript.py Reports/Phase5/_kpf_extract/book_1.docx --output Reports/Phase5/Exported_Text",
+    "chapter_hash_compare_result": "chapters=46 mismatches=0",
+    "combined_diff_path": "Reports/Diffs/WTCR_Phase5_KindleCreate_Export_vs_Phase4.diff",
+    "combined_diff_result": "diff_lines=0"
+  },
+  "structure_validation": {
+    "front_matter_styles_before_chapter_1": [
+      "KDPBookTitle",
+      "KDPFrontMatterStart",
+      "KDPFrontMatter"
+    ],
+    "exported_heading_sequence_path": "Reports/Phase5/_exported_heading_sequence.txt",
+    "chapter_order_confirmed": true,
+    "stray_heading_candidates_persisted": false
+  },
+  "validation": {
+    "build_import": "PASS",
+    "chapter_detection": "PASS",
+    "front_matter_navigation": "PASS",
+    "representative_render_checks": "PASS",
+    "kpf_export": "PASS"
+  },
+  "pass_gate": {
+    "met": true,
+    "notes": [
+      "Import review raised five extra title candidates, but they did not persist into the saved/exported artifact.",
+      "Post-export sidebar repair experiments were not saved and were explicitly discarded."
+    ]
+  }
+}

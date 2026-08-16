@@ -1,0 +1,725 @@
+CHAPTER 37 — The Collision
+
+Monday morning began before Zoe woke. At eight oh seven, North Vale Legal Services sent an email to Westmere Child Safeguarding. It was not a warrant. Not a police order. Not an accusation. It asked Westmere to preserve any records connected to one historic reference family while North Vale investigated the possible unauthorised use of its legal identity. Nothing dramatic. Do not destroy. Do not amend. Do not migrate. Please acknowledge receipt. The email landed in Elaine Foster’s inbox. Elaine had worked for Westmere for fourteen years. She had never heard of BRG. She had never heard of DCL. She had never heard of AC019.
+
+That did not make her inexperienced. It made the attachment worse. Elaine knew what Westmere was supposed to look like. The document North Vale had sent did not look like anything Westmere should have been carrying.
+
+* * *
+
+Zoe woke at eight twenty-three because Elias was talking quietly beside the window. Not on the phone. Into a small recorder. “Vehicle unchanged. Rear access clear. No visible approach.”
+
+He clicked it off. Zoe opened one eye. “Are you narrating your life?”
+
+“No.”
+
+“Sounds like it.”
+
+“Log.”
+
+“Worse.”
+
+She pushed herself upright. The room smelled of radiator heat and instant coffee.
+
+The backpack remained beside the bed. The drive remained closed. Elias reached for his coat. “Breakfast.”
+
+“I’m not hungry.”
+
+He looked at her. Zoe sighed. “Fine.”
+
+Ten minutes later she was eating toast while Elias inspected a plate of eggs with unnecessary suspicion. “They don’t bounce,” Zoe said.
+
+“You say that every time.”
+
+“Tradition.”
+
+“That is not what tradition means.”
+
+“It is now.”
+
+Elias gave up. At nine, he switched on the passive message handset. One message waited.
+
+NORTH VALE HAS CONTACTED WESTMERE
+
+DIRECTLY. RECORD PRESERVATION REQUEST.
+
+Zoe read it twice.
+
+Then looked at him. “They’re talking to each other.” “Yes.” “Without us.” Elias poured tea. Zoe waited. “So we don’t do anything?” “For now.” “That’s annoying.” “I expected you to say difficult.” “It can be both.” She buttered another piece of toast. For once, nobody needed her to ask the next question. She was not sure whether she liked that.
+
+* * *
+
+At nine nineteen, Elaine Foster opened the Westmere record for H09-55216. The current system contained a migrated summary. Temporary placement. Protected transfer. Permanent placement.
+
+Closed. Nothing visibly impossible. She pulled the pre-migration material. That was different. The older review showed a child still in temporary safeguarding. Maternal contact continuing. Reunification work ongoing. Another review due. Two days later, the history changed. External authority received. Contact suspended. Protected transfer authorised. Restricted administration. Elaine sat forward. Westmere had not created the authority. The record said external. That was normal enough. Except North Vale had now said the authority was not theirs. She checked the audit trail.
+
+The relevant upload had been made through an old compliance account. Martin Hale. Elaine knew the name. Retired. Painfully careful. The sort of administrator who printed important emails because he trusted paper more than computers. She called him. He answered after six rings. “Hello?”
+
+“Martin? Elaine Foster. Westmere compliance.”
+
+A pause. “Which Elaine?”
+
+“Foster.”
+
+“Oh.”
+
+Not pleased. “Sorry to bother you.”
+
+“That usually means you’re about to.”
+
+Elaine smiled despite herself. “Do you remember the old restricted-placement cases?”
+
+Another pause. “What kind?”
+
+“External legal authority. Protected transfers.”
+
+“I remember the category.”
+
+“Did you upload orders?”
+
+“Sometimes.”
+
+“Did you verify them?”
+
+“Through legal.”
+
+“Westmere legal?”
+
+“No. External desk.”
+
+Elaine wrote the name he gave her. The company no longer existed under that name. “Did you ever contact the authority named on the order directly?”
+
+“No.”
+
+“Why not?”
+
+“Because that wasn’t the process.”
+
+Elaine stopped writing. “Whose process?”
+
+“Compliance.”
+
+“You were compliance.”
+
+“Not that bit.” “What bit?” Martin gave a small, humourless laugh. “The protected-placement desk.” Elaine frowned. “There wasn’t a protected-placement desk.” “There was if you had the right extension.” Something cold settled beneath her ribs. “Who worked there?” “I don’t know.” “Martin.” “I mean it. We sent things to a number. Somebody called back. Status changed. Job done.” “Did that ever bother you?” “Yes.” The speed of the answer surprised her. “Did you raise it?” “Once.” “And?” “My manager told me the cases involved security issues and I wasn’t cleared for the details.”
+
+Elaine knew the manager’s name. Dead three years. “Do you still have anything?”
+
+“No child records.”
+
+“Anything else?”
+
+Martin hesitated. “One notebook.”
+
+Elaine straightened. “What notebook?”
+
+“Extensions. Process notes. Things I wrote because they kept changing procedures.”
+
+“Where is it?”
+
+“At home.”
+
+“Keep it there.”
+
+“I was planning to.”
+
+“And don’t give it to anyone.”
+
+Silence. “Elaine, what is this?”
+
+She looked at North Vale’s email. “I don’t know yet.”
+
+That was the truth.
+
+Then she added: “But somebody may have used Westmere to carry legal authority Westmere never had.” Martin said nothing. Elaine heard him breathe. Finally: “I wondered.” She closed her eyes. “How long?” “Years.”
+
+* * *
+
+At ten twelve, Mac learned Westmere had opened an internal review. Not from Westmere. A former employee sent him three lines.
+
+CURRENT COMPLIANCE PULLING LEGACY
+
+RESTRICTED FILES. NORTH VALE PRESERVATION
+
+REQUEST. FORMER STAFF CONTACTED.
+
+Mac called restricted legal. No answer. He called again. Still nothing.
+
+Then Cain. Cain answered immediately. “Did you touch Westmere?”
+
+“No.”
+
+“Someone needs to stop the review.”
+
+“No.”
+
+Mac stood. “What?”
+
+“Touching them now confirms there is something to hide.”
+
+“You were moving archive boxes three days ago.”
+
+“Yes.”
+
+“And today you’ve discovered caution?”
+
+“Yes.”
+
+Mac laughed once. “You think this is funny?”
+
+“No.”
+
+“They’re pulling files.”
+
+“They were always going to.”
+
+“Then remove the restricted records first.”
+
+“Too late.”
+
+“You don’t know that.”
+
+“I do.”
+
+Mac stopped pacing. “Why?”
+
+“North Vale sent preservation.”
+
+“That’s a request.”
+
+“It’s a timestamp.” Mac said nothing.
+
+Cain continued. “If anything disappears afterwards, the disappearance becomes part of the problem.”
+
+Mac hated that Cain was right. “We let them blame dead people,” Cain said.
+
+“No.”
+
+“Why?”
+
+“Because dead people cannot contain a live archive.”
+
+Silence. There was the difference between them. Cain still wanted the past to absorb the damage. Mac could see the danger was alive. Zoe.
+
+Elias. Voss. Vale. North Vale. Westmere. The old system had survived by keeping each question separate. Now the questions were finding each other. Cain said: “You’re afraid of her.” “I’m afraid of exposure.” “Same thing now.” The line went dead.
+
+* * *
+
+Elaine checked three more historic cases. The first was clean. Temporary placement. Contact. Review. Child returned home. External authority verifiable.
+
+The second ended in a lawful permanent placement. Court record. Named statutory team. Nothing unusual. The third began normally. Then changed. External authority. Restricted transfer. The same historic legal administrator as H09-55216. Elaine opened one more. Different administrator. Different year. But the verification number buried in the scanned paperwork belonged to the same old service range Martin had described. She stopped. Four cases were enough. This was no longer one misplaced suffix. It was also nowhere near enough to accuse every restricted case Westmere had ever handled. Elaine opened an internal incident. Potential historic misuse of external authority in restricted-placement cases. Then beneath it: Review adult process and authority records only. Child identities restricted to safeguarding need. She saved it. No printout. No uncontrolled copies. Then she called current legal.
+
+* * *
+
+At eleven eleven, Priya Dey called Voss. “Westmere compliance wants a contractor account.” Voss looked at Vale. “Written.” “I haven’t even told you what they want.” “Still written.” Priya paused. “Why?” “Calls create memory disputes.” “That is almost sensible.” “Thank you.” “Not praise.”
+
+Vale laughed. Priya continued. “They want one supported example showing how a contractor verified an authority.”
+
+Voss looked at the yellow-coat file. The temporary carer. The number printed on the order. The confirmation. “They also want to know whether contractors were ever told not to contact the original issuing authority.”
+
+Voss went quiet. Vale saw his face change. “They’re asking the right question,” she said.
+
+Priya heard her. “Yes, they are.”
+
+Voss said: “One case. Properly redacted.”
+
+“Good.”
+
+“Nothing identifying the child.”
+
+“I know.”
+
+“Nothing identifying the recipient.”
+
+“I know.” Priya sounded tired now. “Christopher, I do understand confidentiality.” Vale raised an eyebrow. Voss said: “Apparently everyone has decided to use my first name again.” “Consider it punishment.” She ended the call. Vale smiled. “They’re doing it without us.” Voss looked at the file. “Yes.” That was new too.
+
+* * *
+
+At eleven thirty-six, a courier arrived at Westmere’s archive facility.
+
+Grey jacket. Black shoes. Middle-aged. Polite.
+
+He carried a collection order for seven boxes of historic restricted-placement records. Destination:
+
+SECURE LEGAL REVIEW
+
+The archive clerk scanned the release. The system rejected it. Not invalid.
+
+PRESERVATION HOLD
+
+The courier waited while the clerk called compliance. Elaine answered. “Do not release anything.” “He has authorisation.” “From whom?” The clerk read the name. An old external legal administrator. Not North Vale. Not Westmere’s current solicitor. Elaine stood. “Tell him preservation hold.” The clerk did. The courier made a call.
+
+He listened. Then asked whether digital scans could be released instead. No. Could the boxes be sealed for later collection? No. Could he photograph the labels? No. Elaine walked to the archive floor herself. Seven brown records boxes sat on a trolley behind the desk. The courier stood beside them. Nothing sinister about him. If anything, that made the sight worse. He held out the order. “I’m just collecting what I’ve been told to collect.”
+
+“I understand.”
+
+“Office says it’s urgent.”
+
+Elaine read the paperwork. The company existed. The authorising person existed.
+
+Reason: urgent legal reconciliation
+
+Then she saw the date. Today. After North Vale’s preservation request. “Who instructed the reconciliation?”
+
+“Office.”
+
+“Which office?”
+
+He gave her a number. Elaine knew the range now. Martin’s protected-placement extensions. She looked at the seven boxes. Someone had waited until the morning North Vale asked Westmere not to move anything—then arranged to move seven boxes. Maybe there was an innocent explanation. If there was, the records could stay exactly where they were until somebody provided it. “You’re not taking them.”
+
+The courier nodded. No argument.
+
+“I’ll need a refusal signature.” “You’ll have one.” Elaine signed the collection sheet.
+
+RELEASE REFUSED — PRESERVATION HOLD ACTIVE
+
+Then she wrote: 11:48 The courier folded his copy. “Am I in trouble?”
+
+Elaine looked at him. “No.”
+
+As far as she knew, that was true. “You’ve done what you were asked. So have I.”
+
+He left. Elaine did not photograph the labels. Did not open the boxes. Did not start pulling names. She attached the collection order to Westmere’s incident file. Then she called North Vale.
+
+* * *
+
+At twelve oh nine, restricted legal told Cain the collection had failed. Cain looked up. “What collection?”
+
+The man across from him went still. “The archive boxes.”
+
+“Who ordered it?”
+
+No answer. Cain stood. “Who?”
+
+“Legacy legal.”
+
+“You?”
+
+“No.”
+
+“Mac?”
+
+“I don’t know.”
+
+Cain’s face changed. “Find out.”
+
+“Cain—”
+
+“Find out who moved records after I said no movement.” He called Mac before the man had left the room.
+
+Mac answered.
+
+“You sent a courier.”
+
+“No.”
+
+“Someone did.”
+
+“Not me.”
+
+“Then one of your people.”
+
+Mac’s voice hardened. “My people?”
+
+Cain almost smiled. There it was. The system beginning to split into ownership. “The order came through old sponsor legal.”
+
+Mac went quiet. He knew the office. Not directly his. Not Cain’s either. A senior support node that had existed precisely because neither broker nor operations should ever control everything. “Tell them to stop,” Mac said.
+
+Cain laughed once. “Tell who?”
+
+Mac did not answer. For years, nobody holding all of it had been protection. Now nobody held enough to stop it.
+
+* * *
+
+Zoe received the courier message at twelve thirty-four. Elias had parked beside a reservoir. Dog walkers passed the car. A man threw a tennis ball into the water for a spaniel that clearly had no intention of returning it. Zoe read:
+
+WESTMERE PRESERVATION HOLD BLOCKED COLLECTION OF SEVEN HISTORIC
+
+RESTRICTED-PLACEMENT BOXES. ORDER ISSUED
+
+THROUGH LEGACY LEGAL ADMINISTRATION
+
+AFTER NORTH VALE REQUEST. REFUSAL LOGGED. NORTH VALE INFORMED.
+
+She looked at Elias. “They tried to move the boxes after the hold.” “Yes.” “And Westmere wrote it down.” “Yes.” Zoe looked at the message again. “That was stupid.”
+
+“Possibly.”
+
+She pointed at him. “There it is.”
+
+“What?”
+
+“Possibly.”
+
+Elias looked towards the reservoir. Zoe’s satisfaction lasted another two seconds. Then she saw his expression. “What?”
+
+“Reaction gives evidence.”
+
+“I know.”
+
+“It also means someone is reacting.”
+
+She understood. People frightened enough to move records might do other things. Less tidy things. “Do we contact Voss?”
+
+“No.”
+
+“Open the drive?”
+
+“Not today.”
+
+“Move?”
+
+“Yes.” That answer required no discussion. They left ten minutes later.
+
+* * *
+
+At one fifteen, Westmere and North Vale spoke directly. Elaine Foster. North Vale records. North Vale children’s legal. Westmere’s current solicitor. Nobody from Meridian. Nobody from the old legal administrator. Elaine described only what Westmere knew. The archived case. The disputed authority. The old protected-placement process. The attempted box collection. North Vale described only what it knew. The base reference was genuine. The supplemental authority was not in its records. The powers claimed in the document were not powers its legal team recognised as having issued.
+
+Then the North Vale lawyer asked: “Did Westmere ever have lawful authority to delegate recovery or relocation powers to a private recipient or sponsor?” Elaine answered immediately.
+
+“No.”
+
+“Could Westmere create that authority internally?”
+
+“No.”
+
+“Could a private legal administrator create it?”
+
+“No.”
+
+“Then what authorised the move?”
+
+Nobody spoke. For the first time, people from both sides of the historic paperwork were looking directly at the same empty space. Elaine could have guessed. She did not. “I don’t know.”
+
+The lawyer from North Vale waited a moment. “Then we have a safeguarding problem.”
+
+* * *
+
+At one forty, Elaine found RPA.
+
+A dormant access category inside the legacy system.
+
+RESTRICTED PLACEMENT ADMINISTRATION
+
+She opened the old policy. For the first time that day, something made immediate sense. RPA was real. It existed for placements where information genuinely had to be tightly controlled. Domestic abuse. Threats from organised crime. Trafficking risk. Cases where publishing an address or circulating identities too widely could put a child or family in danger. Elaine felt relief. Briefly. Then she checked the authority chains. Most RPA cases contained exactly what she expected. External statutory authority. Independent records. Normal safeguarding reasons for secrecy. A smaller group did not. Those cases went through the same old legal infrastructure already causing problems. Elaine read the policy again. Nothing about RPA was inherently wrong. That was the disturbing part. Someone had not invented a fake confidentiality system. They had used a real one. Elaine added a short note to the incident. RPA was a legitimate confidentiality function. A subset of historic cases requires review because independent statutory authority has not yet been verified. No broader accusation. No dramatic language. Enough.
+
+* * *
+
+Priya forwarded the wording to Voss at two thirty. He read it aloud. Vale listened. “Subset.” “Yes.” “Good.” Voss glanced at her.
+
+“Why?”
+
+“Because they’re not pretending the whole place was rotten.”
+
+“No.”
+
+“They actually understand it.”
+
+“Yes.”
+
+Vale folded her arms. “If they keep going, they won’t need us.”
+
+“Good.”
+
+She thought about it. “Also rude.”
+
+“Very.”
+
+That was better. For years, Voss had been paid because other people needed him. Being unnecessary had once felt like failure. Now it felt suspiciously close to progress.
+
+* * *
+
+Mac received five messages in thirteen minutes. Westmere and North Vale had compared records. Cain had suspended direct field contact with Westmere.
+
+Legacy legal had issued separate preservation instructions to its own staff. Meridian wanted independent counsel. One sponsor account wanted closure. Mac read the messages again. Nobody had asked him. That was what frightened him. His phone rang. Helen. He stared at the name. First call from her since Zoe disappeared. He answered. “Helen.”
+
+No greeting. “What did you do?”
+
+Mac closed his eyes. “Where’s Brian?”
+
+“Don’t.”
+
+“What happened?”
+
+“Someone contacted us again.”
+
+“Who?”
+
+“I don’t know.”
+
+“What did they want?”
+
+“Household stability.”
+
+Mac stood.
+
+“Helen, listen to me.”
+
+“No.”
+
+The word was quiet.
+
+He stopped.
+
+“For five years,” Helen said, “every time something scared us, you told us to call you.”
+
+“Helen—”
+
+“And every time we did, you told us it was handled.”
+
+“I kept her safe.”
+
+“She was taken outside her school.”
+
+“I was trying to stop—”
+
+“You knew before.”
+
+Mac said nothing.
+
+Helen heard it.
+
+“You knew something was coming.”
+
+“Helen—”
+
+“Did you tell them where she was?”
+
+“No.”
+
+“Did you tell them anything?”
+
+Mac looked at the wall. “I told them the placement was stable.”
+
+Helen made a sound. Not quite laughter. “Placement.”
+
+“Helen.”
+
+“She has a name.”
+
+“I know.”
+
+“Then use it.” Mac said nothing.
+
+Helen waited. He forced the word out. “Zoe.”
+
+Something changed in the silence. Not forgiveness. Nothing close. But for once she had made him speak about the girl rather than the file around her. Helen said:
+
+“If you call us again, I’m not answering.”
+
+“That would be a mistake.”
+
+“Maybe.”
+
+The line went dead.
+
+Mac stood with the phone still at his ear.
+
+No sponsor report told him what to do with that.
+
+No procedure.
+
+No intermediary.
+
+No protected desk.
+
+For five years Helen and Brian had called him when they were afraid.
+
+That route was gone.
+
+* * *
+
+At four, Zoe knew nothing about Helen’s call.
+
+She did not need to.
+
+Enough was happening without her.
+
+North Vale was asking Westmere questions.
+
+Westmere was asking former staff.
+
+Westmere was asking contractors.
+
+Someone inside the old legal structure had tried to move records.
+
+Mac and Cain no longer seemed able to coordinate every response. Voss and Vale were becoming less important to the investigation they had helped start. Zoe looked at the message handset. “We don’t have to keep poking it.”
+
+“No.”
+
+“They’re asking each other now.”
+
+“Yes.”
+
+She thought about that. “So that’s good.”
+
+“Mostly.”
+
+She looked at him. “Mostly?”
+
+“We don’t control when they ask.”
+
+That removed some of the satisfaction. If North Vale contacted the wrong person tomorrow—or Westmere moved too quickly—or somebody panicked—Zoe could not stop it. She had wanted the truth to survive without her.
+
+Now it was starting to. Apparently independence was irritating even when it belonged to evidence. “What do we still control?”
+
+Elias looked at her. “What we disclose.”
+
+“Our copies.”
+
+“Yes.”
+
+“Where we are.”
+
+“Yes.”
+
+“What we don’t disclose.”
+
+“Yes.”
+
+Zoe nodded. “That’s enough.”
+
+“For now.”
+
+She looked at him. “There.”
+
+“What?”
+
+“Your personality defect.”
+
+Elias started the car.
+
+* * *
+
+They checked into a small inn outside Shrewsbury at five twenty. The carpet had a pattern designed to conceal every possible stain. Zoe inspected it. “I respect the ambition.”
+
+Elias checked the window. “What?”
+
+“The carpet. Nobody can prove anything happened to it.”
+
+He looked down. “That is probably the sales pitch.”
+
+The backpack went beside the bed. For the first time since they had opened the drive, Zoe did not feel the room arrange itself around it. The drive still mattered. Obviously. It still contained more than any one institution knew. It still had to be protected. But it was no longer the only place where the truth lived. North Vale had a current incident. Westmere had another. Elaine had a failed collection order.
+
+Martin Hale had a notebook. Priya had correspondence. Voss and Vale had contractor records. A courier somewhere had a signed refusal telling him seven boxes could not be collected at eleven forty-eight on Monday morning. None of those things disappeared if the drive did. Zoe sat on the edge of the bed. “That’s weird.”
+
+“What?”
+
+“The backpack.”
+
+Elias looked at it. “What about it?”
+
+“It feels smaller.”
+
+“It is the same backpack.”
+
+“I know.”
+
+She tried to explain. “It used to feel like if we lost that, everything disappeared.”
+
+“And now?”
+
+“People know things without it.”
+
+“Yes.”
+
+“People who don’t even know me.” “Yes.” She liked that. She also hated it. Both appeared to be possible at the same time now.
+
+* * *
+
+Mac sat alone until six. No new instructions had been issued. That was becoming unusual. For years, uncertainty had always produced action. A call. A transfer. A payment. A document. Somebody moved. Somebody fixed it. Today he had told people not to move. Cain had told people not to move. And seven boxes had nearly moved anyway. Meridian was seeking advice for Meridian.
+
+Sponsors were asking about themselves. Helen had cut him off. Westmere was preserving Westmere. North Vale was protecting North Vale’s authority. Everyone was beginning to choose the part they could save. Mac had once believed the system’s strength was that no one person could destroy it. He had never properly considered the reverse. No one person could command it either. His phone lit again. Restricted legal. He let it ring.
+
+* * *
+
+Dinner at the inn was lasagne for Zoe and something Elias claimed was fish. Zoe examined his plate. “That has been through something.” “It’s cod.” “It has trauma.” Elias ignored her.
+
+For nearly fifteen minutes, they talked about nothing. The television above the bar showed football highlights with the sound turned off. Someone at the next table complained about parking. A toddler dropped a spoon repeatedly because apparently gravity required independent verification. Zoe watched him do it for the fifth time. Then she said: “They could stop.”
+
+Elias looked at her. “Who?”
+
+“Mac. Cain. The others.”
+
+“Some could.”
+
+“They could just stop trying to get me.”
+
+“Yes.”
+
+“Stop moving records.”
+
+“Yes.”
+
+“Stop calling people.”
+
+“Yes.”
+
+She frowned. “Then why don’t they?”
+
+Elias set down his fork. Zoe waited. He did not answer quickly. Good. She looked at the condensation on her glass. “They’ve made it worse every time.”
+
+“Yes.”
+
+“Reyes is dead.”
+
+Elias’s expression changed slightly. “The archive is out.”
+
+“Yes.”
+
+“Voss and Vale walked.”
+
+“Yes.”
+
+“North Vale knows.”
+
+“Yes.”
+
+“Westmere knows.”
+
+“Yes.”
+
+“And now there’s the courier.”
+
+“Yes.”
+
+Zoe leaned back.
+
+“If they stop now...”
+
+She tried to find the thought. Not the professional version. The actual one. “If they stop now, then all the things they did to keep it going were just...”
+
+She stopped. Elias waited. “Just what they were.”
+
+He looked at her. She continued. “No success at the end to make it look necessary.”
+
+“No.”
+
+“No getting the drive back.”
+
+“No.”
+
+“No making Reyes somehow worth it.”
+
+Elias’s eyes hardened. “He is not something to make worth it.”
+
+“I know.”
+
+She did. That was why the thought bothered her.
+
+Zoe picked at the edge of the napkin. “They’d have to admit they kept making it worse for nothing.” Elias looked at her for a long moment.
+
+“Something like that.”
+
+She frowned. “That is a terrible reason to continue.”
+
+“Yes.”
+
+“Humans are stupid.”
+
+“Frequently.”
+
+“There. Strong agreement.”
+
+He went back to the traumatised cod. Zoe looked out through the window. Cars passed on the wet road. Somewhere behind them, people who had spent years believing every problem could be managed were discovering that the truth did not belong to one place anymore. North Vale had asked Westmere. Westmere had asked Martin. Elaine had stopped a courier. Cain had called Mac.
+
+Helen had called Mac. Everybody was beginning to answer for themselves. And nobody seemed able to put the answers back into separate boxes. Zoe did not open the notebook. Not tonight. She already knew enough. They could stop. The frightening part was beginning to be that they might not.

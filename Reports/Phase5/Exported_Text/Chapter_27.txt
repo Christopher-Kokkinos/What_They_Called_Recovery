@@ -1,0 +1,2073 @@
+CHAPTER 27 — The Recipients
+
+The car was beige.
+
+Not silver.
+
+Not champagne.
+
+Not sand.
+
+Beige.
+
+Zoe stood beside it in the used-car yard with both hands in her coat pockets and regarded it as a personal insult.
+
+“You said inconspicuous.”
+
+Elias walked around the rear bumper.
+
+“It is.”
+
+“It looks like somebody gave up halfway through choosing a colour.”
+
+“That helps.”
+
+“It looks retired.”
+
+“Also helpful.”
+
+The salesman had called it bronze.
+
+He was wrong.
+
+The car was a six-year-old estate with one previous owner, eighty-one thousand miles, a dent above the rear wheel and an interior that smelled faintly of peppermint and wet dog.
+
+Elias opened the bonnet.
+
+Zoe leaned against the passenger door.
+
+“Does it work?”
+
+“That’s what I’m checking.”
+
+“Could ask him.”
+
+“I did.”
+
+“And?”
+
+“He said yes.”
+
+She waited.
+
+Elias looked at her over the bonnet.
+
+“Exactly.”
+
+The salesman stood twenty feet away pretending not to watch. He wore a red tie and the expression of a man who had already decided Elias was difficult.
+
+That was accurate.
+
+Zoe looked through the windscreen.
+
+No sat-nav.
+
+No connected screen.
+
+A radio with actual buttons.
+
+She approved.
+
+“What happened to the black one?”
+
+“Still parked.”
+
+“Where?”
+
+“Somewhere we are no longer going.”
+
+“You left it?”
+
+“Yes.”
+
+“Keys?”
+
+“Inside a place we are also no longer going.”
+
+Good enough.
+
+Elias lowered the bonnet.
+
+“Tyres are new. Service history. Two keys.”
+
+Zoe narrowed her eyes.
+
+“Now you’re showing off.”
+
+He almost smiled.
+
+They paid cash.
+
+The salesman became much friendlier when the money appeared. He photocopied nothing and asked no questions beyond the ones required to sell a car.
+
+At ten sixteen, Zoe climbed into the passenger seat of the beige estate and discovered three boiled sweets and a pair of disposable reading glasses in the glove compartment.
+
+She held up the sweets.
+
+“Previous owner survived on sugar.”
+
+“Leave them.”
+
+“They’re sealed.”
+
+“Leave them.”
+
+She put one in her pocket.
+
+Elias looked at her.
+
+“For evidence.”
+
+“Of what?”
+
+“Bad judgment.”
+
+He started the engine.
+
+The car settled into a quiet idle.
+
+“Where now?”
+
+“Somewhere with a door.”
+
+“That narrows it down.”
+
+“And no internet.”
+
+“Less.”
+
+“And people nearby.”
+
+“Better.”
+
+Elias pulled out.
+
+The beige estate disappeared into traffic immediately.
+
+Zoe hated how well it worked.
+
+* * *
+
+The room belonged to a small accountancy firm that rented unused offices by the half day.
+
+At least that was what the laminated sign downstairs claimed.
+
+The woman at reception gave them Room Six.
+
+Cash deposit.
+
+Key.
+
+Tea machine in the corridor.
+
+The room had two desks, four chairs, an empty filing cabinet and vertical blinds that made every office in Britain look as though someone had committed tax fraud there.
+
+“Cheerful,” Zoe said.
+
+Elias checked the door and window.
+
+She watched him look beneath the desks.
+
+“Ghosts?”
+
+“Cables.”
+
+“Ghost cables?”
+
+He ignored her.
+
+The isolated laptop came out. Elias set it up the same way as before, without ceremony.
+
+Zoe put the backpack beneath her chair.
+
+The original drive was inside it.
+
+When Elias reached for the working copy, he stopped.
+
+Looked at her.
+
+“You can.”
+
+He picked it up.
+
+Neither of them said anything else about it.
+
+The question from the night before sat at the top of Zoe’s notebook.
+
+WHO RECEIVES A BRG CASE?
+
+Her own old pathway was still there in the archive.
+
+ASSESS.
+
+TEMP.
+
+REVIEW.
+
+OVR2.
+
+BRG.
+
+PLACE.
+
+And at the end:
+
+P06-11803
+
+Helen and Brian.
+
+Not their names.
+
+Not yet.
+
+Zoe rested her fingers on the keyboard.
+
+Then moved them away.
+
+“Not mine.”
+
+Elias did not ask why.
+
+They chose another BRG root instead.
+
+Nine years old.
+
+No AC019.
+
+Nothing Voss or Vale had already touched.
+
+F04-66128
+
+Its beginning looked familiar now.
+
+Intake.
+
+Assessment.
+
+Temporary placement.
+
+Review.
+
+Then the break.
+
+OVR2
+
+BRG
+
+After BRG came something new.
+
+RCP-0447
+
+Zoe pointed.
+
+“Recipient.”
+
+Elias glanced at the screen.
+
+“Probably.”
+
+“You’re improving.”
+
+“Dangerously.”
+
+RCP-0447 did not appear in the transition table. It did not appear in the ordinary index either.
+
+The lookup directory answered it.
+
+RCP - RECEIVING CANDIDATE PROFILE
+
+Zoe read the words again.
+
+“Candidate.”
+
+Elias nodded.
+
+“Like a job.”
+
+“Or a placement.”
+
+“For adults.”
+
+“For a household, probably.”
+
+She wrote:
+
+RCP = household?
+
+Then stared at the word again.
+
+“Candidate means they were considering them before.” “Yes.” “Before they got a child.” “Possibly.” She looked at him. “Don’t ruin it.” “I’m not. We need to see one.” They found a field-definition file. The heading was worse than the code.
+
+RECIPIENT SUITABILITY MATRIX
+
+Zoe leaned back. “Matrix.”
+
+“Apparently.”
+
+“People who say matrix should not be allowed children.”
+
+“I’ll notify Parliament.”
+
+That got half a smile. Then she read further. The first things sounded almost respectable. Household stability. Relationship stability. Financial capacity. Residence tenure. “That’s normal,” Zoe said.
+
+“For an assessment, yes.”
+
+Then came the things that were harder to explain away. Social exposure. Criminal exposure.
+
+Professional exposure.
+
+Disclosure risk.
+
+Zoe’s smile disappeared.
+
+And below those:
+
+COMPLIANCE
+
+ATTACHMENT PROBABILITY
+
+MATCH INDEX
+
+LEVERAGE
+
+SPONSOR
+
+She stopped at leverage.
+
+“That’s not normal.”
+
+“No.”
+
+“What do they mean by it?”
+
+“We don’t know yet.”
+
+“We know what leverage means.”
+
+“We know what the word means. We don’t know what they put under it.”
+
+Zoe hated the distinction because it was correct.
+
+She looked back up the list.
+
+“Why professional exposure and criminal exposure separately?”
+
+“Someone can have no criminal history and still have a job that creates scrutiny.”
+
+“Police?”
+
+“Could.”
+
+“Lawyer?”
+
+“Yes.”
+
+“Journalist.”
+
+“Certainly.”
+
+“Social worker.”
+
+“Potentially.”
+
+“Teacher?”
+
+Elias tilted his head.
+
+“Maybe.”
+
+She tapped SOCIAL EXPOSURE.
+
+“Neighbours? Friends? Being famous?”
+
+“Public visibility, perhaps.”
+
+“Why care?”
+
+“If you’re hiding an unlawful placement, you don’t want a household that generates questions.”
+
+Zoe looked at the first group again.
+
+Stable home.
+
+Stable relationship.
+
+Money.
+
+Then the second.
+
+Low exposure.
+
+Low disclosure.
+
+Then the last.
+
+Compliance.
+
+Attachment.
+
+Leverage.
+
+“They want good parents.”
+
+Elias did not answer.
+
+Zoe looked at him.
+
+“They do.”
+
+“They want stable households.”
+
+“Same thing.”
+
+“No.”
+
+She waited.
+
+“A stable household can still be a terrible one.”
+
+“Fine.”
+
+“But chaos creates attention.”
+
+Police.
+
+Schools.
+
+Doctors.
+
+Neighbours.
+
+Arguments people heard through walls.
+
+Ambulances.
+
+A child saying something at the wrong time to the right person.
+
+Zoe understood.
+
+“They want boring.”
+
+“Exactly.”
+
+Her eyes dropped to the beige keys on the desk.
+
+“Like the car.”
+
+Elias followed her gaze.
+
+“Like the car.”
+
+That made her hate it more.
+
+* * *
+
+The first complete candidate profile they opened was not attached to a finished placement.
+
+Elias chose it for that reason.
+
+RCP-1021
+
+No name.
+
+No address.
+
+No child.
+
+Status:
+
+DECLINED
+
+At first it looked like the sort of household anyone might approve.
+
+Household stability: high.
+
+Relationship stability: medium.
+
+Financial capacity: high.
+
+Residence tenure: high.
+
+Criminal exposure: low.
+
+Attachment probability: high.
+
+Then the other fields changed the picture.
+
+SOCIAL EXPOSURE: HIGH PROFESSIONAL EXPOSURE: HIGH
+
+DISCLOSURE RISK: MEDIUM
+
+COMPLIANCE: LOW
+
+LEVERAGE: LOW
+
+Sponsor:
+
+M17
+
+Zoe read it again.
+
+“Why decline?”
+
+“No reason recorded here.”
+
+“Too visible.”
+
+“Maybe.”
+
+“Compliance low.”
+
+“Also possible.”
+
+“So what does compliance mean?”
+
+“We don’t know.”
+
+She pointed at him. “That one was deliberate.”
+
+“It was.”
+
+She looked back at the profile. “Could mean they don’t follow instructions.”
+
+“Could.”
+
+“Could mean they ask questions.”
+
+“Could.”
+
+“Could mean whoever scored them just didn’t like them.”
+
+“Could.”
+
+She sighed. “I hate evidence.”
+
+“It rarely behaves.”
+
+The next profile was different.
+
+APPROVED - NOT MATCHED
+
+High household stability. Medium financial capacity. Low exposure. Low disclosure risk. High compliance. Medium attachment probability. Medium leverage. A different sponsor code. No root. No child.
+
+No completed placement.
+
+Zoe stared at NOT MATCHED.
+
+“So they can approve the adults first.”
+
+“That’s what this suggests.”
+
+“And then wait.”
+
+“Yes.”
+
+“For someone.”
+
+Elias did not answer that.
+
+She wrote:
+
+recipient pool
+
+Then immediately crossed it out.
+
+“No.”
+
+“What?”
+
+“Sounds like a dating website.”
+
+She wrote instead:
+
+approved households
+
+Still awful.
+
+“What would you call it?”
+
+“I wouldn’t name it yet.”
+
+“Coward.”
+
+“Method.”
+
+Zoe searched again for a child link.
+
+There wasn’t one.
+
+Just a household, already scored, already approved, waiting inside the system.
+
+She closed the result.
+
+* * *
+
+At eleven thirty-two, Vale found a house she remembered.
+
+Not the girl.
+
+The house.
+
+Red brick.
+
+Small front garden.
+
+White gate.
+
+A bicycle chained to the side wall.
+
+Reyes had caught his sleeve on the gate latch and complained about it for half the drive home.
+
+The old assignment described the destination as:
+
+APPROVED SAFEGUARDING HOUSEHOLD -
+
+CONFIDENTIAL PLACEMENT
+
+At the time, every word had sounded ordinary.
+
+Voss sat at the opposite end of the table.
+
+“House or facility?”
+
+“House.”
+
+“Staff?”
+
+“Two adults.”
+
+“Names?”
+
+“Initials.”
+
+“Organisation?”
+
+“Meridian arranged the handover.”
+
+The transport sheet showed delivery at nineteen forty-six.
+
+A woman signed.
+
+A man stood behind her.
+
+No uniforms.
+
+No staff rota.
+
+No reception desk.
+
+Vale remembered photographs in the hallway while the woman completed the paperwork.
+
+Wedding.
+
+Beach.
+
+Christmas tree.
+
+A family home.
+
+She had assumed foster carers.
+
+Why wouldn’t she?
+
+Professionals had brought a child there with documents.
+
+“Any other delivery to that address?” Vale asked.
+
+Voss checked.
+
+“No.”
+
+“Collection?”
+
+“No.”
+
+“One child.”
+
+“One.”
+
+“Could still be legitimate.”
+
+“It could.”
+
+“Long-term foster.”
+
+“Possible.”
+
+Vale gave him a look.
+
+He returned it.
+
+She opened the child’s earlier history.
+
+Emergency care.
+
+One temporary address.
+
+Then another.
+
+Review.
+
+Then the order they now knew a real court had never issued.
+
+Then this house.
+
+The same child had moved from something that looked ordinary into something that no longer did, and the door at the end of the route had looked completely normal.
+
+“What did the couple know?” Vale asked.
+
+“No way to tell from this.”
+
+“Maybe nothing.”
+
+“Maybe.”
+
+“Maybe everything.”
+
+“Maybe.”
+
+Vale looked at the signature line.
+
+One initial.
+
+She remembered the woman kneeling when the girl arrived.
+
+Not grabbing her.
+
+Not hugging her.
+
+Just lowering herself until they were the same height.
+
+The girl had stared back.
+
+The woman had cried quietly.
+
+Vale had thought relief.
+
+A frightened child meeting a foster parent.
+
+Now the memory refused to stay where she had put it.
+
+“You remember her?” Voss asked.
+
+“The woman.”
+
+“What about her?”
+
+Vale kept her eyes on the page.
+
+“She looked like she’d been waiting years.”
+
+Voss said nothing.
+
+It was not evidence.
+
+Vale knew that.
+
+Memory did not become proof just because later facts made it frightening.
+
+But it could become a question.
+
+She closed the file.
+
+“Find the household.”
+
+“Without contacting them.”
+
+“I know.”
+
+“Without identifying the child publicly.”
+
+“I know.”
+
+“Without assuming what they knew.”
+
+Vale looked up.
+
+“I know.”
+
+The problem with discovering you had helped something terrible was that the past did not change.
+
+You did.
+
+And then every memory demanded a second trial.
+
+* * *
+
+RCP-0447 was only partly readable.
+
+The sensitive fields appeared to sit deeper in the archive, but the catalogue contained a summary.
+
+Zoe read the first group aloud.
+
+“Approved. Sponsor K08. Dual household. Capacity one.”
+
+She stopped.
+
+“One child.”
+
+“That’s what it says.”
+
+“Age six to nine.”
+
+She read the next line.
+
+“Permanent.”
+
+Her voice changed slightly.
+
+Before any child was attached, somebody had recorded a household seeking one child, aged six to nine, on a permanent basis.
+
+The rest of the summary was shorter but colder.
+
+Low exposure.
+
+Low disclosure.
+
+High compliance.
+
+High attachment.
+
+Medium leverage.
+
+And:
+
+MATCH THRESHOLD: 82
+
+“They picked the age first?”
+
+“The household profile contains an age band before this case is linked to it.”
+
+“That’s a very long way of saying yes.”
+
+“It’s the accurate way.”
+
+She hated him for three seconds.
+
+Then stopped because he was right.
+
+“What does eighty-two mean?”
+
+“Probably the minimum score for a match.”
+
+“Between the adults and the child.”
+
+“Between the household and the case.”
+
+“Same thing.”
+
+“Not always.”
+
+She looked at him.
+
+He held up a hand. “Fine. In this context, probably.” Zoe wrote: how do they score the child?
+
+That question felt different from the others. She imagined age. Hair. Eyes. Behaviour. Health. Things people chose when buying things. She stopped herself. “Another one.” Elias opened a second completed profile.
+
+RCP-0886
+
+Approved. Single-adult household. Capacity one. Age band ten to thirteen. Permanent. Low exposure. Low disclosure. Medium compliance. High attachment. High leverage.
+
+MATCH THRESHOLD: 76
+
+Completed match:
+
+G02-33108
+
+Match score:
+
+91
+
+Zoe read the last two numbers.
+
+“So they have a line you have to get over.”
+
+“A threshold.”
+
+“I know what a threshold is.”
+
+“Then yes.”
+
+“And ninety-one clears seventy-six.”
+
+“It does.”
+
+She looked at him.
+
+“Don’t sound impressed.”
+
+“I’m not.”
+
+“They’re scoring children.”
+
+“They are scoring a match.”
+
+“You’re changing the noun again.”
+
+“Because it changes what we can prove.”
+
+Zoe pointed at the screen.
+
+“Somebody decided this child fitted this house well enough to get ninety-one.”
+
+Elias did not answer.
+
+He didn’t need to.
+
+She wrote:
+
+THEY PROFILE THE ADULTS TOO
+
+Then underlined TOO.
+
+That disturbed her in a way she had not expected.
+
+Until now the adults had seemed like the side with power.
+
+Buyers. Handlers. Drivers. People giving orders. People opening doors. But the system had turned them into fields as well. Risk. Exposure. Compliance. Attachment. Leverage. It did not trust them. It used them. “They don’t just take anyone with money,” Zoe said.
+
+“No.”
+
+“They pick people who won’t attract attention.”
+
+Elias nodded. “People who won’t talk.”
+
+He pointed to DISCLOSURE. “Or are unlikely to.”
+
+“And people they can control.”
+
+His eyes moved to LEVERAGE. Zoe followed them. “What if leverage isn’t blackmail?”
+
+“It may not be.”
+
+She understood before he said anything else. A family wanted a child.
+
+The system gave them one.
+
+If they later admitted the placement was illegal, they could lose the child.
+
+Maybe the relationship itself became the leverage.
+
+Not photographs.
+
+Not threats.
+
+Not money in an envelope.
+
+A bedroom.
+
+Birthday cards.
+
+School shoes by the front door.
+
+The thing they loved most becoming the reason they stayed quiet.
+
+Zoe stood and walked to the window.
+
+Below, a woman pushed a buggy past the building. A delivery driver carried boxes into a pharmacy.
+
+Normal people.
+
+Normal lives.
+
+“How many of them know?” she asked.
+
+“About the system?”
+
+“That it’s illegal.”
+
+“We don’t know.”
+
+“Some must.”
+
+“Yes.”
+
+“Some might think all the paperwork is real.”
+
+“Also yes.”
+
+She turned.
+
+“So being in this database doesn’t prove what they knew.”
+
+“No.”
+
+That was uncomfortable.
+
+It would have been easier if every household were simply a buyer.
+
+Bad person.
+
+Bad house.
+
+Bad decision.
+
+The archive would not let her have that.
+
+“What if they ignored obvious stuff?”
+
+“Then that matters.”
+
+“What if there wasn’t anything obvious?”
+
+“That matters too.”
+
+Zoe returned to the table and wrote:
+
+Being in here doesn’t prove they knew.
+
+Underneath:
+
+Find out what they knew.
+
+Elias read it.
+
+Said nothing.
+
+Better.
+
+* * *
+
+The profile index contained another field.
+
+MOTIVE CLASS
+
+That caught Zoe immediately.
+
+The summaries showed only codes.
+
+M1.
+
+M2.
+
+M3.
+
+M4.
+
+M5.
+
+Some households had combinations.
+
+M2/M4.
+
+M1/M5.
+
+No definitions.
+
+She searched the lookup.
+
+Nothing.
+
+“Encrypted?”
+
+“Probably.”
+
+She looked at the closed directory that led deeper into the archive.
+
+They had still not opened the encrypted volume.
+
+Every deeper layer was a new decision.
+
+That agreement had survived three rooms, two hotels and one beige car.
+
+“Leave it.”
+
+Elias closed the lookup.
+
+“So they classify why people want a child,” Zoe said.
+
+“That’s what the field suggests.”
+
+“We just don’t know what the reasons are.”
+
+“Correct.”
+
+She stared at M1/M5 for another second, then moved on.
+
+* * *
+
+“What about preference?” Zoe asked.
+
+“Not visible yet.”
+
+“Age band is a preference.”
+
+“Could be compatibility.”
+
+She pointed at PERM.
+
+“That?”
+
+“A requirement.”
+
+“Single or dual household.”
+
+“Household class.”
+
+“Capacity one.”
+
+“Capacity.”
+
+“Match threshold.”
+
+“Threshold.”
+
+She folded her arms.
+
+“They’re ordering without writing 'order’.”
+
+“Careful.”
+
+“You know what I mean.”
+
+“I do.”
+
+“It’s a specification.”
+
+Elias considered that.
+
+“Yes.”
+
+Zoe sat back.
+
+“That’s worse.”
+
+“Maybe.”
+
+She laughed once.
+
+“Maybe?”
+
+“Finding out it works would be worse.”
+
+The answer took the argument out of her.
+
+“What do you mean?”
+
+“A system like this cannot survive if placements fail constantly.”
+
+Zoe looked back at the profile.
+
+Stable.
+
+Quiet.
+
+Low disclosure.
+
+High attachment.
+
+Permanent.
+
+If children were repeatedly removed, hospitalised, arrested, abused, neglected or moved again, other systems would become involved.
+
+Doctors.
+
+Schools.
+
+Police.
+
+Social workers.
+
+Courts.
+
+Noise.
+
+Noise meant questions.
+
+“They want them happy,” Zoe said.
+
+Elias did not answer immediately.
+
+“They do.”
+
+“They want placements that do not attract scrutiny.”
+
+“That can mean happy.”
+
+“Yes.”
+
+The word sat badly between them.
+
+The system could benefit from a child being loved.
+
+That was the part Zoe hated most.
+
+If the new household was stable, affectionate and ordinary, the lie became harder to see.
+
+Not because love made the beginning legal.
+
+Because love made the years after it look real.
+
+“What if that’s how they explain it to themselves?” she asked.
+
+“How?” “The real parents are bad. The new family is better.” “Somebody could.” “So the first time, they tell themselves they’re helping.” “Possible.” “Then they get paid.” Elias watched her. “And then doing it again is easier,” he said. Zoe nodded. “Until it’s just what they do.” Neither of them wrote that down.
+
+* * *
+
+At one fourteen, RCP-0447 revealed the completed placement. The path was simple enough to fit on one screen.
+
+F04-66128
+
+BRG -> MATCH -> PLACE
+
+Recipient:
+
+RCP-0447
+
+Match score:
+
+94
+
+Zoe stared at the number. “That’s high.” “It is.” “Why?” “Not in this summary.” “Can we see the child side?” Elias searched filenames without opening records.
+
+One result appeared.
+
+MATCH_SUM.DB
+
+Neither of them touched it.
+
+“New decision,” Elias said.
+
+Zoe nodded.
+
+“What would it show?”
+
+“Probably how the score was built.”
+
+“Child details?”
+
+“Could.”
+
+“Names?”
+
+“Potentially.”
+
+“Medical?”
+
+“Potentially.”
+
+“Appearance?”
+
+“Potentially.”
+
+The notebook lay open beside her.
+
+The rule from opening the drive remained in her handwriting.
+
+DON’T USE THE KIDS TO PROVE WHAT THE ADULTS
+
+DID.
+
+It had been easy when it cost her nothing.
+
+Now something she wanted might be one click away.
+
+Maybe the matching system.
+
+Maybe why she had been chosen.
+
+Maybe what somebody had written about her when she was six or seven.
+
+She could feel the need to know.
+
+Not as an idea.
+
+As pressure.
+
+“Don’t open the rows.”
+
+Elias kept his hands off the keyboard.
+
+“We may be able to inspect the schema without loading records.”
+
+“Fields only?”
+
+“Fields only.”
+
+“Do that.”
+
+He did.
+
+No child rows appeared.
+
+Only column names.
+
+ROOT
+
+RCP
+
+AGEFIT
+
+SEXFIT
+
+PHEN
+
+BEH
+
+MED
+
+HIST
+
+PREF ATT
+
+SCORE
+
+Zoe’s mouth went dry.
+
+“PHEN.”
+
+“Likely phenotype.”
+
+“Appearance.”
+
+“Physical characteristics.”
+
+“Appearance.”
+
+“Yes.”
+
+“BEH is behaviour.”
+
+“Yes.”
+
+“MED medical.”
+
+He nodded. “HIST history.”
+
+Another nod. “PREF.”
+
+“Preference.”
+
+“ATT.”
+
+“Attachment estimate, probably.”
+
+Zoe reached forward and closed the laptop. Hard. The click bounced off the office walls. Elias did not tell her to calm down. She stood and walked once around the table. Then again. “They shop.”
+
+Elias stayed seated. “Zoe -”
+
+“They shop.”
+
+“We still don’t know how those preferences are used.”
+
+“Age. Sex. Appearance. Medical. Behaviour. Preference.”
+
+“I know.”
+
+“That’s shopping.”
+
+He did not argue. She stopped beside the filing cabinet. “They can pick a child who looks like them.”
+
+“Possibly.”
+
+“A child with no medical problems.”
+
+“Possibly.”
+
+“Quiet.”
+
+“Possibly.”
+
+“A girl.”
+
+“Yes.”
+
+“A boy.”
+
+“Yes.”
+
+“Little.”
+
+“Yes.”
+
+“Older.”
+
+“Yes.”
+
+She looked at him. “And call it safeguarding.”
+
+The anger came cleanly. Not panic. Not fear. Anger had edges. It was easier to hold. Elias looked at the closed laptop. “What do you want to do?”
+
+The question stopped her. Not sit down. Not we continue. Not here’s the plan. What do you want to do?
+
+Zoe looked at the clock.
+
+One thirty.
+
+“We stop.”
+
+Elias waited.
+
+“For today.”
+
+He nodded.
+
+“And tomorrow we don’t open MATCH_SUM rows.”
+
+Another nod.
+
+“Not yet.”
+
+He nodded again.
+
+“Stop nodding.”
+
+That finally did it.
+
+A laugh escaped her before she could stop it.
+
+The anger cracked enough to let air through.
+
+* * *
+
+Vale found the household through a company filing.
+
+Not directly.
+
+The old placement address had belonged to a property company.
+
+The company had one director.
+
+The director shared a surname with the woman who signed the old placement receipt.
+
+The house had sold three years later.
+
+No criminal record appeared in the basic checks Voss could make without touching old operational databases.
+
+No scandal.
+
+No news.
+
+Nothing obvious.
+
+Ordinary. Vale stared at the result. “That’s it?”
+
+“That’s what we can see.”
+
+“They just lived there.”
+
+“Apparently.”
+
+“School?”
+
+“We are not checking the child.”
+
+“I know.”
+
+“Medical?”
+
+“I know.”
+
+“Social media?”
+
+Vale shut the browser. “I know.”
+
+Voss watched her. “I’m making the boundary explicit.”
+
+“For who?”
+
+“Both of us.”
+
+She looked at the old handover sheet again. A recipient initial. A confidential address. False authority upstream. Completely ordinary house downstream. “What if they were good to her?”
+
+Voss leaned back. “That doesn’t answer what they knew.”
+
+“That’s not what I asked.”
+
+“No.”
+
+“What if they loved her?”
+
+“They may have.”
+
+“What does that make them?”
+
+“Depends what they knew.”
+
+Vale nodded slowly.
+
+“And if they knew everything?”
+
+“Love does not erase the act.”
+
+“If they knew nothing?”
+
+“Then the system used them too.”
+
+She looked back at the house.
+
+“So somebody had to choose them.”
+
+Voss followed the thought.
+
+A network moving children into ordinary homes could not afford random households.
+
+It needed predictability.
+
+Not just money.
+
+Quiet.
+
+Stability.
+
+People unlikely to expose themselves.
+
+People with something to lose.
+
+“Find repeat sponsor names,” he said.
+
+Vale looked at him.
+
+“Why sponsors?”
+
+“Because families don’t find something like this by searching online.”
+
+Introductions.
+
+Brokers.
+
+People who knew people.
+
+A network built through trust would leave fewer advertisements and more doors.
+
+Harder to map.
+
+Not impossible.
+
+* * *
+
+They left the office at two ten.
+
+Zoe carried the backpack.
+
+Elias carried the laptop.
+
+The beige estate waited three streets away.
+
+Before they reached it, Zoe stopped outside a bakery.
+
+Elias looked through the window.
+
+“What?”
+
+“Cake.”
+
+“We ate.”
+
+“Not cake.”
+
+“You had a muffin.”
+
+“Breakfast cake.”
+
+He gave up.
+
+They bought two slices of chocolate cake in cardboard boxes and ate them in the car without starting the engine.
+
+Zoe got icing on the notebook.
+
+She wiped it with her sleeve.
+
+“Evidence contamination.”
+
+“Catastrophic.”
+
+“Would a court reject it?”
+
+“Depends how good the cake is.”
+
+Zoe stopped chewing.
+
+“That was nearly a joke.”
+
+“No.”
+
+“It was.”
+
+“No.”
+
+“You’re deteriorating.”
+
+Elias ate another bite.
+
+Zoe looked across the car park.
+
+A woman lifted shopping bags into a boot while a small boy pressed both palms against the rear window from inside.
+
+A couple argued about whether they had bought milk.
+
+An older man returned a trolley, then checked the coin slot even though the trolley required no coin.
+
+Ordinary.
+
+The recipient fields sat in Zoe’s head anyway.
+
+Stability.
+
+Exposure.
+
+Disclosure.
+
+Attachment.
+
+Match.
+
+“What do you think Helen and Brian would score?”
+
+The question came out before she decided whether to ask it.
+
+Elias stopped eating.
+
+Zoe stared at the cake.
+
+“Stable.”
+
+“They were.”
+
+“Together.”
+
+“Yes.”
+
+“House.”
+
+“Yes.”
+
+“Jobs.”
+
+“Yes.”
+
+“No police.”
+
+“Not that I know.”
+
+“Low exposure.”
+
+“Probably.”
+
+She looked down at the icing.
+
+“High attachment.”
+
+Elias said nothing.
+
+He didn’t need to.
+
+Helen checking her temperature twice in one night.
+
+Brian pretending not to cry at her school play.
+
+A birthday banner hung crooked because neither of them could reach the corner properly.
+
+Christmas mornings.
+
+Arguments about homework.
+
+Helen cutting labels out of shirts because Zoe hated how they scratched.
+
+Brian teaching her to ride a bicycle and letting go too early.
+
+Love was not difficult to prove.
+
+The beginning was.
+
+“They’d score well,” Zoe said.
+
+“Probably.”
+
+“Which means -”
+
+“Nothing about what they knew.”
+
+He said it quickly.
+
+Not defensive.
+
+Precise.
+
+Zoe nodded.
+
+“Right.”
+
+The system might explain why Helen and Brian had been selected.
+
+It could not yet tell her whether they knew what selecting them meant.
+
+She opened the notebook.
+
+At first she wrote:
+
+GOOD MATCH = ?
+
+Then crossed it out.
+
+Below it:
+
+Find out what they knew.
+
+Find out what they were told.
+
+Then:
+
+Who introduced them?
+
+Elias looked at the last line.
+
+“Mac.”
+
+“For mine.”
+
+“Yes.”
+
+“Not necessarily everyone else’s.”
+
+“No.”
+
+Different profiles carried different sponsor codes.
+
+Mac might not be the centre.
+
+He might be one door.
+
+That made the system larger.
+
+It also meant more doors could open the wrong way.
+
+* * *
+
+At four twenty-one, they checked into a roadside inn twenty miles outside the city.
+
+One night.
+
+Cash.
+
+The receptionist did not care who they were.
+
+The room had a kettle, two beds and a painting of a lighthouse despite the nearest coast being nowhere nearby.
+
+Zoe stood beneath it.
+
+“Lost.”
+
+“Maybe aspirational.”
+
+“Sad lighthouse.”
+
+Elias put the laptop bag on a chair.
+
+The original drive stayed with Zoe.
+
+She sat on the bed.
+
+“We should make a list.”
+
+“Of?”
+
+“Recipient codes. Completed BRG cases.”
+
+“Codes only.”
+
+“Obviously.”
+
+“Sponsors.”
+
+“Yes.”
+
+“Exposure bands.”
+
+“Yes.”
+
+“Match scores.”
+
+“Yes.”
+
+“Leverage.”
+
+Elias paused.
+
+“Carefully.”
+
+“Because it might be private.”
+
+“Because if leverage means what we suspect, it may describe somebody’s most vulnerable thing.”
+
+Debt.
+
+Illness.
+
+Affairs.
+
+Criminal history.
+
+A dead child.
+
+Anything that could be turned into a field.
+
+The archive was full of private pain converted into useful categories.
+
+Children on one side.
+
+Adults on the other.
+
+Not equally.
+
+Never equally.
+
+But efficiently.
+
+“Codes first,” Zoe said.
+
+“Codes first.”
+
+“No personal details unless we need them.”
+
+“Agreed.”
+
+“And if it’s private but not criminal?”
+
+“We leave it private unless it proves an adult decision.”
+
+Zoe opened the notebook.
+
+The old rule had grown.
+
+Do not use the kids to prove what the adults did.
+
+Now she wrote:
+
+PRIVATE ISN’T AUTOMATICALLY EVIDENCE
+
+Then, after thinking:
+
+Use it only if it proves what the system did.
+
+Elias read it.
+
+Said nothing.
+
+She preferred that now.
+
+* * *
+
+At six, the television news mentioned a parliamentary argument, a football manager and flooding somewhere Zoe had never been.
+
+No missing-child story.
+
+No raid.
+
+No mention of her.
+
+She switched it off.
+
+“Do you think anyone outside knows?”
+
+Elias sat at the table cleaning the edge of a small torch with a cloth.
+
+“About the whole system?”
+
+“Yes.”
+
+“Someone built it.”
+
+“I mean police. Journalists. Government.”
+
+“Maybe pieces.”
+
+“Parents?”
+
+“Some will know something happened.”
+
+“But not how.”
+
+“Probably not.”
+
+Zoe looked at the black television screen.
+
+A parent could spend years believing a real judge had refused them.
+
+A recipient could spend years believing they had rescued a child.
+
+A contractor could spend years believing someone else had checked the order.
+
+Everybody holding one piece.
+
+Nobody seeing the machine.
+
+“That’s clever.”
+
+“It is.”
+
+“I hate that.”
+
+“Good.”
+
+She frowned.
+
+“What?”
+
+“If you decide they’re stupid because you hate them, you make them safer.”
+
+“I don’t think they’re stupid.”
+
+“No.”
+
+“You respect it.”
+
+“What it can do.”
+
+“Sounds like admiration.”
+
+“It isn’t.”
+
+Zoe thought about Elias teaching her exits.
+
+You did not have to admire a locked door to understand the lock.
+
+“What works, then?”
+
+“The compartments.”
+
+She wrote it.
+
+“The fact most of the infrastructure is legitimate.”
+
+She wrote that too.
+
+“Paper that looks like authority.”
+
+Another line.
+
+“Recipients staying quiet.”
+
+Another.
+
+Then Elias said:
+
+“People assuming somebody else checked.”
+
+Zoe stopped.
+
+Underlined it.
+
+PEOPLE ASSUMING SOMEBODY ELSE CHECKED
+
+That had moved the girl in the yellow coat.
+
+A worker trusts the order.
+
+A driver trusts the worker.
+
+A recipient trusts the broker.
+
+A school trusts the placement.
+
+A doctor trusts whoever is recorded as parent.
+
+Then time starts doing the rest.
+
+Every normal record created afterward makes the original lie look older.
+
+More settled.
+
+More official.
+
+“That’s how they disappear them,” Zoe said.
+
+Elias looked up.
+
+“Not by hiding them.”
+
+“No.”
+
+“By making everything after the lie normal.”
+
+He put the cloth down.
+
+“Yes.”
+
+Zoe felt cold.
+
+Because that was her.
+
+School photographs.
+
+Dentist records.
+
+Vaccinations.
+
+Birthdays.
+
+A library card.
+
+Every ordinary thing had made Helen and Brian more real as her parents.
+
+Emotionally, they already were.
+
+Administratively, the years had done something else.
+
+The longer nobody questioned the beginning, the stranger it became to imagine another beginning had ever existed.
+
+She closed the notebook.
+
+Then we find out what woke mine up.
+
+Elias watched her.
+
+“The Monday review.”
+
+“Years of monitor, then suddenly recover.”
+
+He nodded.
+
+“What changed.”
+
+“That’s the next question.”
+
+Zoe lay back on the bed.
+
+The backpack touched her ankle.
+
+Inside it, the original drive held her life in somebody else’s language.
+
+A root.
+
+A pathway.
+
+An override.
+
+A bridge.
+
+A placement.
+
+A match.
+
+She still did not know why Helen and Brian had wanted her.
+
+She did not know what they had been told.
+
+She did not know whether they had seen a photograph, a file or a room.
+
+She did not know whether they had chosen her, or whether someone had chosen for them.
+
+But she knew something she had not known that morning.
+
+The system did not simply take children.
+
+It selected the adults who could make the taking last.
+
+That was how a stolen child became a normal daughter.
+
+Not through one perfect lie.
+
+Through years of ordinary truth built on top of it.
+
+Zoe stared at the ceiling.
+
+Something had touched her quiet case on Monday.
+
+Something from outside.
+
+And after years of leaving her where she was, somebody had decided she had to be recovered.
+
+The question was no longer why they had taken her.
+
+It was who had become frightened that somebody else might find her.

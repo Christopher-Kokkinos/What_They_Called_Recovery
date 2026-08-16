@@ -1,0 +1,1503 @@
+CHAPTER 26 — The Override
+
+At seven fourteen on Thursday morning, Zoe discovered that hotel scrambled eggs could bounce.
+
+She had not been testing them.
+
+Her fork slipped. A yellow lump struck the plate, cleared the rim and landed beside a little paper sign that said PLEASE TAKE ONLY WHAT YOU WILL EAT.
+
+Zoe looked at the egg.
+
+Then at Elias.
+
+He had seen it.
+
+His face remained completely still.
+
+“Say nothing.”
+
+“I said nothing.”
+
+“You were going to.”
+
+“I was thinking.”
+
+“Worse.”
+
+She pushed the escaped egg beneath a triangle of toast.
+
+Elias drank his coffee.
+
+Nine other people occupied the breakfast room. A man in a suit argued quietly into a headset. A woman fed pieces of banana to a toddler while reading from a tablet. Two builders in reflective jackets had arranged six sausages between them with the concentration of surgeons.
+
+Nobody looked at Zoe.
+
+Nobody looked at Elias.
+
+Nobody knew the black backpack beneath Zoe’s chair held the original drive.
+
+For most of the last two weeks danger had made itself obvious. A man outside a school. A car appearing twice. A locked room. A tracker. A gun. A dead body.
+
+Now danger sat under a breakfast table while somebody complained that the orange juice machine was empty.
+
+Zoe finished the toast.
+
+“What’s the plan?”
+
+Elias set down his cup. “Find where the direction changed.”
+
+“The override.”
+
+He nodded.
+
+She disliked the word more when he said it aloud.
+
+Override belonged on computers. Parental controls. Teachers changing a mark. Nothing that should decide where a child lived.
+
+“Then we need the drive.”
+
+“After breakfast.”
+
+“I’m finished.”
+
+“You ate toast.”
+
+“And an adventurous egg.”
+
+“Half an egg.”
+
+“It travelled.”
+
+His mouth moved very slightly.
+
+Zoe stood.
+
+“Come on.”
+
+They did not use the hotel room.
+
+That was Elias’s decision. Zoe objected until he explained it.
+
+The previous room had held the archive before either of them knew what it contained. The new room had been chosen after they began learning from it.
+
+That changed the calculation.
+
+“So because we know more, we trust less?” she asked.
+
+“We become more careful about what might now matter to someone else.”
+
+That made sense.
+
+Zoe accepted it.
+
+Not because Elias had told her to.
+
+Because he had explained why.
+
+They checked out at eight thirty-two.
+
+The original drive stayed in Zoe’s backpack. Elias carried the working copy. The second copy remained in the locked document box on the other side of the city.
+
+They walked twenty minutes, took a bus, changed once, then crossed a covered market that smelled of bread, fish and floor cleaner.
+
+At nine eighteen they reached a private study centre above a row of shops.
+
+QUIET DESKS - HOURLY ROOMS - EXAM STUDY - REMOTE WORK
+
+Elias paid cash for a small room until two.
+
+The woman at reception handed him a key.
+
+“Wi-Fi password’s on the desk.”
+
+“We don’t need it.”
+
+She looked at him as if he had declined oxygen.
+
+Upstairs, the room contained a table, four chairs, a dead plant and a whiteboard.
+
+Zoe approved immediately.
+
+“We have a board.”
+
+“We do.”
+
+“Can I write on it?”
+
+“That is usually why people buy them.”
+
+She picked up the marker while Elias did a quick check of the door and window, then set the isolated laptop on the table and opened the working copy.
+
+Zoe wrote:
+
+NORMAL
+
+On the other side:
+
+OVERRIDE?
+
+Elias looked at the board.
+
+“You’re assuming the answer.”
+
+“I’m giving it a question mark.”
+
+“Very scientific.”
+
+“Thank you.”
+
+“That wasn’t praise.”
+
+“Still counts.”
+
+She sat down.
+
+“Now prove me wrong.”
+
+The readable catalogue contained more than the index they had opened on the first night.
+
+Not much more.
+
+Mostly short filenames and tiny databases whose names meant nothing until one of them did.
+
+TRANS_HIST.DB
+
+Zoe pointed.
+
+“That one at least looks like English tried.”
+
+“Transition history.”
+
+“Almost certainly?”
+
+“Almost certainly.”
+
+“Progress.”
+
+Elias opened it read-only.
+
+The first view was worse than the index.
+
+Hundreds of thousands of rows.
+
+Codes repeated in blocks too dense to follow.
+
+Zoe stared at it for five seconds.
+
+“No.”
+
+Elias looked over. “No?”
+
+“Make it human.”
+
+He filtered for her root identifier.
+
+A17-04221
+
+The mass collapsed to seven transitions.
+
+Yesterday’s index had shown the big events. This showed what happened between them.
+
+At first her case moved through ordinary-looking stages.
+
+Intake.
+
+Assessment.
+
+Temporary placement.
+
+Placement.
+
+Monitor.
+
+Then Monday appeared.
+
+MONITOR -> REVIEW
+
+The source was marked external.
+
+After that came another line.
+
+REVIEW -> RECOVER
+
+Beside it:
+
+OVR3 / MAN
+
+And after RECOVER:
+
+EXCEPTION
+
+Friday.
+
+Unresolved.
+
+Zoe leaned closer.
+
+“It was automatic before.”
+
+Elias pointed to the review line. “Until here.”
+
+“External first.”
+
+“Yes.”
+
+Her finger moved down.
+
+“Then this one is manual.”
+
+“A manual action.”
+
+“And OVR means override.”
+
+“Looks that way.”
+
+She stood, crossed the question mark from the whiteboard and underlined the word.
+
+OVERRIDE
+
+Then she came back to the table.
+
+“So somebody changed it.”
+
+“Something changed the authority attached to the case. We still don’t know who.”
+
+“Then after that they came for me.”
+
+Elias did not answer.
+
+He did not need to.
+
+The dates were already on the screen.
+
+Zoe copied only the useful part into her notebook.
+
+MONITOR -> REVIEW -> RECOVER
+
+Below it:
+
+OVR3 / MAN
+
+She looked at the line for a while.
+
+“That still doesn’t prove override means bad.”
+
+“No.”
+
+“Because normal systems can have overrides.”
+
+“Exactly.”
+
+“Then we need cases that have nothing to do with mine.”
+
+Elias closed the filter menu.
+
+“Now you’re asking the right question.”
+
+“I was already asking it.”
+
+“Of course.”
+
+They chose comparison cases from the N4-7 route.
+
+Not AC019.
+
+Not RECOVER.
+
+Nothing obviously connected to Zoe.
+
+Elias removed the cases that would contaminate the comparison before Zoe could ask him to.
+
+“We need boring ones,” she said.
+
+“Preferably.”
+
+Six remained from the first random sample.
+
+Zoe chose the third because she disliked the number four.
+
+Elias did not ask why.
+
+The first case moved through intake, assessment, temporary placement, review, another temporary placement, then return and closure.
+
+No override.
+
+No manual intervention.
+
+The second reached placement, then review, then return.
+
+Again, ordinary authority levels. System actions. Closed.
+
+A third involved two temporary placements, three reviews and a transfer before return.
+
+Still no override.
+
+The fourth ended in permanent placement.
+
+Zoe stopped.
+
+“Permanent can happen without one.”
+
+“Yes.”
+
+“So permanent doesn’t automatically mean bad.”
+
+“Correct.”
+
+She wrote:
+
+permanent can be normal
+
+The fifth case went from temporary placement to hold, then back to return.
+
+The sixth finally contained something that looked exciting.
+
+A manual transfer.
+
+Zoe pointed immediately.
+
+“There. Person touched it.”
+
+“Manual, yes.”
+
+“But no override.”
+
+“No.”
+
+The case returned to ordinary system processing and later closed.
+
+Zoe sat back.
+
+“So a person touching it isn’t the weird part.”
+
+“No.”
+
+“The override is different.”
+
+“Appears to be.”
+
+She capped the pen.
+
+“Find another one.”
+
+Overrides were uncommon compared with the ordinary traffic through the system.
+
+They were not rare enough.
+
+Elias filtered the authority field.
+
+Four override classes appeared among the normal authority levels.
+
+OVR1.
+
+OVR2.
+
+OVR3.
+
+OVR4.
+
+He read out the counts.
+
+Three hundred and twelve OVR1 actions.
+
+One hundred and four OVR2.
+
+Sixty-one OVR3.
+
+Nine OVR4.
+
+Zoe added them on paper.
+
+“Four hundred and eighty-six.”
+
+She stopped before writing anything else.
+
+“Actions. Not children.”
+
+Elias nodded.
+
+She wrote:
+
+486 override actions
+
+Underneath:
+
+not 486 kids
+
+Then they looked only at OVR3.
+
+Sixty-one actions belonged to twenty-seven unique roots.
+
+A17-04221 was one of them.
+
+Zoe’s face did not move.
+
+“What does three mean?”
+
+“We don’t know yet.”
+
+“Severity?”
+
+“Maybe.”
+
+“Type?”
+
+“Maybe.”
+
+“Permission level?”
+
+“Maybe.”
+
+She glared at him.
+
+“You can stop enjoying that word.”
+
+“I’m not enjoying it.”
+
+“You look comfortable.”
+
+He selected an OVR1 case.
+
+Its early history looked ordinary: intake, assessment, temporary placement, review.
+
+Then a manual OVR1 sent the case to HOLD.
+
+Another OVR1 moved it to TRANSFER.
+
+After that the case returned to ordinary system authority, moved to placement and closed.
+
+Zoe frowned.
+
+“It goes back.”
+
+“Yes.”
+
+“So an override can be temporary.”
+
+“Yes.”
+
+“And it could still be legitimate.”
+
+“Yes.”
+
+She did not complain about the answer this time.
+
+Hospitals overrode procedures. Schools did. Courts did. Police did.
+
+An override was not proof of corruption.
+
+It was permission to bypass the ordinary route.
+
+Zoe uncapped the marker and added a third heading to the board.
+
+WHY
+
+Elias looked at it.
+
+“That may be harder.”
+
+“Obviously.”
+
+At ten forty-six, Voss was told the old order did not exist.
+
+Again.
+
+The file lay open beside his phone. Vale stood opposite with a legal pad.
+
+The alleged family-court order number had failed at the first court. Voss had checked whether it had been transferred.
+
+It had not. He checked whether the named judge had been sitting elsewhere. Yes. But not in family jurisdiction. He checked emergency-order numbering for that year. Wrong sequence. Vale drew a line beneath the third failed verification. “So it’s false.”
+
+“It was not issued by that court.”
+
+“That is what false means.”
+
+“It could be altered from another jurisdiction.”
+
+Vale stared at him. “You can’t possibly enjoy being this difficult.”
+
+“I don’t.”
+
+“That makes it worse.”
+
+Seven years earlier, the document had survived everything they bothered to do. Correct crest. Correct formatting. Correct terminology. Correct legal name. Correct date of birth. Correct existing placement address. The case history matched what staff at the placement told them. The telephone number printed on the order confirmed it.
+
+Everything fit except the authority.
+
+Vale sat down.
+
+“What happened before us?”
+
+Voss turned back through the file.
+
+The child had entered emergency care eleven months earlier. Her mother was in residential treatment. Temporary placement. Expected reunification. Review. Another review. Transfer.
+
+Then the recovery order.
+
+“The client changes here,” Vale said.
+
+The first placement had come through a Westmere local-authority subcontract.
+
+The recovery came through Meridian.
+
+She tapped the page.
+
+“Same child. Same route. Same type of property. Same contractors. The only thing that changes is who supposedly has the right to move her.”
+
+Voss looked at the order.
+
+“Yes.”
+
+One yes.
+
+It was enough.
+
+A fake road would attract attention.
+
+A fake vehicle eventually would.
+
+A fake care home would.
+
+A fake professional would make a mistake.
+
+But if the road was real, the vehicle real, the placement property real, the contractor real and the child already genuinely inside the safeguarding system, the lie could be very small.
+
+One instruction.
+
+One order.
+
+One authority.
+
+Everybody after that could do an entirely ordinary job.
+
+Voss wrote:
+
+AUTHORITY CHANGE
+
+Vale looked at it.
+
+“That’s how you hide it.”
+
+Neither of them said anything for a moment.
+
+Then Vale glanced at the girl’s old file.
+
+“Do we contact the mother?”
+
+“No.”
+
+“Why?”
+
+“Because we don’t know where the child is now, and we don’t know who might still be watching the people connected to her.”
+
+Vale’s jaw tightened.
+
+“Seven years.”
+
+“We know nothing useful about how long their monitoring lasts.”
+
+She looked towards the rain-streaked window.
+
+“If Zoe has that drive—”
+
+“If Zoe permits Elias access to it.”
+
+Vale glanced back.
+
+The correction mattered.
+
+“Fine. Zoe. If she has records, maybe she can see the same change.”
+
+“Possibly.”
+
+Vale almost smiled.
+
+“Now you’re doing it.”
+
+At eleven twelve, Zoe found the first pattern that made Elias stop moving.
+
+Not dramatically.
+
+Elias did very little dramatically unless somebody was shooting at him.
+
+His fingers simply went still above the trackpad.
+
+They had grouped override actions by what happened immediately beforehand.
+
+Temporary placement appeared.
+
+Placement.
+
+Hold.
+
+Transfer.
+
+Review.
+
+But review appeared far more often than anything else.
+
+Three hundred and one of the four hundred and eighty-six override actions came after a review.
+
+Zoe frowned.
+
+“Isn’t review where things are supposed to change?”
+
+“Sometimes. Compare it.”
+
+They took five hundred ordinary transitions that followed review.
+
+Those spread in all directions: temporary placement, return, placement, transfer, permanent placement, hold, closure.
+
+No single outcome dominated.
+
+With the override cases, the path narrowed.
+
+Most went to three places.
+
+RECOVER
+
+TRANSFER
+
+HOLD
+
+Almost none went to RETURN.
+
+Zoe stood and wrote beneath NORMAL:
+
+review -> lots of choices
+
+Under OVERRIDE:
+
+review -> recover / transfer / hold
+
+She stared at the two sides.
+
+“Once someone overrides it, the choices get smaller.”
+
+“That’s what the visible data suggests.”
+
+“It’s a pathway.”
+
+Elias nodded.
+
+The word settled between them.
+
+A pathway.
+
+Not a gang.
+
+Not a collection of disconnected bad acts.
+
+A way through something that already existed.
+
+“What happens after?”
+
+Elias followed the override roots forward.
+
+Some returned to ordinary system processing.
+
+Some closed.
+
+Some disappeared from the readable catalogue after transfer.
+
+Some received new identifiers.
+
+A smaller group entered permanent placement.
+
+And then another code began appearing.
+
+Not as an authority.
+
+As a source.
+
+BRG
+
+Zoe pointed at it.
+
+“Bridge?”
+
+“Maybe.”
+
+“Broker?”
+
+“Maybe.”
+
+“Branch?”
+
+“Maybe.”
+
+“Bad Guys?”
+
+Elias looked at her.
+
+“That would be unusually candid.”
+
+She wrote:
+
+BRG = ?
+
+Then they searched it.
+
+BRG appeared only after override events in the visible data.
+
+Never in the ordinary comparison sample.
+
+Forty-three unique roots touched it.
+
+Zoe wrote the number, then underneath: roots, not automatically kids
+
+The correction came without Elias prompting her.
+
+“Mine?”
+
+He searched A17-04221.
+
+Nothing.
+
+No BRG in the current visible history.
+
+Zoe exhaled before she could stop herself.
+
+“Could mean I wasn’t on it.”
+
+“Could.”
+
+“Could mean it’s in the encrypted part.”
+
+“Could.”
+
+“Could mean BRG means something completely different.”
+
+“Could.”
+
+“Films definitely lied about investigations.”
+
+“Frequently.”
+
+She looked at the board again.
+
+Normal.
+
+Override.
+
+Why.
+
+Forty-three roots.
+
+A code that only appeared after someone bypassed the ordinary route.
+
+Under OVERRIDE she wrote:
+
+same system, different authority
+
+Then: same case, different rules?
+
+The question mark stayed.
+
+They broke at twelve twenty.
+
+Zoe bought crisps from a vending machine. Elias bought a sandwich that looked older than she was.
+
+They sat on the floor beneath the whiteboard because the chairs had become irritating.
+
+She held out the crisp packet.
+
+Elias took one.
+
+“One.”
+
+“You’re eating a historical sandwich.”
+
+“It has a date.”
+
+“So do gravestones.”
+
+He took another crisp.
+
+Zoe allowed it.
+
+For several minutes the drive did not exist.
+
+A printer ran continuously somewhere behind the wall. Zoe looked at the dead plant.
+
+“Do you think some of the RETURN ones really went home?”
+
+Elias chewed before answering.
+
+“Some may have returned to a previous placement. Some may have returned to parents.”
+
+“So some of this could be real safeguarding.”
+
+“Yes.”
+
+That should have been comforting.
+
+It wasn’t.
+
+If everything were criminal, then the problem would be simple.
+
+Not easy.
+
+Simple.
+
+Bad thing. Expose bad thing.
+
+But if children had genuinely been protected inside the same structure, if some parents had genuinely got them back, if some carers and social workers had done exactly what they were supposed to do, then the criminal part had good work to hide behind.
+
+Zoe crushed the empty crisp packet.
+
+“That’s clever.”
+
+“What is?”
+
+“Using something real.”
+
+Elias waited.
+
+“People trust it because most of the time they should.”
+
+“Yes.”
+
+“Then one case changes and everyone keeps doing their job.”
+
+He nodded.
+
+“The lie doesn’t have to replace everything.”
+
+“No.”
+
+Zoe looked at the board.
+
+“Just the bit that tells everyone what to do next.”
+
+She threw the crisp packet towards the bin.
+
+Missed.
+
+It bounced once.
+
+She stared at it.
+
+Elias said nothing.
+
+“Do not.”
+
+“I said nothing.”
+
+She picked it up and put it in properly.
+
+At twelve forty-eight, they found what the override codes actually meant.
+
+The labels were buried in a lookup file that mostly translated ordinary numerical classes.
+
+L1 through L4 were standard authority levels.
+
+Then came the override classes.
+
+OVR1 - EXCEPTIONAL SAFEGUARDING AUTHORITY
+
+OVR2 - RESTRICTED TRANSFER AUTHORITY
+
+OVR3 - PROTECTIVE RECOVERY AUTHORITY
+
+OVR4 - EXECUTIVE CONTAINMENT AUTHORITY
+
+Zoe read the last one twice.
+
+“Containment.”
+
+Elias said nothing.
+
+“Children aren’t spills.”
+
+“No.”
+
+She went back to her Monday line.
+
+OVR3.
+
+Protective Recovery Authority.
+
+“What’s protective about being taken from school?”
+
+Elias looked at the screen.
+
+“We don’t know what they believed they were protecting.”
+
+That was worse.
+
+Maybe not her.
+
+A placement.
+
+A secret.
+
+A person.
+
+Themselves.
+
+She copied the four definitions into the notebook.
+
+Then she found the other label.
+
+BRG - RESTRICTED PLACEMENT BRIDGE
+
+Zoe stopped.
+
+“Bridge to what?”
+
+There was no definition beyond the name.
+
+They searched the transitions instead.
+
+Where BRG appeared, cases became more manual. Identifiers changed more often. Reviews happened faster. Some cases eventually returned to ordinary SYS processing.
+
+Others did not.
+
+A bridge.
+
+Between what and what?
+
+Zoe went to the board and wrote:
+
+NORMAL PATHWAY -> BRG -> ?
+
+She stared at it.
+
+“Better than calling the first part real.”
+
+“Why?”
+
+“Because we only know some of it looks legitimate.”
+
+Elias nodded.
+
+“Look at you learning restraint.”
+
+“Don’t ruin it.”
+
+At one twenty-three, Elias found Zoe’s older placement history.
+
+Not under a new person.
+
+Under a predecessor record linked to her current root.
+
+The system had changed the internal identifier but preserved the connection to A17-04221.
+
+Zoe leaned over his shoulder.
+
+“Open it.”
+
+The history was short.
+
+Assessment.
+
+Temporary placement.
+
+Review.
+
+Then:
+
+REVIEW -> BRG
+
+Beside it:
+
+OVR2 / MAN
+
+The next transition moved from BRG to PLACE under ordinary system authority.
+
+The receiving placement code was:
+
+P06-11803
+
+Zoe knew that number.
+
+It was in the folder.
+
+Helen and Brian.
+
+She pushed the chair back so fast its legs scraped the floor.
+
+Elias touched nothing.
+
+Zoe walked to the window.
+
+Below, delivery vans pulled in and out of loading bays. A woman carried flowers. A cyclist shouted at a taxi. Somebody dragged a suitcase over uneven paving.
+
+The whole street kept happening.
+
+Her placement had crossed BRG before Helen.
+
+Before Brian.
+
+Before the photographs in the hall.
+
+Before school uniforms and birthdays and chicken stew and the bathroom cabinet Brian never fixed properly the first time.
+
+She turned back to the screen.
+
+“Review.”
+
+Her finger moved down.
+
+“Override.”
+
+Then:
+
+“Bridge.”
+
+Then the placement code.
+
+She did not ask Elias to confirm each one.
+
+There was nothing to confirm.
+
+The rows were there.
+
+They searched for comparison cases with the same early pattern: assessment, temporary placement, review.
+
+Most did something ordinary after that. Another temporary placement. Transfer. Return. Placement. Permanent placement.
+
+Only a smaller group crossed BRG.
+
+Zoe sat down again.
+
+“Mine started normal.”
+
+Elias was careful. “It started in the ordinary-looking pathway.”
+
+“Fine. That.”
+
+She wrote:
+
+Mine started in the normal part first
+
+Then scratched out *normal* and replaced it with:
+
+ordinary-looking
+
+She hated the extra words.
+
+She left them.
+
+“Then somebody used OVR2.”
+
+“That’s what the record shows.”
+
+“Then BRG.”
+
+He nodded.
+
+“Then Helen and Brian.”
+
+Silence.
+
+For the first time since opening the drive, Zoe did not feel as though she had discovered another piece of somebody else’s machine.
+
+She had found the point where the machine touched her.
+
+Not Cain’s house.
+
+Not Mac’s payment.
+
+Earlier.
+
+Someone had looked at a case that could still have gone several ways and changed its direction.
+
+She heard herself say it before she decided to.
+
+“My life turned on an override.”
+
+Elias did not tell her she was right.
+
+He did not tell her what it meant.
+
+There was nothing useful to add.
+
+At one forty-seven, Voss found the same architecture without knowing its name.
+
+Six historic files lay across the desk in client sequence.
+
+Two began and ended through the same legitimate commissioning channel.
+
+One began through a local-authority subcontract and later changed to Meridian.
+
+Another began through a recognised care provider and later switched to a private recovery intermediary.
+
+The subject stayed the same.
+
+The routes stayed familiar.
+
+The contractors stayed familiar.
+
+Only the claimed authority changed.
+
+Vale tapped one of the later documents.
+
+“Before this point, the contacts are independent. After it, every number comes from the paperwork itself.”
+
+Voss looked across the files.
+
+They had not been bribed to ignore obvious kidnappings.
+
+Nobody had handed them a child in a car park and told them not to ask questions.
+
+They had been given documents that looked like the documents they already trusted.
+
+That was why it worked.
+
+Vale sat down.
+
+“How many jobs did we do?”
+
+“Hundreds.”
+
+“How many changed client halfway through?”
+
+“I don’t know.”
+
+“Then we find out.”
+
+Voss nodded.
+
+Vale looked at the false order again.
+
+“Her case number was right. Her placement was right. Her mother’s treatment was right. The review date was right.”
+
+“Yes.”
+
+“Someone had current information.”
+
+Voss said nothing.
+
+That was the conclusion neither of them could make smaller.
+
+The false authority had been built around genuine safeguarding information.
+
+Not old scraps.
+
+Not guesses.
+
+Current information.
+
+Vale leaned back.
+
+“Either someone got into the system.”
+
+“Or someone inside it was part of this.”
+
+“Which is worse?”
+
+Voss looked at the papers.
+
+“Depends how large the part is.”
+
+At two, Zoe erased the whiteboard.
+
+NORMAL.
+
+OVERRIDE.
+
+WHY.
+
+BRG.
+
+Her life in marker pen.
+
+She wiped until the black became grey, then kept going.
+
+Elias closed the laptop and put the working copy back inside his coat.
+
+The original had never left the backpack.
+
+At the door, Zoe stopped.
+
+One faint word remained in the corner where she had been testing phrases.
+
+SHADOW
+
+She rubbed at it.
+
+Elias watched.
+
+“Leave it. Nobody here knows what it means.”
+
+“I do.”
+
+Reason enough to remove it.
+
+She wiped until the board was white.
+
+Outside, the afternoon had turned bright.
+
+The rain had moved somewhere else.
+
+People sat outside cafés because the sun had appeared for twenty minutes and Britain treated sunlight like a public emergency.
+
+Zoe almost said that aloud.
+
+Then forgot.
+
+Her head was still on the screen.
+
+Assessment.
+
+Temporary placement.
+
+Review.
+
+OVR2.
+
+BRG.
+
+P06-11803.
+
+Helen and Brian.
+
+She had spent years noticing things that never quite became questions.
+
+Helen hated discussing adoption paperwork.
+
+Brian became tense when school forms asked for early medical history.
+
+There were almost no photographs from before a certain age except the ones they said came from an agency.
+
+The explanation of where Zoe had lived before them never stayed exactly the same twice.
+
+She stopped walking.
+
+Elias stopped too.
+
+“What?”
+
+“Helen used to say the records were incomplete because I’d been moved around.”
+
+Elias waited.
+
+“Maybe they were incomplete.”
+
+“Maybe.”
+
+“Or maybe she knew.”
+
+He did not answer.
+
+Zoe started walking again.
+
+“Not yet.”
+
+Elias fell into step beside her.
+
+“Not yet.”
+
+She appreciated that repetition.
+
+Not because he agreed with her suspicion.
+
+Because he agreed not to decide it for her.
+
+They spent the next three hours doing nothing useful.
+
+That was deliberate.
+
+Different bus. Different district. A supermarket. A cheap clothes shop.
+
+Zoe bought socks.
+
+Elias replaced the wiper blades with ones that actually matched a car they did not yet own.
+
+She accused him of surrendering to bureaucracy.
+
+He said measurements were not bureaucracy.
+
+She said that sounded exactly like something bureaucracy would say.
+
+At five they ate noodles from cardboard boxes beside a canal.
+
+Ducks ignored a sign telling people not to feed them.
+
+One stole bread from another.
+
+“Criminal,” Zoe said.
+
+“Organised?”
+
+“Look at him. Leadership.”
+
+For a few minutes the archive disappeared.
+
+Then Zoe asked:
+
+“If my case started in the ordinary part, does that mean my real parents were actually in trouble?”
+
+Elias put his fork down.
+
+“We can’t infer that.”
+
+“But I was assessed.”
+
+“Yes.”
+
+“Temporary placement.”
+
+“Yes.”
+
+“So something happened.”
+
+“Something was recorded as happening. We don’t know yet how much of that first part was lawful, accurate or manipulated.”
+
+Zoe looked at the canal.
+
+“Could have been real.”
+
+“Could.”
+
+“Could have been wrong from the start.”
+
+“Could.”
+
+She nodded. That answer hurt less than certainty would have. Unsafe parent. Permanent placement. Recovery. Protection. Words became facts when the right person printed them. “So we don’t know.”
+
+“No.”
+
+“Good.”
+
+Elias looked at her. “I mean it. If I find out they were dangerous, then they were dangerous.”
+
+He nodded. “And if they weren’t...”
+
+She watched the ducks. “Then somebody has a problem.”
+
+Elias picked up his fork. “Fair.”
+
+That evening they did not reopen the drive. Zoe insisted. They knew enough for one day. Instead they rebuilt the findings on clean paper.
+
+Elias helped with the order. Zoe decided the wording.
+
+At the top she wrote:
+
+KNOW
+
+Ordinary-looking cases in the catalogue could move through temporary safeguarding, review, return and permanent placement without overrides.
+
+Manual actions happened in ordinary cases too.
+
+Override was a separate authority category, but the existence of an override did not by itself prove wrongdoing.
+
+There were four override classes: OVR1 through OVR4. The visible catalogue contained 312 OVR1 actions, 104 OVR2, 61 OVR3 and 9 OVR4 - 486 override actions in total.
+
+Three hundred and one followed REVIEW.
+
+Ordinary reviews could lead almost anywhere. Overridden reviews were much more likely to lead to RECOVER, TRANSFER or HOLD, and very few went to RETURN.
+
+OVR3 covered twenty-seven unique roots in the visible data, including Zoe’s current root.
+
+BRG meant RESTRICTED PLACEMENT BRIDGE.
+
+Forty-three unique roots touched BRG in the visible data, and BRG appeared only after override actions in the sample they had checked.
+
+Cases that touched BRG showed more manual intervention, more identifier changes and shorter review intervals. Some later returned to normal SYS processing.
+
+Zoe’s current visible root had not initially shown BRG, but a predecessor record linked to it did.
+
+Her earlier history went through assessment, temporary placement and review before an OVR2 manual action pushed it into BRG. BRG then led to placement P06-11803 - Helen and Brian.
+
+Comparable early cases did not all take that route. Some returned. Some transferred. Some entered ordinary placement. Some became permanent placements without BRG. Only a smaller group crossed the bridge.
+
+Zoe stared at the page.
+
+Everything that mattered was there.
+
+Then she wrote:
+
+DON’T KNOW
+
+Whether the original safeguarding action involving her had been lawful.
+
+Whether the information about her biological family had been true.
+
+What BRG physically or administratively connected.
+
+Who authorised the OVR2 in her early history.
+
+Who authorised the OVR3 before the recent RECOVER action.
+
+Whether Helen and Brian knew how she had reached them.
+
+Whether the people behind the original diversion were the same people behind the current recovery.
+
+Zoe went over the page again.
+
+Nothing felt satisfying.
+
+That was probably a good sign.
+
+At the bottom she wrote one final question:
+
+Who was on the other side?
+
+Elias read it.
+
+“That takes us into recipients.”
+
+“People.”
+
+“Yes.”
+
+“Names.”
+
+“Probably.”
+
+“Helen and Brian.”
+
+He waited.
+
+Zoe folded the page.
+
+“Tomorrow.”
+
+“Tomorrow.”
+
+She put the paper inside the notebook, then tucked the notebook beneath the ridiculous paperback about children on bicycles solving a conspiracy involving stolen exam papers.
+
+The backpack remained beside her bed.
+
+Not hidden.
+
+Not surrendered.
+
+Hers.
+
+Outside, the city darkened window by window.
+
+Zoe lay down.
+
+She thought of a child entering an ordinary-looking system.
+
+Assessment.
+
+Temporary placement.
+
+Review.
+
+Then a choice narrowing.
+
+Someone changing the authority.
+
+A bridge appearing.
+
+For years she had imagined captivity as a locked door.
+
+Cain had taught her that version.
+
+Mac had reinforced it.
+
+But the archive showed another.
+
+A door did not have to lock.
+
+Sometimes the road stayed exactly the same while somebody changed where it was allowed to lead.
+
+And somewhere in the history of Zoe’s life, somebody had done exactly that.
+
+Somebody had been waiting on the other side. She intended to find out who.

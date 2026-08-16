@@ -1,0 +1,36 @@
+{
+   "book_state" : {
+      "book_fl_type" : 0,
+      "book_input_type" : 3,
+      "book_reading_direction" : 0,
+      "book_reading_option" : 0,
+      "book_target_type" : 2,
+      "book_virtual_panelmovement" : 0
+   },
+   "content_hash" : {
+      "What_They_Called_Recovery_KDP_Publication_Phase4_KC.kcb.lock" : "d41d8cd98f00b204e9800998ecf8427e",
+      "action.log" : "97830ebadd1614f494f6f741c1d6c1ba",
+      "book_1.docx" : "0c8d79cabf4988a9661e926659892d3b",
+      "resources/ManifestFile" : "e143fbed6da348e02c3dd56aa647c5b4",
+      "resources/book.kdf" : "32169ab48535b2f4f59655ec0b6287d7",
+      "resources/book.kdf-journal" : "d41d8cd98f00b204e9800998ecf8427e"
+   },
+   "metadata" : {
+      "book_path" : "resources",
+      "edited_tool_versions" : [ "1.113.0.0" ],
+      "format" : "yj",
+      "global_styling" : true,
+      "id" : "26a69425-2246-4f25-a840-7b5ef1875e67",
+      "platform" : "win",
+      "tool_name" : "KC",
+      "tool_version" : "1.113.0.0"
+   },
+   "tool_data" : {
+      "cache_path" : "resources/.cache",
+      "created_on" : "2026-Aug-16 01:50:43",
+      "last_modified_time" : "2026-Aug-16 02:05:11",
+      "link_extract_choice" : false,
+      "link_notification_preference" : true
+   }
+}
+

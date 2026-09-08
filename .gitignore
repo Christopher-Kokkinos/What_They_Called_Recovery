@@ -7,3 +7,14 @@ __pycache__/
 Thumbs.db
 .vscode/*.log
 Reports/Diffs/*.tmp
+
+# Blender local/transient files
+*.blend1
+*.blend2
+*.blend3
+*.blend@
+Active/Film/_local/
+Active/Film/**/cache/
+Active/Film/**/renders/
+Active/Film/**/proxies/
+Active/Film/**/raw_capture/

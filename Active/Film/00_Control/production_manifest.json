@@ -1,0 +1,26 @@
+{
+  "project": "What They Called Recovery — Film",
+  "schema_version": 1,
+  "phase": "vertical_slice_preproduction",
+  "cash_cost_constraint_gbp": 0,
+  "primary_3d_source_of_truth": "Blender",
+  "vertical_slice": {
+    "target_duration_minutes_min": 2,
+    "target_duration_minutes_max": 5,
+    "scene_id": null,
+    "status": "not_selected"
+  },
+  "story_authority": {
+    "publication_master": "Active/Production/",
+    "reference": "Reference/ (read-only)",
+    "film_transformations": "Active/Film/ only"
+  },
+  "production_policy": {
+    "paid_software_allowed": false,
+    "paid_services_allowed": false,
+    "paid_assets_allowed": false,
+    "render_farm_allowed": false,
+    "hired_labour_allowed": false,
+    "commercial_use_licence_evidence_required": true
+  }
+}

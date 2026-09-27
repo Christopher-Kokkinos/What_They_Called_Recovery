@@ -16,4 +16,6 @@ Approved ending: `00.30_decision_log/DEC-0006_novel_ending.md` retains the novel
 
 Treatment accepted: `00.30_decision_log/DEC-0007_treatment_v0_1_accepted.md` approves `../01_Adaptation/Treatment/Whole_Film_Treatment_v0.1.md` as the narrative spine. `../01_Adaptation/Sequences/Whole_Film_Sequence_Outline_v0.1.md` is a draft for author review. Explicit source-unit dispositions follow an approved outline; the screenplay and vertical slice remain blocked.
 
+The author's outline review finds chronology, arc and major reveals sufficient as a scaffold, while requesting explicit character and relationship development before scene production. `../20_Story_System/20.20_relationships/Character_and_Relationship_Arc_Scaffold_v0.1.md` is the resulting draft for review; it does not approve the outline or advance the adaptation gate.
+
 When starting a task, inspect `git status`, the manifest, relevant register and applicable workflow. When finishing, update the manifest if a gate actually changed, attach validation evidence in `Reports/Film/`, and keep this short orientation synchronized. Do not advance a status merely because folders exist.

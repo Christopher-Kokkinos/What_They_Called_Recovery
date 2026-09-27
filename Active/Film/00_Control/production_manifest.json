@@ -1,14 +1,27 @@
 {
   "project": "What They Called Recovery — Film",
-  "schema_version": 1,
-  "phase": "vertical_slice_preproduction",
+  "schema_version": 2,
+  "phase": "adaptation_preparation",
   "cash_cost_constraint_gbp": 0,
   "primary_3d_source_of_truth": "Blender",
+  "execution": {
+    "control_surface": "VS Code / Codex",
+    "route_a": "versioned bpy automation",
+    "route_b": "live Blender MCP",
+    "policy": "use the most reproducible practical route; promote repeated MCP operations into versioned Python"
+  },
+  "adaptation": {
+    "source": "canonical novel",
+    "screenplay_format": "Fountain plain text",
+    "register": "Active/Film/00_Control/adaptation_register.csv",
+    "status": "source_decomposition_not_started",
+    "direct_prose_to_shot_generation_allowed": false
+  },
   "vertical_slice": {
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": null,
-    "status": "not_selected"
+    "status": "blocked_pending_adaptation_map"
   },
   "story_authority": {
     "publication_master": "Active/Production/",

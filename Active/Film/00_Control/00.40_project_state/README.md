@@ -6,6 +6,8 @@ Approved film direction: `00.30_decision_log/DEC-0001_zoe_primary_agency.md` est
 
 Approved opening: `00.30_decision_log/DEC-0002_elias_morning_opening.md` retains Elias's Chapter 1 morning through Mac's airport call before he meets Zoe.
 
-Approved retrospective structure: `00.30_decision_log/DEC-0003_zoe_seven_day_account.md` reveals the missing Tuesday–Monday week through Zoe's account after the meeting with Elias. The next open choice is the extent of independent pursuer/institutional viewpoints beyond her account.
+Approved retrospective structure: `00.30_decision_log/DEC-0003_zoe_seven_day_account.md` reveals the missing Tuesday–Monday week through Zoe's account after the meeting with Elias.
+
+Approved viewpoint scope: `00.30_decision_log/DEC-0004_selective_cutaways.md` permits selective Mac, Cain, contractor and independent-investigator viewpoints for causal clarity and suspense. The timing of the Jackie reveal remains an open decision.
 
 When starting a task, inspect `git status`, the manifest, relevant register and applicable workflow. When finishing, update the manifest if a gate actually changed, attach validation evidence in `Reports/Film/`, and keep this short orientation synchronized. Do not advance a status merely because folders exist.

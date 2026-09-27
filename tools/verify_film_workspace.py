@@ -9,6 +9,10 @@ film = root / 'Active' / 'Film'
 required_dirs = [
     '00_Control',
     '01_Adaptation',
+    '01_Adaptation/Treatment',
+    '01_Adaptation/Sequences',
+    '01_Adaptation/Screenplay',
+    '01_Adaptation/Scene_Packets',
     '02_Design',
     '03_Assets',
     '04_Scenes',

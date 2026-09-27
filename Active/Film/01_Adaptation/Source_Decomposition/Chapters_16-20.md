@@ -28,10 +28,10 @@ Status: descriptive source inventory. Source navigation: `Reports/Manuscript_Tex
 | SRC-C18-01: Friday tracker → pursuit split | Voss follows the moving signal while Vale investigates the cottage's ownership trail and Reyes reports his passes near it. Their methods and doubts differ. | Tracker coordinates alone can mislead; photographs, paper records and live observation have different evidentiary weight. |
 | SRC-C18-02: device moved → search redirected | Elias and Zoe carry the recovered transmitter away from the cottage and use it to draw the team toward a chosen location. Zoe presses what choice its discovery gives them. | Device continues pulsing; keep its decoy path distinct from their actual refuge. |
 | SRC-C18-03: farmhouse → fallback examined | They move to a less secluded farmhouse with water, exits and usable vehicles, and establish survival and escape options. | Site's separate ownership trail is vulnerable to Vale's records work. Farm van and other routes become later fallback tools. |
-| SRC-C18-04: cottage inspection → false certainty challenged | The hunters examine the abandoned cottage and the device's misleading movement. Vale questions the driver brief; Voss begins accounting for Zoe as an active observer. | Their conclusions evolve from physical traces, not omniscient access to the pair's current position. |
+| SRC-C18-04: cottage and tracker → false certainty challenged | Reyes watches the cottage without entering and Vale later inspects it; Voss follows the transmitter east and recovers it from the trailer. At their Monday regroup they revise the driver brief and account for Zoe as an active observer. | Cottage traces and the detached tracker are separate investigations. They do not know the pair's current position. |
 | SRC-C18-05: Monday at farmhouse → three-person model | Zoe maps the hunters as separate threats and contributes to the plan for detecting them. | Three markers/beans and a map make her analytical role visible; the search has not ended. |
 
-## Chapter 19 — Don't Look at the Threat
+## Chapter 19 — Don’t Look at the Threat
 
 | Unit / boundary | Event and narrative function | Screen carrier or dependency |
 |---|---|---|

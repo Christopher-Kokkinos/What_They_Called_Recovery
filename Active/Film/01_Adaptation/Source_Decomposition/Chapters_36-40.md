@@ -50,10 +50,10 @@ Status: descriptive source inventory for `Reports/Manuscript_Text/Chapter_36.txt
 | SRC-C40-02: Helen and Brian's recollection → first viewing | The adults remember Mac's after-hours visit, the girl on the other side, resemblance and their different doubts. | Zoe's own activity in the room is partly unknowable to them; avoid replacing her personhood with the lost child's image. |
 | SRC-C40-03: decision and acceptance → responsibility | Brian recognised possible deliberate resemblance; Helen knew there could still be family. Both nevertheless accepted. | Their responsibility lies in choices they recall, not proof they knew every later mechanism. |
 | SRC-C40-04: Zoe visits exterior → private reckoning | Zoe approaches the building but chooses not to enter; she keeps her response to herself and closes her notebook. | Her interiority need not be voiced or written immediately. |
-| SRC-C40-05: drive away → current threat | Zoe links a later outside enquiry to the renewed attempt to control her placement; Elias receives a new image while driving and does not immediately hand over the phone. | The image's content and source belong to the next chapter; avoid back-projecting them into this reveal. |
+| SRC-C40-05: drive away → Jackie message | Zoe links a later outside enquiry to the renewed attempt to control her placement. Voss relays an image of three messages from an unknown number; Elias stops before showing Zoe. They say Jackie was forced to give the first route, did not give the second, and her siblings are alive. | Jackie is likely the sender, not yet authenticated. Her message revises Zoe's betrayal inference from Chapters 5 and 13 before the Chapter 41 challenge response. |
 
 ## Forward checks
 
-- Resolve the image, the identity of the person outside the supplied verification chain and the live threat to Zoe's allies.
+- Authenticate the likely Jackie message and trace the live threat to her siblings; Chapter 41 supplies a stronger private challenge response.
 - Keep Helen and Brian's remembered knowledge separate from authenticated records and Zoe's interpretation.
 - Track institutional preservation and who holds each statement, document and drive copy.

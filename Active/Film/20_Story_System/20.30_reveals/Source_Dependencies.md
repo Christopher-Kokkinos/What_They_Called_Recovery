@@ -1,0 +1,20 @@
+# Source dependencies and reveal custody (working model)
+
+Status: descriptive audit aid. Source-unit references point to the chapter maps; they do not assign scenes, dispositions or screen time.
+
+| Chain | Setup and intermediate evidence | Later turn / payoff | Constraint for treatment |
+|---|---|---|---|
+| Jackie and the two routes | `SRC-C05-02`, `SRC-C13-03`–`06`: Zoe infers betrayal after the failed call and decoy. | `SRC-C40-05`, `SRC-C41-01`–`04`, `SRC-C42-03`–`04`, `SRC-C46-02`: first route coerced, second withheld, siblings threatened, private reply, safeguarding, reunion. | Do not present Zoe's early belief as narrator-confirmed fact. The three messages arrive in Chapter 40; the challenge response follows in Chapter 41. |
+| Elias's past and Sam | `SRC-C07-03`, `SRC-C12-06`, `SRC-C16-02`: reputation and recognition precede explanation. | `SRC-C20-05`–`06`, `SRC-C21-01`–`04`, `SRC-C46-05`–`06`: Reyes's death, Sam account, pain treatment and shared future decisions. | Separate the legend, Elias's testimony, violent capacity and recovery. Zoe is not a replacement for Sam. |
+| Tracking and compromised channels | `SRC-C15-04`, `SRC-C16-01`, `SRC-C17-02`: phone disabled, car tracker still live. | `SRC-C18-02`–`04`, `SRC-C20-05`, `SRC-C22-03`, `SRC-C23-04`, `SRC-C29-02`: trailer decoy, captured phone, intermediary compromise and later narrow contact. | Distinguish phone, vehicle transmitter, operational phone and forwarding intermediary; none confers omniscience. |
+| Folder and drive | `SRC-C11-03`, `SRC-C14-02`, `SRC-C15-03`: Zoe takes and controls material before knowing its full contents. | `SRC-C24-01`–`04`, `SRC-C28-01`, `SRC-C45-01`, `SRC-C46-01`: offline copies, restricted query, bounded disclosure and evidence handover. | Track original, working copies, separate envelope and who is authorised to inspect each. |
+| Mac's purported authority | `SRC-C01-06`, `SRC-C12-04`, `SRC-C16-04`: grandmother/guardian/placement claims. | `SRC-C30-01`–`03`, `SRC-C35-02`, `SRC-C37-01`, `SRC-C42-03`, `SRC-C44-04`, `SRC-C46-03`: authentic source contradicts supplemental order; Mac makes a present disclosure and later faces charges. | A convincing document or supplied verification number is not independent legal authority. Mac's later intervention is not retroactive exoneration. |
+| Helen and Brian's household | `SRC-C12-01`–`05`, `SRC-C14-02`, `SRC-C27-04`: care, restricted contact and placement fields coexist. | `SRC-C33-01`–`04`, `SRC-C39-01`–`04`, `SRC-C40-01`–`03`, `SRC-C44-02`, `SRC-C46-04`: grief, matching, viewing, admission and Zoe's lasting memories. | Distinguish what the couple knew, what they suspected and what the system withheld; love does not remove responsibility. |
+| Genuine institution / hidden route | `SRC-C26-01`–`05`, `SRC-C27-05`: overrides and compartments within ordinary-looking work. | `SRC-C34-01`–`05`, `SRC-C35-02`–`05`, `SRC-C37-01`–`04`, `SRC-C46-03`: lawful cases, outside contradiction, preservation, mixed historic outcomes. | Do not depict all Westmere work or every recipient as corrupt. Keep normal, suspicious and unknown cases distinct. |
+| Zoe's recorded wishes | `SRC-C03-02`, `SRC-C15-03`, `SRC-C19-04`, `SRC-C23-03`: bounded choices and observation. | `SRC-C41-04`, `SRC-C43-04`, `SRC-C45-01`, `SRC-C46-05`–`06`: participation, independent record, disclosure terms, chosen name and direction. | Immediate safety authority and explanation afterward can coexist with her agency. Do not substitute a new adult's possession for protection. |
+
+## Open before any screenplay disposition
+
+- Which source functions can be carried through a finite film treatment, and where must information move if a unit is compressed or omitted?
+- How will multiple viewpoints and retrospective testimony be presented without granting characters information they do not yet possess?
+- Which proof needs to be understandable on screen while protecting other children's identities and keeping the legitimate institution distinct from the hidden route?

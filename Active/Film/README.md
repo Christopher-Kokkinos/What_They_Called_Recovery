@@ -3,7 +3,7 @@
 This subtree contains the screen adaptation and animation-production system for *What They Called Recovery*.
 
 ## Current phase
-**Adaptation preparation.** Source decomposition covers all 46 chapters. The next gate is a whole-story audit, treatment and sequence outline before adaptation dispositions, screenplay scenes and selection of a representative 2–5 minute vertical slice.
+**Adaptation preparation.** Source decomposition covers all 46 chapters; the whole-story source-map audit is documented in `Reports/Film/2026-09-27_whole_story_source_audit.md` for review. The next gate is treatment and sequence outline before adaptation dispositions, screenplay scenes and selection of a representative 2–5 minute vertical slice.
 
 ## Hard constraint
 Production software, services and externally acquired assets default to **£0 cash cost**. Existing hardware and the creator's own labour/time are the available production resources.

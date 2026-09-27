@@ -2,7 +2,7 @@
 
 Status: **draft for author review**. Derived from the approved treatment v0.1 and DEC-0001–0007. `SEQ-01`–`SEQ-12` are provisional planning IDs, not screenplay scene IDs. Source coverage is navigational; it does not assign KEEP/OMIT or promise one screen scene per source unit. Screen-time ranges are **TBD** until the author approves the sequence design and a pacing pass establishes a feature target.
 
-The companion [character and relationship arc scaffold](../../20_Story_System/20.20_relationships/Character_and_Relationship_Arc_Scaffold_v0.1.md) states the character changes each sequence must carry before individual scenes are developed. It is a draft for separate author review.
+The companion [character and relationship arc scaffold](../../20_Story_System/20.20_relationships/Character_and_Relationship_Arc_Scaffold_v0.1.md) states the approved character changes each sequence must carry before individual scenes are developed (DEC-0008). Approval of that scaffold does not itself approve this sequence outline.
 
 ## SEQ-01 — The driver and the assignment
 

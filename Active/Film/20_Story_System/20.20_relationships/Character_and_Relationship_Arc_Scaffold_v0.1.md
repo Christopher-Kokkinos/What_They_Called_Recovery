@@ -1,6 +1,6 @@
 # Character and relationship arc scaffold v0.1
 
-Status: **draft for author review**, complementary to the accepted treatment and the provisional twelve-sequence outline. This is a set of story obligations for adaptation and performance, not dialogue, shot design, diagnoses, or a claim that a source unit has been approved for inclusion. Source references point to the descriptive decomposition; the manuscript remains authoritative. The author's 2026-09-27 review identified these arcs as necessary structure before scene production.
+Status: **approved character and relationship scaffold** (author acceptance, 2026-09-28; DEC-0008), complementary to the accepted treatment and the provisional twelve-sequence outline. This is a set of story obligations for adaptation and performance, not dialogue, shot design, diagnoses, or a claim that a source unit has been approved for inclusion. Source references point to the descriptive decomposition; the manuscript remains authoritative. The author's 2026-09-27 review identified these arcs as necessary structure before scene production.
 
 ## Governing movement
 
@@ -41,4 +41,4 @@ Voss and Vale's potential redemption is **conduct, not absolution**: they cease 
 
 ## Scene-development gate
 
-For each proposed screenplay scene, record **entering belief/relationship state → observable action or choice → resulting change or reinforced limit**, the source unit(s), and whose knowledge is available. If a sequence is compressed, preserve its required arc turn elsewhere in the adaptation register. Performance, pauses, dialogue and visual choices remain for scene development and directing. Do not mark the outline or these arcs approved without the author's review.
+For each proposed screenplay scene, record **entering belief/relationship state → observable action or choice → resulting change or reinforced limit**, the source unit(s), and whose knowledge is available. If a sequence is compressed, preserve its required arc turn elsewhere in the adaptation register. Performance, pauses, dialogue and visual choices remain for scene development and directing. The sequence outline retains its separate draft status.

@@ -6,4 +6,4 @@ The treatment describes the proposed movie from beginning to end at narrative-sp
 
 Do not draft the treatment by inventing around gaps. Ground it in the canonical manuscript and record deliberate structural changes through the adaptation workflow.
 
-`Whole_Film_Treatment_v0.1.md` is a discussion draft grounded in the whole-story source audit and DEC-0001–0006. It requires author review before a sequence outline or adaptation dispositions are approved.
+`Whole_Film_Treatment_v0.1.md` is the author-approved narrative spine (DEC-0007), grounded in the whole-story source audit and DEC-0001–0006. The sequence outline is drafted separately; adaptation dispositions are not yet approved.

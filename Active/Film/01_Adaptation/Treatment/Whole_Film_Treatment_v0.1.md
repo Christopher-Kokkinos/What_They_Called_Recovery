@@ -1,6 +1,6 @@
 # What They Called Recovery — whole-film treatment v0.1
 
-Status: **discussion draft**. This is a proposed screen narrative for author review, grounded in the 46-chapter source map and decisions DEC-0001–0006. It approves no scene list, runtime, dialogue, adaptation-register disposition or vertical slice. The novel publication master remains unchanged.
+Status: **approved narrative treatment** (author acceptance, 2026-09-27; DEC-0007). Grounded in the 46-chapter source map and decisions DEC-0001–0006. Approval establishes the whole-film narrative spine; it does not approve a scene list, runtime, dialogue, adaptation-register disposition or vertical slice. The novel publication master remains unchanged.
 
 ## Story premise and dramatic question
 
@@ -60,10 +60,10 @@ Zoe hands over the original drive through a recorded, restricted evidence proces
 
 Elias prepares to leave because he thinks distance may protect her. Zoe makes him say whether he wants to leave, rather than deciding for her what she needs. They agree that immediate danger may require him to act, but afterward he must explain and they work out the rest. Their future is not solved by a promise. On a walk, the path divides. Elias gives his preference for the easier river route; Zoe wants the ridge and its view. He accepts her choice. They take the ridge together.
 
-## Treatment review points
+## Sequence-outline questions
 
 - Test how much of the seven-day account needs depiction to make Zoe's later evidence and emotional choices legible within a feature runtime.
 - Place the early Jackie cutaway so it creates audience suspense without settling the first-route/second-route distinction before Zoe learns it.
 - Decide which external cutaways earn their place by changing suspense or explaining an otherwise invisible cause; avoid turning the restricted system into an omniscient monolith.
 - Keep the institutional proof chain comprehensible: original order, altered supplement, circular verification, independent contradiction, preservation and limited disclosure.
-- After author review, build a sequence outline and then assign source-unit dispositions. No unit is implicitly omitted by this draft's prose compression.
+- Build a sequence outline and then assign source-unit dispositions. No unit is implicitly omitted by this treatment's prose compression.

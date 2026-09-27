@@ -14,6 +14,6 @@ Approved Jackie direction: `00.30_decision_log/DEC-0005_early_jackie_cutaway.md`
 
 Approved ending: `00.30_decision_log/DEC-0006_novel_ending.md` retains the novel's final path junction and Zoe's ridge choice. These six decisions supply a starting frame for a reviewable whole-film treatment draft; no adaptation register dispositions are assigned yet.
 
-Treatment review: `../01_Adaptation/Treatment/Whole_Film_Treatment_v0.1.md` is a discussion draft, not an approved treatment. The next gate is author review of its narrative spine, then sequence outline and explicit source-unit dispositions.
+Treatment accepted: `00.30_decision_log/DEC-0007_treatment_v0_1_accepted.md` approves `../01_Adaptation/Treatment/Whole_Film_Treatment_v0.1.md` as the narrative spine. `../01_Adaptation/Sequences/Whole_Film_Sequence_Outline_v0.1.md` is a draft for author review. Explicit source-unit dispositions follow an approved outline; the screenplay and vertical slice remain blocked.
 
 When starting a task, inspect `git status`, the manifest, relevant register and applicable workflow. When finishing, update the manifest if a gate actually changed, attach validation evidence in `Reports/Film/`, and keep this short orientation synchronized. Do not advance a status merely because folders exist.

@@ -17,7 +17,7 @@ This is a whole-map continuity and evidence-chain audit, with targeted passage v
 
 | Chapters | Difference from current publication master | Film impact |
 |---|---|---|
-| 4–6 | Phase 7 PDFs use “server”; the current master uses “waitress” in Chapters 4–5 and “member of staff” in one Chapter 6 reference. | One restaurant worker/role continuity issue if literal dialogue or casting is drawn from the PDF. The map follows the current master. |
+| 4–6 | Phase 7 PDFs use “server”; the current master uses “waitress” in Chapters 4–5 and “member of staff” in one Chapter 6 reference. | Terminology may reflect regional usage and editorial localization in this UK-set sequence. These words alone do not establish a different worker or a continuity error. The map follows the current master; the reason for the revision is not documented here. |
 | 34 | Current master adds “she” after Zoe's note. | No plot or identity change found. |
 | 10, 19, 21, 22, 31, 37, 38, 40, 41 | Spacing, quotation, dash, ellipsis or compound punctuation. | No causal difference found in the lexical comparison. |
 | 24, 28, 29, 33, 36, 45 | Capitalization and spelling/compound variants, including “Requestor/Requester” and “multistorey/multi-storey.” | Preserve exact on-screen document typography only after choosing the current master wording. |

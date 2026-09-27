@@ -23,18 +23,33 @@ required_files = [
     '00_Control/scene_register.csv',
     '00_Control/asset_register.csv',
     '00_Control/licence_register.csv',
+    '00_Control/adaptation_register.csv',
+    '01_Adaptation/SCREENPLAY_FORMAT.md',
 ]
 
 missing_dirs = [p for p in required_dirs if not (film / p).is_dir()]
 missing_files = [p for p in required_files if not (film / p).is_file()]
 report_dir_ok = (root / 'Reports' / 'Film').is_dir()
 film_rule_ok = (root / 'docs' / 'rules' / 'film.md').is_file()
-workflow_ok = (root / 'workflows' / 'film-vertical-slice.md').is_file()
+vertical_slice_workflow_ok = (root / 'workflows' / 'film-vertical-slice.md').is_file()
+adaptation_workflow_ok = (root / 'workflows' / 'film-adaptation-preparation.md').is_file()
+dual_execution_sop_ok = (root / 'workflows' / 'blender-dual-execution-sop.md').is_file()
 
-ok = not missing_dirs and not missing_files and report_dir_ok and film_rule_ok and workflow_ok
+ok = (
+    not missing_dirs
+    and not missing_files
+    and report_dir_ok
+    and film_rule_ok
+    and vertical_slice_workflow_ok
+    and adaptation_workflow_ok
+    and dual_execution_sop_ok
+)
 print(
     f'missing_dirs={missing_dirs} missing_files={missing_files} '
     f'reports_film={report_dir_ok} film_rule={film_rule_ok} '
-    f'vertical_slice_workflow={workflow_ok} result={"PASS" if ok else "FAIL"}'
+    f'vertical_slice_workflow={vertical_slice_workflow_ok} '
+    f'adaptation_workflow={adaptation_workflow_ok} '
+    f'dual_execution_sop={dual_execution_sop_ok} '
+    f'result={"PASS" if ok else "FAIL"}'
 )
 sys.exit(0 if ok else 1)

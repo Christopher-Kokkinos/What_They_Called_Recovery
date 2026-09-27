@@ -12,17 +12,18 @@ This is a whole-map continuity and evidence-chain audit, with targeted passage v
 2. Re-extracted `Active/Production/What_They_Called_Recovery_KDP_Publication_Phase4.docx` using `tools/extract_manuscript.py` into a temporary directory. All 46 chapter files matched the committed text mirrors **byte for byte**. The mirrors are navigation evidence; the DOCX is the current publication master.
 3. Extracted all 46 locked Phase 7 chapter PDFs with `pdftotext -layout`. Removed only each page's ordinal footer, normalized whitespace and the scene-break representation for lexical comparison. Twenty-seven chapters matched the current master on that basis. Nineteen had bounded wording, capitalization or punctuation variants.
 4. Followed major setups, reversals, custody paths, source-of-authority changes and final payoffs across the map and checked the disputed causal passages against the chapter text. Working chronology and dependency tables are under `Active/Film/20_Story_System/`.
+5. After author review, checked `Active/Editorial/WTCR_KDP_Phase2_Style_Sheet.docx` and `Reports/Phase2/WTCR_KDP_Phase2_Copyedit_Log.csv` against the lexical differences. The relevant changes are recorded Phase 2 copy edits or source-production repairs. This establishes their editorial provenance; it does not attribute them to Amazon's automatic formatting.
 
 ### Locked PDF variants
 
 | Chapters | Difference from current publication master | Film impact |
 |---|---|---|
-| 4–6 | Phase 7 PDFs use “server”; the current master uses “waitress” in Chapters 4–5 and “member of staff” in one Chapter 6 reference. | Terminology may reflect regional usage and editorial localization in this UK-set sequence. These words alone do not establish a different worker or a continuity error. The map follows the current master; the reason for the revision is not documented here. |
-| 34 | Current master adds “she” after Zoe's note. | No plot or identity change found. |
-| 10, 19, 21, 22, 31, 37, 38, 40, 41 | Spacing, quotation, dash, ellipsis or compound punctuation. | No causal difference found in the lexical comparison. |
-| 24, 28, 29, 33, 36, 45 | Capitalization and spelling/compound variants, including “Requestor/Requester” and “multistorey/multi-storey.” | Preserve exact on-screen document typography only after choosing the current master wording. |
+| 4–6 | Phase 7 PDFs use “server”; the current master uses “waitress” in Chapters 4–5 and “member of staff” for an unidentified Chapter 6 employee. | The locked style sheet specifies UK restaurant narration and protection of Zoe's American voice; the copy-edit log records 25 terminology changes. This is a documented correction, not evidence of a different worker. |
+| 34 | Current master adds “she” after Zoe's note. | Log records restoration of the omitted subject in a malformed sentence and separation of notebook text from narration. No plot or identity change found. |
+| 10, 19, 21, 22, 31, 37, 38, 40, 41 | Spacing, nested quotation, dash, ellipsis or compound punctuation. | Log and style sheet specify closed prose em dashes, no stray nested-quote spaces, three-period ellipses and `adult-child`. These are documented copy-edit fixes. |
+| 24, 28, 29, 33, 36, 45 | Capitalization and spelling/compound variants, including “Requestor/Requester” and “multistorey/multi-storey.” | Log records sentence-initial capitalization in notebook/message/prose, preferred `requester`, and UK/style-sheet `multi-storey`. Preserve exact displayed-record typography from the current master. |
 
-The 19 PDF variants are a **known source-version difference**, not a manuscript regression introduced by this audit. The current publication master is the repository's publication authority. The locked PDFs remain an earlier story baseline; if a later film task depends on exact wording, cite which version supplied it. No source prose was edited.
+The 19 PDF variants are **documented Phase 2 copy-edit/source-production changes** to an earlier baseline, not a manuscript regression introduced by this audit. The current publication master is the repository's publication authority. The locked PDFs remain an earlier story baseline; if a later film task depends on exact wording, cite which version supplied it. The reviewed differences include genuine earlier spelling, capitalization and punctuation defects corrected in the current master. This comparison found no unresolved current-master error among them; it cannot certify that the entire manuscript is free of errors. No source prose was edited.
 
 ## Corrections made to the map
 

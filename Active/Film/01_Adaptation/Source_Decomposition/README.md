@@ -4,4 +4,4 @@ Read-only narrative inventory. `SRC-C##-##` identifies a bounded passage in cano
 
 This map separates observed story events, viewpoint conclusions and unresolved dependencies. It makes no KEEP/OMIT or screen-time decisions. The adaptation register remains unassigned until a whole-film treatment and sequence outline are built.
 
-Coverage: Chapters 1–5 in `Chapters_01-05.md` and Chapters 6–10 in `Chapters_06-10.md`; Chapters 11–46 remain unmapped.
+Coverage: Chapters 1–5 in `Chapters_01-05.md`, Chapters 6–10 in `Chapters_06-10.md`, and Chapters 11–15 in `Chapters_11-15.md`; Chapters 16–46 remain unmapped.

@@ -4,4 +4,6 @@ Current branch: `animated-movie`. The source inventory covers Chapters 1–46 in
 
 Approved film direction: `00.30_decision_log/DEC-0001_zoe_primary_agency.md` establishes Zoe as the primary dramatic viewpoint, Elias as a co-lead and self agency as the central throughline. Presentation order and further treatment choices remain to be decided one at a time with the author.
 
+Approved opening: `00.30_decision_log/DEC-0002_elias_morning_opening.md` retains Elias's Chapter 1 morning through Mac's airport call before he meets Zoe. The presentation of Zoe's preceding week is the next open structure choice.
+
 When starting a task, inspect `git status`, the manifest, relevant register and applicable workflow. When finishing, update the manifest if a gate actually changed, attach validation evidence in `Reports/Film/`, and keep this short orientation synchronized. Do not advance a status merely because folders exist.

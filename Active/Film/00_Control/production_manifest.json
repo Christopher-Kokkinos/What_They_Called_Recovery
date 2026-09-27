@@ -14,7 +14,7 @@
     "source": "canonical novel",
     "screenplay_format": "Fountain plain text",
     "register": "Active/Film/00_Control/adaptation_register.csv",
-    "status": "source_decomposition_in_progress_chapters_01_15_of_46",
+    "status": "source_decomposition_complete_46_of_46_pending_whole_story_audit_and_treatment",
     "direct_prose_to_shot_generation_allowed": false
   },
   "vertical_slice": {

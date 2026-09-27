@@ -3,7 +3,7 @@
 This subtree contains the screen adaptation and animation-production system for *What They Called Recovery*.
 
 ## Current phase
-**Vertical-slice preproduction.** The first target is one finished representative scene of approximately 2–5 minutes. Feature-length production is not yet authorised by completion of this milestone.
+**Adaptation preparation.** Source decomposition covers all 46 chapters. The next gate is a whole-story audit, treatment and sequence outline before adaptation dispositions, screenplay scenes and selection of a representative 2–5 minute vertical slice.
 
 ## Hard constraint
 Production software, services and externally acquired assets default to **£0 cash cost**. Existing hardware and the creator's own labour/time are the available production resources.
@@ -18,6 +18,10 @@ Production software, services and externally acquired assets default to **£0 ca
 - `06_Audio/` — dialogue, Foley, SFX, ambience and music.
 - `07_Post/` — editorial, compositing, grade and titles.
 - `08_Deliverables/` — approved review/final outputs.
+- `10_Characters/` — source-backed character dossiers and knowledge continuity; designs/assets remain in their existing domains.
+- `20_Story_System/` — cross-chapter timeline, relationships, reveals and continuity working models.
+
+Read `AGENTS.md` in this film subtree for agent routing. `00_Control/00.10_governance/` through `00.50_schemas/` organise the controls without replacing the existing manifest or registers. Versioned Blender scripts belong in `04_Scenes/Automation/` when a specified scene requires them.
 
 Generated renders, caches, proxies and raw capture belong in ignored local working directories unless explicitly promoted as evidence or deliverables.
 

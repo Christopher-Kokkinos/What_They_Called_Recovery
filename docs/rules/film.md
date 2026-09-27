@@ -59,6 +59,10 @@ No omission or structural change is silent. If narrative information remains nec
 - `06_Audio/` — dialogue, Foley, ambience, SFX and music production.
 - `07_Post/` — edit, compositing, grade, titles and mastering work.
 - `08_Deliverables/` — approved review/final outputs only.
+- `10_Characters/` — source-backed film character dossiers; Blender assets remain in `03_Assets/`.
+- `20_Story_System/` — cross-chapter timeline, relationships, reveals and continuity working models.
+
+The `00_Control/00.10_governance/`–`00.50_schemas/` folders organise policy, cited claims, decisions, project state and future schemas. They do not replace the existing manifest, adaptation/scene/asset/licence registers or the novel's authority. Read `Active/Film/AGENTS.md` as the film-specific routing entrypoint.
 
 ## Blender dual-execution SOP
 Codex/VS Code may operate Blender through two complementary routes.

@@ -1,8 +1,8 @@
 # What They Called Recovery — whole-film sequence outline v0.1
 
-Status: **draft for author review**. Derived from the approved treatment v0.1 and DEC-0001–0007. `SEQ-01`–`SEQ-12` are provisional planning IDs, not screenplay scene IDs. Source coverage is navigational; it does not assign KEEP/OMIT or promise one screen scene per source unit. Screen-time ranges are **TBD** until the author approves the sequence design and a pacing pass establishes a feature target.
+Status: **approved story-arc and sequence scaffold** (author acceptance, 2026-09-28; DEC-0009). Derived from the approved treatment v0.1 and DEC-0001–0008. `SEQ-01`–`SEQ-12` are planning IDs, not screenplay scene IDs. Source coverage is navigational; it does not assign KEEP/OMIT or promise one screen scene per source unit. Screen-time ranges remain **TBD** pending a pacing pass and a feature target. Scene-level arrangement and performance may evolve while preserving this approved narrative spine and the approved character obligations; a structural change requires a recorded decision.
 
-The companion [character and relationship arc scaffold](../../20_Story_System/20.20_relationships/Character_and_Relationship_Arc_Scaffold_v0.1.md) states the approved character changes each sequence must carry before individual scenes are developed (DEC-0008). Approval of that scaffold does not itself approve this sequence outline.
+The companion [character and relationship arc scaffold](../../20_Story_System/20.20_relationships/Character_and_Relationship_Arc_Scaffold_v0.1.md) states the approved character changes each sequence must carry before individual scenes are developed (DEC-0008).
 
 ## SEQ-01 — The driver and the assignment
 
@@ -113,6 +113,6 @@ The companion [character and relationship arc scaffold](../../20_Story_System/20
 - **Source / dependencies:** Chapter 46 (`SRC-C46-01`–`06`); DEC-0006. Preserve charges as charges and the remaining historic inquiries as open.
 - **Screen time:** TBD.
 
-## Review and next gate
+## Next gate
 
-This proposal covers the 46 chapters at sequence level, including the deliberate early Jackie information relocation. It does not establish that every one of the 230 source units appears on screen. After author review, test pacing and audience comprehension, then populate `00_Control/adaptation_register.csv` with an explicit disposition and information-transfer destination for every meaningful unit. Only then proceed to the Fountain screenplay and production scene packets.
+This scaffold covers the 46 chapters at sequence level, including the deliberate early Jackie information relocation. It does not establish that every one of the 230 source units appears on screen. Test pacing and audience comprehension while populating `00_Control/adaptation_register.csv` with an explicit disposition and information-transfer destination for every meaningful unit. Only then proceed to the Fountain screenplay and production scene packets.

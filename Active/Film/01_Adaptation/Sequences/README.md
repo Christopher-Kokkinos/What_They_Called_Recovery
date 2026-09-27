@@ -6,4 +6,4 @@ Each sequence should state its dramatic objective, source coverage, major events
 
 Sequence planning occurs before detailed screenplay scene conversion so the whole film remains visible.
 
-- [Whole-film sequence outline v0.1](Whole_Film_Sequence_Outline_v0.1.md) — twelve provisional sequences, draft for author review following acceptance of treatment v0.1.
+- [Whole-film sequence outline v0.1](Whole_Film_Sequence_Outline_v0.1.md) — approved twelve-sequence story-arc scaffold (DEC-0009); scene-level choices remain later work.

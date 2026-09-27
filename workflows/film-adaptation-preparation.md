@@ -4,14 +4,18 @@
 Convert the canonical novel into an explicit screen-adaptation source layer before shot production. The novel remains authoritative source material; the adaptation is a controlled derivative.
 
 ## Core rule
-Do not translate prose directly into Blender shots.
+Do not translate prose directly into Blender shots, and do not convert chapters directly into screenplay scenes without first understanding the film as a whole.
 
 Use this chain:
 
 ```text
 canonical manuscript
         ↓
-source beats / scene candidates
+source decomposition
+        ↓
+film treatment / narrative spine
+        ↓
+sequence outline
         ↓
 adaptation decisions
         ↓
@@ -35,11 +39,33 @@ Work through the manuscript in canonical order and identify:
 - exposition;
 - transitions;
 - information that must reach the audience;
-- continuity dependencies.
+- continuity dependencies;
+- setups and payoffs.
 
 Do not rewrite the canonical manuscript.
 
-## Stage 2 — adaptation disposition
+## Stage 2 — film treatment and sequence outline
+Before detailed screenplay conversion, establish the screen story from beginning to end.
+
+### Treatment
+Create a concise prose treatment under `Active/Film/01_Adaptation/Treatment/` that describes the intended movie as a movie: narrative spine, principal character arcs, major reversals, reveals, climax and ending.
+
+The treatment is not a chapter summary. It is the proposed screen version at whole-film scale.
+
+### Sequence outline
+Break the treatment into major film sequences under `Active/Film/01_Adaptation/Sequences/`. Each sequence should define:
+- dramatic objective;
+- entering state;
+- key events;
+- information/reveal delivered;
+- character movement/change;
+- ending state/turn;
+- source material covered;
+- rough screen-time range when known.
+
+This stage exists to keep the whole film in frame before detailed scene work.
+
+## Stage 3 — adaptation disposition
 Register every meaningful source unit in `Active/Film/00_Control/adaptation_register.csv`.
 
 Allowed dispositions:
@@ -54,7 +80,7 @@ Allowed dispositions:
 
 Every non-`KEEP` decision requires a concise reason.
 
-## Stage 3 — information preservation check
+## Stage 4 — information preservation check
 Before approving an omission/compression/merge, identify what narrative work the source unit performs:
 - plot causality;
 - character development;
@@ -68,7 +94,7 @@ Before approving an omission/compression/merge, identify what narrative work the
 
 If the function is still required, record where it is transferred.
 
-## Stage 4 — screenplay
+## Stage 5 — screenplay
 Create the screen-adaptation master as plain-text Fountain screenplay material under `Active/Film/01_Adaptation/Screenplay/`.
 
 Fountain is preferred because it is:
@@ -80,11 +106,13 @@ Fountain is preferred because it is:
 
 The screenplay is a film document, not a rewritten novel. It should contain only what the audience can see/hear, except for concise production-relevant description.
 
-## Stage 5 — production scene packets
-After screenplay scenes are approved, create one production packet per `SC###` containing:
+## Stage 6 — production scene packets
+After screenplay scenes are approved, create one production packet per `SC###` under `Active/Film/01_Adaptation/Scene_Packets/` containing:
 - source chapter/beat references;
+- adaptation-register references;
 - screenplay scene text/reference;
 - purpose of scene;
+- sequence membership;
 - characters;
 - set/location;
 - required props;
@@ -96,7 +124,7 @@ After screenplay scenes are approved, create one production packet per `SC###` c
 - audio requirements;
 - special production risks.
 
-## Stage 6 — shot specification
+## Stage 7 — shot specification
 Only after the scene packet is approved should the scene be decomposed into `SC###_SH###` shots for Blender.
 
 ## Adaptation audit principles
@@ -107,6 +135,7 @@ Only after the scene packet is approved should the scene be decomposed into `SC#
 - Where several source scenes are merged, preserve chronology/continuity explicitly.
 - Internal narration must be deliberately classified as visualised, voiced, transferred to dialogue, or omitted.
 - Repeated information may be removed, but the retained carrier must be identified.
+- Local scene quality must not override whole-film structure.
 
 ## Vertical-slice relationship
-The vertical slice should be selected from the adaptation map after enough of the story has been decomposed to understand the scene's dependencies. It should not be chosen solely because an isolated chapter looks visually interesting.
+The vertical slice should be selected from the adaptation map after enough of the story has been decomposed and outlined to understand candidate scenes' setup, payoff and continuity dependencies. It should not be chosen solely because an isolated chapter looks visually interesting.

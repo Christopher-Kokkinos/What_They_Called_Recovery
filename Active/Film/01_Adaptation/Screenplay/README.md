@@ -22,3 +22,4 @@ Do not populate screenplay scenes directly from raw novel prose. Corresponding s
 - [SC014 proposed scene](SC014_Showing_Escape_draft.fountain) and [change/recommendation review](SC014_Showing_Escape_review.md) — showing and self-directed escape; pending individual author review.
 - [SC015 proposed scene](SC015_Home_Changed_draft.fountain) and [change/recommendation review](SC015_Home_Changed_review.md) — home, carers and Mac; pending individual author review.
 - [SC016 proposed scene](SC016_Jackie_Decoy_draft.fountain) and [change/recommendation review](SC016_Jackie_Decoy_review.md) — Jackie and the false route; pending individual author review.
+- [SC017 proposed scene](SC017_The_Flight_draft.fountain) and [change/recommendation review](SC017_The_Flight_review.md) — failed route rule and flight; pending individual author review.

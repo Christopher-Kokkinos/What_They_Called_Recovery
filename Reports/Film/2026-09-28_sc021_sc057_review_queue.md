@@ -1,0 +1,7 @@
+# Sequential individual review queue — SC021–SC057
+
+Thirty-seven standalone Fountain files were extracted in numeric scene order from the provisionally accepted 57-scene combined pass. Each has a paired review file with all mapped source units, registered function/disposition/carrier and scene-specific notes. The review files explicitly state there are no narrative changes from the compact pass. They are a navigation and development queue, not completed source-fidelity audits or individually approved screenplay scenes. SC007–SC020 were developed separately against source passages earlier in this session; SC002 remains an unapproved earlier draft.
+
+The ordered index `Active/Film/01_Adaptation/Screenplay/Scene_Review_Queue_SC007-SC057.md` links all 51 draft/review pairs and marks the two levels of development. Before a scene can be accepted, compare its compact text against the cited passages, revise observable character action and pacing as needed, then request individual author review. No production packets or shots were approved.
+
+Mechanical checks: 51 queue entries, 102 existing links, 37 compact reviews, 149 mapped source-to-scene links for SC021–SC057; screenplay verifier PASS (57 scene blocks matched to standalone texts, 12 sequences, 230 source units); source map PASS; film workspace PASS; workspace PASS; diff check PASS. No manuscript, Reference or Archive file was staged for this queue. An unrelated pre-existing local modified archived PDF remains untouched and unstaged.

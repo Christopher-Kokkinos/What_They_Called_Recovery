@@ -26,3 +26,5 @@ Do not populate screenplay scenes directly from raw novel prose. Corresponding s
 - [SC018 proposed scene](SC018_No_Grandmother_draft.fountain) and [change/recommendation review](SC018_No_Grandmother_review.md) — rejecting Mac destination and provisional cottage choice; pending individual author review.
 - [SC019 proposed scene](SC019_Jackie_Cutaway_draft.fountain) and [change/recommendation review](SC019_Jackie_Cutaway_review.md) — bounded audience-ahead cutaway; pending individual author review.
 - [SC020 proposed scene](SC020_The_Contract_draft.fountain) and [change/recommendation review](SC020_The_Contract_review.md) — tracker and three hunters; pending individual author review.
+
+- [Ordered SC007–SC057 review queue](Scene_Review_Queue_SC007-SC057.md) links each standalone draft and its source/change/recommendation review. SC021–SC057 currently match the compact combined pass exactly and require further individual development and author review.

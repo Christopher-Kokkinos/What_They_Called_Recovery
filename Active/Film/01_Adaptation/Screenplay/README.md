@@ -15,3 +15,4 @@ Do not populate screenplay scenes directly from raw novel prose. Corresponding s
 - [SC007 proposed scene](SC007_Car_Test_draft.fountain) and [change/recommendation review](SC007_Car_Test_review.md) — car audit, escape and bounded choice; pending individual author review.
 - [SC008 proposed scene](SC008_Public_Stop_draft.fountain) and [change/recommendation review](SC008_Public_Stop_review.md) — public stop and first tested trust; pending individual author review.
 - [SC009 proposed scene](SC009_Cain_Threat_draft.fountain) and [change/recommendation review](SC009_Cain_Threat_review.md) — Cain named, private threat and fallback; pending individual author review.
+- [SC010 proposed scene](SC010_Three_Minutes_draft.fountain) and [change/recommendation review](SC010_Three_Minutes_review.md) — timed separation and escape; pending individual author review.

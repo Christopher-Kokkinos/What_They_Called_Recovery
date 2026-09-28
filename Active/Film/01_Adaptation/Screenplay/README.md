@@ -25,3 +25,4 @@ Do not populate screenplay scenes directly from raw novel prose. Corresponding s
 - [SC017 proposed scene](SC017_The_Flight_draft.fountain) and [change/recommendation review](SC017_The_Flight_review.md) — failed route rule and flight; pending individual author review.
 - [SC018 proposed scene](SC018_No_Grandmother_draft.fountain) and [change/recommendation review](SC018_No_Grandmother_review.md) — rejecting Mac destination and provisional cottage choice; pending individual author review.
 - [SC019 proposed scene](SC019_Jackie_Cutaway_draft.fountain) and [change/recommendation review](SC019_Jackie_Cutaway_review.md) — bounded audience-ahead cutaway; pending individual author review.
+- [SC020 proposed scene](SC020_The_Contract_draft.fountain) and [change/recommendation review](SC020_The_Contract_review.md) — tracker and three hunters; pending individual author review.

@@ -1,0 +1,5 @@
+# SC004 acceptance and SC005 draft check — 2026-09-28
+
+DEC-0015 records the author's acceptance of SC004 screenplay direction after reviewing the GitHub link. SC002 remains a draft. SC005 proposes the airport arrival and processing, drawing on SRC-C02-01/02. The unmarked escort does not introduce Zoe to Elias or verify the handover; Zoe requests the message before engaging further. The combined and standalone SC005 scene text match. No independent verification of Mac's family claims is asserted.
+
+Checks: `python tools/verify_film_screenplay_draft.py` PASS (12 sequences, 57 scenes, 230 units); `python tools/verify_film_source_map.py` PASS (46 chapters, 230 units); `python tools/verify_film_workspace.py` PASS; `python tools/verify_workspace.py` PASS; `git diff --check` PASS. No publication master or Reference file changed by this task. An unrelated pre-existing modified PDF in `Archive/Roadmaps/` was neither staged nor edited for this task and requires separate investigation by its owner. Production packet and source-unit final approval remain pending.

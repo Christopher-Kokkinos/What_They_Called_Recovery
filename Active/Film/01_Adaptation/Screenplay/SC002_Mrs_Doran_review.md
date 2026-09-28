@@ -9,3 +9,5 @@ Status: **proposed for author review**, not an approved screenplay scene or prod
 **Compression and continuity:** Housing-office banter, the full history of the building and the borrowed screwdriver's earlier exchange are condensed. The scene preserves the hinge, trolley, relationship and decision cost required by `SRC-C01-03`. Mailbox/final notice and clamp remain in the next scene (`SRC-C01-04`); no scene-level approval has been inferred for them. Approximate duration, animation and performance choices remain open.
 
 **Review focus:** Does this brief encounter make Elias's care feel habitual and costly without slowing the opening? His “For the moment” should register as a private decision, not a disclosure to Mrs Doran.
+
+**Author feedback (2026-09-28):** The banter was correctly identified; the author intends to develop Elias and Mrs Doran's relationship more deeply when the time is right. Preserve this familiar tone and carry the deeper relationship as a later creative opportunity. This comment does not by itself approve SC002 or require additional backstory in the opening.

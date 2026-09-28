@@ -20,4 +20,4 @@ The author's outline review found chronology, arc and major reveals sufficient a
 
 When starting a task, inspect `git status`, the manifest, relevant register and applicable workflow. When finishing, update the manifest if a gate actually changed, attach validation evidence in `Reports/Film/`, and keep this short orientation synchronized. Do not advance a status merely because folders exist.
 
-Exploratory audio idea: `../06_Audio/Community_Voice_Group_Concept_v0.1.md` records a possible Saint Vincent's community voice/communication group with an optional film pathway. No charity contact, resource access or casting has been agreed; adaptation and production gates are unchanged.
+Shelved audio idea: `../06_Audio/Community_Voice_Group_Concept_v0.1.md` records a possible Saint Vincent's community voice/communication group with an optional film pathway. The author deferred it until the audio/casting stage. No charity contact, resource access or casting has been agreed; adaptation and production gates are unchanged. SC003 is the current individual scene draft for review; SC002 retains the author's banter/deeper-relationship note and remains draft.

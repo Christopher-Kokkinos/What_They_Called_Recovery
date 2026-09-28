@@ -49,6 +49,7 @@ assert 'the ridge' in screenplay[positions['SC057']:]
 for scene, path in [
     ('SC001', 'SC001_Elias_Apartment_draft.fountain'),
     ('SC002', 'SC002_Mrs_Doran_draft.fountain'),
+    ('SC003', 'SC003_Clamp_draft.fountain'),
 ]:
     original = (SCREENPLAY.parent / path).read_text().split('\n\nINT.', 1)[1]
     block = screenplay[positions[scene]: positions[f'SC{int(scene[2:])+1:03}']]

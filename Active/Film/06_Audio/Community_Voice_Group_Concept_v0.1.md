@@ -1,6 +1,6 @@
 # Community voice and communication group — concept v0.1
 
-Status: **author idea recorded; exploratory proposal** (2026-09-28). No approach to Saint Vincent's, room booking, participant recruitment, casting, equipment use or production agreement has been made. The available facilities and any permission to use them are author-reported possibilities to verify directly with the charity.
+Status: **shelved at the author's direction** (2026-09-28) until a later audio/casting stage. No approach to Saint Vincent's, room booking, participant recruitment, casting, equipment use or production agreement has been made. The available facilities and any permission to use them are author-reported possibilities to verify directly with the charity.
 
 ## Core idea
 

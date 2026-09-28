@@ -53,10 +53,11 @@ for scene, path in [
     ('SC004', 'SC004_Mac_Call_draft.fountain'),
     ('SC005', 'SC005_Arrivals_Processing_draft.fountain'),
     ('SC006', 'SC006_First_Terms_draft.fountain'),
+    ('SC007', 'SC007_Car_Test_draft.fountain'),
 ]:
-    original = (SCREENPLAY.parent / path).read_text().split('\n\nINT.', 1)[1]
+    original = (SCREENPLAY.parent / path).read_text().split('\n\n', 1)[1]
     block = screenplay[positions[scene]: positions[f'SC{int(scene[2:])+1:03}']]
-    assert 'INT.' + original.rstrip() in block, f'{scene} differs from its reviewed standalone draft'
+    assert original.rstrip() in block, f'{scene} differs from its reviewed standalone draft'
 
 print(f'film screenplay draft: sequences={len(sequences)} scenes={len(scene_ids)} '
       f'source_units={len(rows)} split_links={sum(counts.values())-len(rows)} result=PASS')

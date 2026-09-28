@@ -16,3 +16,4 @@ Do not populate screenplay scenes directly from raw novel prose. Corresponding s
 - [SC008 proposed scene](SC008_Public_Stop_draft.fountain) and [change/recommendation review](SC008_Public_Stop_review.md) — public stop and first tested trust; pending individual author review.
 - [SC009 proposed scene](SC009_Cain_Threat_draft.fountain) and [change/recommendation review](SC009_Cain_Threat_review.md) — Cain named, private threat and fallback; pending individual author review.
 - [SC010 proposed scene](SC010_Three_Minutes_draft.fountain) and [change/recommendation review](SC010_Three_Minutes_review.md) — timed separation and escape; pending individual author review.
+- [SC011 proposed scene](SC011_Seven_Days_draft.fountain) and [change/recommendation review](SC011_Seven_Days_review.md) — detour, Reaper message and Tuesday invitation; pending individual author review.

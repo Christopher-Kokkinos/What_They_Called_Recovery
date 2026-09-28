@@ -19,3 +19,4 @@ Do not populate screenplay scenes directly from raw novel prose. Corresponding s
 - [SC011 proposed scene](SC011_Seven_Days_draft.fountain) and [change/recommendation review](SC011_Seven_Days_review.md) — detour, Reaper message and Tuesday invitation; pending individual author review.
 - [SC012 proposed scene](SC012_Ordinary_Errand_draft.fountain) and [change/recommendation review](SC012_Ordinary_Errand_review.md) — Tuesday ordinary life and abduction; pending individual author review.
 - [SC013 proposed scene](SC013_House_Rules_draft.fountain) and [change/recommendation review](SC013_House_Rules_review.md) — rules, old photo and sleep loss; pending individual author review.
+- [SC014 proposed scene](SC014_Showing_Escape_draft.fountain) and [change/recommendation review](SC014_Showing_Escape_review.md) — showing and self-directed escape; pending individual author review.

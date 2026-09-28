@@ -14,7 +14,7 @@
     "source": "canonical novel",
     "screenplay_format": "Fountain plain text",
     "register": "Active/Film/00_Control/adaptation_register.csv",
-    "status": "whole_film_scene_draft_v0_1_pending_combined_author_review",
+    "status": "whole_film_scene_draft_v0_1_provisionally_accepted_individual_scene_review_pending",
     "direct_prose_to_shot_generation_allowed": false
   },
   "vertical_slice": {

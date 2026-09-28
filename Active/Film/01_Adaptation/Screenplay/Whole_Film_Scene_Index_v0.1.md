@@ -1,6 +1,6 @@
 # Whole-film scene index v0.1
 
-Status: **draft for combined author review**. This is a first screenplay pass through the approved twelve-sequence story arc. SC001's accepted direction remains recorded in DEC-0012; all other scene IDs are draft. A scene groups source units for a screen purpose, not necessarily a one-to-one chapter conversion. The register retains provisional dispositions until each implementation is reviewed.
+Status: **provisionally accepted as a combined whole-film pass** (DEC-0013). This is a first screenplay pass through the approved twelve-sequence story arc. SC001's accepted direction remains recorded in DEC-0012; SC002–SC057 remain draft and individually unapproved. A scene groups source units for a screen purpose, not necessarily a one-to-one chapter conversion. The register retains provisional dispositions until each implementation is reviewed.
 
 | Sequence | Scenes | Principal screen movement | Main source |
 |---|---|---|---|

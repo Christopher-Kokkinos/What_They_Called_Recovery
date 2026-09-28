@@ -54,6 +54,7 @@ for scene, path in [
     ('SC005', 'SC005_Arrivals_Processing_draft.fountain'),
     ('SC006', 'SC006_First_Terms_draft.fountain'),
     ('SC007', 'SC007_Car_Test_draft.fountain'),
+    ('SC008', 'SC008_Public_Stop_draft.fountain'),
 ]:
     original = (SCREENPLAY.parent / path).read_text().split('\n\n', 1)[1]
     block = screenplay[positions[scene]: positions[f'SC{int(scene[2:])+1:03}']]

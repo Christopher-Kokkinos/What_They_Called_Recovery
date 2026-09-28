@@ -13,3 +13,4 @@ Do not populate screenplay scenes directly from raw novel prose. Corresponding s
 - [SC005 accepted screenplay direction](SC005_Arrivals_Processing_draft.fountain) and [source/arc review](SC005_Arrivals_Processing_review.md) — airport processing and absent public handover; accepted under DEC-0016, production packet pending.
 - [SC006 accepted screenplay direction](SC006_First_Terms_draft.fountain) and [source/arc review](SC006_First_Terms_review.md) — Zoe and Elias negotiate first boundaries; accepted under DEC-0017, production packet pending.
 - [SC007 proposed scene](SC007_Car_Test_draft.fountain) and [change/recommendation review](SC007_Car_Test_review.md) — car audit, escape and bounded choice; pending individual author review.
+- [SC008 proposed scene](SC008_Public_Stop_draft.fountain) and [change/recommendation review](SC008_Public_Stop_review.md) — public stop and first tested trust; pending individual author review.

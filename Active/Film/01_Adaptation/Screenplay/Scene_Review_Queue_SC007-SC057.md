@@ -1,6 +1,6 @@
 # Ordered individual scene review queue — SC007–SC057
 
-The combined 57-scene pass is provisionally accepted (DEC-0013). SC007–SC057 are individual drafts pending author review. SC007–SC020 have been developed and checked against source passages; SC021–SC057 are exact standalone extracts of the compact combined pass with source-linked recommendations. No scene packet or shot is approved by this queue. SC002 remains a separate earlier draft.
+The combined 57-scene pass is provisionally accepted (DEC-0013). The author passed the SC007–SC057 reviews and working scene directions on 2026-10-03 (DEC-0018). SC007–SC020 have been developed and checked against source passages; SC021–SC057 are exact standalone extracts of the compact combined pass with source-linked recommendations and still need passage-level expansion. No scene packet or shot is approved by this queue. SC002 remains a separate earlier draft.
 
 | Scene | Screenplay draft | Changes and recommendations | State |
 |---|---|---|---|
@@ -58,4 +58,4 @@ The combined 57-scene pass is provisionally accepted (DEC-0013). SC007–SC057 a
 
 ## Review sequence
 
-Read one row at a time in scene order. For each, assess its entry/exit state, source functions, character choices and reveal ceiling. Revise the draft and review file before recording any author acceptance. The automated source links are navigation and checklists; they do not certify source fidelity.
+Continue in scene order. For each compact extract, assess its entry/exit state, source functions, character choices and reveal ceiling against the passages before development. The automated source links are navigation and checklists; they do not certify source fidelity. Record later scene-specific changes and production decisions separately from DEC-0018.

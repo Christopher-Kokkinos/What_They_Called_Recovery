@@ -1,6 +1,6 @@
 # Ordered individual scene review queue — SC007–SC057
 
-The combined 57-scene pass is provisionally accepted (DEC-0013). The author passed the SC007–SC057 reviews and working scene directions on 2026-10-03 (DEC-0018). SC007–SC020 have been developed and checked against source passages; SC021–SC057 are exact standalone extracts of the compact combined pass with source-linked recommendations and still need passage-level expansion. No scene packet or shot is approved by this queue. SC002 remains a separate earlier draft.
+The combined 57-scene pass is provisionally accepted (DEC-0013). The author passed the SC007–SC057 reviews and working scene directions on 2026-10-03 (DEC-0018). SC007–SC021 have been developed and checked against source passages; SC022–SC057 are exact standalone extracts of the compact combined pass with source-linked recommendations and still need passage-level expansion. No scene packet or shot is approved by this queue. SC002 remains a separate earlier draft.
 
 | Scene | Screenplay draft | Changes and recommendations | State |
 |---|---|---|---|
@@ -18,7 +18,7 @@ The combined 57-scene pass is provisionally accepted (DEC-0013). The author pass
 | SC018 | [SC018_No_Grandmother_draft.fountain](SC018_No_Grandmother_draft.fountain) | [SC018_No_Grandmother_review.md](SC018_No_Grandmother_review.md) | Source-developed draft |
 | SC019 | [SC019_Jackie_Cutaway_draft.fountain](SC019_Jackie_Cutaway_draft.fountain) | [SC019_Jackie_Cutaway_review.md](SC019_Jackie_Cutaway_review.md) | Source-developed draft |
 | SC020 | [SC020_The_Contract_draft.fountain](SC020_The_Contract_draft.fountain) | [SC020_The_Contract_review.md](SC020_The_Contract_review.md) | Source-developed draft |
-| SC021 | [SC021_First_lesson_draft.fountain](SC021_First_lesson_draft.fountain) | [SC021_First_lesson_review.md](SC021_First_lesson_review.md) | Compact extract; source-linked expansion pending |
+| SC021 | [SC021_First_lesson_draft.fountain](SC021_First_lesson_draft.fountain) | [SC021_First_lesson_review.md](SC021_First_lesson_review.md) | Source-developed revision; detail review pending |
 | SC022 | [SC022_Eastbound_ghost_draft.fountain](SC022_Eastbound_ghost_draft.fountain) | [SC022_Eastbound_ghost_review.md](SC022_Eastbound_ghost_review.md) | Compact extract; source-linked expansion pending |
 | SC023 | [SC023_Different_methods_draft.fountain](SC023_Different_methods_draft.fountain) | [SC023_Different_methods_review.md](SC023_Different_methods_review.md) | Compact extract; source-linked expansion pending |
 | SC024 | [SC024_Market_observation_draft.fountain](SC024_Market_observation_draft.fountain) | [SC024_Market_observation_review.md](SC024_Market_observation_review.md) | Compact extract; source-linked expansion pending |

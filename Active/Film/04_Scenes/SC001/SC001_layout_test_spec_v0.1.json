@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "scene_id": "SC001",
+  "status": "provisional_layout_test_specification",
+  "authority": [
+    "DEC-0012",
+    "DEC-0020",
+    "DEC-0021",
+    "DEC-0022"
+  ],
+  "screenplay_sha256": "95b545cc0605d0590c7e6267352599a3415132e3c365faba5b5e1408c936cadd",
+  "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
+  "fps": 24,
+  "frame_start": 1,
+  "frame_end": 2760,
+  "duration_seconds": 115,
+  "preview_resolution": [
+    1280,
+    720
+  ],
+  "settings_status": "proposed_test_defaults_not_final_delivery",
+  "shots": [
+    {
+      "shot_id": "SC001_SH001",
+      "beat_id": "B01",
+      "frame_start": 1,
+      "frame_end": 360,
+      "framing": "Window-to-room establishing view",
+      "action": "Pigeons outside, clock at eight, Elias wakes",
+      "review_check": "Two pigeons; ordinary morning; alarm off"
+    },
+    {
+      "shot_id": "SC001_SH002",
+      "beat_id": "B02",
+      "frame_start": 361,
+      "frame_end": 660,
+      "framing": "Medium three-quarter bed view",
+      "action": "Elias sits with rib/shoulder pain",
+      "review_check": "Support arm and hesitation legible; no hero pose"
+    },
+    {
+      "shot_id": "SC001_SH003",
+      "beat_id": "B02",
+      "frame_start": 661,
+      "frame_end": 888,
+      "framing": "Drawer insert",
+      "action": "Prescribed strip, two empty cells; drawer closes",
+      "review_check": "No dose taken; distinguish prescription from moral judgement"
+    },
+    {
+      "shot_id": "SC001_SH004",
+      "beat_id": "B03",
+      "frame_start": 889,
+      "frame_end": 1128,
+      "framing": "Kitchen and entry medium-wide",
+      "action": "Clean surfaces/ordered tools contrasted with post/clothes",
+      "review_check": "Few clear objects; avoid readable invented bills"
+    },
+    {
+      "shot_id": "SC001_SH005",
+      "beat_id": "B04",
+      "frame_start": 1129,
+      "frame_end": 1368,
+      "framing": "Bathroom threshold view",
+      "action": "Water loses heat; Excellent",
+      "review_check": "Offscreen water and restrained response; no fluid simulation"
+    },
+    {
+      "shot_id": "SC001_SH006",
+      "beat_id": "B04",
+      "frame_start": 1369,
+      "frame_end": 1560,
+      "framing": "Kitchen medium",
+      "action": "Dressed Elias makes/takes coffee",
+      "review_check": "Transition only; departure jacket and mug consistent"
+    },
+    {
+      "shot_id": "SC001_SH007",
+      "beat_id": "B05",
+      "frame_start": 1561,
+      "frame_end": 2160,
+      "framing": "Notice insert with hand context",
+      "action": "MAC envelope and exact notice read",
+      "review_check": "Readable at playback; no zoom needed; not yet delivered"
+    },
+    {
+      "shot_id": "SC001_SH008",
+      "beat_id": "B06",
+      "frame_start": 2161,
+      "frame_end": 2520,
+      "framing": "Medium at kitchen/entry",
+      "action": "Letter folded, inner pocket pause, keys taken",
+      "review_check": "Letter/envelope travel together; mug carried into SC002"
+    },
+    {
+      "shot_id": "SC001_SH009",
+      "beat_id": "B07",
+      "frame_start": 2521,
+      "frame_end": 2640,
+      "framing": "Elias-to-window medium",
+      "action": "Flat's yours dialogue",
+      "review_check": "Pigeons remain outside; dry delivery"
+    },
+    {
+      "shot_id": "SC001_SH010",
+      "beat_id": "B07",
+      "frame_start": 2641,
+      "frame_end": 2760,
+      "framing": "Window and departing-room hold",
+      "action": "Exit and final peck",
+      "review_check": "Clear departure; no new plot reveal"
+    }
+  ],
+  "layout": {
+    "units": "metres",
+    "status": "proposed_film_design_not_novel_floorplan",
+    "axes": "X east, Y north, Z up",
+    "bounds": [
+      0,
+      10,
+      0,
+      7
+    ],
+    "ceiling_height": 2.6,
+    "zones": [
+      {
+        "id": "bedroom",
+        "bounds": [
+          0,
+          4,
+          0,
+          7
+        ]
+      },
+      {
+        "id": "kitchen_entry",
+        "bounds": [
+          4,
+          8,
+          0,
+          7
+        ]
+      },
+      {
+        "id": "bathroom",
+        "bounds": [
+          8,
+          10,
+          3,
+          7
+        ]
+      }
+    ],
+    "window_location": [
+      0,
+      4.5,
+      1.4
+    ],
+    "entry_location": [
+      7.5,
+      0,
+      0
+    ],
+    "camera_walls": "hide obstructing walls per shot, not story-visible changes"
+  },
+  "render_backend": "not_selected_pending_local_test",
+  "final_style": "DEC-0021 muted_colour_noir_stylised_realism",
+  "finished_slice_gate_passed": false
+}

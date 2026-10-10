@@ -40,5 +40,13 @@
     "render_farm_allowed": false,
     "hired_labour_allowed": false,
     "commercial_use_licence_evidence_required": true
+  },
+  "visual_direction": {
+    "status": "author_accepted_direction_specific_designs_open",
+    "decision": "Active/Film/00_Control/00.30_decision_log/DEC-0021_muted_colour_noir_visual_direction.md",
+    "style": "stylised_realism",
+    "palette": "muted_full_colour",
+    "contrast": "strong_shadows_with_information_readability",
+    "grain": "subtle_strength_pending_moving_image_review"
   }
 }

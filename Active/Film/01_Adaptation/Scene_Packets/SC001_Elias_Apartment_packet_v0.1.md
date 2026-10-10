@@ -1,6 +1,6 @@
 # SC001 — Elias's apartment: production scene packet v0.1
 
-Status: **packet drafted for the first layout test**. Screenplay direction accepted under DEC-0012; production preparation authorised by the author's “okay lets do it” on 2026-10-10. No visual design, shot specification, animation or finished vertical slice is approved by this document. DEC-0020 records the scope and judgements.
+Status: **packet drafted for the first layout test**. Screenplay direction accepted under DEC-0012; production preparation authorised by the author's “okay lets do it” on 2026-10-10. DEC-0021 subsequently accepts the overall visual direction; specific designs, shot specifications, animation and finished vertical slice remain open. DEC-0020 records the scope and judgements.
 
 ## Authority and boundary
 
@@ -79,9 +79,9 @@ First result should be a rough continuous timing review, not finished rendering:
 
 ## Open design and environment decisions
 
-1. Chris's intended visual direction: stylised, more realistic, or an intermediate approach. No look is silently locked.
+1. Overall direction accepted under DEC-0021: stylised realism, muted full colour, strong shadow contrast and subtle grain. Exact grade, lighting and grain strength need moving-image review.
 2. Elias's appearance, wardrobe and pigeon style; source-backed details separate from design inventions.
-3. Desktop tools: Blender installation/version, VS Code/Codex access and GPU/RAM. This environment cannot inspect Chris's Windows PC.
+3. Desktop evidence now confirms Blender 5.2.2 LTS running, AMD FX-6300 (6 cores/6 threads), 24 GB DDR3 and Radeon RX 5500 XT with about 4 GB GDDR6. VS Code/Codex installation is author-reported. Blender system report detects HIP GPU. Render performance and local execution remain untested; this environment cannot directly inspect Chris's Windows PC.
 4. Initial technical settings and execution route. Versioned bpy is the default reproducible route once specifications exist; MCP is optional, not a prerequisite.
 
 ## Review criteria
@@ -91,4 +91,4 @@ First result should be a rough continuous timing review, not finished rendering:
 - Performance: pain and decision pause legible; no medication moral judgement or unearned menace.
 - Pace: measure natural duration; record where letter/physical tasks need more time. Do not certify the whole feature's running time from this sample.
 - Reuse/cost: character, mug, jacket and tools remain reusable; no paid dependency; external resources have licence evidence before final use.
-- Gate: packet drafted only. Next steps are visual direction and desktop verification, then shot specification and rough blockout; completed slice must still cover final assets, animation, lighting, audio and edit.
+- Gate: packet drafted only. Overall visual direction and hardware inventory are now established; next verify local execution, develop shot specifications and rough blockout; completed slice must still cover final assets, animation, lighting, audio and edit.

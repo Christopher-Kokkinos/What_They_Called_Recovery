@@ -23,11 +23,12 @@
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": "SC001",
-    "status": "provisional_shot_layout_specified_local_execution_pending",
+    "status": "blockout_script_prepared_local_execution_pending",
     "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
     "timing_hypothesis_seconds": 115,
     "finished_slice_gate_passed": false,
-    "layout_spec": "Active/Film/04_Scenes/SC001/SC001_layout_test_spec_v0.1.json"
+    "layout_spec": "Active/Film/04_Scenes/SC001/SC001_layout_test_spec_v0.1.json",
+    "build_script": "Active/Film/04_Scenes/Automation/build_sc001_blockout.py"
   },
   "story_authority": {
     "publication_master": "Active/Production/",

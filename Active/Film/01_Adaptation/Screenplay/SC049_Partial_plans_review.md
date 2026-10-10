@@ -1,19 +1,28 @@
-# SC049 — Partial plans: individual scene review
+# SC049 — Partial plans: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_42.txt`. Mapped units: SRC-C42-01, SRC-C42-02; register entries: ADP0205, ADP0206 (all provisional). Screen text: `SC049_Partial_plans_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_42.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C42-01 / ADP0205 | KEEP | Jackie, Voss, Vale, Zoe and Elias hold different parts of the plan. A legacy channel keyed to AC019 and an ordinary vehicle hire create a credible signal. |
+| SRC-C42-02 / ADP0206 | KEEP | A narrowly framed signal about P06-11803's contradicted authority and original presentation site draws Cain toward the old assessment centre. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C42-01` | KEEP | Jackie, Voss, Vale, Zoe and Elias hold different parts of the plan. A legacy channel keyed to AC019 and an ordinary vehicle hire create a credible signal. | SEQ-11: Retain this source event: Jackie, Voss, Vale, Zoe and Elias hold different parts of the plan. A legacy channel keyed to AC019 and an ordinary vehicle hire create a credible signal. Screen carrier and knowledge limit: Compartmental knowledge is deliberate; avoid portraying any one person as omniscient. |
-| `SRC-C42-02` | KEEP | A narrowly framed signal about P06-11803's contradicted authority and original presentation site draws Cain toward the old assessment centre. | SEQ-11: Retain this source event: A narrowly framed signal about P06-11803's contradicted authority and original presentation site draws Cain toward the old assessment centre. Screen carrier and knowledge limit: The message is a lure and a real evidentiary claim, not a promise that the archive is physically there. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Make decoy a truthful limited signal that Cain interprets, not a fabricated promise of archive possession. Crosscut five bounded contributions and their uncertainties; nobody acquires the master plan. Vehicle timing is correlation, not proof of Vale causing it.
 
-- `SRC-C42-01`: SEQ-11; scene-by-scene review required under DEC-0011; source boundary: five partial plans → bait prepared
-- `SRC-C42-02`: SEQ-11; scene-by-scene review required under DEC-0011; source boundary: presentation-site message → Cain moves
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe learns to accept distributed control even for the plan she initiates. Jackie moves under her own identity, never a replacement target. Elias gives contingencies without claiming a guaranteed rescue.
+
+## Continuity and reveal custody
+
+Friday messages and move times retained; former presentation site already introduced. AC019 legacy standby not a new forged commission. Reservation uncertainty explicit. Cain chooses to infer more than signal says. Mac specific referral reserved to SC050.
+
+## Compression and production review
+
+Condense supplier calls and channel activity into one contribution each. No operational recipe for evasion or extraordinary tracking. Keep uncomfortable waiting rather than successful extraction choreography.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

@@ -1,25 +1,31 @@
-# SC043 — A record beyond the drive: individual scene review
+# SC043 — A record beyond the drive: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_37.txt`. Mapped units: SRC-C37-01, SRC-C37-02, SRC-C37-03, SRC-C37-04, SRC-C37-05; register entries: ADP0180, ADP0181, ADP0182, ADP0183, ADP0184 (all provisional). Screen text: `SC043_A_record_beyond_the_drive_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_37.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C37-01 / ADP0180 | KEEP | Elaine Foster opens Westmere's H09-55216 record, compares migrated and older material, and finds a protected-placement account attached to the suspicious upload. |
+| SRC-C37-02 / ADP0181 | COMPRESS | Elaine contacts Martin Hale, who recalls a protected desk and retains a notebook but no child records. She samples other historic cases, including ordinary ones. |
+| SRC-C37-03 / ADP0182 | KEEP | Legal preservation meets an urgent reconciliation/courier request; Elaine questions its timing and origin. Mac and Cain cannot safely erase the past without creating a present trace. |
+| SRC-C37-04 / ADP0183 | KEEP | Priya requests a supported written contractor example. Voss and Vale supply a bounded account as Westmere's inquiry begins to stand on its own. |
+| SRC-C37-05 / ADP0184 | KEEP | Helen challenges Mac's claim to have kept Zoe safe and cuts the habitual phone route; Zoe and Elias relocate after a new exposure. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C37-01` | KEEP | Elaine Foster opens Westmere's H09-55216 record, compares migrated and older material, and finds a protected-placement account attached to the suspicious upload. | SEQ-10: Retain this source event: Elaine Foster opens Westmere's H09-55216 record, compares migrated and older material, and finds a protected-placement account attached to the suspicious upload. Screen carrier and knowledge limit: A genuine institutional inquiry now exists independently of Zoe's copy. |
-| `SRC-C37-02` | COMPRESS | Elaine contacts Martin Hale, who recalls a protected desk and retains a notebook but no child records. She samples other historic cases, including ordinary ones. | SEQ-10: Elaine checks old notebook and samples normal cases; the notebook is workflow evidence, not a child-record substitute. |
-| `SRC-C37-03` | KEEP | Legal preservation meets an urgent reconciliation/courier request; Elaine questions its timing and origin. Mac and Cain cannot safely erase the past without creating a present trace. | SEQ-10: Retain this source event: Legal preservation meets an urgent reconciliation/courier request; Elaine questions its timing and origin. Mac and Cain cannot safely erase the past without creating a present trace. Screen carrier and knowledge limit: Preserve exact provenance of requests, rather than treating every staff action as concealment. |
-| `SRC-C37-04` | KEEP | Priya requests a supported written contractor example. Voss and Vale supply a bounded account as Westmere's inquiry begins to stand on its own. | SEQ-10: Retain this source event: Priya requests a supported written contractor example. Voss and Vale supply a bounded account as Westmere's inquiry begins to stand on its own. Screen carrier and knowledge limit: Institutional investigators can continue without Zoe disclosing the entire drive. |
-| `SRC-C37-05` | KEEP | Helen challenges Mac's claim to have kept Zoe safe and cuts the habitual phone route; Zoe and Elias relocate after a new exposure. | SEQ-10: Retain this source event: Helen challenges Mac's claim to have kept Zoe safe and cuts the habitual phone route; Zoe and Elias relocate after a new exposure. Screen carrier and knowledge limit: Their separation from Mac is a present choice, not retroactive innocence. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Crosscut genuine institutional action with Helen ending the habitual Mac route. Elaine follows documentary provenance, protects a subset and stops a timed collection; the courier is not assigned unproved criminal knowledge.
 
-- `SRC-C37-01`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: North Vale notice → Westmere compliance
-- `SRC-C37-02`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: retired colleague → old notebook
-- `SRC-C37-03`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: preservation vs archive movement
-- `SRC-C37-04`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: contractor statement → parallel investigations
-- `SRC-C37-05`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: Helen/Brian break with Mac → Zoe moves
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe has to tolerate evidence becoming independent of her. Helen makes Mac say Zoe rather than placement; her present refusal does not rewrite her past. Elias offers a bounded choice instead of claiming control over the inquiry.
+
+## Continuity and reveal custody
+
+Preservation request at 08:07; refusal at 11:48 after the request; direct North Vale/Westmere comparison follows. Martin has process notes, not retained child files. Normal RPA confidentiality stays legitimate. Zoe does not know Helen called Mac.
+
+## Compression and production review
+
+Compress institutional sampling into contrasting visible files, not an omniscient database. Keep courier refusal copy as a new independent contemporary trace; do not add a warrant or general accusation.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

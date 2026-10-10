@@ -1,17 +1,27 @@
-# SC047 — Three messages: individual scene review
+# SC047 — Three messages: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_40.txt`. Mapped units: SRC-C40-05; register entries: ADP0199 (all provisional). Screen text: `SC047_Three_messages_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_40.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C40-05 / ADP0199 | KEEP | Zoe links a later outside enquiry to the renewed attempt to control her placement. Voss relays an image of three messages from an unknown number; Elias stops before showing Zoe. They say Jackie was forced to give the first route, did not give the second, and her siblings are alive. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C40-05` | KEEP | Zoe links a later outside enquiry to the renewed attempt to control her placement. Voss relays an image of three messages from an unknown number; Elias stops before showing Zoe. They say Jackie was forced to give the first route, did not give the second, and her siblings are alive. | SEQ-10: Retain this source event: Zoe links a later outside enquiry to the renewed attempt to control her placement. Voss relays an image of three messages from an unknown number; Elias stops before showing Zoe. They say Jackie was forced to give the first route, did not give the second, and her siblings are alive. Screen carrier and knowledge limit: Jackie is likely the sender, not yet authenticated. Her message revises Zoe's betrayal inference from Chapters 5 and 13 before the Chapter 41 challenge response. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Let the three messages interrupt the completed household reckoning. Give them space rather than embedding them in an exposition montage. Likely contact is emotionally enormous and evidentially limited; do not certify device safety.
 
-- `SRC-C40-05`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: drive away → Jackie message
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe wants her friend before a plan; Elias asks rather than commands. Her hurt is revised by new information, not retroactively declared foolish. Their shared restraint enables the next authentication step.
+
+## Continuity and reveal custody
+
+First/second-route and living-siblings reveal first appears here; SC019 earlier selective cutaway must not disclose these details. Voss preserves image; Elias parks before sharing. Authentication only in SC048.
+
+## Compression and production review
+
+One room and one stationary car carry the short pivot. Retain ordinary farm-shop contrast and pause before replying. Do not add a traceable address or a locator miracle.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

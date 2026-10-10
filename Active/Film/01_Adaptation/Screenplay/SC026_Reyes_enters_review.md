@@ -1,21 +1,29 @@
-# SC026 — Reyes enters: individual scene review
+# SC026 — Reyes enters: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_20.txt`. Mapped units: SRC-C20-04, SRC-C20-05, SRC-C20-06; register entries: ADP0099, ADP0100, ADP0101 (all provisional). Screen text: `SC026_Reyes_enters_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_20.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C20-04 / ADP0099 | KEEP | Vale locates the identity bridge and warns against approach; Voss orders a hold. Reyes verifies signs of occupation but enters before backup, driven partly by the market encounter. |
+| SRC-C20-05 / ADP0100 | KEEP | Elias kills Reyes in the fight, then takes the operational phone and learns Voss and Vale's names and positions. His familiar capacity to work around a death frightens him. |
+| SRC-C20-06 / ADP0101 | KEEP | Elias tells Zoe he killed Reyes and had set the trap. She rejects his claim that Reyes had a meaningful choice and asks about someone he once taught. Elias postpones that history. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C20-04` | KEEP | Vale locates the identity bridge and warns against approach; Voss orders a hold. Reyes verifies signs of occupation but enters before backup, driven partly by the market encounter. | SEQ-06: Retain this source event: Vale locates the identity bridge and warns against approach; Voss orders a hold. Reyes verifies signs of occupation but enters before backup, driven partly by the market encounter. Screen carrier and knowledge limit: He is competent yet impatient. The staged room and adjoining partition enable Elias's ambush. |
-| `SRC-C20-05` | KEEP | Elias kills Reyes in the fight, then takes the operational phone and learns Voss and Vale's names and positions. His familiar capacity to work around a death frightens him. | SEQ-06: Retain this source event: Elias kills Reyes in the fight, then takes the operational phone and learns Voss and Vale's names and positions. His familiar capacity to work around a death frightens him. Screen carrier and knowledge limit: Physical cost, shaking and the trainee's remembered presence resist a frictionless victory; Voss and Vale later find the body. |
-| `SRC-C20-06` | KEEP | Elias tells Zoe he killed Reyes and had set the trap. She rejects his claim that Reyes had a meaningful choice and asks about someone he once taught. Elias postpones that history. | SEQ-06: Retain this source event: Elias tells Zoe he killed Reyes and had set the trap. She rejects his claim that Reyes had a meaningful choice and asks about someone he once taught. Elias postpones that history. Screen carrier and knowledge limit: Her judgment remains her own; the truth changes trust without resolving it. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Reyes is competent and gathers real occupancy signs, then disobeys a hold through impatience and pride. The fatal fight has cost and no triumphant release. Elias unequivocally owns the staged killing.
 
-- `SRC-C20-04`: SEQ-06; scene-by-scene review required under DEC-0011; source boundary: Reyes arrives → breach alone
-- `SRC-C20-05`: SEQ-06; scene-by-scene review required under DEC-0011; source boundary: struggle → operational phone taken
-- `SRC-C20-06`: SEQ-06; scene-by-scene review required under DEC-0011; source boundary: return → Zoe asks directly
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe retains moral judgement; his honesty exposes him to rejection rather than earning automatic forgiveness. Voss/Vale confront their own supervisory failure and grief.
+
+## Continuity and reveal custody
+
+Reyes alone dies; Voss and Vale survive and discover missing operational phone. Elias first learns their names here. Captured phone shielded after brief unlocked access; Zoe stays on agreed fallback. Sam question leads directly to SC027.
+
+## Compression and production review
+
+Compress combat without giving a replicable killing technique. Intercut Zoe watch and survivor discovery; retain tremor, mints, exact admission and no exoneration. No accidental-death framing.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

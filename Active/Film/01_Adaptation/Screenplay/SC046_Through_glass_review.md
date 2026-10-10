@@ -1,23 +1,30 @@
-# SC046 — Through glass: individual scene review
+# SC046 — Through glass: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_40.txt`. Mapped units: SRC-C40-01, SRC-C40-02, SRC-C40-03, SRC-C40-04; register entries: ADP0195, ADP0196, ADP0197, ADP0198 (all provisional). Screen text: `SC046_Through_glass_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_40.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C40-01 / ADP0195 | KEEP | Voss finds the observation booking and layout; Zoe sees that Helen and Brian viewed her through glass before agreeing to the placement. |
+| SRC-C40-02 / ADP0196 | KEEP | The adults remember Mac's after-hours visit, the girl on the other side, resemblance and their different doubts. |
+| SRC-C40-03 / ADP0197 | KEEP | Brian recognised possible deliberate resemblance; Helen knew there could still be family. Both nevertheless accepted. |
+| SRC-C40-04 / ADP0198 | KEEP | Zoe approaches the building but chooses not to enter; she keeps her response to herself and closes her notebook. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C40-01` | KEEP | Voss finds the observation booking and layout; Zoe sees that Helen and Brian viewed her through glass before agreeing to the placement. | SEQ-10: Retain this source event: Voss finds the observation booking and layout; Zoe sees that Helen and Brian viewed her through glass before agreeing to the placement. Screen carrier and knowledge limit: Legitimate observation rooms were repurposed for a private presentation. Booking and memory have different evidentiary reach. |
-| `SRC-C40-02` | KEEP | The adults remember Mac's after-hours visit, the girl on the other side, resemblance and their different doubts. | SEQ-10: Retain this source event: The adults remember Mac's after-hours visit, the girl on the other side, resemblance and their different doubts. Screen carrier and knowledge limit: Zoe's own activity in the room is partly unknowable to them; avoid replacing her personhood with the lost child's image. |
-| `SRC-C40-03` | KEEP | Brian recognised possible deliberate resemblance; Helen knew there could still be family. Both nevertheless accepted. | SEQ-10: Retain this source event: Brian recognised possible deliberate resemblance; Helen knew there could still be family. Both nevertheless accepted. Screen carrier and knowledge limit: Their responsibility lies in choices they recall, not proof they knew every later mechanism. |
-| `SRC-C40-04` | KEEP | Zoe approaches the building but chooses not to enter; she keeps her response to herself and closes her notebook. | SEQ-10: Retain this source event: Zoe approaches the building but chooses not to enter; she keeps her response to herself and closes her notebook. Screen carrier and knowledge limit: Her interiority need not be voiced or written immediately. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Keep metadata, records and remembered viewing visually distinguishable. Show Mac leaving interpretive gaps rather than inventing an explicit rescue lie. Both adults leave and later accept, preserving time for refusal; no instantaneous spell absolves them.
 
-- `SRC-C40-01`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: floor plan/booking → observation room
-- `SRC-C40-02`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: Helen and Brian's recollection → first viewing
-- `SRC-C40-03`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: decision and acceptance → responsibility
-- `SRC-C40-04`: SEQ-10; scene-by-scene review required under DEC-0011; source boundary: Zoe visits exterior → private reckoning
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe owns the pace and privacy of her reckoning. Brian recognises the moral question but later agrees. Helen love is real and insufficient justification. Zoe refuses to weaponise unrelated children even at her most personal hurt.
+
+## Continuity and reveal custody
+
+Legitimate observation infrastructure is repurposed; ordinary worker complicity unknown. P3/P06/RCP0193 links land here. Novel viewing content belongs to adult recollection, not an invented audio/video archive. Three Jackie messages withheld to SC047.
+
+## Compression and production review
+
+Condense lengthy car/kitchen arguments to observation scene, departure and next-morning call. Keep paperback, pencil and Zoe distinct mannerisms; no matching faces montage. Exterior visit ends at her chosen boundary.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

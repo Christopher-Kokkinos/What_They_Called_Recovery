@@ -1,17 +1,27 @@
-# SC054 — Custody: individual scene review
+# SC054 — Custody: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_46.txt`. Mapped units: SRC-C46-01; register entries: ADP0225 (all provisional). Screen text: `SC054_Custody_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_46.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C46-01 / ADP0225 | KEEP | Ruth takes a separate sealed envelope from Zoe. At a secure office an evidence officer records Zoe's signature, bags and seals the original drive, preserving restricted access and an audit trail. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C46-01` | KEEP | Ruth takes a separate sealed envelope from Zoe. At a secure office an evidence officer records Zoe's signature, bags and seals the original drive, preserving restricted access and an audit trail. | SEQ-12: Retain this source event: Ruth takes a separate sealed envelope from Zoe. At a secure office an evidence officer records Zoe's signature, bags and seals the original drive, preserving restricted access and an audit trail. Screen carrier and knowledge limit: Keep the separate envelope, original drive, earlier copies and Zoe's now nearly empty backpack distinct. This is a controlled handover, not a blanket public release. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Expand handover as a concrete custody change with two objects, two recipients and two receipts. Do not imply solicitor custody makes folder immune to law or promise Zoe veto over every evidential action.
 
-- `SRC-C46-01`: SEQ-12; scene-by-scene review required under DEC-0011; source boundary: Tuesday envelope → drive handed over
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe signs after reading, carries her notebook and receives her bag back. Elias is present as support without signing or answering for her. Care shifts from personal flight burden to institutional duty.
+
+## Continuity and reveal custody
+
+Tuesday09:42 original preserved/audited protected evidence; Ruth separately holds named sealed personal folder. Earlier working copy and secondary document copy are not newly merged or erased. Repaired strap recalls earlier practical care.
+
+## Compression and production review
+
+Keep scene quiet and brief; paperwork needs only readable essential fields. Proposed receipt/door beats make custody visible. No new medical, address or unrelated-child content is disclosed.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

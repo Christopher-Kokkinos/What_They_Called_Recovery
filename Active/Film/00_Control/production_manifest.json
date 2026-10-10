@@ -14,8 +14,10 @@
     "source": "canonical novel",
     "screenplay_format": "Fountain plain text",
     "register": "Active/Film/00_Control/adaptation_register.csv",
-    "status": "whole_film_scene_draft_v0_1_provisionally_accepted_individual_scene_review_pending",
-    "direct_prose_to_shot_generation_allowed": false
+    "status": "whole_film_source_developed_working_screenplay_production_refinement_pending",
+    "direct_prose_to_shot_generation_allowed": false,
+    "decision_authority": "Active/Film/00_Control/00.30_decision_log/DEC-0019_independent_scene_development.md",
+    "judgement_register": "Active/Film/01_Adaptation/Screenplay/Scene_Judgement_Register_SC002-SC057.md"
   },
   "vertical_slice": {
     "target_duration_minutes_min": 2,

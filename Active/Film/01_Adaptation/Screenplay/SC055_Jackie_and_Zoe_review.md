@@ -1,17 +1,27 @@
-# SC055 — Jackie and Zoe: individual scene review
+# SC055 — Jackie and Zoe: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_46.txt`. Mapped units: SRC-C46-02; register entries: ADP0226 (all provisional). Screen text: `SC055_Jackie_and_Zoe_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_46.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C46-02 / ADP0226 | KEEP | Jackie and Zoe meet on their own terms, speak about the coercion and the pain of each thinking the other had chosen differently, then return to familiar humour. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C46-02` | KEEP | Jackie and Zoe meet on their own terms, speak about the coercion and the pain of each thinking the other had chosen differently, then return to familiar humour. | SEQ-12: Retain this source event: Jackie and Zoe meet on their own terms, speak about the coercion and the pain of each thinking the other had chosen differently, then return to familiar humour. Screen carrier and knowledge limit: Jackie's siblings are being found and considered as people with changed lives, not simply recovered props. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Preserve permission before embrace and mutual injury without demanding instant forgiveness. Make siblings people with changed lives and wishes, not prizes recovered after a clever rescue. Ordinary food/humour restores friendship without resetting its history.
 
-- `SRC-C46-02`: SEQ-12; scene-by-scene review required under DEC-0011; source boundary: Jackie enters → friendship renewed
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe apologises for her inference; Jackie can name her own anger. Zoe listens instead of becoming rescuer-manager again. Jackie may seek siblinghood instead of childhood parenthood. Both retain control of what is shared.
+
+## Continuity and reveal custody
+
+Tuesday12:06 after drive handover; café chosen by Jackie, Claire nearby because thirteen, Elias outside. Protected sibling contact occurred by choice; no address or guaranteed joint household. Green coat explicitly not Zoe first-decoy coat.
+
+## Compression and production review
+
+Keep source reunion substantially intact with shortened exchanges. No investigative interview disguised as reunion; no invented sibling arrival or reconciliation photograph.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

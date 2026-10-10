@@ -1,25 +1,31 @@
-# SC041 — North Vale answers: individual scene review
+# SC041 — North Vale answers: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_35.txt`. Mapped units: SRC-C35-01, SRC-C35-02, SRC-C35-03, SRC-C35-04, SRC-C35-05; register entries: ADP0170, ADP0171, ADP0172, ADP0173, ADP0174 (all provisional). Screen text: `SC041_North_Vale_answers_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_35.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C35-01 / ADP0170 | KEEP | They draft a neutral inquiry about a supplemental authority in case H09-55216, removing accusations and assumptions. |
+| SRC-C35-02 / ADP0171 | KEEP | The authentic base reference appears; North Vale cannot find the supplemental order and disputes the power it purports to confer. |
+| SRC-C35-03 / ADP0172 | KEEP | North Vale creates its own new file in response, beyond the shadow archive's control. Mac and Cain learn that the claimed authority has been challenged. |
+| SRC-C35-04 / ADP0173 | KEEP | Vale traces timestamps suggesting a destination had been prepared before the supposed authority for moving the child. |
+| SRC-C35-05 / ADP0174 | KEEP | Zoe records one demonstrable discrepancy: true base case, nonexistent supplement, disputed power and an independently opened inquiry. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C35-01` | KEEP | They draft a neutral inquiry about a supplemental authority in case H09-55216, removing accusations and assumptions. | SEQ-09: Retain this source event: They draft a neutral inquiry about a supplemental authority in case H09-55216, removing accusations and assumptions. Screen carrier and knowledge limit: Exact question scope makes a usable answer possible. |
-| `SRC-C35-02` | KEEP | The authentic base reference appears; North Vale cannot find the supplemental order and disputes the power it purports to confer. | SEQ-09: Retain this source event: The authentic base reference appears; North Vale cannot find the supplemental order and disputes the power it purports to confer. Screen carrier and knowledge limit: A real underlying case can carry a false addition. Preserve redactions and provenance of Priya's written reply. |
-| `SRC-C35-03` | KEEP | North Vale creates its own new file in response, beyond the shadow archive's control. Mac and Cain learn that the claimed authority has been challenged. | SEQ-09: Retain this source event: North Vale creates its own new file in response, beyond the shadow archive's control. Mac and Cain learn that the claimed authority has been challenged. Screen carrier and knowledge limit: Their response is evidence of exposure, not proof they can erase the independent record. |
-| `SRC-C35-04` | KEEP | Vale traces timestamps suggesting a destination had been prepared before the supposed authority for moving the child. | SEQ-09: Retain this source event: Vale traces timestamps suggesting a destination had been prepared before the supposed authority for moving the child. Screen carrier and knowledge limit: Sequence raises a causal allegation requiring the source timestamps and authenticated order to travel together. |
-| `SRC-C35-05` | KEEP | Zoe records one demonstrable discrepancy: true base case, nonexistent supplement, disputed power and an independently opened inquiry. | SEQ-09: Retain this source event: Zoe records one demonstrable discrepancy: true base case, nonexistent supplement, disputed power and an independently opened inquiry. Screen carrier and knowledge limit: This is stronger than a broad unverified archive dump; it does not yet resolve every case. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Preserve neutral question, public institutional route and written provenance. North Vale defines its own authority and absence of supplement; it does not solve authorship or every trafficking claim.
 
-- `SRC-C35-01`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: narrow question → North Vale
-- `SRC-C35-02`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: base exists → supplement absent
-- `SRC-C35-03`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: organisation opens file → outside record
-- `SRC-C35-04`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: destination precedes order → sequence reversed
-- `SRC-C35-05`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: proof bounded → next move
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe tolerates an answer narrower than her anger, corrects decision to destination and allows an independent process beyond her control.
+
+## Continuity and reveal custody
+
+Priya external solicitor; initially no Zoe/drive/location. H09 case distinct from yellow coat. NV-CF base/suffix, written limits, separate copies and present incident. Destination timing alone not mental-state proof.
+
+## Compression and production review
+
+Compress receipt/waiting into visible changes. Keep written answer after oral relay; do not replace North Vale with one infallible heroic official. Independent record now survives archive loss.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

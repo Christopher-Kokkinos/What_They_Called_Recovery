@@ -1,6 +1,6 @@
 # Whole-film scene index v0.1
 
-Status: **provisionally accepted as a combined whole-film pass** (DEC-0013). This is a first screenplay pass through the approved twelve-sequence story arc. SC001 and SC003–SC006 have separately accepted screenplay directions (DEC-0012, DEC-0014–0017). DEC-0018 records the author's pass of SC007–SC057 reviews and working directions; SC002 remains open separately. SC021 was expanded on 2026-10-10 and its revised detail awaits review. Individual draft/review links are in `Scene_Review_Queue_SC007-SC057.md`; SC022–SC057 remain exact compact-pass extracts; SC007–SC021 have source-developed individual drafts. A scene groups source units for a screen purpose, not necessarily a one-to-one chapter conversion. The register retains provisional dispositions until each implementation is reviewed.
+Status: **completed whole-film working screenplay pass under DEC-0019**, with author refinements during production. All 57 standalone scenes are mirrored in the combined screenplay and linked to the provisionally accepted 230-unit register. Earlier accepted directions remain; SC002 retained after source check, SC021 chronology corrected, SC022–SC057 expanded. Logs record judgement and compression; source links alone do not prove fidelity. Packets, shots, pacing and vertical-slice gates remain separate. See [judgement register](Scene_Judgement_Register_SC002-SC057.md).
 
 | Sequence | Scenes | Principal screen movement | Main source |
 |---|---|---|---|

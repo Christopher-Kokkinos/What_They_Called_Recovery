@@ -1,21 +1,29 @@
-# SC025 — A fallback and a bait room: individual scene review
+# SC025 — A fallback and a bait room: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_20.txt`. Mapped units: SRC-C20-01, SRC-C20-02, SRC-C20-03; register entries: ADP0096, ADP0097, ADP0098 (all provisional). Screen text: `SC025_A_fallback_and_a_bait_room_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_20.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C20-01 / ADP0096 | KEEP | Zoe learns to reverse the farm van within the yard and rehearses signals, routes, shelter and a deadline if Elias fails to return. |
+| SRC-C20-02 / ADP0097 | KEEP | Elias identifies a rentable lock-up that the hunters may find, arranges a believable occupied refuge and tells Zoe he intends to trap Reyes. |
+| SRC-C20-03 / ADP0098 | KEEP | Zoe tests the contingency and challenges what the planned violence means for trust. Elias leaves by motorcycle; she maintains their watch and her own deadline. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C20-01` | KEEP | Zoe learns to reverse the farm van within the yard and rehearses signals, routes, shelter and a deadline if Elias fails to return. | SEQ-06: Retain this source event: Zoe learns to reverse the farm van within the yard and rehearses signals, routes, shelter and a deadline if Elias fails to return. Screen carrier and knowledge limit: Backpack, folder, drive, cash, map, alarm, ditch and gate are concrete parts of her plan; driving is confined to the yard. |
-| `SRC-C20-02` | KEEP | Elias identifies a rentable lock-up that the hunters may find, arranges a believable occupied refuge and tells Zoe he intends to trap Reyes. | SEQ-06: Retain this source event: Elias identifies a rentable lock-up that the hunters may find, arranges a believable occupied refuge and tells Zoe he intends to trap Reyes. Screen carrier and knowledge limit: Old traces from Elias's trainee make the staging credible. He does not plant Zoe's personal items as bait. |
-| `SRC-C20-03` | KEEP | Zoe tests the contingency and challenges what the planned violence means for trust. Elias leaves by motorcycle; she maintains their watch and her own deadline. | SEQ-06: Retain this source event: Zoe tests the contingency and challenges what the planned violence means for trust. Elias leaves by motorcycle; she maintains their watch and her own deadline. Screen carrier and knowledge limit: The trap is Elias's choice. Zoe's agreement to stay does not make her responsible for its fatal outcome. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Keep the planned trap as Elias responsibility and Zoe refusal to bless its logic. The fallback is rehearsed and modified with her, not merely handed over. Ordinary memories remain part of life beyond threat.
 
-- `SRC-C20-01`: SEQ-06; scene-by-scene review required under DEC-0011; source boundary: van practice → fallback rehearsal
-- `SRC-C20-02`: SEQ-06; scene-by-scene review required under DEC-0011; source boundary: exposed identity → lock-up bait
-- `SRC-C20-03`: SEQ-06; scene-by-scene review required under DEC-0011; source boundary: farmhouse departure → separate agency
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe controls the ignition after a stall and owns a practical contingency. She can remain at the farmhouse while condemning the trap; participation is not consent to killing.
+
+## Continuity and reveal custody
+
+Yard driving only; foot escape via ditch, shelter and blue gate. Written deadline four ten. Lock-up linked through an old identity and real prior use; no personal child props as bait. Sam unnamed.
+
+## Compression and production review
+
+Combine five preparation days without losing the day markers, ordinary notebook memory or moral disagreement. Exact mechanics remain directing details; deadlines and safe-name refusal are causal obligations.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

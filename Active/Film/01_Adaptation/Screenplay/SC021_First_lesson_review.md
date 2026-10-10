@@ -1,6 +1,6 @@
 # SC021 — First lesson: source-developed scene review
 
-**Status:** Working direction passed with the ordered reviews under DEC-0018. This expanded 2026-10-10 revision awaits review of its new scene detail. Source dispositions remain provisional; no packet or shot is approved.
+**Status:** Working direction passed with the ordered reviews under DEC-0018. DEC-0019 authorises independent completion; revised detail can be refined during production. Source dispositions remain provisional; no packet or shot is approved.
 
 **Source:** `Reports/Manuscript_Text/Chapter_17.txt`, read across the full chapter. SRC-C17-01–04 / ADP0082–0085. The standalone Fountain body is mirrored exactly in SC021 of `Whole_Film_Screenplay_v0.1.fountain`.
 
@@ -29,7 +29,7 @@ The ridge walk is offscreen and its result spoken, as in the source. Zoe carryin
 
 ## Continuity and reveal limits
 
-- Arrival is Tuesday at 1:43 a.m.; departure is Wednesday before dawn. Confirm this clock/day relationship in SC022 development.
+- Arrival is Tuesday at 1:43 a.m.; tracker found Tuesday, observation Wednesday, departure Thursday before dawn. Corrected against Chapter 18 pursuit timestamps (47 hours silent, reappears Thursday 06:14).
 - Cottage window sees only a short slice of public road. Do not stage it as a full panoramic surveillance position. Driver/mirror inserts represent details Zoe observes; she never sees a hunter briefing or learns a name here.
 - SC020 lets the audience know about Mac's contractors. Zoe and Elias still cannot identify the estate driver or treat the engine as proof. Keep that difference in knowledge.
 - Tracker and battery remain separate in Elias's coat for SC022's decoy. Hatchback stays in the barn; replacement vehicle is uncovered and checked. SC022's existing opening summary overlaps this handoff and should be trimmed during its expansion.

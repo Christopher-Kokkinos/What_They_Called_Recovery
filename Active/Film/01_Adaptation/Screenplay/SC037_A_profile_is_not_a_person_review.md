@@ -1,25 +1,31 @@
-# SC037 — A profile is not a person: individual scene review
+# SC037 — A profile is not a person: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_31.txt`. Mapped units: SRC-C31-01, SRC-C31-02, SRC-C31-03, SRC-C31-04, SRC-C31-05; register entries: ADP0150, ADP0151, ADP0152, ADP0153, ADP0154 (all provisional). Screen text: `SC037_A_profile_is_not_a_person_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_31.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C31-01 / ADP0150 | COMPRESS | Zoe inspects a recipient profile and its earlier viewing/child reference, uncovering how a household can be assessed and primed before a match. |
+| SRC-C31-02 / ADP0151 | COMPRESS | Recognition, preferences and a prior child feed a matching process. An ordinary wish for a family can be used by the hidden system. |
+| SRC-C31-03 / ADP0152 | COMPRESS | Vale's experience and Zoe's analysis show how sponsor supplied explanations discourage independent checking while sounding protective. |
+| SRC-C31-04 / ADP0153 | VISUALISE | Zoe sees that fear of losing a loved child can keep adults from asking questions and make attachment valuable to the operation. |
+| SRC-C31-05 / ADP0154 | KEEP | Zoe refuses to repeat the archive's habit of reducing people to scores and categories. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C31-01` | COMPRESS | Zoe inspects a recipient profile and its earlier viewing/child reference, uncovering how a household can be assessed and primed before a match. | SEQ-09: Zoe chooses when to open selected recipient images; fields are evidence and intent remains inference. |
-| `SRC-C31-02` | COMPRESS | Recognition, preferences and a prior child feed a matching process. An ordinary wish for a family can be used by the hidden system. | SEQ-09: match criteria and prior-child detail explain attachment without treating suitability score as proof of purchase. |
-| `SRC-C31-03` | COMPRESS | Vale's experience and Zoe's analysis show how sponsor supplied explanations discourage independent checking while sounding protective. | SEQ-09: Vale’s remembered reassurance demonstrates reliance on sponsor-supplied explanations without proving recipient knowledge. |
-| `SRC-C31-04` | VISUALISE | Zoe sees that fear of losing a loved child can keep adults from asking questions and make attachment valuable to the operation. | SEQ-09: Zoe’s response to attachment scoring and household record carries leverage idea; Helen/Brian’s individual knowledge remains open. |
-| `SRC-C31-05` | KEEP | Zoe refuses to repeat the archive's habit of reducing people to scores and categories. | SEQ-09: Retain this source event: Zoe refuses to repeat the archive's habit of reducing people to scores and categories. Screen carrier and knowledge limit: Her restraint with private images and identities informs the later evidence plan. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Retain child-loss matching as exploitation of adult vulnerability without implying every recipient is a monster or knows origin fraud. Do not open private images just to make an emotional montage.
 
-- `SRC-C31-01`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: recipient images → selected familiarity
-- `SRC-C31-02`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: match criteria → attachment
-- `SRC-C31-03`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: remembered recipient → plausible reassurance
-- `SRC-C31-04`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: loving household → leverage
-- `SRC-C31-05`: SEQ-09; scene-by-scene review required under DEC-0011; source boundary: archive ethics → Zoe's choice
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe resists the archive habit of treating reachable private material as hers. Elias acknowledges real family attachment while keeping knowledge categories specific.
+
+## Continuity and reveal custody
+
+Anonymous RCP-0447/K08 not Helen and Brian. D2 backed by signed non-standard-route paper. Seven AC019 profiles not children. Controlled introduction inferred; glass not confirmed yet.
+
+## Compression and production review
+
+Compress motive dates and scores, preserve prior-child anchor, independently corroborated loss and sponsor-only acknowledgement. Private assessments/images stay closed; no unneeded name for dead child.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

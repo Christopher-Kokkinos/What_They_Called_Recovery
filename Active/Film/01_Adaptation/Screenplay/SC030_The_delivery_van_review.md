@@ -1,19 +1,28 @@
-# SC030 — The delivery van: individual scene review
+# SC030 — The delivery van: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_23.txt`. Mapped units: SRC-C23-04, SRC-C23-05; register entries: ADP0114, ADP0115 (all provisional). Screen text: `SC030_The_delivery_van_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_23.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C23-04 / ADP0114 | KEEP | Their arrangement is disrupted by another observer connected to Mac. Voss and Vale make a decision under pressure, and Elias and Zoe use a delivery van and altered route to escape. |
+| SRC-C23-05 / ADP0115 | COMPRESS | Zoe and Elias evaluate what Voss and Vale revealed and what their conduct proved, without treating the encounter as full alliance. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C23-04` | KEEP | Their arrangement is disrupted by another observer connected to Mac. Voss and Vale make a decision under pressure, and Elias and Zoe use a delivery van and altered route to escape. | SEQ-07: Retain this source event: Their arrangement is disrupted by another observer connected to Mac. Voss and Vale make a decision under pressure, and Elias and Zoe use a delivery van and altered route to escape. Screen carrier and knowledge limit: Distinguish the hunters' own coverage from Mac's additional watcher and the actual vehicle each pair takes. |
-| `SRC-C23-05` | COMPRESS | Zoe and Elias evaluate what Voss and Vale revealed and what their conduct proved, without treating the encounter as full alliance. | SEQ-07: Zoe and Elias assess what the contractors disclosed and did; no instant alliance. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Explicitly retain the driver consent before the van is used. Shared exit and Vale blocking the shot prove a bounded choice, not blanket trust. Subsequent route change makes the inquiry arc causal.
 
-- `SRC-C23-04`: SEQ-07; scene-by-scene review required under DEC-0011; source boundary: café exit → pursuers exposed
-- `SRC-C23-05`: SEQ-07; scene-by-scene review required under DEC-0011; source boundary: after escape → information gained
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe proposes the route; Elias follows after checking. Her voluntary temporary bag handoff tests respect for ownership. Voss/Vale risk themselves without acquiring claims over her.
+
+## Continuity and reveal custody
+
+Delivery van consent, shot, abandoned at distribution site; bus then black hatchback. Original evidence stays in backpack and is returned before garage key. Farmhouse not revisited; intermediary route compromised.
+
+## Compression and production review
+
+Compress pursuit to the necessary vehicle chain and public exit. No theft label when driver grants use. Keep black hatchback and movement towards offline inquiry to set SC031.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

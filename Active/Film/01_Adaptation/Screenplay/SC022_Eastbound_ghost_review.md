@@ -1,21 +1,29 @@
-# SC022 — Eastbound ghost: individual scene review
+# SC022 — Eastbound ghost: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_18.txt`. Mapped units: SRC-C18-02, SRC-C18-03, SRC-C18-05; register entries: ADP0087, ADP0088, ADP0090 (all provisional). Screen text: `SC022_Eastbound_ghost_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_18.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C18-02 / ADP0087 | KEEP | Elias and Zoe carry the recovered transmitter away from the cottage and use it to draw the team toward a chosen location. Zoe presses what choice its discovery gives them. |
+| SRC-C18-03 / ADP0088 | KEEP | They move to a less secluded farmhouse with water, exits and usable vehicles, and establish survival and escape options. |
+| SRC-C18-05 / ADP0090 | KEEP | Zoe maps the hunters as separate threats and contributes to the plan for detecting them. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C18-02` | KEEP | Elias and Zoe carry the recovered transmitter away from the cottage and use it to draw the team toward a chosen location. Zoe presses what choice its discovery gives them. | SEQ-05: Retain this source event: Elias and Zoe carry the recovered transmitter away from the cottage and use it to draw the team toward a chosen location. Zoe presses what choice its discovery gives them. Screen carrier and knowledge limit: Device continues pulsing; keep its decoy path distinct from their actual refuge. |
-| `SRC-C18-03` | KEEP | They move to a less secluded farmhouse with water, exits and usable vehicles, and establish survival and escape options. | SEQ-05: Retain this source event: They move to a less secluded farmhouse with water, exits and usable vehicles, and establish survival and escape options. Screen carrier and knowledge limit: Site's separate ownership trail is vulnerable to Vale's records work. Farm van and other routes become later fallback tools. |
-| `SRC-C18-05` | KEEP | Zoe maps the hunters as separate threats and contributes to the plan for detecting them. | SEQ-05: Retain this source event: Zoe maps the hunters as separate threats and contributes to the plan for detecting them. Screen carrier and knowledge limit: Three markers/beans and a map make her analytical role visible; the search has not ended. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Keep the decoy ethical cost visible rather than treat it as a clever consequence-free trick. Days at the farmhouse establish trust through respected property and practical care, then Zoe proposes three search functions, not confirmed knowledge of three named hunters.
 
-- `SRC-C18-02`: SEQ-05; scene-by-scene review required under DEC-0011; source boundary: device moved → search redirected
-- `SRC-C18-03`: SEQ-05; scene-by-scene review required under DEC-0011; source boundary: farmhouse → fallback examined
-- `SRC-C18-05`: SEQ-05; scene-by-scene review required under DEC-0011; source boundary: Monday at farmhouse → three-person model
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe moves from disputing a plan to changing its terms. Elias waits for her response and repairs only the offered strap. Her analytical inference makes their partnership visible.
+
+## Continuity and reveal custody
+
+Tracker reconnected only at freight stop; trailer travels east while pair go west. Farmhouse has a different, discoverable ownership trail. Keys, ditch, farm van, repaired strap and original drive remain available for later scenes. Zoe has no contractor names.
+
+## Compression and production review
+
+Compress four farmhouse days into labelled transitions. Retain the risk argument, bag boundary and three-bean model. Extra domestic banter is shortened; the sewing question sets up Sam without disclosing him.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

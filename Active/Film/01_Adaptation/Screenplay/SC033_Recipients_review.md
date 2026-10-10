@@ -1,25 +1,31 @@
-# SC033 — Recipients: individual scene review
+# SC033 — Recipients: development and judgement log
 
-**Status:** Draft for individual author review. The combined v0.1 pass is provisionally accepted under DEC-0013; this scene is not separately accepted.
+**Status:** Completed working screenplay scene under DEC-0019; author refinements deferred to production. Dispositions remain provisional; no shot or packet approval implied.
 
-**Source:** `Reports/Manuscript_Text/Chapter_27.txt`. Mapped units: SRC-C27-01, SRC-C27-02, SRC-C27-03, SRC-C27-04, SRC-C27-05; register entries: ADP0130, ADP0131, ADP0132, ADP0133, ADP0134 (all provisional). Screen text: `SC033_Recipients_draft.fountain`, identical to the corresponding compact block of `Whole_Film_Screenplay_v0.1.fountain`.
+**Source navigation:** `Reports/Manuscript_Text/`: Chapter_27.txt. Body synchronized with the combined screenplay.
 
-**Changes from combined pass:** None. This standalone file extracts the existing compact scene without adding dialogue or action. The source links below are obligations to check, not proof that the compact block fully implements them.
+| Source unit / register | Disposition | Retained story obligation |
+|---|---|---|
+| SRC-C27-01 / ADP0130 | COMPRESS | Zoe and Elias inspect household suitability and candidate records that precede a child's placement. |
+| SRC-C27-02 / ADP0131 | COMPRESS | They trace how children are matched to assessed recipients, with monitoring and preferences embedded in coded records. |
+| SRC-C27-03 / ADP0132 | KEEP | Vale reconsiders an earlier crying recipient and the child she delivered, once interpreted as normal foster placement. |
+| SRC-C27-04 / ADP0133 | VISUALISE | Zoe sees that a child can be loved in a placement while the system benefits from that attachment and can use it as leverage. |
+| SRC-C27-05 / ADP0134 | VISUALISE | Zoe lists houses, jobs, match scores and leverage, then identifies the compartmental design of the operation. |
 
-| Source unit | Disposition | Narrative function to verify in this scene | Registered screen carrier / intended treatment |
-|---|---|---|---|
-| `SRC-C27-01` | COMPRESS | Zoe and Elias inspect household suitability and candidate records that precede a child's placement. | SEQ-08: recipient-matrix sample shows assessment before placement; a score alone does not prove household knowledge. |
-| `SRC-C27-02` | COMPRESS | They trace how children are matched to assessed recipients, with monitoring and preferences embedded in coded records. | SEQ-08: selected match fields and missing links distinguish assessed recipients from proven child outcomes. |
-| `SRC-C27-03` | KEEP | Vale reconsiders an earlier crying recipient and the child she delivered, once interpreted as normal foster placement. | SEQ-08: Retain this source event: Vale reconsiders an earlier crying recipient and the child she delivered, once interpreted as normal foster placement. Screen carrier and knowledge limit: Retrospective doubt is not proof of that woman's knowledge or of every handover. |
-| `SRC-C27-04` | VISUALISE | Zoe sees that a child can be loved in a placement while the system benefits from that attachment and can use it as leverage. | SEQ-08: Zoe reads attachment fields then withholds judgment on Helen/Brian until their own records emerge in SEQ-09/10. |
-| `SRC-C27-05` | VISUALISE | Zoe lists houses, jobs, match scores and leverage, then identifies the compartmental design of the operation. | SEQ-08: Zoe groups houses, jobs, matches and leverage in a bounded evidence map; no omnipotent single institution. |
+## Judgement and reason
 
-**Recommendations before scene approval:**
+Show selection fields without displaying vulnerable child rows. Keep love, stable placement and adult culpability distinct; the system can exploit affection without making affection false or lawful.
 
-- `SRC-C27-01`: SEQ-08; scene-by-scene review required under DEC-0011; source boundary: rented office → recipient matrix
-- `SRC-C27-02`: SEQ-08; scene-by-scene review required under DEC-0011; source boundary: placement matches → child and household
-- `SRC-C27-03`: SEQ-08; scene-by-scene review required under DEC-0011; source boundary: Vale's remembered handover → changed reading
-- `SRC-C27-04`: SEQ-08; scene-by-scene review required under DEC-0011; source boundary: care as control → Zoe's moral conflict
-- `SRC-C27-05`: SEQ-08; scene-by-scene review required under DEC-0011; source boundary: compartments → investigative strategy
-- Check each mapped source passage directly, then develop observable action, character turns, geography, runtime and dialogue where the compact block falls short. Preserve the approved treatment, sequence order and reveal boundaries.
-- Keep the adaptation register provisional until the author reviews this scene and its eventual production packet.
+## Relationship / agency movement
+
+Zoe chooses another case before her household, sets a stop boundary and protects others despite wanting answers. Elias asks what she wants rather than forcing calm or disclosure.
+
+## Continuity and reveal custody
+
+RCP fields, sponsor and match threshold introduced; motive definitions remain unavailable. Beige estate replaces black hatchback; original stays hers. Adult-house enquiries remain separate from matching proof. Next question returns to Monday trigger.
+
+## Compression and production review
+
+Compress vehicle purchase and profile examples; retain approved-unmatched state, schema-only consent and ordinary love memory. The caring recipient recalled by Vale is not Helen identified by coincidence.
+
+Dialogue is selected or shortened from the source, with connective wording and visible staging proposed for film. These are adaptation choices, not amendments to novel canon. Production can refine performance, pacing and blocking while preserving the above obligations.

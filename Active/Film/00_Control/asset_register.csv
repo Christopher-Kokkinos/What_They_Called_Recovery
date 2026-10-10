@@ -1,1 +1,13 @@
 asset_id,asset_type,name,source,canonical_path,status,notes
+CHR_Elias,character,Elias,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+CHR_Pigeon,character,Pigeon reused twice,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+SET_EliasFlat,set,Elias flat and movable set components,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_AlarmClock,prop,Bedside alarm clock,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_PrescriptionStrip,prop,Prescribed medication strip,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_TorchTools,prop_group,Torch and ordered tools,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_ResignationLetter,prop,MAC envelope and notice,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_EliasJacket,costume,Departure jacket with inner pocket,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_Keys,prop,Elias keys,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_CoffeeMug,prop,Morning mug reused in SC002,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_ClothesPost,set_dressing,Clothes and unread post,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
+PRP_ShowerFixture,prop,Implied shower fixture,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected

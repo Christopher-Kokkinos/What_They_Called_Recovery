@@ -22,8 +22,11 @@
   "vertical_slice": {
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
-    "scene_id": null,
-    "status": "blocked_pending_adaptation_map"
+    "scene_id": "SC001",
+    "status": "candidate_packet_drafted_design_and_environment_open",
+    "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
+    "timing_hypothesis_seconds": 115,
+    "finished_slice_gate_passed": false
   },
   "story_authority": {
     "publication_master": "Active/Production/",

@@ -23,7 +23,7 @@
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": "SC001",
-    "status": "blockout_v02_cropping_reviewed_v03_ten_shot_test_pending",
+    "status": "blockout_v03_desktop_reviewed_camera_and_blocking_refinement_required",
     "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
     "timing_hypothesis_seconds": 115,
     "finished_slice_gate_passed": false,
@@ -31,12 +31,12 @@
     "build_script": "Active/Film/04_Scenes/Automation/build_sc001_blockout.py",
     "desktop_test": {
       "blender": "5.2.2 LTS",
-      "builder_version": "0.1",
-      "result": "saved_and_three_stills_rendered_structure_validated",
-      "evidence": "Reports/Film/2026-10-10_sc001_desktop_visual_review.md",
-      "visual_result": "v02_images_crop_corrected_composition_readability_refinement_pending"
+      "builder_version": "0.3",
+      "result": "ten_stills_and_report_verified_script_spec_match",
+      "evidence": "Reports/Film/2026-10-10_sc001_v03_ten_camera_review.md",
+      "visual_result": "partial_layout_usable_unintended_crops_and_performance_obligations_open"
     },
-    "review_report": "Reports/Film/2026-10-10_sc001_v02_review_v03_preparation.md"
+    "review_report": "Reports/Film/2026-10-10_sc001_v03_ten_camera_review.md"
   },
   "story_authority": {
     "publication_master": "Active/Production/",

@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.1. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.2. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -41,11 +41,12 @@ def main():
     validate_spec(spec)
     import bpy
     from mathutils import Vector
+    from bpy_extras.object_utils import world_to_camera_view
     if not bpy.app.background or bpy.data.filepath:
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.1')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.2')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -54,6 +55,10 @@ def main():
     scene.render.fps = spec['fps']
     scene.frame_start, scene.frame_end = spec['frame_start'], spec['frame_end']
     scene.render.image_settings.file_format = 'PNG'
+    scene.render.image_settings.color_mode = 'RGB'
+    scene.render.film_transparent = False
+    scene.display.shading.background_type = 'VIEWPORT'
+    scene.display.shading.background_color = (.12, .14, .16)
     scene.display.shading.light = 'STUDIO'
     scene.display.shading.color_type = 'OBJECT'
     scene.display.shading.show_shadows = True
@@ -91,7 +96,14 @@ def main():
     box('SET_EliasFlat_bed', (2,4,.35), (1.5,2,.7), 'SET')
     box('SET_EliasFlat_drawer', (3.25,4,.65), (.7,.8,1.3), 'SET')
     box('SET_EliasFlat_fake_fireplace', (2,6.6,.5), (1.5,.4,1), 'SET')
-    box('SET_EliasFlat_window_frame', (0,4.5,1.4), (.08,1.8,1.3), 'SET')
+    # Hollow frame: the v0.1 solid slab hid the outside pigeon proxies.
+    for side, pos, size in [
+        ('lower', (0,4.5,.75), (.08,1.8,.08)),
+        ('upper', (0,4.5,2.05), (.08,1.8,.08)),
+        ('left', (0,3.6,1.4), (.08,.08,1.3)),
+        ('right', (0,5.4,1.4), (.08,.08,1.3)),
+    ]:
+        box('SET_EliasFlat_window_frame_' + side, pos, size, 'SET')
     box('SET_EliasFlat_outside_ledge', (-.35,4.5,.9), (.7,1.8,.12), 'SET')
     box('SET_EliasFlat_entry_marker', (7.5,.05,1), (1,.1,2), 'SET')
     box('SET_EliasFlat_kitchen_counter', (6,5.8,.5), (2.8,.8,1), 'SET')
@@ -141,7 +153,49 @@ def main():
     for i, shot in enumerate(spec['shots']):
         root.location = placements[i]
         root.keyframe_insert(data_path='location', frame=shot['frame_end'])
-    scene.camera = collections['CAMERAS'].objects[0]
+    # Fit diagnostic subjects from their actual bounds, including evaluated text.
+    # This tests containment, not occlusion or legibility; still review is mandatory.
+    framing_checks = []
+    subjects = {
+        0: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'] + [o.name for o in root.children],
+        3: ['SET_EliasFlat_kitchen_counter', 'PRP_TorchTools', 'PRP_ClothesPost'] + [o.name for o in root.children],
+        6: ['PRP_ResignationLetter', 'Notice_exact_text', 'PRP_MACEnvelope', 'Envelope_label'],
+        9: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'],
+    }
+    for index, names in subjects.items():
+        scene.frame_set(spec['shots'][index]['frame_start'])
+        bpy.context.view_layer.update()
+        deps = bpy.context.evaluated_depsgraph_get()
+        points = []
+        for name in names:
+            obj = scene.objects[name].evaluated_get(deps)
+            points.extend(obj.matrix_world @ Vector(corner) for corner in obj.bound_box)
+        center = sum(points, Vector()) / len(points)
+        cam = scene.objects[spec['shots'][index]['shot_id']]
+        if index == 6:
+            # Top-down insert remains a diagnostic view, not final hand performance.
+            cam.data.type = 'ORTHO'
+            cam.data.ortho_scale = 1.8
+            cam.location = center + Vector((0,0,2))
+        else:
+            direction = (cam.location - center).normalized()
+            cam.location = center + direction * max((cam.location-center).length, 2)
+        cam.rotation_euler = (center-cam.location).to_track_quat('-Z','Y').to_euler()
+        for attempt in range(80):
+            bpy.context.view_layer.update()
+            projected = [world_to_camera_view(scene, cam, point) for point in points]
+            if all(.06 <= p.x <= .94 and .06 <= p.y <= .94 and p.z > 0 for p in projected):
+                break
+            if cam.data.type == 'ORTHO':
+                cam.data.ortho_scale *= 1.08
+            else:
+                cam.location = center + (cam.location-center) * 1.08
+        else:
+            raise RuntimeError('Could not safely frame ' + cam.name)
+        framing_checks.append({'shot':cam.name, 'subjects':names, 'margin':.06,
+                               'containment_passed':True, 'camera_type':cam.data.type,
+                               'position':list(cam.location), 'ortho_scale':cam.data.ortho_scale})
+    scene.camera = scene.objects['SC001_SH001']
     scene.frame_set(1)
     assert scene.render.fps == spec['fps']
     assert (scene.frame_start, scene.frame_end) == (spec['frame_start'], spec['frame_end'])
@@ -152,10 +206,10 @@ def main():
     assert len(scene.timeline_markers) == 10
     assert all(m.camera and m.frame == s['frame_start'] for m,s in zip(scene.timeline_markers, spec['shots']))
     assert len([o for o in collections['CHARACTERS'].objects if o.name.startswith('CHR_Pigeon_')]) == 2
-    blend = out / 'SC001_blockout_v0.1.blend'
+    blend = out / 'SC001_blockout_v0.2.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
-    report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Diagnostic boxes and discrete staging, not performance animation','Letter, mug and keys custody not animated','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
+    report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Diagnostic boxes and discrete staging, not performance animation','Letter, mug and keys custody not animated','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     if options.render_stills:
         for frame in [1, 889, 1561]:
             scene.frame_set(frame)

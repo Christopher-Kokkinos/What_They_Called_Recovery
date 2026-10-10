@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.2. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.3. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -33,9 +33,19 @@ def validate_spec(spec):
     assert hashlib.sha256(content).hexdigest() == spec['screenplay_sha256'], 'Screenplay changed; review specification first'
 
 
+def select_review_shots(spec, render_stills=False, render_shot_review=False):
+    if render_shot_review:
+        return spec['shots']
+    if render_stills:
+        return [s for s in spec['shots'] if s['frame_start'] in {1, 889, 1561}]
+    return []
+
+
 def main():
     args = argparse.ArgumentParser()
     args.add_argument('--render-stills', action='store_true')
+    args.add_argument('--render-shot-review', action='store_true',
+                      help='Render one labelled still per shot; supersedes --render-stills')
     options = args.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
     spec = json.loads(SPEC.read_text(encoding='utf-8'))
     validate_spec(spec)
@@ -46,7 +56,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.2')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.3')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -61,7 +71,9 @@ def main():
     scene.display.shading.background_color = (.12, .14, .16)
     scene.display.shading.light = 'STUDIO'
     scene.display.shading.color_type = 'OBJECT'
-    scene.display.shading.show_shadows = True
+    # Diagnostic text must not cast an offset duplicate onto the paper.
+    # Final lighting/shadow direction remains governed by DEC-0021.
+    scene.display.shading.show_shadows = False
     collections = {}
     for name in ['SET', 'CHARACTERS', 'PROPS', 'CAMERAS', 'LABELS']:
         col = bpy.data.collections.new('SC001_' + name)
@@ -114,7 +126,7 @@ def main():
     for i in range(8):
         box('Prescription_cell_%02d' % i, (3.04+(i%4)*.13,3.79+(i//4)*.09,1.35), (.08,.06,.015), color=((.12,.12,.12,1) if i < 2 else (.85,.82,.7,1)))
     box('PRP_TorchTools', (6.8,5.8,1.07), (.55,.22,.12))
-    box('PRP_ClothesPost', (4.8,1,.18), (.6,.4,.35))
+    box('PRP_ClothesPost', (4.5,4.9,.18), (.6,.4,.35))
     box('PRP_ShowerFixture', (9,6,1.7), (.25,.25,.15))
     box('PRP_CoffeeMug', (5.2,5.6,1.16), (.18,.18,.3))
     box('PRP_Keys', (6.6,5.6,1.04), (.18,.1,.02))
@@ -206,17 +218,29 @@ def main():
     assert len(scene.timeline_markers) == 10
     assert all(m.camera and m.frame == s['frame_start'] for m,s in zip(scene.timeline_markers, spec['shots']))
     assert len([o for o in collections['CHARACTERS'].objects if o.name.startswith('CHR_Pigeon_')]) == 2
-    blend = out / 'SC001_blockout_v0.2.blend'
+    blend = out / 'SC001_blockout_v0.3.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Diagnostic boxes and discrete staging, not performance animation','Letter, mug and keys custody not animated','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
-    if options.render_stills:
-        for frame in [1, 889, 1561]:
+    review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review)
+    report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('three_stills' if options.render_stills else 'build_only')
+    report['builder_version'] = '0.3'
+    report['diagnostic_shadows'] = scene.display.shading.show_shadows
+    report['shot_review'] = []
+    if review_shots:
+        for shot in review_shots:
+            frame = shot['frame_start']
             scene.frame_set(frame)
-            scene.render.filepath = str(out / ('frame_%04d.png' % frame))
+            scene.camera = scene.objects[shot['shot_id']]
+            filename = (shot['shot_id'] + '_frame_%04d.png' % frame) if options.render_shot_review else ('frame_%04d.png' % frame)
+            scene.render.filepath = str(out / filename)
             bpy.ops.render.render(write_still=True, scene=scene.name)
             assert Path(scene.render.filepath).is_file()
             report['stills'].append(scene.render.filepath)
+            report['shot_review'].append({'shot_id':shot['shot_id'], 'beat_id':shot['beat_id'],
+                                         'frame':frame, 'camera':scene.camera.name,
+                                         'review_check':shot['review_check'], 'image':scene.render.filepath})
+        assert len(report['stills']) == len(review_shots)
     (out / 'validation.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print('SC001 OUTPUT:', out)
     print('STRUCTURE VALIDATED; VISUAL REVIEW PENDING')

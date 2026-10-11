@@ -67,7 +67,7 @@ assert m.bedside_lean(810)==1 and m.bedside_lean(888)==0
 assert 1.25<m.root_at(350)[0]<2.75
 assert math.isclose(m.root_at(350)[2]-.05-.05,0,abs_tol=1e-9)
 for f in range(810,871):
- local=m.upper_point((.32,0,1.4),f);shoulder=(2.5-local[1],5.8+local[0],.1+local[2]);goal=(3.22,5.80+(f-810)/60*.48,.72)
+ local=m.upper_point((.32,0,1.4),f);pos=m.root_at(f);shoulder=(pos[0]-local[1],pos[1]+local[0],pos[2]+local[2]);goal=(3.22,5.80+(f-810)/60*.48,.72)
  assert math.dist(shoulder,goal)<=.70
 print('Bed-edge/floor-contact plan and closure reach PASS')
 

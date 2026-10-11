@@ -3,6 +3,8 @@ Linear blocking, editorial elisions at shot boundaries, no final performance.
 """
 import math
 
+BEDSIDE_LEAN_RADIANS = .66
+
 ROOT_KEYS = [
     (1,(2,5.15,.85)),(270,(2,5.15,.85)),(350,(2.50,5.8,.10)),
     (888,(2.50,5.8,.10)),(889,(5,4.6,0)),(1128,(5,4.6,0)),
@@ -48,7 +50,9 @@ def lerp_keys(keys, frame):
 
 
 def root_at(frame):
-    return lerp_keys(ROOT_KEYS,frame)
+    x,y,z = lerp_keys(ROOT_KEYS,frame)
+    lean = bedside_lean(frame)
+    return (x+.20*lean,y-.08*lean,z)
 
 
 def pose_weights(frame):
@@ -102,5 +106,5 @@ def bedside_lean(frame):
 
 def upper_point(point,frame):
     """Rigid upper-body rotation around shared seated hip pivot."""
-    x,y,z=point;angle=.85*bedside_lean(frame);c=math.cos(angle);s=math.sin(angle)
+    x,y,z=point;angle=BEDSIDE_LEAN_RADIANS*bedside_lean(frame);c=math.cos(angle);s=math.sin(angle)
     return (x,y*c-(z-.75)*s,.75+y*s+(z-.75)*c)

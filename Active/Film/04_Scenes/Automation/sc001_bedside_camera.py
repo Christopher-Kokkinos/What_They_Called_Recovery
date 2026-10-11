@@ -20,6 +20,13 @@ def configure(bpy,scene,cam):
             centre=sum(corners,Vector())/8
             # Centre plus inset samples towards four upper corners.
             targets=[centre]+[centre.lerp(corners[i],.6) for i in [1,3,5,7]]
+            if name == 'Prescription_label':
+                # Dense full-bounds grid catches initial glyph occlusion missed by inset rays.
+                low=Vector(tuple(min(c[j] for c in obj.bound_box) for j in range(3)))
+                high=Vector(tuple(max(c[j] for c in obj.bound_box) for j in range(3)))
+                targets=[obj.matrix_world @ Vector((low.x+(high.x-low.x)*u/20,
+                         low.y+(high.y-low.y)*v/4,(low.z+high.z)/2))
+                         for u in range(21) for v in range(5)]
             for index,target in enumerate(targets):
                 delta=target-cam.location
                 hit,location,normal,face,blocker,matrix=scene.ray_cast(deps,cam.location,delta.normalized(),distance=delta.length+.001)

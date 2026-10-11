@@ -1,6 +1,6 @@
 """Apply scoped coarse animation to owned SC001 objects; no external scene writes."""
 import math
-from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point
+from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS
 
 
 def apply_motion(bpy, scene, root, defaults, spec, box):
@@ -64,7 +64,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
         for obj in body:
             if obj.name in {'CHR_Elias_torso','CHR_Elias_head','CHR_Elias_left_arm','CHR_Elias_right_arm'}:
                 obj.location=upper_point(tuple(obj.location),frame)
-                obj.rotation_euler.x=.85*lean
+                obj.rotation_euler.x=BEDSIDE_LEAN_RADIANS*lean
         head=scene.objects['CHR_Elias_head']
         head.rotation_euler.x+=.08 if 1260<=frame<=1300 else 0
         for obj in [root]+body:

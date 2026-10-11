@@ -30,3 +30,9 @@ assert all(math.isclose(a,b,abs_tol=1e-12) for f in [2720,2760] for a,b in zip(m
 assert len(m.sample_frames(spec))==len(set(m.sample_frames(spec)))
 assert all(a['frame']<b['frame'] for a,b in zip(m.EVENTS,m.EVENTS[1:]))
 print('SC001 pure motion checks PASS; Blender runtime/visual gate separate')
+
+# Bed geometry: head towards +Y pillow, sitting root beyond +X side, not foot (-Y).
+assert m.root_at(1)==(2,3.15,.85)
+assert m.root_rotation(1)[0]<0
+assert m.root_at(350)[0]>2.75 and 3<m.root_at(350)[1]<5
+assert math.isclose(m.root_rotation(350)[2],math.pi/2)

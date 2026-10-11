@@ -4,8 +4,8 @@ Linear blocking, editorial elisions at shot boundaries, no final performance.
 import math
 
 ROOT_KEYS = [
-    (1,(2,4.85,.85)),(270,(2,4.85,.85)),(350,(2,2.87,0)),
-    (888,(2,2.87,0)),(889,(5,4.6,0)),(1128,(5,4.6,0)),
+    (1,(2,3.15,.85)),(270,(2,3.15,.85)),(350,(2.80,3.8,.10)),
+    (888,(2.80,3.8,.10)),(889,(5,4.6,0)),(1128,(5,4.6,0)),
     (1129,(9,5,0)),(1368,(9,5,0)),(1369,(5.1,5,0)),
     (2160,(5.1,5,0)),(2161,(6.7,4.7,0)),(2440,(6.7,4.7,0)),
     (2520,(6.7,4.7,0)),(2521,(1.2,4.5,0)),(2640,(1.2,4.5,0)),(2720,(7.5,-.7,0)),
@@ -85,3 +85,7 @@ def preview_frames(spec):
 
 def shot_at(spec,frame):
     return next(s for s in spec['shots'] if s['frame_start']<=frame<=s['frame_end'])
+
+def root_rotation(frame):
+    lying,seated=pose_weights(frame)
+    return (-lying*math.pi/2,0,seated*math.pi/2)

@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.6. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.7. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -66,7 +66,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.6')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.7')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -116,6 +116,7 @@ def main():
     # Cutaway layout: ceiling/front/partitions omitted for unobstructed diagnostic cameras.
     box('SET_EliasFlat_north_wall', (5,7,1.3), (10,.1,2.6), 'SET', (.55,.55,.52,1))
     box('SET_EliasFlat_bed', (2,4,.35), (1.5,2,.7), 'SET')
+    box('SET_EliasFlat_pillow',(2,4.75,.75),(.85,.35,.10),'SET')
     box('SET_EliasFlat_drawer', (3.25,4,.65), (.7,.8,1.3), 'SET')
     box('SET_EliasFlat_fake_fireplace', (2,6.6,.5), (1.5,.4,1), 'SET')
     # Hollow frame: the v0.1 solid slab hid the outside pigeon proxies.
@@ -191,7 +192,7 @@ def main():
     # Discrete staging only. No claim to sleeping/pain/letter/mug performance.
     bpy.context.preferences.edit.keyframe_new_interpolation_type = 'CONSTANT'
     placements = [(2,4.85,.85),(2,2.87,0),(2,2.87,0),(5,4.6,0),(9,5,0),(5.1,5,0),(5.1,5,0),(6.7,4.7,0),(1.2,4.5,0),(7.5,-1,0)]
-    cameras = [((3,1,2.3),(0.9,4.6,1.2),28),((3.8,2.3,1.7),(2.1,3.5,1),45),((3.25,3.3,2.1),(3.25,3.9,1.32),55),((6,1.3,2.2),(6,5.5,1),32),((8,3.6,1.9),(9,6,1.3),40),((7.8,3.4,2.1),(5.5,5.6,1.1),40),((6,5.3,2.4),(6,5.3,1.03),48),((7.8,2.4,2.1),(6.7,4.7,1.1),35),((2.8,3,1.8),(.1,4.5,1.2),35),((3,1,2.3),(0.9,4.6,1.2),28)]
+    cameras = [((3,1,2.3),(0.9,4.6,1.2),28),((5.1,3.0,1.9),(2.8,3.8,1.1),45),((3.25,3.3,2.1),(3.25,3.9,1.32),55),((6,1.3,2.2),(6,5.5,1),32),((8,3.6,1.9),(9,6,1.3),40),((7.8,3.4,2.1),(5.5,5.6,1.1),40),((6,5.3,2.4),(6,5.3,1.03),48),((6.3,2.3,3.8),(6.4,4.5,1.2),35),((2.8,3,1.8),(.1,4.5,1.2),35),((3,1,2.3),(0.9,4.6,1.2),28)]
     defaults = {obj.name:(obj.location.copy(),obj.scale.copy()) for obj in root.children}
     pose_checks = []
     def stage_pose(index, frame):
@@ -313,13 +314,13 @@ def main():
     assert scene.objects['PRP_PrescriptionStrip'].hide_render
     motion['final_custody_readback']='PASS'
     scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
-    blend = out / 'SC001_blockout_v0.6.blend'
+    blend = out / 'SC001_blockout_v0.7.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Paper fold and drawer closure are diagnostic approximations','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh005_sh008' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.6'
+    report['builder_version'] = '0.7'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:

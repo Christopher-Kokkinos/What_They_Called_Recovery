@@ -1,6 +1,6 @@
 """Apply scoped coarse animation to owned SC001 objects; no external scene writes."""
 import math
-from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS
+from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation
 
 
 def apply_motion(bpy, scene, root, defaults, spec, box):
@@ -26,13 +26,17 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
     initial={o.name:(o.location.copy(),o.scale.copy()) for o in moving}
     right=scene.objects['CHR_Elias_right_arm'];left=scene.objects['CHR_Elias_left_arm']
     bird=scene.objects['CHR_Pigeon_A'];bird_start=bird.location.copy()
+    palms={}
+    for side in ['left','right']:
+        palm=box('CHR_Elias_'+side+'_palm',(0,0,0),(.10,.08,.10),'CHARACTERS',(.27,.32,.36,1))
+        palm.parent=root;palms[side]=palm
     frames=sample_frames(spec)
     for frame in frames:
         pos=root_at(frame);lying,seated=pose_weights(frame)
-        root.location=pos;root.rotation_euler=(lying*math.pi/2,0,0)
+        root.location=pos;root.rotation_euler=root_rotation(frame)
         for obj in body:
             location,scale=defaults[obj.name]
-            obj.location=location.copy();obj.scale=scale.copy()
+            obj.location=location.copy();obj.scale=scale.copy();obj.rotation_euler=(0,0,0)
             if 'thigh' in obj.name:
                 obj.location.y=-.25*seated;obj.location.z=.59+.1*seated
                 obj.scale=(.18,.22+.38*seated,.38-.2*seated)
@@ -40,7 +44,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
                 obj.location.y=-.5*seated;obj.location.z=.2+.12*seated
                 obj.scale=(.18,.22-.04*seated,.4+.24*seated)
             elif obj==right and seated:
-                obj.location=(-.04,-.22,1.0);obj.scale=(.43,.15,.16)
+                obj.location=(-.02,-.23,1.05);obj.scale=(.48,.15,.16)
         if 1190<=frame<=1280:
             right.location=(.25,-.25,1.4);right.scale=(.16,.2,.4)
         if 1400<=frame<1540 or frame>=2420:
@@ -84,15 +88,40 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
         for name in ['PRP_ResignationLetter','PRP_MACEnvelope']:
             obj=scene.objects[name];base,scale=initial[name]
             t=max(0,min(1,(frame-2300)/40));pocket=carried_position(frame,(.12,-.17,1.2))
+            if frame>=2161:
+                base=(6.05,4.15,1.03) if name=='PRP_ResignationLetter' else (6.60,4.15,1.015)
             obj.location=tuple(a+(b-a)*t for a,b in zip(base,pocket))
             fold=max(0,min(1,(frame-2220)/40)) if name=='PRP_ResignationLetter' else t
             # One scaled slab is only a symbolic folded packet, not paper simulation.
             obj.scale=tuple(v*(1-.7*fold) for v in scale)
             obj.rotation_euler=(t*math.pi/2,0,0)
             for channel in ['location','scale','rotation_euler']:obj.keyframe_insert(data_path=channel,frame=frame)
-        for name,limit in [('Notice_exact_text',2220),('Envelope_label',2300)]:
+        for name,limit in [('Notice_exact_text',2161),('Envelope_label',2161)]:
             obj=scene.objects[name];obj.hide_render=frame>=limit;obj.hide_viewport=frame>=limit
             obj.keyframe_insert(data_path='hide_render',frame=frame);obj.keyframe_insert(data_path='hide_viewport',frame=frame)
+        from mathutils import Vector, Euler
+        for side in ['left','right']:
+            active=(1400<=frame<1540 or frame>=2420) if side=='left' else (2220<=frame)
+            palm=palms[side];palm.hide_render=not active;palm.hide_viewport=not active
+            if side=='left':
+                goal=Vector(target)+Vector((.12,0,.11))
+            elif frame>=2380:
+                goal=Vector(keybase)+keys.location
+            else:
+                goal=scene.objects['PRP_ResignationLetter'].location.copy()
+            if active:
+                endpoint=Euler(root_rotation(frame)).to_matrix().transposed() @ (goal-Vector(pos))
+                shoulder=Vector((-.32 if side=='left' else .32,0,1.4))
+                arm=left if side=='left' else right
+                arm.location=(shoulder+endpoint)/2
+                arm.scale=(.13,.13,(endpoint-shoulder).length)
+                arm.rotation_euler=(endpoint-shoulder).to_track_quat('Z','Y').to_euler()
+                palm.location=endpoint
+                for channel in ['location','rotation_euler','scale']:
+                    arm.keyframe_insert(data_path=channel,frame=frame)
+                    palm.keyframe_insert(data_path=channel,frame=frame)
+            for channel in ['hide_render','hide_viewport']:
+                palm.keyframe_insert(data_path=channel,frame=frame)
         jacket=scene.objects['PRP_EliasJacket']
         jacket.location=carried_position(frame,(0,.18,1.1)) if frame>=1369 else initial[jacket.name][0]
         jacket.keyframe_insert(data_path='location',frame=frame)

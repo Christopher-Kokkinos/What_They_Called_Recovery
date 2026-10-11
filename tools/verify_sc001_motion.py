@@ -34,7 +34,7 @@ print('SC001 pure motion checks PASS; Blender runtime/visual gate separate')
 # Bed geometry: head towards +Y pillow, sitting root beyond +X side, not foot (-Y).
 assert m.root_at(1)==(2,5.15,.85)
 assert m.root_rotation(1)[0]<0
-assert m.root_at(350)[0]>2.75 and 5<m.root_at(350)[1]<7
+assert 2.25<m.root_at(350)[0]<2.75 and 5<m.root_at(350)[1]<7
 assert math.isclose(m.root_rotation(350)[2],math.pi/2)
 
 # Reach audit across every frame of each active handling interval.
@@ -58,3 +58,15 @@ for frame in range(1,2761):
   goal=tuple(a+(b-a)*t for a,b in zip(base,target));shoulder=tuple(a+b for a,b in zip(pos,(.32,0,1.4)))
   assert math.dist(goal,shoulder)<=.70
 print('All-frame handling reach audit PASS (0.70 m maximum)')
+
+assert m.camera_radial((0,0,0),0,2)==(0,2,2.0)
+assert math.isclose(m.camera_radial((0,0,0),90,2)[0],2)
+assert m.bedside_lean(810)==1 and m.bedside_lean(888)==0
+
+# Seated hips within mattress; foot bottoms at floor; drawer-close reach bounded.
+assert 1.25<m.root_at(350)[0]<2.75
+assert math.isclose(m.root_at(350)[2]-.05-.05,0,abs_tol=1e-9)
+for f in range(810,871):
+ shoulder=(2.9,6.12,1.2);goal=(3.22,5.80+(f-810)/60*.48,.68)
+ assert math.dist(shoulder,goal)<=.70
+print('Bed-edge/floor-contact plan and closure reach PASS')

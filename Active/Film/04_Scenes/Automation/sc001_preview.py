@@ -6,7 +6,7 @@ def write_viewer(path, entries):
     payload=json.dumps(entries).replace('<','\\u003c')
     path.write_text('''<!doctype html><meta charset="utf-8"><title>SC001 coarse motion review</title>
 <style>body{background:#20252b;color:#eee;font:16px sans-serif;margin:20px}img{display:block;max-width:100%;width:960px}input{width:80%}button{padding:8px}#info{margin:12px 0}</style>
-<h1>SC001 coarse motion review</h1><p>4 sampled frames/second • 115 seconds • silent diagnostic • timing provisional</p>
+<h1>SC001 coarse motion review</h1><p>4 sampled frames/second • sampled sequence • silent diagnostic • timing provisional</p>
 <img id="view" alt="SC001 sampled Blender frame"><div id="info"></div>
 <button id="play">Play</button> <input id="scrub" type="range" min="0" value="0" step="1">
 <p>Pause/scrub to inspect continuity. Use full-resolution stills for text readability. This preview samples the 24fps scene every six frames.</p>

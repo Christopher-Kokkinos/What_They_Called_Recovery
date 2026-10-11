@@ -1,6 +1,6 @@
 """Apply scoped coarse animation to owned SC001 objects; no external scene writes."""
 import math
-from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation
+from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean
 
 
 def apply_motion(bpy, scene, root, defaults, spec, box):
@@ -19,8 +19,8 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
     mug=group('SC001_MugMotion',[o.name for o in scene.objects if o.name=='PRP_CoffeeMug' or o.name.startswith('PRP_Mug_handle_')])
     keys=group('SC001_KeysMotion',[o.name for o in scene.objects if o.name=='PRP_Keys' or o.name.startswith('PRP_Key_')])
     # Set a shallow tray under the unchanged strip; closing slides it beneath cabinet.
-    tray=box('PRP_DrawerTray',(3.25,6.05,.52),(.61,.65,.025))
-    front=box('PRP_DrawerFront',(3.25,5.72,.48),(.62,.045,.28))
+    tray=box('PRP_DrawerTray',(3.50,6.05,.52),(.61,.65,.025))
+    front=box('PRP_DrawerFront',(3.50,5.72,.48),(.62,.045,.28))
     drawer=group('SC001_DrawerMotion',[o.name for o in scene.objects if o.name in {'PRP_PrescriptionStrip','Prescription_label','PRP_DrawerTray','PRP_DrawerFront'} or o.name.startswith('Prescription_cell_')])
     moving=[mug,keys,drawer,scene.objects['PRP_ResignationLetter'],scene.objects['PRP_MACEnvelope'],scene.objects['PRP_EliasJacket']]
     initial={o.name:(o.location.copy(),o.scale.copy()) for o in moving}
@@ -48,6 +48,8 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             elif 'calf' in obj.name:
                 obj.location.y=-.5*seated;obj.location.z=.2+.12*seated
                 obj.scale=(.18,.22-.04*seated,.4+.24*seated)
+            elif 'foot' in obj.name:
+                obj.location.y=-.55*seated-.05*(1-seated);obj.location.z=.05-.10*seated
             elif obj==right and seated:
                 obj.location=(-.02,-.23,1.05);obj.scale=(.48,.15,.16)
         if 1190<=frame<=1280:
@@ -58,9 +60,12 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             right.location=(.02,-.24,1.15);right.scale=(.43,.16,.16)
         elif frame>=2380:
             right.location=(.35,-.18,1.1);right.scale=(.16,.22,.4)
+        lean=bedside_lean(frame)
+        for name in ['CHR_Elias_torso','CHR_Elias_head']:
+            obj=scene.objects[name];obj.location.y-=.40*lean;obj.location.z-=.30*lean;obj.rotation_euler.x=.35*lean
         # Head tilt is symbolic response, not facial expression or lip sync.
         head=scene.objects['CHR_Elias_head']
-        head.rotation_euler=(.08 if 1260<=frame<=1300 else 0,0,0)
+        head.rotation_euler=(.35*lean+(.08 if 1260<=frame<=1300 else 0),0,0)
         for obj in [root]+body:
             for channel in ['location','rotation_euler','scale']:
                 obj.keyframe_insert(data_path=channel,frame=frame)
@@ -116,17 +121,19 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             obj.keyframe_insert(data_path='hide_render',frame=frame);obj.keyframe_insert(data_path='hide_viewport',frame=frame)
         from mathutils import Vector, Euler
         for side in ['left','right']:
-            active=(1400<=frame<1540 or frame>=2420) if side=='left' else (2220<=frame)
+            active=(1400<=frame<1540 or frame>=2420) if side=='left' else (810<=frame<=870 or 2220<=frame)
             palm=palms[side];palm.hide_render=not active;palm.hide_viewport=not active
             if side=='left':
                 goal=Vector(target)+Vector((.12,0,.11))
+            elif 810<=frame<=870:
+                goal=Vector((3.22,5.80+(frame-810)/60*.48,.68))
             elif frame>=2380:
                 goal=Vector(keybase)+keys.location
             else:
                 goal=scene.objects['PRP_ResignationLetter'].location.copy()
             if active:
                 endpoint=Euler(root_rotation(frame)).to_matrix().transposed() @ (goal-Vector(pos))
-                shoulder=Vector((-.32 if side=='left' else .32,0,1.4))
+                shoulder=Vector((-.32 if side=='left' else .32,-.40*lean,1.4-.30*lean))
                 arm=left if side=='left' else right
                 delta=endpoint-shoulder;distance=delta.length
                 assert .02<distance<=.70, 'Unreachable '+side+' target at frame '+str(frame)

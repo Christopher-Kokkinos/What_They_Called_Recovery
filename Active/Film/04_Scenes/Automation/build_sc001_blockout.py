@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.9. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.10. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -48,6 +48,7 @@ def main():
     args.add_argument('--render-stills', action='store_true')
     args.add_argument('--render-shot-review', action='store_true',
                       help='Render one labelled still per shot; supersedes --render-stills')
+    args.add_argument('--render-bedside-preview',action='store_true',help='Sample SH002/SH003 only for bedside action review')
     args.add_argument('--render-motion-preview', action='store_true',
                       help='Render 460 sampled 640x360 PNGs and local HTML player')
     args.add_argument('--render-targeted-review', action='store_true',
@@ -57,7 +58,7 @@ def main():
     validate_spec(spec)
     import bpy
     sys.path.insert(0,str(Path(__file__).resolve().parent))
-    from sc001_motion import sample_frames, preview_frames, shot_at, EVENTS
+    from sc001_motion import sample_frames, preview_frames, shot_at, EVENTS, camera_radial
     from sc001_motion_blender import apply_motion
     from sc001_preview import write_viewer
     from mathutils import Vector
@@ -66,7 +67,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.9')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.10')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -196,6 +197,8 @@ def main():
     for name, pos, size in [('torso',(0,0,1.1),(.45,.25,.7)),('head',(0,0,1.65),(.25,.25,.3)),('left_thigh',(-.12,0,.59),(.18,.22,.38)),('right_thigh',(.12,0,.59),(.18,.22,.38)),('left_calf',(-.12,0,.2),(.18,.22,.4)),('right_calf',(.12,0,.2),(.18,.22,.4)),('right_arm',(.32,0,1.1),(.15,.18,.65)),('left_arm',(-.32,0,1.1),(.15,.18,.65))]:
         obj = box('CHR_Elias_' + name, pos, size, 'CHARACTERS', (.27,.32,.36,1))
         obj.parent = root
+    for side,x in [('left',-.12),('right',.12)]:
+        obj=box('CHR_Elias_'+side+'_foot',(x,-.05,.05),(.18,.22,.10),'CHARACTERS',(.27,.32,.36,1));obj.parent=root
     # Discrete staging only. No claim to sleeping/pain/letter/mug performance.
     bpy.context.preferences.edit.keyframe_new_interpolation_type = 'CONSTANT'
     placements = [(2,4.85,.85),(2,2.87,0),(2,2.87,0),(5,4.6,0),(9,5,0),(5.1,5,0),(5.1,5,0),(6.7,4.7,0),(1.2,4.5,0),(7.5,-1,0)]
@@ -237,6 +240,9 @@ def main():
     # so interpolation cannot move the mannequin through a shot.
     for i, shot in enumerate(spec['shots']):
         stage_pose(i,shot['frame_end'])
+    for obj in scene.objects:
+        if obj.name.startswith(('SET_EliasFlat_bedside_','Prescription_cell_')) or obj.name in {'PRP_AlarmClock','Clock_display','PRP_PrescriptionStrip','Prescription_label'}:
+            obj.location.x += .25
     motion = apply_motion(bpy,scene,root,defaults,spec,box)
     pose_checks = []
     for shot in spec["shots"]:
@@ -304,6 +310,33 @@ def main():
         framing_checks.append({'shot':cam.name, 'subjects':names, 'margin':.06,
                                'containment_passed':True, 'camera_type':cam.data.type,
                                'sample_frames':check_frames, 'position':list(cam.location), 'ortho_scale':cam.data.ortho_scale})
+    bedside_cam=scene.objects['SC001_SH003'];bedside_cam.data.type='PERSP'
+    camera_keys=[]
+    for frame in [661,750,810,840,870,888]:
+        t=max(0,min(1,(frame-720)/90));radius=1.8+1.2*t
+        bedside_cam.location=camera_radial((2.5,5.8,0),200,radius,2.0)
+        aim=Vector((3.5,6.05,.56)).lerp(Vector((2.5,5.8,1.05)),t)
+        bedside_cam.rotation_euler=(aim-bedside_cam.location).to_track_quat('-Z','Y').to_euler()
+        bedside_cam.data.lens=65-25*t
+        bedside_cam.keyframe_insert(data_path='location',frame=frame);bedside_cam.keyframe_insert(data_path='rotation_euler',frame=frame);bedside_cam.data.keyframe_insert(data_path='lens',frame=frame)
+        camera_keys.append({'frame':frame,'radial':200,'radius':radius,'height':2.0,'aim':list(aim)})
+    framing_checks[2]['containment_passed']=None
+    framing_checks[2]['status']='replaced_by_radial_motion_camera_visual_review_pending'
+    motion['bedside_camera_keys']=camera_keys
+    occlusion=[]
+    for frame in [661,750]:
+        scene.frame_set(frame);bpy.context.view_layer.update()
+        deps=bpy.context.evaluated_depsgraph_get()
+        for name in ['Prescription_cell_00','Prescription_cell_01','Prescription_label']:
+            obj=scene.objects[name].evaluated_get(deps)
+            target=sum([obj.matrix_world @ Vector(c) for c in obj.bound_box],Vector())/8
+            origin=bedside_cam.matrix_world.translation
+            direction=(target-origin).normalized()
+            hit,location,normal,face,blocker,matrix=scene.ray_cast(deps,origin,direction,distance=(target-origin).length+.02)
+            visible=(not hit) or blocker.name==name
+            occlusion.append({'frame':frame,'target':name,'clear_centre_ray':visible,'first_hit':blocker.name if hit else None})
+    motion['bedside_occlusion_samples']=occlusion
+    motion['bedside_readability_status']='centre_rays_clear_visual_review_pending' if all(x['clear_centre_ray'] for x in occlusion) else 'occlusion_detected_visual_review_required'
     scene.camera = scene.objects['SC001_SH001']
     scene.frame_set(1)
     assert len(framing_checks) == len(spec['shots'])
@@ -326,13 +359,13 @@ def main():
     assert scene.objects['PRP_PrescriptionStrip'].hide_render
     motion['final_custody_readback']='PASS'
     scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
-    blend = out / 'SC001_blockout_v0.9.blend'
+    blend = out / 'SC001_blockout_v0.10.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Hinged paper and drawer motion remain coarse proxies','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh003_sh007' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.9'
+    report['builder_version'] = '0.10'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:
@@ -350,12 +383,13 @@ def main():
                                          'review_check':shot['review_check'], 'image':scene.render.filepath})
         assert len(report['stills']) == len(review_shots)
     report['module_sha256']={name:hashlib.sha256((Path(__file__).resolve().parent/name).read_bytes()).hexdigest() for name in ['sc001_motion.py','sc001_motion_blender.py','sc001_preview.py']}
-    if options.render_motion_preview:
+    if options.render_motion_preview or options.render_bedside_preview:
         preview_dir=out/'motion_frames';preview_dir.mkdir(exist_ok=False)
         entries=[]
         try:
             scene.render.resolution_x,scene.render.resolution_y=640,360
-            for number,frame in enumerate(preview_frames(spec)):
+            selected_frames=preview_frames(spec) if options.render_motion_preview else [f for f in preview_frames(spec) if 361<=f<=888]
+            for number,frame in enumerate(selected_frames):
                 shot=shot_at(spec,frame);scene.frame_set(frame);scene.camera=scene.objects[shot['shot_id']]
                 filename='motion_frames/frame_%04d.png'%number
                 scene.render.filepath=str(out/filename)
@@ -363,13 +397,13 @@ def main():
                 assert (out/filename).is_file()
                 cues=[e['event'] for e in EVENTS if e['frame']<=frame]
                 entries.append({'frame':frame,'shot':shot['shot_id'],'image':filename,'cue':cues[-1] if cues else 'morning hold'})
-                if number%40==0:print('SC001 MOTION PREVIEW',number,'/ 460',flush=True)
+                if number%40==0:print('SC001 MOTION PREVIEW',number,'/',len(selected_frames),flush=True)
         finally:
             scene.render.resolution_x,scene.render.resolution_y=spec['preview_resolution']
-        assert len(entries)==460
+        assert len(entries)==len(selected_frames)
         write_viewer(out/'motion_preview.html',entries)
-        (out/'motion_preview_manifest.json').write_text(json.dumps({'fps':4,'source_fps':24,'duration_seconds':115,'resolution':[640,360],'entries':entries},indent=2),encoding='utf-8')
-        report['motion_preview']={'player':str(out/'motion_preview.html'),'manifest':str(out/'motion_preview_manifest.json'),'frames':460,'fps':4,'resolution':[640,360]}
+        (out/'motion_preview_manifest.json').write_text(json.dumps({'fps':4,'source_fps':24,'duration_seconds':len(entries)/4,'resolution':[640,360],'entries':entries},indent=2),encoding='utf-8')
+        report['motion_preview']={'player':str(out/'motion_preview.html'),'manifest':str(out/'motion_preview_manifest.json'),'frames':len(entries),'fps':4,'resolution':[640,360]}
     (out / 'validation.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print('SC001 OUTPUT:', out)
     print('STRUCTURE VALIDATED; VISUAL REVIEW PENDING')

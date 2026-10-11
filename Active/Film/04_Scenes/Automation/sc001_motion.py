@@ -4,8 +4,8 @@ Linear blocking, editorial elisions at shot boundaries, no final performance.
 import math
 
 ROOT_KEYS = [
-    (1,(2,5.15,.85)),(270,(2,5.15,.85)),(350,(2.80,5.8,.10)),
-    (888,(2.80,5.8,.10)),(889,(5,4.6,0)),(1128,(5,4.6,0)),
+    (1,(2,5.15,.85)),(270,(2,5.15,.85)),(350,(2.50,5.8,.10)),
+    (888,(2.50,5.8,.10)),(889,(5,4.6,0)),(1128,(5,4.6,0)),
     (1129,(9,5,0)),(1368,(9,5,0)),(1369,(5.1,5,0)),
     (2160,(5.1,5,0)),(2161,(6.7,4.7,0)),(2440,(6.7,4.7,0)),
     (2520,(6.7,4.7,0)),(2521,(1.2,4.5,0)),(2640,(1.2,4.5,0)),(2720,(7.5,-.7,0)),
@@ -73,7 +73,7 @@ def custody_at(frame):
 
 def sample_frames(spec):
     frames={1,2760,*[f for f,_ in ROOT_KEYS],*[e['frame'] for e in EVENTS]}
-    frames.update([60,75,120,810,870,1399,1400,1470,1510,1540,2219,2220,2260,2299,2300,2340,2379,2380,2410,2419,2420,2440,2730,2740,2750])
+    frames.update([60,75,120,750,780,810,840,870,888,1399,1400,1470,1510,1540,2219,2220,2260,2299,2300,2340,2379,2380,2410,2419,2420,2440,2730,2740,2750])
     for s in spec['shots']:
         frames.update([s['frame_start'],s['frame_end']])
     return sorted(frames)
@@ -89,3 +89,13 @@ def shot_at(spec,frame):
 def root_rotation(frame):
     lying,seated=pose_weights(frame)
     return (-lying*math.pi/2,0,seated*math.pi/2)
+
+def camera_radial(origin, bearing, radius, height=2.0):
+    angle=math.radians(bearing)
+    return (origin[0]+radius*math.sin(angle),origin[1]+radius*math.cos(angle),height)
+
+def bedside_lean(frame):
+    if frame<750 or frame>888:return 0
+    if frame<810:return (frame-750)/60
+    if frame<=870:return 1
+    return (888-frame)/18

@@ -27,3 +27,5 @@ v0.8 desktop review verifies provenance, images, bounded reach and final custody
 DEC-0031/v0.9 prepares an elevated free-side drawer insert and tighter/larger notice text insert. Targeted render mode now selects SH003/SH007. Existing geometry/custody retained; desktop execution and readability evidence pending. See Reports/Film/2026-10-11_sc001_v09_insert_preparation.md.
 
 v0.9 focused desktop review verifies execution/provenance. SH007 exact notice is readable in the full-resolution still; SH003 still hides empty cells beneath legs and label beneath drawer top. Next coordinate seated legs/open-drawer targets and sightline, with evaluated occlusion checks; do not rely on camera containment alone. See Reports/Film/2026-10-11_sc001_v09_targeted_review.md. No full motion/timing gate advanced.
+
+DEC-0032/v0.10 implements author bed-edge seating, feet on floor and bedside shift, with 200° radial/2 m camera pullback, lean and drawer closure. Focused bedside motion mode and explicit occlusion records prepared. Desktop evaluation/readability pending; no prior failed insert gate advanced. See Reports/Film/2026-10-11_sc001_v010_bed_edge_preparation.md.

@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.3. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.4. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -56,7 +56,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.3')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.4')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -125,12 +125,42 @@ def main():
     label('Prescription_label', 'OXYCODONE', (3.01,3.98,1.34), .05, True)
     for i in range(8):
         box('Prescription_cell_%02d' % i, (3.04+(i%4)*.13,3.79+(i//4)*.09,1.35), (.08,.06,.015), color=((.12,.12,.12,1) if i < 2 else (.85,.82,.7,1)))
-    box('PRP_TorchTools', (6.8,5.8,1.07), (.55,.22,.12))
-    box('PRP_ClothesPost', (4.5,4.9,.18), (.6,.4,.35))
-    box('PRP_ShowerFixture', (9,6,1.7), (.25,.25,.15))
-    box('PRP_CoffeeMug', (5.2,5.6,1.16), (.18,.18,.3))
+    box('PRP_TorchTools', (6.8,5.8,1.035), (.65,.3,.03))
+    box('PRP_Torch_body', (6.65,5.8,1.09), (.28,.08,.08), color=(.18,.2,.22,1))
+    box('PRP_Torch_head', (6.47,5.8,1.09), (.1,.13,.13), color=(.3,.32,.33,1))
+    for n in range(2):
+        box('PRP_Tool_%d' % n, (6.9,5.73+n*.14,1.07), (.2,.045,.035))
+    box('PRP_ClothesPost', (4.2,4.8,.08), (.65,.5,.16), color=(.38,.3,.24,1))
+    for n in range(3):
+        obj = box('PRP_Clothes_layer_%d' % n, (4.2+n*.06,4.8,.19+n*.05), (.55,.32,.07), color=(.35,.31+n*.03,.32,1))
+        obj.rotation_euler.z = (n-1)*.3
+    for n in range(2):
+        obj = box('PRP_Post_sheet_%d' % n, (4.1+n*.22,4.5,.015+n*.012), (.25,.18,.01), color=(.8,.78,.7,1))
+        obj.rotation_euler.z = n*.35
+    box('SET_EliasFlat_bathroom_floor', (9,5,.015), (1.9,3.8,.03), 'SET', (.43,.47,.48,1))
+    box('SET_EliasFlat_bathroom_threshold', (9,3.1,.06), (1.9,.12,.12), 'SET')
+    box('SET_EliasFlat_bathroom_jamb', (8,3.1,1.25), (.1,.12,2.5), 'SET')
+    box('PRP_ShowerFixture', (9,6,1.85), (.25,.25,.12))
+    box('PRP_Shower_pipe', (9,6.05,1.3), (.035,.035,1))
+    box('PRP_Shower_control', (9,5.99,1.1), (.2,.05,.1))
+    # Hollow procedural cup with rim, bottom and a simple box handle.
+    count, radius, height = 24, .1, .22
+    verts = [(r*math.cos(2*math.pi*i/count), r*math.sin(2*math.pi*i/count), z)
+             for r,z in [(radius,0),(radius,height),(radius*.78,height),(radius*.78,.025)]
+             for i in range(count)]
+    faces = []
+    for a,b in [(0,1),(1,2),(2,3)]:
+        for i in range(count):
+            j=(i+1)%count
+            faces.append((a*count+i,a*count+j,b*count+j,b*count+i))
+    faces.append(tuple(range(3*count,4*count)))
+    mesh=bpy.data.meshes.new('PRP_CoffeeMug_mesh'); mesh.from_pydata(verts,[],faces)
+    mug=bpy.data.objects.new('PRP_CoffeeMug',mesh); collections['PROPS'].objects.link(mug)
+    mug.location=(5.55,5.85,1.02); mug.color=(.65,.64,.59,1)
+    for suffix,pos,size in [('top',(5.69,5.85,1.19),(.12,.035,.03)),('side',(5.74,5.85,1.13),(.035,.035,.13)),('bottom',(5.69,5.85,1.065),(.12,.035,.03))]:
+        box('PRP_Mug_handle_'+suffix,pos,size,color=(.65,.64,.59,1))
     box('PRP_Keys', (6.6,5.6,1.04), (.18,.1,.02))
-    box('PRP_EliasJacket', (7,2,1.1), (.5,.12,.8))
+    box('PRP_EliasJacket', (7.2,4.4,1.1), (.5,.12,.8))
     box('PRP_MACEnvelope', (6,5.65,1.015), (.65,.3,.02), color=(.9,.9,.86,1))
     label('Envelope_label', 'MAC', (5.76,5.65,1.03), .1, True)
     box('PRP_ResignationLetter', (6,5.25,1.03), (1.4,.6,.015), color=(.92,.9,.85,1))
@@ -142,16 +172,38 @@ def main():
     second.color = pigeon.color
     root = bpy.data.objects.new('CHR_Elias_proxy_root', None)
     collections['CHARACTERS'].objects.link(root)
-    for name, pos, size in [('torso',(0,0,1.1),(.45,.25,.7)),('head',(0,0,1.65),(.25,.25,.3)),('legs',(0,0,.4),(.4,.22,.8)),('right_arm',(.32,0,1.1),(.15,.18,.65)),('left_arm',(-.32,0,1.1),(.15,.18,.65))]:
+    for name, pos, size in [('torso',(0,0,1.1),(.45,.25,.7)),('head',(0,0,1.65),(.25,.25,.3)),('left_thigh',(-.12,0,.59),(.18,.22,.38)),('right_thigh',(.12,0,.59),(.18,.22,.38)),('left_calf',(-.12,0,.2),(.18,.22,.4)),('right_calf',(.12,0,.2),(.18,.22,.4)),('right_arm',(.32,0,1.1),(.15,.18,.65)),('left_arm',(-.32,0,1.1),(.15,.18,.65))]:
         obj = box('CHR_Elias_' + name, pos, size, 'CHARACTERS', (.27,.32,.36,1))
         obj.parent = root
     # Discrete staging only. No claim to sleeping/pain/letter/mug performance.
     bpy.context.preferences.edit.keyframe_new_interpolation_type = 'CONSTANT'
-    placements = [(2.1,3.5,0),(2.1,3.5,0),(2.1,3.5,0),(5,4.6,0),(9,5,0),(5.1,5,0),(5.1,5,0),(7,1.5,0),(1.2,4.5,0),(7.5,-1,0)]
-    cameras = [((3,1,2.3),(0.9,4.6,1.2),28),((3.8,2.3,1.7),(2.1,3.5,1),45),((3.25,3.3,2.1),(3.25,3.9,1.32),55),((6,1.3,2.2),(6,5.5,1),32),((8,3.6,1.9),(9,6,1.3),40),((5,3.4,1.9),(5.6,5.6,1.1),40),((6,5.3,2.4),(6,5.3,1.03),48),((5.5,.4,1.8),(7,2,1.1),35),((2.8,3,1.8),(.1,4.5,1.2),35),((3,1,2.3),(0.9,4.6,1.2),28)]
-    for shot, pos, (eye, target, lens) in zip(spec['shots'], placements, cameras):
-        root.location = pos
-        root.keyframe_insert(data_path='location', frame=shot['frame_start'])
+    placements = [(2,4.85,.85),(2,2.87,0),(2,2.87,0),(5,4.6,0),(9,5,0),(5.1,5,0),(5.1,5,0),(6.7,4.7,0),(1.2,4.5,0),(7.5,-1,0)]
+    cameras = [((3,1,2.3),(0.9,4.6,1.2),28),((3.8,2.3,1.7),(2.1,3.5,1),45),((3.25,3.3,2.1),(3.25,3.9,1.32),55),((6,1.3,2.2),(6,5.5,1),32),((8,3.6,1.9),(9,6,1.3),40),((7.8,3.4,2.1),(5.5,5.6,1.1),40),((6,5.3,2.4),(6,5.3,1.03),48),((7.8,2.4,2.1),(6.7,4.7,1.1),35),((2.8,3,1.8),(.1,4.5,1.2),35),((3,1,2.3),(0.9,4.6,1.2),28)]
+    defaults = {obj.name:(obj.location.copy(),obj.scale.copy()) for obj in root.children}
+    pose_checks = []
+    def stage_pose(index, frame):
+        root.location = placements[index]
+        root.rotation_euler = (math.pi/2,0,0) if index == 0 else (0,0,0)
+        for obj in root.children:
+            obj.location, obj.scale = defaults[obj.name]
+            if index in (1,2):
+                if 'thigh' in obj.name:
+                    obj.location.y, obj.location.z = -.25, .69
+                    obj.scale = (.18,.6,.18)
+                elif 'calf' in obj.name:
+                    obj.location.y, obj.location.z = -.5,.32
+                    obj.scale = (.18,.18,.64)
+                elif obj.name.endswith('right_arm'):
+                    obj.location = (-.04,-.22,1.0)
+                    obj.scale = (.43,.15,.16)
+            obj.keyframe_insert(data_path='location',frame=frame)
+            obj.keyframe_insert(data_path='scale',frame=frame)
+        root.keyframe_insert(data_path='location',frame=frame)
+        root.keyframe_insert(data_path='rotation_euler',frame=frame)
+
+    for index, (shot, pos, (eye, target, lens)) in enumerate(zip(spec['shots'], placements, cameras)):
+        stage_pose(index,shot['frame_start'])
+        pose_checks.append({'shot':shot['shot_id'], 'pose':'lying' if index==0 else ('seated_support_proxy' if index in (1,2) else 'standing'), 'position':list(pos)})
         data = bpy.data.cameras.new(shot['shot_id'])
         data.lens, data.clip_start, data.clip_end = lens, .05, 100
         cam = bpy.data.objects.new(shot['shot_id'], data)
@@ -163,15 +215,21 @@ def main():
     # Blender layered actions vary by version: insert duplicate holds before next cut
     # so interpolation cannot move the mannequin through a shot.
     for i, shot in enumerate(spec['shots']):
-        root.location = placements[i]
-        root.keyframe_insert(data_path='location', frame=shot['frame_end'])
+        stage_pose(i,shot['frame_end'])
     # Fit diagnostic subjects from their actual bounds, including evaluated text.
     # This tests containment, not occlusion or legibility; still review is mandatory.
     framing_checks = []
+    upper = ['CHR_Elias_head','CHR_Elias_torso','CHR_Elias_left_arm','CHR_Elias_right_arm']
     subjects = {
         0: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'] + [o.name for o in root.children],
-        3: ['SET_EliasFlat_kitchen_counter', 'PRP_TorchTools', 'PRP_ClothesPost'] + [o.name for o in root.children],
+        1: upper,
+        2: ['PRP_PrescriptionStrip','Prescription_label'] + ['Prescription_cell_%02d' % i for i in range(8)],
+        3: ['SET_EliasFlat_kitchen_counter', 'PRP_TorchTools', 'PRP_ClothesPost'] + [o.name for o in collections['PROPS'].objects if o.name.startswith(('PRP_Clothes_','PRP_Post_','PRP_Torch_','PRP_Tool_'))] + [o.name for o in root.children],
+        4: upper + ['SET_EliasFlat_bathroom_threshold','PRP_ShowerFixture','PRP_Shower_control'],
+        5: upper + ['PRP_CoffeeMug'] + [o.name for o in collections['PROPS'].objects if o.name.startswith('PRP_Mug_handle_')],
         6: ['PRP_ResignationLetter', 'Notice_exact_text', 'PRP_MACEnvelope', 'Envelope_label'],
+        7: upper + ['PRP_EliasJacket','PRP_Keys','PRP_CoffeeMug','PRP_ResignationLetter','PRP_MACEnvelope'],
+        8: upper + ['CHR_Pigeon_A','CHR_Pigeon_B'],
         9: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'],
     }
     for index, names in subjects.items():
@@ -209,6 +267,8 @@ def main():
                                'position':list(cam.location), 'ortho_scale':cam.data.ortho_scale})
     scene.camera = scene.objects['SC001_SH001']
     scene.frame_set(1)
+    assert len(framing_checks) == len(spec['shots'])
+    assert len(pose_checks) == len(spec['shots'])
     assert scene.render.fps == spec['fps']
     assert (scene.frame_start, scene.frame_end) == (spec['frame_start'], spec['frame_end'])
     assert [scene.render.resolution_x, scene.render.resolution_y] == spec['preview_resolution']
@@ -218,13 +278,13 @@ def main():
     assert len(scene.timeline_markers) == 10
     assert all(m.camera and m.frame == s['frame_start'] for m,s in zip(scene.timeline_markers, spec['shots']))
     assert len([o for o in collections['CHARACTERS'].objects if o.name.startswith('CHR_Pigeon_')]) == 2
-    blend = out / 'SC001_blockout_v0.3.blend'
+    blend = out / 'SC001_blockout_v0.4.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
-    report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Diagnostic boxes and discrete staging, not performance animation','Letter, mug and keys custody not animated','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
+    report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Diagnostic boxes and discrete staging, not performance animation','Letter, mug and keys custody not animated','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('three_stills' if options.render_stills else 'build_only')
-    report['builder_version'] = '0.3'
+    report['builder_version'] = '0.4'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:

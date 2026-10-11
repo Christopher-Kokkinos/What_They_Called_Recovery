@@ -41,13 +41,7 @@ assert math.isclose(m.root_rotation(350)[2],math.pi/2)
 for frame in range(1,2761):
  pos=m.root_at(frame)
  if 1400<=frame<1540 or frame>=2420:
-  base=(6.3,4.42,1.02) if frame>=2161 else (4.8,4.65,1.02)
-  hand=m.carried_position(frame,(-.4,-.28,1.4 if frame<1540 else 1.05))
-  if frame<=1470:t=(frame-1400)/70
-  elif frame<1510:t=1
-  elif frame<1540:t=1-(frame-1510)/30
-  else:t=min(1,(frame-2420)/20)
-  goal=tuple(a+(b-a)*t+c for a,b,c in zip(base,hand,(.12,0,.11)))
+  goal=tuple(a+b for a,b in zip(m.coffee_target(frame),(.12,0,.11)))
   shoulder=tuple(a+b for a,b in zip(pos,(-.32,0,1.4)))
   assert math.dist(goal,shoulder)<=.70
  if frame>=2220:
@@ -102,3 +96,26 @@ for f in range(1,889):
    # Torso front half-depth .125; forearm half-width .055.
    assert dot(sub(mix(b,c,i/10),j['pelvis']),j['forward'])>=.18-1e-9
 print('Shared chest axes, opening arm lengths/reach and rib-support forearm surface clearance PASS')
+
+from sc001_standing import standing_joints
+for f in range(889,2761):
+ p=m.root_at(f);left=right=None
+ if 1400<=f<1540 or f>=2420:left=tuple(a+b for a,b in zip(m.coffee_target(f),(.19,0,.11)))
+ if f>=2220:
+  if f>=2380:base=(7.05,4.42,1.035);target=m.carried_position(f,(.35,-.28,1.05));t=min(1,(f-2380)/30)
+  else:base=(6.82,4.40,1.10);target=m.carried_position(f,(.12,-.17,1.2));t=max(0,min(1,(f-2300)/40))
+  right=tuple(a+(b-a)*t for a,b in zip(base,target))
+ elif 1190<=f<=1280:right=tuple(a+b for a,b in zip(p,(.25,-.25,1.55)))
+ j=standing_joints(f,left,right)
+ for side in ['left','right']:
+  a,b,c=j[side+'_arm'];assert math.isclose(math.dist(a,b),.36,abs_tol=1e-9);assert math.isclose(math.dist(b,c),.34,abs_tol=1e-9)
+  a,b,c=j[side];assert math.isclose(math.dist(a,b),.38,abs_tol=1e-9);assert math.isclose(math.dist(b,c),.40,abs_tol=1e-9)
+  assert c[2]>=.1-1e-9
+  if f>=2735:assert math.isclose(c[2],.1,abs_tol=1e-9)
+  if 2641<=f<2720:
+   offset=0 if side=='left' else 6
+   phase=(f-2641+offset)%12
+   if phase<5:
+    nxt=standing_joints(f+1)[side][2]
+    assert math.dist(c,nxt)<1e-9
+print('Later arm/prop reach, leg lengths, stance planting and final grounded feet PASS')

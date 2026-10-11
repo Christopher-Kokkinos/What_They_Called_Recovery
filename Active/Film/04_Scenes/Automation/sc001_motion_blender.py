@@ -1,6 +1,6 @@
 """Apply scoped coarse animation to owned SC001 objects; no external scene writes."""
 import math
-from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS
+from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS, coffee_target
 
 
 def apply_motion(bpy, scene, root, defaults, spec, box):
@@ -81,18 +81,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
                 obj.keyframe_insert(data_path='hide_render',frame=frame)
                 obj.keyframe_insert(data_path='hide_viewport',frame=frame)
 
-        coffee=(6.3,4.42,1.02) if frame>=2161 else (4.8,4.65,1.02)
-        if 1400<=frame<=1470:
-            t=(frame-1400)/70;hand=carried_position(frame,(-.4,-.28,1.4))
-            target=tuple(a+(b-a)*t for a,b in zip(coffee,hand))
-        elif 1470<frame<1510:target=carried_position(frame,(-.4,-.28,1.4))
-        elif 1510<=frame<1540:
-            t=(frame-1510)/30;hand=carried_position(frame,(-.4,-.28,1.4))
-            target=tuple(a+(b-a)*t for a,b in zip(hand,coffee))
-        elif frame>=2420:
-            t=min(1,(frame-2420)/20);hand=carried_position(frame,(-.4,-.28,1.05))
-            target=tuple(a+(b-a)*t for a,b in zip(coffee,hand))
-        else:target=coffee
+        target=coffee_target(frame)
         mug.location=tuple(a-b for a,b in zip(target,(4.8,4.65,1.02)));mug.keyframe_insert(data_path='location',frame=frame)
         keybase=(7.05,4.42,1.035);t=max(0,min(1,(frame-2380)/30));hand=carried_position(frame,(.35,-.28,1.05))
         keys.location=tuple((b-a)*t for a,b in zip(keybase,hand));keys.keyframe_insert(data_path='location',frame=frame)

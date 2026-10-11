@@ -1,5 +1,6 @@
 """Apply reusable diagnostic opening joints to owned SC001 proxy meshes only."""
 from elias_articulation import opening_joints
+from sc001_standing import standing_joints
 from sc001_motion import root_at,bedside_lean,BEDSIDE_LEAN_RADIANS
 
 
@@ -15,10 +16,26 @@ def apply(bpy,scene,root,spec,box):
         obj.rotation_euler=basis.to_euler() if basis is not None else (b-a).to_track_quat('Z','Y').to_euler()
         obj.scale=(width,depth,(b-a).length)
         for channel in ['location','rotation_euler','scale']:obj.keyframe_insert(data_path=channel,frame=frame)
+    def joints_at(frame):
+        if frame<=888:
+            return opening_joints(frame,root_at(frame),BEDSIDE_LEAN_RADIANS*bedside_lean(frame))
+        else:
+            deps=bpy.context.evaluated_depsgraph_get()
+            left_target=right_target=None
+            if 1400<=frame<1540 or frame>=2420:
+                p=scene.objects['PRP_CoffeeMug'].evaluated_get(deps).matrix_world.translation
+                left_target=tuple(p+Vector((.19,0,.11)))
+            if frame>=2220:
+                name='PRP_Keys' if frame>=2380 else 'PRP_ResignationLetter'
+                right_target=tuple(scene.objects[name].evaluated_get(deps).matrix_world.translation)
+            elif 1190<=frame<=1280:
+                right_target=tuple(Vector(root_at(frame))+Vector((.25,-.25,1.55)))
+            return standing_joints(frame,left_target,right_target)
+
     # Dense source-frame keys avoid segment-length changes caused by sparse transform interpolation.
-    for frame in range(1,889):
+    for frame in range(1,2761):
         scene.frame_set(frame);bpy.context.view_layer.update()
-        joints=opening_joints(frame,root_at(frame),BEDSIDE_LEAN_RADIANS*bedside_lean(frame))
+        joints=joints_at(frame)
         world_basis=Matrix((joints['lateral'],tuple(-x for x in joints['forward']),joints['up'])).transposed()
         local_basis=root.matrix_world.inverted().to_3x3() @ world_basis
         segment(lower,joints['pelvis'],joints['spine'],.45,.25,frame,local_basis)
@@ -26,7 +43,7 @@ def apply(bpy,scene,root,spec,box):
         neck_end=Vector(joints['chest'])+Vector(joints['up'])*.10
         segment(neck,joints['chest'],neck_end,.12,.12,frame,local_basis)
         head=scene.objects['CHR_Elias_head'];head.location=root.matrix_world.inverted() @ Vector(joints['head'])
-        head.rotation_euler=local_basis.to_euler()
+        head.rotation_euler=(local_basis @ Matrix.Rotation(.08,3,'X')).to_euler() if 1260<=frame<=1300 else local_basis.to_euler()
         for channel in ['location','rotation_euler']:head.keyframe_insert(data_path=channel,frame=frame)
         for side in ['left','right']:
             shoulder,elbow,wrist=joints[side+'_arm']
@@ -45,20 +62,18 @@ def apply(bpy,scene,root,spec,box):
             segment(scene.objects['CHR_Elias_'+side+'_thigh'],hip,knee,.18,.18,frame)
             segment(scene.objects['CHR_Elias_'+side+'_calf'],knee,ankle,.18,.18,frame)
             foot=scene.objects['CHR_Elias_'+side+'_foot']
-            foot.location=root.matrix_world.inverted() @ Vector((ankle[0],ankle[1]-.05,ankle[2]-.05))
-            foot.rotation_euler=root.rotation_euler.to_matrix().transposed().to_euler()
+            centre=Vector((ankle[0],ankle[1]-.05,ankle[2]-.05)) if frame<=888 else Vector(ankle)+Vector(joints['forward'])*.05-Vector((0,0,.05))
+            foot.location=root.matrix_world.inverted() @ centre
+            foot.rotation_euler=root.rotation_euler.to_matrix().transposed().to_euler() if frame<=888 else local_basis.to_euler()
             foot.scale=(.18,.22,.10)
             for channel in ['location','rotation_euler','scale']:foot.keyframe_insert(data_path=channel,frame=frame)
         lower.hide_render=False;lower.hide_viewport=False
         for channel in ['hide_render','hide_viewport']:lower.keyframe_insert(data_path=channel,frame=frame)
-    # Existing standing/action pass resumes at the kitchen cut. This module owns only 1–888.
-    for obj in [lower,neck]+[scene.objects['CHR_Elias_'+side+'_'+part] for side in ['left','right'] for part in ['forearm','palm']]:
-        obj.hide_render=True;obj.hide_viewport=True
-        for channel in ['hide_render','hide_viewport']:obj.keyframe_insert(data_path=channel,frame=889)
     max_attachment_error=0.0
-    for frame in range(1,889):
+    max_foot_height_error=0.0
+    for frame in range(1,2761):
         scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
-        joints=opening_joints(frame,root_at(frame),BEDSIDE_LEAN_RADIANS*bedside_lean(frame))
+        joints=joints_at(frame)
         for side in ['left','right']:
             arm=scene.objects['CHR_Elias_'+side+'_arm'].evaluated_get(deps)
             forearm=scene.objects['CHR_Elias_'+side+'_forearm'].evaluated_get(deps)
@@ -68,7 +83,15 @@ def apply(bpy,scene,root,spec,box):
                     (forearm.matrix_world @ Vector((0,0,-.5))-elbow).length,
                     (forearm.matrix_world @ Vector((0,0,.5))-wrist).length]
             max_attachment_error=max(max_attachment_error,*errors)
-    assert max_attachment_error<1e-5,'Opening arm attachment mismatch'
+            if frame>=889:
+                foot=scene.objects['CHR_Elias_'+side+'_foot'].evaluated_get(deps)
+                bottom=min((foot.matrix_world @ Vector(c)).z for c in foot.bound_box)
+                expected=joints[side][2][2]-.10
+                max_foot_height_error=max(max_foot_height_error,abs(bottom-expected))
+                assert bottom>=-1e-5,'Later foot below floor'
+
+    assert max_attachment_error<1e-5,'Arm attachment mismatch'
+    assert max_foot_height_error<1e-5,'Later foot height target mismatch'
 
     checks=[]
     for frame in [350,661,750,810,870,888]:
@@ -83,5 +106,5 @@ def apply(bpy,scene,root,spec,box):
             assert abs(calf.matrix_world.to_scale().z-.64)<1e-5
             assert abs(bottom)<1e-5, 'Foot off floor '+side+' '+str(frame)
             checks.append({'frame':frame,'side':side,'foot_bottom_z':bottom,'thigh':.60,'calf':.64})
-    return {'attachment_checked_frames':888,'maximum_arm_endpoint_error':max_attachment_error,'evaluated_joint_checks':checks,'opening_articulation':'fixed_length_joint_proxy_desktop_pending','owned_frames':[1,888],
-            'standing_and_handling':'existing_pass_retained','limitations':['Staged rise, not final roll','No skinning or armature yet','Drawer grip remains analytic proxy; final skinning/contact pending']}
+    return {'maximum_later_foot_height_error':max_foot_height_error,'attachment_checked_frames':2760,'maximum_arm_endpoint_error':max_attachment_error,'evaluated_joint_checks':checks,'opening_articulation':'fixed_length_joint_proxy_desktop_pending','owned_frames':[1,2760],
+            'standing_and_handling':'shared_chest_prop_targets_provisional_exit_steps','limitations':['Staged rise, not final roll','No skinning or armature yet','Drawer grip remains analytic proxy; final skinning/contact pending']}

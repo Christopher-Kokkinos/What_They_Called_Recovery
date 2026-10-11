@@ -108,3 +108,14 @@ def upper_point(point,frame):
     """Rigid upper-body rotation around shared seated hip pivot."""
     x,y,z=point;angle=BEDSIDE_LEAN_RADIANS*bedside_lean(frame);c=math.cos(angle);s=math.sin(angle)
     return (x,y*c-(z-.75)*s,.75+y*s+(z-.75)*c)
+
+
+def coffee_target(frame):
+    counter=(6.3,4.42,1.02) if frame>=2161 else (4.8,4.65,1.02)
+    if 1400<=frame<=1470:t=(frame-1400)/70
+    elif 1470<frame<1510:t=1
+    elif 1510<=frame<1540:t=1-(frame-1510)/30
+    elif frame>=2420:t=min(1,(frame-2420)/20)
+    else:t=0
+    hand=carried_position(frame,(0,-.19,1.38) if frame<1540 else (-.4,-.28,1.05))
+    return tuple(a+(b-a)*t for a,b in zip(counter,hand))

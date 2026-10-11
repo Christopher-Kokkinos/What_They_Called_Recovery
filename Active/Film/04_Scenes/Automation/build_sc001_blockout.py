@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.14. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.15. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -67,7 +67,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.14')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.15')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -338,13 +338,13 @@ def main():
     assert scene.objects['PRP_PrescriptionStrip'].hide_render
     motion['final_custody_readback']='PASS'
     scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
-    blend = out / 'SC001_blockout_v0.14.blend'
+    blend = out / 'SC001_blockout_v0.15.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Hinged paper and drawer motion remain coarse proxies','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh003_sh007' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.14'
+    report['builder_version'] = '0.15'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:
@@ -361,7 +361,7 @@ def main():
                                          'frame':frame, 'camera':scene.camera.name,
                                          'review_check':shot['review_check'], 'image':scene.render.filepath})
         assert len(report['stills']) == len(review_shots)
-    report['module_sha256']={name:hashlib.sha256((Path(__file__).resolve().parent/name).read_bytes()).hexdigest() for name in ['sc001_motion.py','sc001_motion_blender.py','sc001_preview.py','sc001_bedside_camera.py','elias_articulation.py','sc001_articulation_blender.py']}
+    report['module_sha256']={name:hashlib.sha256((Path(__file__).resolve().parent/name).read_bytes()).hexdigest() for name in ['sc001_motion.py','sc001_motion_blender.py','sc001_preview.py','sc001_bedside_camera.py','elias_articulation.py','sc001_articulation_blender.py','sc001_standing.py']}
     if options.render_motion_preview or options.render_bedside_preview:
         preview_dir=out/'motion_frames';preview_dir.mkdir(exist_ok=False)
         entries=[]

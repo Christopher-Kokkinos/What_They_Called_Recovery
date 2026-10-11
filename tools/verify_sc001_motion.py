@@ -196,3 +196,14 @@ speed=math.dist(m.root_at(2640),m.root_at(m.EXIT_ARRIVAL))/((m.EXIT_ARRIVAL-2640
 assert .9<speed<1.1
 assert m.SCENE_END-m.EXIT_ARRIVAL>=40
 print(f'Packet volume and revised exit speed PASS ({speed:.3f} m/s); final pacing remains provisional')
+
+from sc001_departure_camera import camera_pose,CLOSING_CUT
+assert CLOSING_CUT==m.EXIT_ARRIVAL+1
+for f in range(m.EXIT_START,m.EXIT_ARRIVAL+1):
+ plan=camera_pose(f);p=m.root_at(f)
+ assert plan['phase']=='departure'
+ assert math.isclose(math.dist(plan['eye'],plan['aim']),math.sqrt(3**2+4**2+1.8**2),abs_tol=1e-9)
+for f in range(CLOSING_CUT,m.SCENE_END+1):
+ assert camera_pose(f)==camera_pose(CLOSING_CUT)
+assert camera_pose(CLOSING_CUT)['phase']=='pigeons'
+print('Departure tracking offset and explicit pigeon cut plan PASS')

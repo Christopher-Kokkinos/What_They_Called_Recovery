@@ -109,7 +109,23 @@
       "frame_end": 2880,
       "framing": "Window and departing-room hold",
       "action": "Exit and final peck",
-      "review_check": "Clear departure; no new plot reveal"
+      "review_check": "Clear departure; no new plot reveal",
+      "camera_phases": [
+        {
+          "frames": [
+            2641,
+            2840
+          ],
+          "purpose": "track Elias to entry with mug and keys"
+        },
+        {
+          "frames": [
+            2841,
+            2880
+          ],
+          "purpose": "hard cut to outside pigeons; final peck at 2860"
+        }
+      ]
     }
   ],
   "layout": {

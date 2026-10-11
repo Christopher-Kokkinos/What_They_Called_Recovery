@@ -1,6 +1,6 @@
 """Apply scoped coarse animation to owned SC001 objects; no external scene writes."""
 import math
-from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean
+from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point
 
 
 def apply_motion(bpy, scene, root, defaults, spec, box):
@@ -20,7 +20,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
     keys=group('SC001_KeysMotion',[o.name for o in scene.objects if o.name=='PRP_Keys' or o.name.startswith('PRP_Key_')])
     # Set a shallow tray under the unchanged strip; closing slides it beneath cabinet.
     tray=box('PRP_DrawerTray',(3.50,6.05,.52),(.61,.65,.025))
-    front=box('PRP_DrawerFront',(3.50,5.72,.48),(.62,.045,.28))
+    front=box('PRP_DrawerFront',(3.50,5.72,.48),(.62,.045,.42))
     drawer=group('SC001_DrawerMotion',[o.name for o in scene.objects if o.name in {'PRP_PrescriptionStrip','Prescription_label','PRP_DrawerTray','PRP_DrawerFront'} or o.name.startswith('Prescription_cell_')])
     moving=[mug,keys,drawer,scene.objects['PRP_ResignationLetter'],scene.objects['PRP_MACEnvelope'],scene.objects['PRP_EliasJacket']]
     initial={o.name:(o.location.copy(),o.scale.copy()) for o in moving}
@@ -61,11 +61,12 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
         elif frame>=2380:
             right.location=(.35,-.18,1.1);right.scale=(.16,.22,.4)
         lean=bedside_lean(frame)
-        for name in ['CHR_Elias_torso','CHR_Elias_head']:
-            obj=scene.objects[name];obj.location.y-=.40*lean;obj.location.z-=.30*lean;obj.rotation_euler.x=.35*lean
-        # Head tilt is symbolic response, not facial expression or lip sync.
+        for obj in body:
+            if obj.name in {'CHR_Elias_torso','CHR_Elias_head','CHR_Elias_left_arm','CHR_Elias_right_arm'}:
+                obj.location=upper_point(tuple(obj.location),frame)
+                obj.rotation_euler.x=.85*lean
         head=scene.objects['CHR_Elias_head']
-        head.rotation_euler=(.35*lean+(.08 if 1260<=frame<=1300 else 0),0,0)
+        head.rotation_euler.x+=.08 if 1260<=frame<=1300 else 0
         for obj in [root]+body:
             for channel in ['location','rotation_euler','scale']:
                 obj.keyframe_insert(data_path=channel,frame=frame)
@@ -126,14 +127,14 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             if side=='left':
                 goal=Vector(target)+Vector((.12,0,.11))
             elif 810<=frame<=870:
-                goal=Vector((3.22,5.80+(frame-810)/60*.48,.68))
+                goal=Vector((3.22,5.80+(frame-810)/60*.48,.72))
             elif frame>=2380:
                 goal=Vector(keybase)+keys.location
             else:
                 goal=scene.objects['PRP_ResignationLetter'].location.copy()
             if active:
                 endpoint=Euler(root_rotation(frame)).to_matrix().transposed() @ (goal-Vector(pos))
-                shoulder=Vector((-.32 if side=='left' else .32,-.40*lean,1.4-.30*lean))
+                shoulder=Vector(upper_point((-.32 if side=='left' else .32,0,1.4),frame))
                 arm=left if side=='left' else right
                 delta=endpoint-shoulder;distance=delta.length
                 assert .02<distance<=.70, 'Unreachable '+side+' target at frame '+str(frame)

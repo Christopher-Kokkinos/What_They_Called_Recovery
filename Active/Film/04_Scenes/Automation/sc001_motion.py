@@ -99,3 +99,8 @@ def bedside_lean(frame):
     if frame<810:return (frame-750)/60
     if frame<=870:return 1
     return (888-frame)/18
+
+def upper_point(point,frame):
+    """Rigid upper-body rotation around shared seated hip pivot."""
+    x,y,z=point;angle=.85*bedside_lean(frame);c=math.cos(angle);s=math.sin(angle)
+    return (x,y*c-(z-.75)*s,.75+y*s+(z-.75)*c)

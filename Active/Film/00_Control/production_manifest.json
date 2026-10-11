@@ -23,7 +23,7 @@
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": "SC001",
-    "status": "v010_bedside_runtime_verified_one_empty_cell_occluded_lean_open",
+    "status": "v011_connected_lean_radial_visibility_prepared_desktop_pending",
     "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
     "timing_hypothesis_seconds": 115,
     "finished_slice_gate_passed": false,
@@ -37,7 +37,7 @@
       "visual_result": "bedside_layout_improved_left_thigh_blocks_cell00_connected_lean_needed"
     },
     "review_report": "Reports/Film/2026-10-11_sc001_v010_desktop_review.md",
-    "build_preparation_report": "Reports/Film/2026-10-11_sc001_v010_bed_edge_preparation.md"
+    "build_preparation_report": "Reports/Film/2026-10-11_sc001_v011_connected_lean_preparation.md"
   },
   "story_authority": {
     "publication_master": "Active/Production/",

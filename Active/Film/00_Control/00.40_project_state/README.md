@@ -31,3 +31,5 @@ v0.9 focused desktop review verifies execution/provenance. SH007 exact notice is
 DEC-0032/v0.10 implements author bed-edge seating, feet on floor and bedside shift, with 200° radial/2 m camera pullback, lean and drawer closure. Focused bedside motion mode and explicit occlusion records prepared. Desktop evaluation/readability pending; no prior failed insert gate advanced. See Reports/Film/2026-10-11_sc001_v010_bed_edge_preparation.md.
 
 v0.10 bedside archive verifies 88 preview images and runtime provenance. Layout/closure samples improve, but centre rays identify left thigh blocking first empty cell at 661/750. Lean remains disconnected torso/head proxy motion. Preserve layout and notice; next clear identified cell and connect lean pivot. See Reports/Film/2026-10-11_sc001_v010_desktop_review.md. No motion/pacing gate passed.
+
+DEC-0033/v0.11 prepares shared hip-pivot upper-body motion and bounded radial sightline search with sampled blocker records. Bed/drawer layout retained; camera holds before pullback. Pure invariants/reach pass, actual ray search and movement pending desktop review. See Reports/Film/2026-10-11_sc001_v011_connected_lean_preparation.md.

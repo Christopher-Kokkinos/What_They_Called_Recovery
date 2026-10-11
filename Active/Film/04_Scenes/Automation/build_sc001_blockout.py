@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.10. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.11. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -67,7 +67,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.10')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.11')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -310,33 +310,10 @@ def main():
         framing_checks.append({'shot':cam.name, 'subjects':names, 'margin':.06,
                                'containment_passed':True, 'camera_type':cam.data.type,
                                'sample_frames':check_frames, 'position':list(cam.location), 'ortho_scale':cam.data.ortho_scale})
-    bedside_cam=scene.objects['SC001_SH003'];bedside_cam.data.type='PERSP'
-    camera_keys=[]
-    for frame in [661,750,810,840,870,888]:
-        t=max(0,min(1,(frame-720)/90));radius=1.8+1.2*t
-        bedside_cam.location=camera_radial((2.5,5.8,0),200,radius,2.0)
-        aim=Vector((3.5,6.05,.56)).lerp(Vector((2.5,5.8,1.05)),t)
-        bedside_cam.rotation_euler=(aim-bedside_cam.location).to_track_quat('-Z','Y').to_euler()
-        bedside_cam.data.lens=65-25*t
-        bedside_cam.keyframe_insert(data_path='location',frame=frame);bedside_cam.keyframe_insert(data_path='rotation_euler',frame=frame);bedside_cam.data.keyframe_insert(data_path='lens',frame=frame)
-        camera_keys.append({'frame':frame,'radial':200,'radius':radius,'height':2.0,'aim':list(aim)})
+    from sc001_bedside_camera import configure
+    motion.update(configure(bpy,scene,scene.objects['SC001_SH003']))
     framing_checks[2]['containment_passed']=None
-    framing_checks[2]['status']='replaced_by_radial_motion_camera_visual_review_pending'
-    motion['bedside_camera_keys']=camera_keys
-    occlusion=[]
-    for frame in [661,750]:
-        scene.frame_set(frame);bpy.context.view_layer.update()
-        deps=bpy.context.evaluated_depsgraph_get()
-        for name in ['Prescription_cell_00','Prescription_cell_01','Prescription_label']:
-            obj=scene.objects[name].evaluated_get(deps)
-            target=sum([obj.matrix_world @ Vector(c) for c in obj.bound_box],Vector())/8
-            origin=bedside_cam.matrix_world.translation
-            direction=(target-origin).normalized()
-            hit,location,normal,face,blocker,matrix=scene.ray_cast(deps,origin,direction,distance=(target-origin).length+.02)
-            visible=(not hit) or blocker.name==name
-            occlusion.append({'frame':frame,'target':name,'clear_centre_ray':visible,'first_hit':blocker.name if hit else None})
-    motion['bedside_occlusion_samples']=occlusion
-    motion['bedside_readability_status']='centre_rays_clear_visual_review_pending' if all(x['clear_centre_ray'] for x in occlusion) else 'occlusion_detected_visual_review_required'
+    framing_checks[2]['status']='radial_motion_camera_sampled_occlusion_checks_visual_review_pending'
     scene.camera = scene.objects['SC001_SH001']
     scene.frame_set(1)
     assert len(framing_checks) == len(spec['shots'])
@@ -359,13 +336,13 @@ def main():
     assert scene.objects['PRP_PrescriptionStrip'].hide_render
     motion['final_custody_readback']='PASS'
     scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
-    blend = out / 'SC001_blockout_v0.10.blend'
+    blend = out / 'SC001_blockout_v0.11.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Hinged paper and drawer motion remain coarse proxies','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh003_sh007' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.10'
+    report['builder_version'] = '0.11'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:
@@ -382,7 +359,7 @@ def main():
                                          'frame':frame, 'camera':scene.camera.name,
                                          'review_check':shot['review_check'], 'image':scene.render.filepath})
         assert len(report['stills']) == len(review_shots)
-    report['module_sha256']={name:hashlib.sha256((Path(__file__).resolve().parent/name).read_bytes()).hexdigest() for name in ['sc001_motion.py','sc001_motion_blender.py','sc001_preview.py']}
+    report['module_sha256']={name:hashlib.sha256((Path(__file__).resolve().parent/name).read_bytes()).hexdigest() for name in ['sc001_motion.py','sc001_motion_blender.py','sc001_preview.py','sc001_bedside_camera.py']}
     if options.render_motion_preview or options.render_bedside_preview:
         preview_dir=out/'motion_frames';preview_dir.mkdir(exist_ok=False)
         entries=[]

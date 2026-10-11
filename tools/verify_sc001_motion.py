@@ -67,6 +67,11 @@ assert m.bedside_lean(810)==1 and m.bedside_lean(888)==0
 assert 1.25<m.root_at(350)[0]<2.75
 assert math.isclose(m.root_at(350)[2]-.05-.05,0,abs_tol=1e-9)
 for f in range(810,871):
- shoulder=(2.9,6.12,1.2);goal=(3.22,5.80+(f-810)/60*.48,.68)
+ local=m.upper_point((.32,0,1.4),f);shoulder=(2.5-local[1],5.8+local[0],.1+local[2]);goal=(3.22,5.80+(f-810)/60*.48,.72)
  assert math.dist(shoulder,goal)<=.70
 print('Bed-edge/floor-contact plan and closure reach PASS')
+
+for f in range(750,889):
+ assert math.isclose(math.dist(m.upper_point((0,0,1.1),f),m.upper_point((0,0,1.65),f)),.55,abs_tol=1e-10)
+ assert m.upper_point((0,0,.75),f)==(0,0,.75)
+print('Shared hip pivot and head/torso separation invariants PASS')

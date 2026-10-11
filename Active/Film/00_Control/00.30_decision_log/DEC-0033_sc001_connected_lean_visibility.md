@@ -1,0 +1,7 @@
+# DEC-0033 — Connected lean and measured medicine sightline
+
+Continue author-approved bedside arrangement; no further table or seated-root move. v0.10 specifically identifies left thigh blocking cell 00. Replace separate torso/head translations with a rigid upper-body rotation about local hip pivot (0,0,0.75), applied to torso, head and resting arms; active arm shoulders use the same transform. Maximum 0.85 rad lean is a provisional reach-driven blockout choice, not final natural performance or acceptance of a large lean. Both fixed handling segments remain 0.36/0.34 m. Raise drawer front upper edge and contact target slightly for reachable closure. No medication pickup.
+
+Start at author-proposed 200-degree radial, Z 2 m. Evaluate 15 centre/inset corner rays to two empty cells and prescription label over medicine-hold frames 661–750. If blocked, bounded search tests nearby bearings in order (195/205 etc), with 110 as the earlier alternative. Record every tried radial and selected bearing; geometry stays unchanged. If none clears, retain 200 and explicitly record occlusion failure. Neither empty-space rays through font gaps nor sampled clear rays prove whole-label readability.
+
+Hold medicine view until 750, then complete pullback/aim transition by 810 before drawer closure. Same 1.8–3 m radius and 65–40 mm provisional lens change. Keep 22-second bedside review mode. Pure checks pass; actual Blender ray search and connected movement need desktop evaluation. No performance/timing/finished-slice gate passed.

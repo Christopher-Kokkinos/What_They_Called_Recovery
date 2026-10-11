@@ -1,6 +1,6 @@
-# SC001 desktop coarse motion test — v0.7
+# SC001 desktop test — v0.8
 
-From Git Bash in the repository on `animated-movie`:
+Run from Git Bash on `animated-movie`:
 
 ```bash
 git pull --ff-only
@@ -10,16 +10,12 @@ git pull --ff-only
   -- --render-shot-review --render-motion-preview
 ```
 
-No add-on, pip install or codec is needed. This uses an isolated background process and refuses loaded files or interactive execution. Each run creates a new ignored folder under `Active/Film/_local/SC001/`, preserving earlier runs.
+No add-ons/codecs/pip needed. Runs in an isolated background process; refuses loaded files or interactive execution. Each run creates a new ignored folder under `Active/Film/_local/SC001/`, retaining previous runs.
 
-On success, open the printed `SC001 OUTPUT:` folder. It contains `SC001_blockout_v0.7.blend`, `validation.json`, ten full-resolution shot-start PNGs, `motion_preview.html`, `motion_preview_manifest.json` and 460 smaller PNGs under `motion_frames/`. Open the HTML file in your desktop browser and click Play; pause/scrub to inspect action and carry. Keep the image folder beside the player. Archive the entire run folder for review. Rendering 470 images takes longer than the previous two-shot test; runtime is not benchmarked.
+Successful output: `SC001_blockout_v0.8.blend`, `validation.json`, ten 1280×720 shot-start PNGs, `motion_preview.html`, a manifest and 460 640×360 preview PNGs. Open HTML beside its image folder in a browser, click Play and pause/scrub. Send the entire run ZIP and terminal ending. Missing/partial output after an error is not a passed run.
 
-The blend scene `SC001_BLOCKOUT_v0.7` contains 24fps coarse animation and camera markers. The player samples at 4fps, 640×360 for the provisional 115 seconds; use the full-resolution stills for notice readability. Workbench shading is diagnostic and does not demonstrate final noir lighting or grain.
+Review low bedside drawers against the pillow-end wall, clock on top, medicine inside drawer, corrected bed head direction/side seating, portrait notice, hinged thirds, unchanged-size envelope and reach/grip. Verify SH002 foreground clearance and SH008 handling readability. Workbench is diagnostic: no final lighting/grain/audio or rigs. 115 seconds remains a hypothesis. Preview samples 24fps source at 4fps; runtime not benchmarked.
 
-Review waking/support, drawer closure without taking medicine, shower response, coffee return, readable unchanged notice, symbolic fold/pocket, keys/mug collection, birds and exit. Letter/envelope, keys and mug should finish with Elias. Camera assertions check sampled containment and final evaluated prop positions; occlusion, contact and continuous readability still need visual review. Exact shot durations remain hypotheses.
+v0.7 desktop execution was verified, but arm stretching and cabinet obstruction failed visual review. v0.8 uses fixed handling segment lengths with reach assertions and reachable surfaces. Python/pure checks pass; desktop execution and visual approval pending. Paper folding, drawer movement and pocket entry remain coarse proxies. No finished-slice gate passed. DEC-0030 records author corrections and film layout judgements.
 
-Linear box posing, sliding exit, scale-based folding and drawer hide/slide are approximations. Dressing and changes between room zones use editorial elisions. No facial performance, gait, audio or water simulation is included. No finished-slice gate has passed. See DEC-0028 for judgement calls.
-
-`--render-motion-preview` can be used alone. Still-mode precedence is all-ten, targeted SH005/SH008, then original three-still mode. Omit render flags to build the animated blend without images. If execution fails, retain the run folder and paste the terminal error; partial files are not a passed run. v0.5 desktop execution and focused visual corrections were reviewed. v0.7 has only agent-side Python/timeline checks until this desktop test succeeds.
-
-v0.7 corrects sleeping head direction and side-of-bed seating, changes SH002/SH008 sightlines, stages the folding packet on the near side at the SH008 cut and adds coarse palm/reach markers. Letter labels remain readable in SH007; their duplicate diagnostic labels are hidden in SH008. Grip markers are not rigged hands or contact approval. v0.6 runtime is verified; v0.7 desktop execution remains pending.
+Render flags are optional: no flags builds animated blend; `--render-motion-preview` adds player frames; still precedence is `--render-shot-review`, `--render-targeted-review` (SH005/SH008), then `--render-stills` (three original frames).

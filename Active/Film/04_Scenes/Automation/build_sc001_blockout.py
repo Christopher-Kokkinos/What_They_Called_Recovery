@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.7. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.8. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -66,7 +66,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.7')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.8')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -114,11 +114,13 @@ def main():
 
     box('SET_EliasFlat_floor', (5,3.5,-.1), (10,7,.2), 'SET')
     # Cutaway layout: ceiling/front/partitions omitted for unobstructed diagnostic cameras.
-    box('SET_EliasFlat_north_wall', (5,7,1.3), (10,.1,2.6), 'SET', (.55,.55,.52,1))
-    box('SET_EliasFlat_bed', (2,4,.35), (1.5,2,.7), 'SET')
-    box('SET_EliasFlat_pillow',(2,4.75,.75),(.85,.35,.10),'SET')
-    box('SET_EliasFlat_drawer', (3.25,4,.65), (.7,.8,1.3), 'SET')
-    box('SET_EliasFlat_fake_fireplace', (2,6.6,.5), (1.5,.4,1), 'SET')
+    box('SET_EliasFlat_north_wall', (5,7.05,1.3), (10,.1,2.6), 'SET', (.55,.55,.52,1))
+    box('SET_EliasFlat_bed', (2,6,.35), (1.5,2,.7), 'SET')
+    box('SET_EliasFlat_pillow',(2,6.75,.75),(.85,.35,.10),'SET')
+    # Hollow low bedside carcass: back flush with north wall, aligned with pillow.
+    for suffix,pos,size in [('left',(2.91,6.6,.375),(.04,.8,.75)),('right',(3.59,6.6,.375),(.04,.8,.75)),('back',(3.25,6.98,.375),(.7,.04,.75)),('top',(3.25,6.6,.73),(.7,.8,.04)),('bottom',(3.25,6.6,.02),(.7,.8,.04)),('lower_front',(3.25,6.20,.18),(.62,.04,.28))]:
+        box('SET_EliasFlat_bedside_'+suffix,pos,size,'SET')
+    box('SET_EliasFlat_fake_fireplace', (4.4,6.7,.5), (1.2,.4,1), 'SET')
     # Hollow frame: the v0.1 solid slab hid the outside pigeon proxies.
     for side, pos, size in [
         ('lower', (0,4.5,.75), (.08,1.8,.08)),
@@ -130,12 +132,12 @@ def main():
     box('SET_EliasFlat_outside_ledge', (-.35,4.5,.9), (.7,1.8,.12), 'SET')
     box('SET_EliasFlat_entry_marker', (7.5,.05,1), (1,.1,2), 'SET')
     box('SET_EliasFlat_kitchen_counter', (6,5.8,.5), (2.8,.8,1), 'SET')
-    box('PRP_AlarmClock', (2,6.35,1.15), (.5,.12,.28))
-    label('Clock_display', '08:00  ALARM OFF', (1.76,6.27,1.15), .055)
-    box('PRP_PrescriptionStrip', (3.25,3.9,1.32), (.52,.35,.02), color=(.75,.75,.72,1))
-    label('Prescription_label', 'OXYCODONE', (3.01,3.98,1.34), .05, True)
+    box('PRP_AlarmClock', (3.25,6.6,.90), (.5,.12,.28))
+    label('Clock_display', '08:00  ALARM OFF', (3.01,6.52,.90), .055)
+    box('PRP_PrescriptionStrip', (3.25,6.05,.54), (.52,.35,.02), color=(.75,.75,.72,1))
+    label('Prescription_label', 'OXYCODONE', (3.01,6.13,.56), .05, True)
     for i in range(8):
-        box('Prescription_cell_%02d' % i, (3.04+(i%4)*.13,3.79+(i//4)*.09,1.35), (.08,.06,.015), color=((.12,.12,.12,1) if i < 2 else (.85,.82,.7,1)))
+        box('Prescription_cell_%02d' % i, (3.04+(i%4)*.13,5.94+(i//4)*.09,.57), (.08,.06,.015), color=((.12,.12,.12,1) if i < 2 else (.85,.82,.7,1)))
     box('PRP_TorchTools', (6.8,5.8,1.035), (.65,.3,.03))
     box('PRP_Torch_body', (6.65,5.8,1.09), (.28,.08,.08), color=(.18,.2,.22,1))
     box('PRP_Torch_head', (6.47,5.8,1.09), (.1,.13,.13), color=(.3,.32,.33,1))
@@ -167,18 +169,23 @@ def main():
     faces.append(tuple(range(3*count,4*count)))
     mesh=bpy.data.meshes.new('PRP_CoffeeMug_mesh'); mesh.from_pydata(verts,[],faces)
     mug=bpy.data.objects.new('PRP_CoffeeMug',mesh); collections['PROPS'].objects.link(mug)
-    mug.location=(5.55,5.85,1.02); mug.color=(.65,.64,.59,1)
-    for suffix,pos,size in [('top',(5.69,5.85,1.19),(.12,.035,.03)),('side',(5.74,5.85,1.13),(.035,.035,.13)),('bottom',(5.69,5.85,1.065),(.12,.035,.03))]:
+    mug.location=(4.8,4.65,1.02); mug.color=(.65,.64,.59,1)
+    for suffix,pos,size in [('top',(4.94,4.65,1.19),(.12,.035,.03)),('side',(4.99,4.65,1.13),(.035,.035,.13)),('bottom',(4.94,4.65,1.065),(.12,.035,.03))]:
         box('PRP_Mug_handle_'+suffix,pos,size,color=(.65,.64,.59,1))
     box('PRP_Keys', (6.9,5.6,1.035), (.06,.11,.015), color=(.7,.68,.55,1))
     for i in range(2):
         box('PRP_Key_shaft_%d' % i, (6.9+i*.06,5.48,1.035), (.025,.17,.015), color=(.7,.68,.55,1))
         box('PRP_Key_tooth_%d' % i, (6.925+i*.06,5.41,1.035), (.06,.025,.015), color=(.7,.68,.55,1))
+    for obj in collections['PROPS'].objects:
+        if obj.name=='PRP_Keys' or obj.name.startswith('PRP_Key_'):
+            obj.location += Vector((.15,-1.18,0))
+    box('SET_EliasFlat_coffee_surface',(5.1,4.7,.99),(.9,.55,.04),'SET')
+    box('SET_EliasFlat_handling_surface',(6.7,4.40,.99),(1.15,.55,.04),'SET')
     box('PRP_EliasJacket', (7.6,5.4,1.1), (.5,.12,.8))
-    box('PRP_MACEnvelope', (6,5.65,1.015), (.65,.3,.02), color=(.9,.9,.86,1))
-    label('Envelope_label', 'MAC', (5.76,5.65,1.03), .1, True)
-    box('PRP_ResignationLetter', (6,5.25,1.03), (1.4,.6,.015), color=(.92,.9,.85,1))
-    label('Notice_exact_text', 'I will complete work already accepted.\nI will not take further assignments after Friday.\nPlease arrange final payment.', (5.33,5.43,1.045), .052, True)
+    box('PRP_MACEnvelope', (6.2,5.5,1.015), (.22,.11,.004), color=(.9,.9,.86,1))
+    label('Envelope_label', 'MAC', (6.13,5.5,1.02), .018, True)
+    box('PRP_ResignationLetter', (5.9,5.3,1.03), (.210,.297,.002), color=(.92,.9,.85,1))
+    label('Notice_exact_text', 'I will complete work\nalready accepted.\nI will not take further\nassignments after Friday.\nPlease arrange final payment.', (5.805,5.41,1.033), .009, True)
     pigeon = box('CHR_Pigeon_A', (-.35,4.2,1.05), (.2,.35,.22), 'CHARACTERS')
     second = bpy.data.objects.new('CHR_Pigeon_B', pigeon.data)
     collections['CHARACTERS'].objects.link(second)
@@ -192,7 +199,7 @@ def main():
     # Discrete staging only. No claim to sleeping/pain/letter/mug performance.
     bpy.context.preferences.edit.keyframe_new_interpolation_type = 'CONSTANT'
     placements = [(2,4.85,.85),(2,2.87,0),(2,2.87,0),(5,4.6,0),(9,5,0),(5.1,5,0),(5.1,5,0),(6.7,4.7,0),(1.2,4.5,0),(7.5,-1,0)]
-    cameras = [((3,1,2.3),(0.9,4.6,1.2),28),((5.1,3.0,1.9),(2.8,3.8,1.1),45),((3.25,3.3,2.1),(3.25,3.9,1.32),55),((6,1.3,2.2),(6,5.5,1),32),((8,3.6,1.9),(9,6,1.3),40),((7.8,3.4,2.1),(5.5,5.6,1.1),40),((6,5.3,2.4),(6,5.3,1.03),48),((6.3,2.3,3.8),(6.4,4.5,1.2),35),((2.8,3,1.8),(.1,4.5,1.2),35),((3,1,2.3),(0.9,4.6,1.2),28)]
+    cameras = [((3,1,2.3),(0.9,4.6,1.2),28),((4.8,4.4,1.9),(2.8,5.8,1.1),45),((3.25,3.3,2.1),(3.25,6.05,.54),55),((6,1.3,2.2),(6,5.5,1),32),((8,3.6,1.9),(9,6,1.3),40),((7.8,3.4,2.1),(5.5,5.6,1.1),40),((6,5.3,2.4),(6,5.3,1.03),48),((6.3,2.3,3.8),(6.4,4.5,1.2),35),((2.8,3,1.8),(.1,4.5,1.2),35),((3,1,2.3),(0.9,4.6,1.2),28)]
     defaults = {obj.name:(obj.location.copy(),obj.scale.copy()) for obj in root.children}
     pose_checks = []
     def stage_pose(index, frame):
@@ -239,7 +246,7 @@ def main():
     # Fit diagnostic subjects from their actual bounds, including evaluated text.
     # This tests containment, not occlusion or legibility; still review is mandatory.
     framing_checks = []
-    upper = ['CHR_Elias_head','CHR_Elias_torso','CHR_Elias_left_arm','CHR_Elias_right_arm']
+    upper = ['CHR_Elias_head','CHR_Elias_torso','CHR_Elias_left_arm','CHR_Elias_right_arm','CHR_Elias_left_forearm','CHR_Elias_right_forearm','CHR_Elias_left_palm','CHR_Elias_right_palm']
     subjects = {
         0: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'] + [o.name for o in root.children],
         1: upper,
@@ -247,8 +254,8 @@ def main():
         3: ['SET_EliasFlat_kitchen_counter', 'PRP_TorchTools', 'PRP_ClothesPost'] + [o.name for o in collections['PROPS'].objects if o.name.startswith(('PRP_Clothes_','PRP_Post_','PRP_Torch_','PRP_Tool_'))] + [o.name for o in root.children],
         4: upper + ['PRP_ShowerFixture','PRP_Shower_control'],
         5: upper + ['PRP_CoffeeMug'] + [o.name for o in collections['PROPS'].objects if o.name.startswith('PRP_Mug_handle_')],
-        6: ['PRP_ResignationLetter', 'Notice_exact_text', 'PRP_MACEnvelope', 'Envelope_label'],
-        7: upper + ['PRP_Keys','PRP_CoffeeMug','PRP_ResignationLetter','PRP_MACEnvelope'] + [o.name for o in collections['PROPS'].objects if o.name.startswith('PRP_Key_')],
+        6: ['PRP_LetterFold_-1','PRP_LetterFold_1','PRP_ResignationLetter', 'Notice_exact_text', 'PRP_MACEnvelope', 'Envelope_label'],
+        7: upper + ['PRP_LetterFold_-1','PRP_LetterFold_1','PRP_Keys','PRP_CoffeeMug','PRP_ResignationLetter','PRP_MACEnvelope'] + [o.name for o in collections['PROPS'].objects if o.name.startswith('PRP_Key_')],
         8: upper + ['CHR_Pigeon_A','CHR_Pigeon_B'],
         9: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'],
     }
@@ -272,7 +279,7 @@ def main():
         if index == 6:
             # Top-down insert remains a diagnostic view, not final hand performance.
             cam.data.type = 'ORTHO'
-            cam.data.ortho_scale = 1.8
+            cam.data.ortho_scale = .45
             cam.location = center + Vector((0,0,2))
         else:
             direction = (cam.location - center).normalized()
@@ -314,13 +321,13 @@ def main():
     assert scene.objects['PRP_PrescriptionStrip'].hide_render
     motion['final_custody_readback']='PASS'
     scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
-    blend = out / 'SC001_blockout_v0.7.blend'
+    blend = out / 'SC001_blockout_v0.8.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
-    report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Paper fold and drawer closure are diagnostic approximations','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
+    report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Hinged paper and drawer motion remain coarse proxies','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh005_sh008' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.7'
+    report['builder_version'] = '0.8'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:

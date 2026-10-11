@@ -19,8 +19,8 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
     mug=group('SC001_MugMotion',[o.name for o in scene.objects if o.name=='PRP_CoffeeMug' or o.name.startswith('PRP_Mug_handle_')])
     keys=group('SC001_KeysMotion',[o.name for o in scene.objects if o.name=='PRP_Keys' or o.name.startswith('PRP_Key_')])
     # Set a shallow tray under the unchanged strip; closing slides it beneath cabinet.
-    tray=box('PRP_DrawerTray',(3.25,3.9,1.30),(.65,.7,.025))
-    front=box('PRP_DrawerFront',(3.25,3.53,1.14),(.65,.045,.32))
+    tray=box('PRP_DrawerTray',(3.25,6.05,.52),(.61,.65,.025))
+    front=box('PRP_DrawerFront',(3.25,5.72,.48),(.62,.045,.28))
     drawer=group('SC001_DrawerMotion',[o.name for o in scene.objects if o.name in {'PRP_PrescriptionStrip','Prescription_label','PRP_DrawerTray','PRP_DrawerFront'} or o.name.startswith('Prescription_cell_')])
     moving=[mug,keys,drawer,scene.objects['PRP_ResignationLetter'],scene.objects['PRP_MACEnvelope'],scene.objects['PRP_EliasJacket']]
     initial={o.name:(o.location.copy(),o.scale.copy()) for o in moving}
@@ -30,6 +30,11 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
     for side in ['left','right']:
         palm=box('CHR_Elias_'+side+'_palm',(0,0,0),(.10,.08,.10),'CHARACTERS',(.27,.32,.36,1))
         palm.parent=root;palms[side]=palm
+    forearms={}
+    for side in ['left','right']:
+        obj=box('CHR_Elias_'+side+'_forearm',(0,0,0),(.11,.11,.34),'CHARACTERS',(.27,.32,.36,1));obj.parent=root;forearms[side]=obj
+    flaps=[box('PRP_LetterFold_'+str(i),(0,0,0),(.21,.099,.002),color=(.92,.9,.85,1)) for i in [-1,1]]
+    reach_checks=[]
     frames=sample_frames(spec)
     for frame in frames:
         pos=root_at(frame);lying,seated=pose_weights(frame)
@@ -62,7 +67,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
 
         # Drawer never transfers tablets to a hand. At closure hide internal strip.
         t=max(0,min(1,(frame-810)/60))
-        drawer.location=(0,t*.65,-t*.35)
+        drawer.location=(0,t*.48,0)
         drawer.keyframe_insert(data_path='location',frame=frame)
         for obj in drawer.children:
             if obj.name not in {'PRP_DrawerFront'}:
@@ -70,7 +75,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
                 obj.keyframe_insert(data_path='hide_render',frame=frame)
                 obj.keyframe_insert(data_path='hide_viewport',frame=frame)
 
-        coffee=(5.55,5.85,1.02)
+        coffee=(6.3,4.42,1.02) if frame>=2161 else (4.8,4.65,1.02)
         if 1400<=frame<=1470:
             t=(frame-1400)/70;hand=carried_position(frame,(-.4,-.28,1.4))
             target=tuple(a+(b-a)*t for a,b in zip(coffee,hand))
@@ -82,18 +87,28 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             t=min(1,(frame-2420)/20);hand=carried_position(frame,(-.4,-.28,1.05))
             target=tuple(a+(b-a)*t for a,b in zip(coffee,hand))
         else:target=coffee
-        mug.location=tuple(a-b for a,b in zip(target,coffee));mug.keyframe_insert(data_path='location',frame=frame)
-        keybase=(6.9,5.6,1.035);t=max(0,min(1,(frame-2380)/30));hand=carried_position(frame,(.35,-.28,1.05))
+        mug.location=tuple(a-b for a,b in zip(target,(4.8,4.65,1.02)));mug.keyframe_insert(data_path='location',frame=frame)
+        keybase=(7.05,4.42,1.035);t=max(0,min(1,(frame-2380)/30));hand=carried_position(frame,(.35,-.28,1.05))
         keys.location=tuple((b-a)*t for a,b in zip(keybase,hand));keys.keyframe_insert(data_path='location',frame=frame)
         for name in ['PRP_ResignationLetter','PRP_MACEnvelope']:
             obj=scene.objects[name];base,scale=initial[name]
             t=max(0,min(1,(frame-2300)/40));pocket=carried_position(frame,(.12,-.17,1.2))
             if frame>=2161:
-                base=(6.05,4.15,1.03) if name=='PRP_ResignationLetter' else (6.60,4.15,1.015)
+                base=(6.82,4.40,1.10) if name=='PRP_ResignationLetter' else (6.50,4.40,1.015)
             obj.location=tuple(a+(b-a)*t for a,b in zip(base,pocket))
             fold=max(0,min(1,(frame-2220)/40)) if name=='PRP_ResignationLetter' else t
-            # One scaled slab is only a symbolic folded packet, not paper simulation.
-            obj.scale=tuple(v*(1-.7*fold) for v in scale)
+            # Preserve paper width and envelope dimensions; fold hinged thirds.
+            obj.scale=(.21,.099,.002) if name=='PRP_ResignationLetter' else scale
+            if name=='PRP_ResignationLetter':
+                from mathutils import Vector, Euler
+                packet_rotation=t*math.pi/2
+                for sign,flap in zip([-1,1],flaps):
+                    angle=sign*math.pi*fold
+                    offset=Vector((0,sign*.0495+sign*.0495*math.cos(angle),.0495*math.sin(math.pi*fold)+abs(sign)*.002*fold))
+                    flap.location=Vector(obj.location)+Euler((packet_rotation,0,0)).to_matrix() @ offset
+                    flap.rotation_euler=(packet_rotation+angle,0,0)
+                    for channel in ['location','rotation_euler']:
+                        flap.keyframe_insert(data_path=channel,frame=frame)
             obj.rotation_euler=(t*math.pi/2,0,0)
             for channel in ['location','scale','rotation_euler']:obj.keyframe_insert(data_path=channel,frame=frame)
         for name,limit in [('Notice_exact_text',2161),('Envelope_label',2161)]:
@@ -113,13 +128,23 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
                 endpoint=Euler(root_rotation(frame)).to_matrix().transposed() @ (goal-Vector(pos))
                 shoulder=Vector((-.32 if side=='left' else .32,0,1.4))
                 arm=left if side=='left' else right
-                arm.location=(shoulder+endpoint)/2
-                arm.scale=(.13,.13,(endpoint-shoulder).length)
-                arm.rotation_euler=(endpoint-shoulder).to_track_quat('Z','Y').to_euler()
-                palm.location=endpoint
-                for channel in ['location','rotation_euler','scale']:
-                    arm.keyframe_insert(data_path=channel,frame=frame)
-                    palm.keyframe_insert(data_path=channel,frame=frame)
+                delta=endpoint-shoulder;distance=delta.length
+                assert .02<distance<=.70, 'Unreachable '+side+' target at frame '+str(frame)
+                direction=delta.normalized();normal=direction.cross(Vector((0,0,1)))
+                if normal.length<.001:normal=direction.cross(Vector((0,1,0)))
+                normal.normalize()
+                along=(.36**2-.34**2+distance**2)/(2*distance)
+                elbow=shoulder+direction*along+normal*math.sqrt(max(0,.36**2-along**2))
+                for segment,a,b,length in [(arm,shoulder,elbow,.36),(forearms[side],elbow,endpoint,.34)]:
+                    segment.location=(a+b)/2;segment.scale=(.11,.11,length)
+                    segment.rotation_euler=(b-a).to_track_quat('Z','Y').to_euler()
+                    for channel in ['location','rotation_euler','scale']:
+                        segment.keyframe_insert(data_path=channel,frame=frame)
+                palm.location=endpoint;palm.keyframe_insert(data_path='location',frame=frame)
+                reach_checks.append({'frame':frame,'side':side,'distance':distance,'limit':.70})
+            forearms[side].hide_render=not active;forearms[side].hide_viewport=not active
+            for channel in ['hide_render','hide_viewport']:
+                forearms[side].keyframe_insert(data_path=channel,frame=frame)
             for channel in ['hide_render','hide_viewport']:
                 palm.keyframe_insert(data_path=channel,frame=frame)
         jacket=scene.objects['PRP_EliasJacket']
@@ -129,6 +154,6 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
         peck=.05 if frame in (60,2740) else 0
         bird.location=bird_start.copy();bird.location.x+=peck
         bird.keyframe_insert(data_path='location',frame=frame)
-    return {'events':EVENTS,'sampled_custody':[{'frame':f,**custody_at(f)} for f in [661,870,1470,1540,2340,2410,2440,2510,2720,2760]],
+    return {'reach_checks':reach_checks,'events':EVENTS,'sampled_custody':[{'frame':f,**custody_at(f)} for f in [661,870,1470,1540,2340,2410,2440,2510,2720,2760]],
             'keyframes':frames,'status':'coarse_motion_visual_review_pending',
-            'limitations':['linear box posing, no gait/rig/facial performance','drawer closure uses slide/hide approximation','paper fold uses scale, pocket packet remains a symbolic slab','editorial spatial elisions at SH004/SH005/SH006/SH008/SH009 starts','no audio; dialogue and temperature changes are review cues']}
+            'limitations':['linear box posing, no gait/rig/facial performance','drawer slides into hollow carcass; contents hide at closure','hinged paper thirds; pocket entry remains proxy choreography','editorial spatial elisions at SH004/SH005/SH006/SH008/SH009 starts','no audio; dialogue and temperature changes are review cues']}

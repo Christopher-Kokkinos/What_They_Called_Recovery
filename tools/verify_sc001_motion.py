@@ -32,7 +32,29 @@ assert all(a['frame']<b['frame'] for a,b in zip(m.EVENTS,m.EVENTS[1:]))
 print('SC001 pure motion checks PASS; Blender runtime/visual gate separate')
 
 # Bed geometry: head towards +Y pillow, sitting root beyond +X side, not foot (-Y).
-assert m.root_at(1)==(2,3.15,.85)
+assert m.root_at(1)==(2,5.15,.85)
 assert m.root_rotation(1)[0]<0
-assert m.root_at(350)[0]>2.75 and 3<m.root_at(350)[1]<5
+assert m.root_at(350)[0]>2.75 and 5<m.root_at(350)[1]<7
 assert math.isclose(m.root_rotation(350)[2],math.pi/2)
+
+# Reach audit across every frame of each active handling interval.
+for frame in range(1,2761):
+ pos=m.root_at(frame)
+ if 1400<=frame<1540 or frame>=2420:
+  base=(6.3,4.42,1.02) if frame>=2161 else (4.8,4.65,1.02)
+  hand=m.carried_position(frame,(-.4,-.28,1.4 if frame<1540 else 1.05))
+  if frame<=1470:t=(frame-1400)/70
+  elif frame<1510:t=1
+  elif frame<1540:t=1-(frame-1510)/30
+  else:t=min(1,(frame-2420)/20)
+  goal=tuple(a+(b-a)*t+c for a,b,c in zip(base,hand,(.12,0,.11)))
+  shoulder=tuple(a+b for a,b in zip(pos,(-.32,0,1.4)))
+  assert math.dist(goal,shoulder)<=.70
+ if frame>=2220:
+  if frame>=2380:
+   base=(7.05,4.42,1.035);target=m.carried_position(frame,(.35,-.28,1.05));t=min(1,(frame-2380)/30)
+  else:
+   base=(6.82,4.40,1.10);target=m.carried_position(frame,(.12,-.17,1.2));t=max(0,min(1,(frame-2300)/40))
+  goal=tuple(a+(b-a)*t for a,b in zip(base,target));shoulder=tuple(a+b for a,b in zip(pos,(.32,0,1.4)))
+  assert math.dist(goal,shoulder)<=.70
+print('All-frame handling reach audit PASS (0.70 m maximum)')

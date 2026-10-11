@@ -45,8 +45,8 @@ One reusable flat set with bedroom, kitchen, window ledge, shower/bathroom impli
 | Item/state | Entry / local action | Handoff or limit |
 |---|---|---|
 | Pigeons | Two outside on narrow ledge; one pecks twice. | Reuse one pigeon asset with two instances; both remain outside. |
-| Clock | Beside fake fireplace; reads 08:00, alarm off. | Readable clock design undecided; not a new digital-device plot. |
-| Prescription strip | Drawer slightly open, two tablets absent. | Drawer closes; no dose taken on screen; label/absence readable without private patient data. |
+| Clock | On low bedside drawers against the pillow-end wall; reads 08:00, alarm off (author correction, DEC-0030). | Readable clock design undecided; not a new digital-device plot. |
+| Prescription strip | Inside the slightly open upper bedside drawer, two tablets absent. | Drawer closes; no dose taken on screen; label/absence readable without private patient data. |
 | Notice | White MAC envelope and three-sentence letter. | Fold into inner jacket pocket; still undelivered through SC002–SC003, redirected in SC004. |
 | Coffee | Made and taken into morning departure. | Keep reusable mug for SC002 stairwell/door action; exact colour undecided. |
 | Clothing/jacket | Previous clothes on waking; dressing transition. | Choose one consistent departure outfit, not yet an approved design. |
@@ -64,7 +64,7 @@ The authoritative inventory is [asset_register.csv](../../00_Control/asset_regis
 | PRP_AlarmClock | Time and off alarm. | Readable placeholder text/state. |
 | PRP_PrescriptionStrip | Prescription, two absent tablets. | Flat proxy with missing cells; no drug-brand artwork dependency. |
 | PRP_TorchTools | Ordered practical equipment. | Group of simple shapes, no functional mechanism. |
-| PRP_ResignationLetter | MAC envelope and exact notice. | Two simple surfaces with readable text; later fold/hand interaction. |
+| PRP_ResignationLetter | MAC envelope and exact notice. | Portrait sheet and separate envelope; exact text, hinged thirds and later refined hand interaction (DEC-0030). |
 | PRP_EliasJacket | Inner-pocket letter custody. | Proxy costume/pocket indication; integrate with rig later. |
 | PRP_Keys | Taken before leaving. | Simple bundle, later hand attachment. |
 | PRP_CoffeeMug | Kitchen then stairwell. | One reusable silhouette and scale. |

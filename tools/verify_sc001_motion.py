@@ -75,3 +75,22 @@ for f in range(750,889):
  assert math.isclose(math.dist(m.upper_point((0,0,1.1),f),m.upper_point((0,0,1.65),f)),.55,abs_tol=1e-10)
  assert m.upper_point((0,0,.75),f)==(0,0,.75)
 print('Shared hip pivot and head/torso separation invariants PASS')
+
+# Reusable opening articulation: constant limb lengths and planted seated ankles.
+import sys
+sys.path.insert(0,str(path.parent))
+from elias_articulation import opening_joints,THIGH_LENGTH,CALF_LENGTH,SPINE_LENGTH
+for f in range(1,889):
+ j=opening_joints(f,m.root_at(f),m.BEDSIDE_LEAN_RADIANS*m.bedside_lean(f))
+ for side in ['left','right']:
+  a,b,c=j[side]
+  assert math.isclose(math.dist(a,b),THIGH_LENGTH,abs_tol=1e-9)
+  assert math.isclose(math.dist(b,c),CALF_LENGTH,abs_tol=1e-9)
+  if f>=350:assert c==(3.05,5.8+(-.12 if side=='left' else .12),.1)
+ assert math.isclose(math.dist(j['pelvis'],j['chest']),SPINE_LENGTH,abs_tol=1e-9)
+for f in range(350,810):
+ p=m.root_at(f);l=m.upper_point((.32,0,1.4),f);shoulder=(p[0]-l[1],p[1]+l[0],p[2]+l[2])
+ l=m.upper_point((-.13,-.14,1.05),f);rib=(p[0]-l[1],p[1]+l[0],p[2]+l[2]);t=max(0,min(1,(f-750)/60))**2
+ goal=tuple(a+(b-a)*t for a,b in zip(rib,(3.22,5.80,.72)))
+ assert math.dist(shoulder,goal)<=.70
+print('Opening articulation lengths, planted ankles and support-to-drawer reach PASS')

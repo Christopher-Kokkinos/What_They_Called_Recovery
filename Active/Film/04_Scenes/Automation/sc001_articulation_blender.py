@@ -2,7 +2,7 @@
 from elias_articulation import opening_joints, THIGH_LENGTH, CALF_LENGTH, SPINE_LENGTH, STANDING_HIP_HEIGHT, BED_TOP_HEIGHT, BED_SIDE_X
 from sc001_standing import standing_joints
 from sc001_motion_blender import linearise_owned_actions
-from sc001_motion import root_at,bedside_lean,BEDSIDE_LEAN_RADIANS,SHOWER_HAND_OFFSET
+from sc001_motion import root_at,bedside_lean,BEDSIDE_LEAN_RADIANS,SHOWER_HAND_OFFSET, SCENE_END
 
 
 def apply(bpy,scene,root,spec,box):
@@ -29,12 +29,14 @@ def apply(bpy,scene,root,spec,box):
             if frame>=2220:
                 name='PRP_Keys' if frame>=2380 else 'PRP_ResignationLetter'
                 right_target=tuple(scene.objects[name].evaluated_get(deps).matrix_world.translation)
+                if 2300<=frame<2380:
+                    right_target=tuple(Vector(right_target)+Vector((0,-.12,0)))
             elif 1190<=frame<=1280:
                 right_target=tuple(Vector(root_at(frame))+Vector(SHOWER_HAND_OFFSET))
             return standing_joints(frame,left_target,right_target)
 
     # Dense source-frame keys avoid segment-length changes caused by sparse transform interpolation.
-    for frame in range(1,2761):
+    for frame in range(1,SCENE_END+1):
         scene.frame_set(frame);bpy.context.view_layer.update()
         joints=joints_at(frame)
         world_basis=Matrix((joints['lateral'],tuple(-x for x in joints['forward']),joints['up'])).transposed()
@@ -76,9 +78,21 @@ def apply(bpy,scene,root,spec,box):
     max_leg_endpoint_error=0.0
     max_leg_length_error=0.0
     minimum_seated_thigh_clearance=float('inf')
-    for frame in range(1,2761):
+    pocket_checked_frames=0
+    maximum_pocket_coordinate=0.0
+    for frame in range(1,SCENE_END+1):
         scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
         joints=joints_at(frame)
+        if frame>=2340:
+            torso_eval=scene.objects['CHR_Elias_torso'].evaluated_get(deps)
+            inverse=torso_eval.matrix_world.inverted()
+            for name in ['PRP_ResignationLetter','PRP_MACEnvelope','PRP_LetterFold_-1','PRP_LetterFold_1']:
+                packet=scene.objects[name].evaluated_get(deps)
+                for corner in packet.bound_box:
+                    point=inverse @ (packet.matrix_world @ Vector(corner))
+                    maximum_pocket_coordinate=max(maximum_pocket_coordinate,*[abs(v) for v in point])
+                    assert all(abs(v)<.5-1e-5 for v in point),'Packet protrudes from torso proxy: '+name+' frame '+str(frame)
+            pocket_checked_frames+=1
         for side in ['left','right']:
             arm=scene.objects['CHR_Elias_'+side+'_arm'].evaluated_get(deps)
             forearm=scene.objects['CHR_Elias_'+side+'_forearm'].evaluated_get(deps)
@@ -137,5 +151,5 @@ def apply(bpy,scene,root,spec,box):
             assert abs(calf.matrix_world.to_scale().z-CALF_LENGTH)<1e-5
             assert abs(bottom)<1e-5, 'Foot off floor '+side+' '+str(frame)
             checks.append({'frame':frame,'side':side,'foot_bottom_z':bottom,'thigh':THIGH_LENGTH,'calf':CALF_LENGTH})
-    return {'minimum_seated_thigh_clearance':minimum_seated_thigh_clearance,'bed_top_height':BED_TOP_HEIGHT,'anatomy':{'thigh':THIGH_LENGTH,'calf':CALF_LENGTH,'spine':SPINE_LENGTH,'standing_hip_height':STANDING_HIP_HEIGHT},'maximum_leg_endpoint_error':max_leg_endpoint_error,'maximum_leg_length_error':max_leg_length_error,'anatomy_checked_frames':2760,'maximum_later_foot_height_error':max_foot_height_error,'attachment_checked_frames':2760,'maximum_arm_endpoint_error':max_attachment_error,'evaluated_joint_checks':checks,'opening_articulation':'fixed_length_joint_proxy_desktop_pending','owned_frames':[1,2760],
+    return {'pocket_checked_frames':pocket_checked_frames,'maximum_pocket_normalised_coordinate':maximum_pocket_coordinate,'pocket_status':'packet_bounds_inside_opaque_torso_proxy','minimum_seated_thigh_clearance':minimum_seated_thigh_clearance,'bed_top_height':BED_TOP_HEIGHT,'anatomy':{'thigh':THIGH_LENGTH,'calf':CALF_LENGTH,'spine':SPINE_LENGTH,'standing_hip_height':STANDING_HIP_HEIGHT},'maximum_leg_endpoint_error':max_leg_endpoint_error,'maximum_leg_length_error':max_leg_length_error,'anatomy_checked_frames':SCENE_END,'maximum_later_foot_height_error':max_foot_height_error,'attachment_checked_frames':SCENE_END,'maximum_arm_endpoint_error':max_attachment_error,'evaluated_joint_checks':checks,'opening_articulation':'fixed_length_joint_proxy_desktop_pending','owned_frames':[1,SCENE_END],
             'standing_and_handling':'shared_chest_prop_targets_provisional_exit_steps','limitations':['Staged rise, not final roll','No skinning or armature yet','Drawer grip remains analytic proxy; final skinning/contact pending']}

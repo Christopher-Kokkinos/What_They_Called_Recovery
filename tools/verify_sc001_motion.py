@@ -12,8 +12,8 @@ loader=importlib.util.spec_from_file_location('motion',path)
 m=importlib.util.module_from_spec(loader);loader.loader.exec_module(m)
 spec=json.loads((root/'Active/Film/04_Scenes/SC001/SC001_layout_test_spec_v0.1.json').read_text())
 frames=m.preview_frames(spec)
-assert len(frames)==460 and frames[0]==1 and frames[-1]==2755
-assert len(frames)/4==115
+assert len(frames)==480 and frames[0]==1 and frames[-1]==2875
+assert len(frames)/4==120
 assert {m.shot_at(spec,f)['shot_id'] for f in frames}=={s['shot_id'] for s in spec['shots']}
 assert m.custody_at(661)['dose_taken'] is False
 assert m.custody_at(870)['prescription']=='closed_drawer'
@@ -21,14 +21,14 @@ assert m.custody_at(1540)['mug']=='counter'
 assert m.custody_at(2299)['letter_envelope']=='counter'
 assert m.custody_at(2340)['letter_envelope']=='inner_pocket'
 assert m.custody_at(2440)['keys']=='right_hand' and m.custody_at(2440)['mug']=='left_hand'
-for frame in [2440,2510,2521,2640,2720,2760]:
+for frame in [2440,2510,2521,2640,m.EXIT_ARRIVAL,m.SCENE_END]:
  c=m.custody_at(frame)
  assert c['letter_envelope']=='inner_pocket' and c['keys']=='right_hand' and c['mug']=='left_hand' and c['dose_taken'] is False
-for frame in range(1,2761):
+for frame in range(1,m.SCENE_END+1):
  assert m.custody_at(frame)['dose_taken'] is False
  assert all(0<=x<=1 for x in m.pose_weights(frame))
 assert m.pose_weights(1)==(1,0) and m.pose_weights(350)==(0,1) and m.pose_weights(889)==(0,0)
-assert all(math.isclose(a,b,abs_tol=1e-12) for f in [2720,2760] for a,b in zip(m.root_at(f),(7.5,-.7,0)))
+assert all(math.isclose(a,b,abs_tol=1e-12) for f in [m.EXIT_ARRIVAL,m.SCENE_END] for a,b in zip(m.root_at(f),(7.5,-.7,0)))
 assert len(m.sample_frames(spec))==len(set(m.sample_frames(spec)))
 assert all(a['frame']<b['frame'] for a,b in zip(m.EVENTS,m.EVENTS[1:]))
 print('SC001 pure motion checks PASS; Blender runtime/visual gate separate')
@@ -40,7 +40,7 @@ assert 2.25<m.root_at(350)[0]<2.75 and 5<m.root_at(350)[1]<7
 assert math.isclose(m.root_rotation(350)[2],math.pi/2)
 
 # Reach audit across every frame of each active handling interval.
-for frame in range(1,2761):
+for frame in range(1,m.SCENE_END+1):
  pos=m.root_at(frame)
  if 1400<=frame<1540 or frame>=2420:
   goal=tuple(a+b for a,b in zip(m.coffee_target(frame),(.12,0,.11)))
@@ -50,7 +50,7 @@ for frame in range(1,2761):
   if frame>=2380:
    base=(7.05,4.42,1.035);target=m.carried_position(frame,m.CARRIED_KEYS_OFFSET);t=min(1,(frame-2380)/30)
   else:
-   base=(6.82,4.40,1.10);target=m.carried_position(frame,m.POCKET_OFFSET);t=max(0,min(1,(frame-2300)/40))
+   base=(6.82,4.40,1.10);target=m.pocket_position(frame);t=max(0,min(1,(frame-2300)/40))
   goal=tuple(a+(b-a)*t for a,b in zip(base,target));shoulder=tuple(a+b for a,b in zip(pos,(.32,0,1.4)))
   assert math.dist(goal,shoulder)<=.70
 print('All-frame handling reach audit PASS (0.70 m maximum)')
@@ -100,21 +100,22 @@ for f in range(1,889):
 print('Shared chest axes, opening arm lengths/reach and rib-support forearm surface clearance PASS')
 
 from sc001_standing import standing_joints
-for f in range(889,2761):
+for f in range(889,m.SCENE_END+1):
  p=m.root_at(f);left=right=None
  if 1400<=f<1540 or f>=2420:left=tuple(a+b for a,b in zip(m.coffee_target(f),(.19,0,.11)))
  if f>=2220:
   if f>=2380:base=(7.05,4.42,1.035);target=m.carried_position(f,m.CARRIED_KEYS_OFFSET);t=min(1,(f-2380)/30)
-  else:base=(6.82,4.40,1.10);target=m.carried_position(f,m.POCKET_OFFSET);t=max(0,min(1,(f-2300)/40))
+  else:base=(6.82,4.40,1.10);target=m.pocket_position(f);t=max(0,min(1,(f-2300)/40))
   right=tuple(a+(b-a)*t for a,b in zip(base,target))
+  if 2300<=f<2380:right=tuple(a+b for a,b in zip(right,(0,-.12,0)))
  elif 1190<=f<=1280:right=tuple(a+b for a,b in zip(p,m.SHOWER_HAND_OFFSET))
  j=standing_joints(f,left,right)
  for side in ['left','right']:
   a,b,c=j[side+'_arm'];assert math.isclose(math.dist(a,b),.36,abs_tol=1e-9);assert math.isclose(math.dist(b,c),.34,abs_tol=1e-9)
   a,b,c=j[side];assert math.isclose(math.dist(a,b),THIGH_LENGTH,abs_tol=1e-9);assert math.isclose(math.dist(b,c),CALF_LENGTH,abs_tol=1e-9)
   assert c[2]>=.1-1e-9
-  if f>=2735:assert math.isclose(c[2],.1,abs_tol=1e-9)
-  if 2641<=f<2720:
+  if f>=m.EXIT_ARRIVAL+15:assert math.isclose(c[2],.1,abs_tol=1e-9)
+  if 2641<=f<m.EXIT_ARRIVAL:
    offset=0 if side=='left' else 6
    phase=(f-2641+offset)%12
    if phase<5:
@@ -143,14 +144,15 @@ def sampled_right(f):
  offset=m.CARRIED_KEYS_OFFSET if f>=2380 else m.POCKET_OFFSET
  t=max(0,min(1,(f-(2380 if f>=2380 else 2300))/(30 if f>=2380 else 40)))
  return mix(base,m.carried_position(f,offset),t)
-for f in range(889,2761):
+for f in range(889,m.SCENE_END+1):
  left=tuple(a+b for a,b in zip(linear_sample(f,m.coffee_target),(.19,0,.11))) if 1400<=f<1540 or f>=2420 else None
  right=linear_sample(f,sampled_right) if f>=2220 else tuple(a+b for a,b in zip(m.root_at(f),m.SHOWER_HAND_OFFSET)) if 1190<=f<=1280 else None
+ if 2300<=f<2380:right=tuple(a+b for a,b in zip(right,(0,-.12,0)))
  standing_joints(f,left,right)
 print('Explicit legacy/layered interpolation and sampled all-frame reach PASS')
 
 # One anatomy at every shot, including the seated-to-standing editorial cut.
-for f in range(1,2761):
+for f in range(1,m.SCENE_END+1):
  j=opening_joints(f,m.root_at(f),m.BEDSIDE_LEAN_RADIANS*m.bedside_lean(f)) if f<=888 else standing_joints(f)
  assert math.isclose(math.dist(j['pelvis'],j['chest']),SPINE_LENGTH,abs_tol=1e-9)
  for side in ['left','right']:
@@ -163,7 +165,7 @@ assert all(5<=sleep[side][2][1]<=7 for side in ['left','right'])
 seated=opening_joints(350,m.root_at(350),0)
 assert 1.25<seated['pelvis'][0]<2.75
 assert all(seated[side][1][0]>2.75 and seated[side][2][0]>2.75 for side in ['left','right'])
-print('All 2760 frames share anatomy; supine feet on bed and seated knees beyond side PASS')
+print('All scene frames share anatomy; supine feet on bed and seated knees beyond side PASS')
 
 # Seated thigh proxy surfaces over the bed must clear its top, not just endpoints.
 from elias_articulation import BED_TOP_HEIGHT,BED_SIDE_X,unit,mul,add
@@ -180,3 +182,17 @@ for f in range(350,889):
      minimum_clearance=min(minimum_clearance,edge[2]-BED_TOP_HEIGHT)
 assert minimum_clearance>=0
 print(f'Seated thigh cross-section clearance PASS, minimum {minimum_clearance:.6f} m; Blender surface validation separate')
+
+# Packet is geometrically inside the upper torso proxy after insertion, not hidden/deleted.
+from elias_articulation import STANDING_HIP_HEIGHT
+for f in range(2340,m.SCENE_END+1):
+ p=m.pocket_position(f);r=m.root_at(f);angle=m.standing_yaw(f)
+ dx,dy=p[0]-r[0],p[1]-r[1]
+ local=(dx*math.cos(angle)+dy*math.sin(angle),-dx*math.sin(angle)+dy*math.cos(angle),p[2]-(r[2]+STANDING_HIP_HEIGHT+SPINE_LENGTH*.75))
+ assert abs(local[0])+.11<.225
+ assert abs(local[1])+.005<.125
+ assert abs(local[2])+.055<SPINE_LENGTH/4
+speed=math.dist(m.root_at(2640),m.root_at(m.EXIT_ARRIVAL))/((m.EXIT_ARRIVAL-2640)/24)
+assert .9<speed<1.1
+assert m.SCENE_END-m.EXIT_ARRIVAL>=40
+print(f'Packet volume and revised exit speed PASS ({speed:.3f} m/s); final pacing remains provisional')

@@ -1,7 +1,7 @@
 """SC001 later joint targets and provisional planted-step exit. Pure math."""
 import math
 from elias_articulation import add,sub,mul,mix,unit,two_segment,THIGH_LENGTH,CALF_LENGTH,SPINE_LENGTH,UPPER_ARM_LENGTH,FOREARM_LENGTH,STANDING_HIP_HEIGHT,ANKLE_HEIGHT
-from sc001_motion import root_at
+from sc001_motion import root_at, EXIT_ARRIVAL
 
 
 def standing_joints(frame,left_target=None,right_target=None):
@@ -27,7 +27,7 @@ def standing_joints(frame,left_target=None,right_target=None):
             cycle=math.floor((frame-2641+offset)/12);start=2641+cycle*12-offset
             phase=(frame-start)/12
             def anchor(f):
-                p=root_at(max(2641,min(2720,f)))
+                p=root_at(max(2641,min(EXIT_ARRIVAL,f)))
                 q=add(add(p,mul(lateral,sign*.12)),mul(forward,.05))
                 return (q[0],q[1],ANKLE_HEIGHT)
             a=anchor(start+3);b=anchor(start+15)

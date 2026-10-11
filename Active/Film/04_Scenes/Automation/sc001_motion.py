@@ -8,20 +8,23 @@ from elias_articulation import STANDING_HIP_HEIGHT, SEATED_HIP_HEIGHT
 STANDING_HEIGHT_DELTA = STANDING_HIP_HEIGHT - .75
 CARRIED_MUG_OFFSET = (-.4,-.28,1.05+STANDING_HEIGHT_DELTA)
 CARRIED_KEYS_OFFSET = (.35,-.28,1.05+STANDING_HEIGHT_DELTA)
-POCKET_OFFSET = (.12,-.17,1.2+STANDING_HEIGHT_DELTA)
+POCKET_OFFSET = (.08,-.075,1.2+STANDING_HEIGHT_DELTA)
 DRINK_MUG_OFFSET = (0,-.19,1.38+STANDING_HEIGHT_DELTA)
 SHOWER_HAND_OFFSET = (.25,-.25,1.55+STANDING_HEIGHT_DELTA)
 JACKET_OFFSET = (0,.18,1.1+STANDING_HEIGHT_DELTA)
 
 BEDSIDE_LEAN_RADIANS = .66
+EXIT_START = 2641
+EXIT_ARRIVAL = 2840
+SCENE_END = 2880
 
 ROOT_KEYS = [
     (1,(2,5.15,SEATED_HIP_HEIGHT)),(270,(2,5.15,SEATED_HIP_HEIGHT)),(350,(2.50,5.8,.10)),
     (888,(2.50,5.8,.10)),(889,(5,4.6,0)),(1128,(5,4.6,0)),
     (1129,(9,5,0)),(1368,(9,5,0)),(1369,(5.1,5,0)),
     (2160,(5.1,5,0)),(2161,(6.7,4.7,0)),(2440,(6.7,4.7,0)),
-    (2520,(6.7,4.7,0)),(2521,(1.2,4.5,0)),(2640,(1.2,4.5,0)),(2720,(7.5,-.7,0)),
-    (2760,(7.5,-.7,0)),
+    (2520,(6.7,4.7,0)),(2521,(1.2,4.5,0)),(2640,(1.2,4.5,0)),(EXIT_ARRIVAL,(7.5,-.7,0)),
+    (SCENE_END,(7.5,-.7,0)),
 ]
 EVENTS = [
     {'frame':60,'event':'opening pigeon peck'},
@@ -44,8 +47,8 @@ EVENTS = [
     {'frame':2521,'event':'at window with carried props'},
     {'frame':2550,'event':"Flat's yours dialogue cue"},
     {'frame':2641,'event':'exit travel begins'},
-    {'frame':2720,'event':'outside entry; letter/envelope/keys/mug retained'},
-    {'frame':2740,'event':'final pigeon peck'},
+    {'frame':EXIT_ARRIVAL,'event':'outside entry; letter/envelope/keys/mug retained'},
+    {'frame':2860,'event':'final pigeon peck'},
 ]
 
 
@@ -86,8 +89,8 @@ def custody_at(frame):
 
 
 def sample_frames(spec):
-    frames={1,2760,*[f for f,_ in ROOT_KEYS],*[e['frame'] for e in EVENTS]}
-    frames.update([60,75,120,750,780,810,840,870,888,1399,1400,1470,1510,1540,2219,2220,2260,2299,2300,2340,2379,2380,2410,2419,2420,2440,2730,2740,2750])
+    frames={1,SCENE_END,*[f for f,_ in ROOT_KEYS],*[e['frame'] for e in EVENTS]}
+    frames.update([60,75,120,750,780,810,840,870,888,1399,1400,1470,1510,1540,2219,2220,2260,2299,2300,2340,2379,2380,2410,2419,2420,2440,2850,2860,2870])
     for s in spec['shots']:
         frames.update([s['frame_start'],s['frame_end']])
     return sorted(frames)
@@ -129,3 +132,12 @@ def coffee_target(frame):
     else:t=0
     hand=carried_position(frame,DRINK_MUG_OFFSET if frame<1540 else CARRIED_MUG_OFFSET)
     return tuple(a+(b-a)*t for a,b in zip(counter,hand))
+
+
+def standing_yaw(frame):
+    return math.atan2(6.3,5.2) if frame>=EXIT_START else 0.0
+
+
+def pocket_position(frame):
+    x,y,z=POCKET_OFFSET;angle=standing_yaw(frame)
+    return carried_position(frame,(x*math.cos(angle)-y*math.sin(angle),x*math.sin(angle)+y*math.cos(angle),z))

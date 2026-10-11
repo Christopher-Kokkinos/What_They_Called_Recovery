@@ -1,6 +1,6 @@
 """Apply scoped coarse animation to owned SC001 objects; no external scene writes."""
 import math
-from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS, coffee_target, CARRIED_KEYS_OFFSET, POCKET_OFFSET, JACKET_OFFSET
+from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS, coffee_target, CARRIED_KEYS_OFFSET, POCKET_OFFSET, JACKET_OFFSET, pocket_position, standing_yaw, EXIT_ARRIVAL, SCENE_END
 
 
 def linearise_owned_actions(objects):
@@ -118,7 +118,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
         keys.location=tuple((b-a)*t for a,b in zip(keybase,hand));keys.keyframe_insert(data_path='location',frame=frame)
         for name in ['PRP_ResignationLetter','PRP_MACEnvelope']:
             obj=scene.objects[name];base,scale=initial[name]
-            t=max(0,min(1,(frame-2300)/40));pocket=carried_position(frame,POCKET_OFFSET)
+            t=max(0,min(1,(frame-2300)/40));pocket=pocket_position(frame)
             if frame>=2161:
                 base=(6.82,4.40,1.10) if name=='PRP_ResignationLetter' else (6.50,4.40,1.015)
             obj.location=tuple(a+(b-a)*t for a,b in zip(base,pocket))
@@ -131,11 +131,11 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
                 for sign,flap in zip([-1,1],flaps):
                     angle=sign*math.pi*fold
                     offset=Vector((0,sign*.0495+sign*.0495*math.cos(angle),.0495*math.sin(math.pi*fold)+abs(sign)*.002*fold))
-                    flap.location=Vector(obj.location)+Euler((packet_rotation,0,0)).to_matrix() @ offset
-                    flap.rotation_euler=(packet_rotation+angle,0,0)
+                    flap.location=Vector(obj.location)+Euler((packet_rotation,0,standing_yaw(frame))).to_matrix() @ offset
+                    flap.rotation_euler=(packet_rotation+angle,0,standing_yaw(frame))
                     for channel in ['location','rotation_euler']:
                         flap.keyframe_insert(data_path=channel,frame=frame)
-            obj.rotation_euler=(t*math.pi/2,0,0)
+            obj.rotation_euler=(t*math.pi/2,0,standing_yaw(frame))
             for channel in ['location','scale','rotation_euler']:obj.keyframe_insert(data_path=channel,frame=frame)
         for name,limit in [('Notice_exact_text',2161),('Envelope_label',2161)]:
             obj=scene.objects[name];obj.hide_render=frame>=limit;obj.hide_viewport=frame>=limit
@@ -177,10 +177,10 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
         jacket.location=carried_position(frame,JACKET_OFFSET) if frame>=1369 else initial[jacket.name][0]
         jacket.keyframe_insert(data_path='location',frame=frame)
         # Opening and final peck are box translations, not bird anatomy.
-        peck=.05 if frame in (60,2740) else 0
+        peck=.05 if frame in (60,2860) else 0
         bird.location=bird_start.copy();bird.location.x+=peck
         bird.keyframe_insert(data_path='location',frame=frame)
     interpolation_keys=linearise_owned_actions(scene.objects)
-    return {'explicit_interpolation_keys':interpolation_keys,'reach_checks':reach_checks,'events':EVENTS,'sampled_custody':[{'frame':f,**custody_at(f)} for f in [661,870,1470,1540,2340,2410,2440,2510,2720,2760]],
+    return {'explicit_interpolation_keys':interpolation_keys,'reach_checks':reach_checks,'events':EVENTS,'sampled_custody':[{'frame':f,**custody_at(f)} for f in [661,870,1470,1540,2340,2410,2440,2510,EXIT_ARRIVAL,SCENE_END]],
             'keyframes':frames,'status':'coarse_motion_visual_review_pending',
             'limitations':['linear box posing, no gait/rig/facial performance','drawer slides into hollow carcass; contents hide at closure','hinged paper thirds; pocket entry remains proxy choreography','editorial spatial elisions at SH004/SH005/SH006/SH008/SH009 starts','no audio; dialogue and temperature changes are review cues']}

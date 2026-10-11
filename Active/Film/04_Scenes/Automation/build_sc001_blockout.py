@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.18. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.19. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -50,7 +50,7 @@ def main():
                       help='Render one labelled still per shot; supersedes --render-stills')
     args.add_argument('--render-bedside-preview',action='store_true',help='Sample SH002/SH003 only for bedside action review')
     args.add_argument('--render-motion-preview', action='store_true',
-                      help='Render 460 sampled 640x360 PNGs and local HTML player')
+                      help='Render sampled 640x360 PNGs and local HTML player')
     args.add_argument('--render-targeted-review', action='store_true',
                       help='Render SH003 and SH007 only; all-ten mode takes precedence')
     options = args.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
@@ -67,7 +67,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.18')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.19')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -331,22 +331,23 @@ def main():
     assert all(m.camera and m.frame == s['frame_start'] for m,s in zip(scene.timeline_markers, spec['shots']))
     assert len([o for o in collections['CHARACTERS'].objects if o.name.startswith('CHR_Pigeon_')]) == 2
     # Actual evaluated read-back of final custody positions (not hand-contact QA).
-    scene.frame_set(2760);bpy.context.view_layer.update()
+    scene.frame_set(spec['frame_end']);bpy.context.view_layer.update()
     final_root=root.matrix_world.translation
-    from sc001_motion import POCKET_OFFSET, CARRIED_KEYS_OFFSET, CARRIED_MUG_OFFSET
+    from sc001_motion import POCKET_OFFSET, CARRIED_KEYS_OFFSET, CARRIED_MUG_OFFSET, pocket_position
     for name,offset in [('PRP_ResignationLetter',POCKET_OFFSET),('PRP_MACEnvelope',POCKET_OFFSET),('PRP_Keys',CARRIED_KEYS_OFFSET),('PRP_CoffeeMug',CARRIED_MUG_OFFSET)]:
         actual=scene.objects[name].matrix_world.translation
-        assert (actual-final_root-Vector(offset)).length<.001, 'Final custody mismatch: '+name
+        expected=Vector(pocket_position(spec['frame_end'])) if name in {'PRP_ResignationLetter','PRP_MACEnvelope'} else final_root+Vector(offset)
+        assert (actual-expected).length<.001, 'Final custody mismatch: '+name
     assert scene.objects['PRP_PrescriptionStrip'].hide_render
     motion['final_custody_readback']='PASS'
     scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
-    blend = out / 'SC001_blockout_v0.18.blend'
+    blend = out / 'SC001_blockout_v0.19.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Hinged paper and drawer motion remain coarse proxies','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh003_sh007' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.18'
+    report['builder_version'] = '0.19'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     report['render_evaluation'] = {'stills':[], 'preview_shot_starts':[], 'window_preview':[]}

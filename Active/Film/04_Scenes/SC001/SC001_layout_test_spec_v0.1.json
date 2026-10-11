@@ -13,8 +13,8 @@
   "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
   "fps": 24,
   "frame_start": 1,
-  "frame_end": 2760,
-  "duration_seconds": 115,
+  "frame_end": 2880,
+  "duration_seconds": 120,
   "preview_resolution": [
     1280,
     720
@@ -106,7 +106,7 @@
       "shot_id": "SC001_SH010",
       "beat_id": "B07",
       "frame_start": 2641,
-      "frame_end": 2760,
+      "frame_end": 2880,
       "framing": "Window and departing-room hold",
       "action": "Exit and final peck",
       "review_check": "Clear departure; no new plot reveal"

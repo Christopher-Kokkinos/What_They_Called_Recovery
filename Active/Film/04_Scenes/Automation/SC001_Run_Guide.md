@@ -1,4 +1,4 @@
-# SC001 first desktop blockout test
+# SC001 desktop coarse motion test — v0.6
 
 From Git Bash in the repository on `animated-movie`:
 
@@ -7,21 +7,17 @@ git pull --ff-only
 "/c/Program Files/Blender Foundation/Blender 5.2/blender.exe" \
   --background --factory-startup --python-exit-code 1 \
   --python "Active/Film/04_Scenes/Automation/build_sc001_blockout.py" \
-  -- --render-shot-review
+  -- --render-shot-review --render-motion-preview
 ```
 
-No add-on or pip install is needed. This runs a separate Blender process and does not operate on your open scene. It refuses execution inside interactive Blender or with a loaded file. Every run creates a new folder beneath `Active/Film/_local/SC001/`; existing runs are retained. These generated files are ignored by Git.
+No add-on, pip install or codec is needed. This uses an isolated background process and refuses loaded files or interactive execution. Each run creates a new ignored folder under `Active/Film/_local/SC001/`, preserving earlier runs.
 
-On success the terminal prints `SC001 OUTPUT:` and the folder path. Open that folder in Explorer. It contains `SC001_blockout_v0.5.blend`, `validation.json` and ten PNGs named by shot ID and start frame. Open the blend in Blender, select scene `SC001_BLOCKOUT_v0.5`, use camera view and inspect the ten timeline markers. The untouched factory scene may also be present.
+On success, open the printed `SC001 OUTPUT:` folder. It contains `SC001_blockout_v0.6.blend`, `validation.json`, ten full-resolution shot-start PNGs, `motion_preview.html`, `motion_preview_manifest.json` and 460 smaller PNGs under `motion_frames/`. Open the HTML file in your desktop browser and click Play; pause/scrub to inspect action and carry. Keep the image folder beside the player. Archive the entire run folder for review. Rendering 470 images takes longer than the previous two-shot test; runtime is not benchmarked.
 
-Review room proportions, bird location outside the window, clock display, drawer prescription/two dark empty cells and readable MAC notice. The script uses cheap Workbench diagnostic shading; it does not demonstrate the approved final noir lighting or grain. Camera positions and lenses are provisional. The builder fits shot-specific subjects in all ten views within a 6% frame margin using evaluated object bounds. The letter uses a top-down orthographic diagnostic camera. Containment does not test occlusion or text legibility. No full sequence render is requested.
+The blend scene `SC001_BLOCKOUT_v0.6` contains 24fps coarse animation and camera markers. The player samples at 4fps, 640×360 for the provisional 115 seconds; use the full-resolution stills for notice readability. Workbench shading is diagnostic and does not demonstrate final noir lighting or grain.
 
-Elias is a box mannequin at discrete staging positions, not a rig or performance. Pain, waking, drawer closure, folding/pocketing, coffee carry and bird pecking are not animated. Letter/envelope/mug remain static diagnostic props: continuity is specified in the packet, not proven by this test. The 115-second range is a timing hypothesis, not measured screen performance.
+Review waking/support, drawer closure without taking medicine, shower response, coffee return, readable unchanged notice, symbolic fold/pocket, keys/mug collection, birds and exit. Letter/envelope, keys and mug should finish with Elias. Camera assertions check sampled containment and final evaluated prop positions; occlusion, contact and continuous readability still need visual review. Exact shot durations remain hypotheses.
 
-If execution fails, retain the folder and terminal error; do not treat partial files as a passed test. Paste the terminal ending for diagnosis. v0.1 desktop execution succeeded in Blender 5.2.2 and v0.2 replacement images demonstrated corrected cropping. v0.3 ten-shot execution and review are evidenced; v0.4 framing/pose/prop changes still require local execution. The agent environment has no Blender/bpy. Send the ten PNGs for visual review before detailed modelling; include validation.json if available. Each file corresponds to one shot, and the report pairs it with the packet review obligation.
+Linear box posing, sliding exit, scale-based folding and drawer hide/slide are approximations. Dressing and changes between room zones use editorial elisions. No facial performance, gait, audio or water simulation is included. No finished-slice gate has passed. See DEC-0028 for judgement calls.
 
-The diagnostic preview disables cast shadows to remove duplicate-looking notice text. Final noir shadows remain a production requirement. Clothes/post staging is moved beside the kitchen to let the contrast and full mannequin fit a tighter view; that placement is provisional film design. `--render-stills` retains the original three-image mode, and omitting both flags builds without rendering. `--render-shot-review` takes precedence if both flags are supplied. Ten start-frame stills do not prove shot motion or timing.
-
-v0.4 adds coarse lying/seated support poses, a hollow mug and handle, separate torch/tools, clothes/post layers and bathroom threshold/fixture shapes. SH006 uses an oblique camera to improve the mug sightline; SH008 stages the pocket/keys preparation beside the counter before departure. These choices remain provisional. There is no animated prop transfer, measured pain gesture or continuous performance. Review all ten replacement images and validation.json.
-
-For the current focused v0.5 correction test, replace `--render-shot-review` with `--render-targeted-review`. This produces two PNGs, SH005 and SH008, plus the blend and validation report in a new run folder. Mode precedence is all-ten, then targeted, then three-still. SH005 no longer fits the full distant threshold; SH008 moves the jacket behind/to the side of the preparation area and gives keys shaft/tooth shapes. v0.4 execution is reviewed; v0.5 remains execution/visual-review pending.
+`--render-motion-preview` can be used alone. Still-mode precedence is all-ten, targeted SH005/SH008, then original three-still mode. Omit render flags to build the animated blend without images. If execution fails, retain the run folder and paste the terminal error; partial files are not a passed run. v0.5 desktop execution and focused visual corrections were reviewed. v0.6 has only agent-side Python/timeline checks until this desktop test succeeds.

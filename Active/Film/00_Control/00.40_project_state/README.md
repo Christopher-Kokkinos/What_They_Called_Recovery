@@ -11,3 +11,5 @@ The story preserves Zoe's self agency, earned trust with Elias, the retained mor
 The Saint Vincent's community voice-group concept remains shelved until audio/casting. No contact or resources agreed.
 
 At task start inspect status, manifest, relevant register and workflow; at finish record evidence and synchronize controls without advancing gates merely because documents exist.
+
+DEC-0028 prepares builder v0.6: coarse waking/support/shower-response poses, drawer closure, coffee gesture, symbolic folding/pocketing, keys/mug pickup and departure. Sampled camera containment and evaluated final prop-position assertions run in Blender. A silent 4 fps HTML player samples the 115-second hypothesis at 640×360. Pure timeline checks pass; Blender execution, moving-image readability, contact, pacing and continuity remain pending. See Reports/Film/2026-10-11_sc001_v06_motion_preparation.md.

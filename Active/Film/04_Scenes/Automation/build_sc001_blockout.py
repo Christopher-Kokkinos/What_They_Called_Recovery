@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.5. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.6. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -48,19 +48,25 @@ def main():
     args.add_argument('--render-stills', action='store_true')
     args.add_argument('--render-shot-review', action='store_true',
                       help='Render one labelled still per shot; supersedes --render-stills')
+    args.add_argument('--render-motion-preview', action='store_true',
+                      help='Render 460 sampled 640x360 PNGs and local HTML player')
     args.add_argument('--render-targeted-review', action='store_true',
                       help='Render SH005 and SH008 only; all-ten mode takes precedence')
     options = args.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
     spec = json.loads(SPEC.read_text(encoding='utf-8'))
     validate_spec(spec)
     import bpy
+    sys.path.insert(0,str(Path(__file__).resolve().parent))
+    from sc001_motion import sample_frames, preview_frames, shot_at, EVENTS
+    from sc001_motion_blender import apply_motion
+    from sc001_preview import write_viewer
     from mathutils import Vector
     from bpy_extras.object_utils import world_to_camera_view
     if not bpy.app.background or bpy.data.filepath:
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.5')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.6')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -223,6 +229,12 @@ def main():
     # so interpolation cannot move the mannequin through a shot.
     for i, shot in enumerate(spec['shots']):
         stage_pose(i,shot['frame_end'])
+    motion = apply_motion(bpy,scene,root,defaults,spec,box)
+    pose_checks = []
+    for shot in spec["shots"]:
+        scene.frame_set(shot["frame_start"])
+        bpy.context.view_layer.update()
+        pose_checks.append({"shot":shot["shot_id"], "frame":shot["frame_start"], "position":list(root.matrix_world.translation), "rotation":list(root.rotation_euler), "status":"evaluated_coarse_pose"})
     # Fit diagnostic subjects from their actual bounds, including evaluated text.
     # This tests containment, not occlusion or legibility; still review is mandatory.
     framing_checks = []
@@ -240,13 +252,20 @@ def main():
         9: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'],
     }
     for index, names in subjects.items():
-        scene.frame_set(spec['shots'][index]['frame_start'])
-        bpy.context.view_layer.update()
-        deps = bpy.context.evaluated_depsgraph_get()
-        points = []
-        for name in names:
-            obj = scene.objects[name].evaluated_get(deps)
-            points.extend(obj.matrix_world @ Vector(corner) for corner in obj.bound_box)
+        shot=spec['shots'][index]
+        check_frames=sorted({shot['frame_start'],shot['frame_end'],
+                             *[f for f in sample_frames(spec) if shot['frame_start']<=f<=shot['frame_end']]})
+        points=[]
+        for check_frame in check_frames:
+            scene.frame_set(check_frame)
+            bpy.context.view_layer.update()
+            deps=bpy.context.evaluated_depsgraph_get()
+            for name in names:
+                original=scene.objects[name]
+                if original.hide_render:
+                    continue
+                obj=original.evaluated_get(deps)
+                points.extend(obj.matrix_world @ Vector(corner) for corner in obj.bound_box)
         center = sum(points, Vector()) / len(points)
         cam = scene.objects[spec['shots'][index]['shot_id']]
         if index == 6:
@@ -271,7 +290,7 @@ def main():
             raise RuntimeError('Could not safely frame ' + cam.name)
         framing_checks.append({'shot':cam.name, 'subjects':names, 'margin':.06,
                                'containment_passed':True, 'camera_type':cam.data.type,
-                               'position':list(cam.location), 'ortho_scale':cam.data.ortho_scale})
+                               'sample_frames':check_frames, 'position':list(cam.location), 'ortho_scale':cam.data.ortho_scale})
     scene.camera = scene.objects['SC001_SH001']
     scene.frame_set(1)
     assert len(framing_checks) == len(spec['shots'])
@@ -285,13 +304,22 @@ def main():
     assert len(scene.timeline_markers) == 10
     assert all(m.camera and m.frame == s['frame_start'] for m,s in zip(scene.timeline_markers, spec['shots']))
     assert len([o for o in collections['CHARACTERS'].objects if o.name.startswith('CHR_Pigeon_')]) == 2
-    blend = out / 'SC001_blockout_v0.5.blend'
+    # Actual evaluated read-back of final custody positions (not hand-contact QA).
+    scene.frame_set(2760);bpy.context.view_layer.update()
+    final_root=root.matrix_world.translation
+    for name,offset in [('PRP_ResignationLetter',(.12,-.17,1.2)),('PRP_MACEnvelope',(.12,-.17,1.2)),('PRP_Keys',(.35,-.28,1.05)),('PRP_CoffeeMug',(-.4,-.28,1.05))]:
+        actual=scene.objects[name].matrix_world.translation
+        assert (actual-final_root-Vector(offset)).length<.001, 'Final custody mismatch: '+name
+    assert scene.objects['PRP_PrescriptionStrip'].hide_render
+    motion['final_custody_readback']='PASS'
+    scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
+    blend = out / 'SC001_blockout_v0.6.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
-    report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Diagnostic boxes and discrete staging, not performance animation','Letter, mug and keys custody not animated','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
+    report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Paper fold and drawer closure are diagnostic approximations','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh005_sh008' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.5'
+    report['builder_version'] = '0.6'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:
@@ -308,6 +336,27 @@ def main():
                                          'frame':frame, 'camera':scene.camera.name,
                                          'review_check':shot['review_check'], 'image':scene.render.filepath})
         assert len(report['stills']) == len(review_shots)
+    report['module_sha256']={name:hashlib.sha256((Path(__file__).resolve().parent/name).read_bytes()).hexdigest() for name in ['sc001_motion.py','sc001_motion_blender.py','sc001_preview.py']}
+    if options.render_motion_preview:
+        preview_dir=out/'motion_frames';preview_dir.mkdir(exist_ok=False)
+        entries=[]
+        try:
+            scene.render.resolution_x,scene.render.resolution_y=640,360
+            for number,frame in enumerate(preview_frames(spec)):
+                shot=shot_at(spec,frame);scene.frame_set(frame);scene.camera=scene.objects[shot['shot_id']]
+                filename='motion_frames/frame_%04d.png'%number
+                scene.render.filepath=str(out/filename)
+                bpy.ops.render.render(write_still=True,scene=scene.name)
+                assert (out/filename).is_file()
+                cues=[e['event'] for e in EVENTS if e['frame']<=frame]
+                entries.append({'frame':frame,'shot':shot['shot_id'],'image':filename,'cue':cues[-1] if cues else 'morning hold'})
+                if number%40==0:print('SC001 MOTION PREVIEW',number,'/ 460',flush=True)
+        finally:
+            scene.render.resolution_x,scene.render.resolution_y=spec['preview_resolution']
+        assert len(entries)==460
+        write_viewer(out/'motion_preview.html',entries)
+        (out/'motion_preview_manifest.json').write_text(json.dumps({'fps':4,'source_fps':24,'duration_seconds':115,'resolution':[640,360],'entries':entries},indent=2),encoding='utf-8')
+        report['motion_preview']={'player':str(out/'motion_preview.html'),'manifest':str(out/'motion_preview_manifest.json'),'frames':460,'fps':4,'resolution':[640,360]}
     (out / 'validation.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print('SC001 OUTPUT:', out)
     print('STRUCTURE VALIDATED; VISUAL REVIEW PENDING')

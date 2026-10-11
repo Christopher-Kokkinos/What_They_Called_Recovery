@@ -66,10 +66,7 @@ assert m.bedside_lean(810)==1 and m.bedside_lean(888)==0
 # Seated hips within mattress; foot bottoms at floor; drawer-close reach bounded.
 assert 1.25<m.root_at(350)[0]<2.75
 assert math.isclose(m.root_at(350)[2]-.05-.05,0,abs_tol=1e-9)
-for f in range(810,871):
- local=m.upper_point((.32,0,1.4),f);pos=m.root_at(f);shoulder=(pos[0]-local[1],pos[1]+local[0],pos[2]+local[2]);goal=(3.22,5.80+(f-810)/60*.48,.72)
- assert math.dist(shoulder,goal)<=.70
-print('Bed-edge/floor-contact plan and closure reach PASS')
+print('Bed-edge/floor-contact plan PASS')
 
 for f in range(750,889):
  assert math.isclose(math.dist(m.upper_point((0,0,1.1),f),m.upper_point((0,0,1.65),f)),.55,abs_tol=1e-10)
@@ -88,9 +85,20 @@ for f in range(1,889):
   assert math.isclose(math.dist(b,c),CALF_LENGTH,abs_tol=1e-9)
   if f>=350:assert c==(3.05,5.8+(-.12 if side=='left' else .12),.1)
  assert math.isclose(math.dist(j['pelvis'],j['chest']),SPINE_LENGTH,abs_tol=1e-9)
-for f in range(350,810):
- p=m.root_at(f);l=m.upper_point((.32,0,1.4),f);shoulder=(p[0]-l[1],p[1]+l[0],p[2]+l[2])
- l=m.upper_point((-.13,-.14,1.05),f);rib=(p[0]-l[1],p[1]+l[0],p[2]+l[2]);t=max(0,min(1,(f-750)/60))**2
- goal=tuple(a+(b-a)*t for a,b in zip(rib,(3.22,5.80,.72)))
- assert math.dist(shoulder,goal)<=.70
-print('Opening articulation lengths, planted ankles and support-to-drawer reach PASS')
+
+from elias_articulation import dot,sub,mix,UPPER_ARM_LENGTH,FOREARM_LENGTH
+for f in range(1,889):
+ j=opening_joints(f,m.root_at(f),m.BEDSIDE_LEAN_RADIANS*m.bedside_lean(f))
+ for side in ['left','right']:
+  a,b,c=j[side+'_arm']
+  assert math.isclose(math.dist(a,b),UPPER_ARM_LENGTH,abs_tol=1e-9)
+  assert math.isclose(math.dist(b,c),FOREARM_LENGTH,abs_tol=1e-9)
+  assert math.dist(a,c)<.70
+ for axis in ['up','lateral','forward']:assert math.isclose(dot(j[axis],j[axis]),1,abs_tol=1e-9)
+ assert abs(dot(j['up'],j['lateral']))<1e-9
+ if 350<=f<=750:
+  a,b,c=j['right_arm']
+  for i in range(11):
+   # Torso front half-depth .125; forearm half-width .055.
+   assert dot(sub(mix(b,c,i/10),j['pelvis']),j['forward'])>=.18-1e-9
+print('Shared chest axes, opening arm lengths/reach and rib-support forearm surface clearance PASS')

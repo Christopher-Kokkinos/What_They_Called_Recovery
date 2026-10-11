@@ -4,23 +4,42 @@ from sc001_motion import root_at,bedside_lean,BEDSIDE_LEAN_RADIANS
 
 
 def apply(bpy,scene,root,spec,box):
-    from mathutils import Vector
+    from mathutils import Vector, Matrix
     lower=box('CHR_Elias_lower_spine',(0,0,0),(.45,.25,.325),'CHARACTERS',(.27,.32,.36,1))
     lower.parent=root
     torso=scene.objects['CHR_Elias_torso']
-    def segment(obj,a,b,width,depth,frame):
+    neck=box('CHR_Elias_neck',(0,0,0),(.12,.12,.10),'CHARACTERS',(.27,.32,.36,1));neck.parent=root
+    def segment(obj,a,b,width,depth,frame,basis=None):
         inverse=root.matrix_world.inverted();a=inverse @ Vector(a);b=inverse @ Vector(b)
-        obj.location=(a+b)/2;obj.rotation_euler=(b-a).to_track_quat('Z','Y').to_euler()
+        obj.location=(a+b)/2
+        obj.rotation_euler=basis.to_euler() if basis is not None else (b-a).to_track_quat('Z','Y').to_euler()
         obj.scale=(width,depth,(b-a).length)
         for channel in ['location','rotation_euler','scale']:obj.keyframe_insert(data_path=channel,frame=frame)
     # Dense source-frame keys avoid segment-length changes caused by sparse transform interpolation.
     for frame in range(1,889):
         scene.frame_set(frame);bpy.context.view_layer.update()
         joints=opening_joints(frame,root_at(frame),BEDSIDE_LEAN_RADIANS*bedside_lean(frame))
-        segment(lower,joints['pelvis'],joints['spine'],.45,.25,frame)
-        segment(torso,joints['spine'],joints['chest'],.45,.25,frame)
+        world_basis=Matrix((joints['lateral'],tuple(-x for x in joints['forward']),joints['up'])).transposed()
+        local_basis=root.matrix_world.inverted().to_3x3() @ world_basis
+        segment(lower,joints['pelvis'],joints['spine'],.45,.25,frame,local_basis)
+        segment(torso,joints['spine'],joints['chest'],.45,.25,frame,local_basis)
+        neck_end=Vector(joints['chest'])+Vector(joints['up'])*.10
+        segment(neck,joints['chest'],neck_end,.12,.12,frame,local_basis)
         head=scene.objects['CHR_Elias_head'];head.location=root.matrix_world.inverted() @ Vector(joints['head'])
-        head.keyframe_insert(data_path='location',frame=frame)
+        head.rotation_euler=local_basis.to_euler()
+        for channel in ['location','rotation_euler']:head.keyframe_insert(data_path=channel,frame=frame)
+        for side in ['left','right']:
+            shoulder,elbow,wrist=joints[side+'_arm']
+            segment(scene.objects['CHR_Elias_'+side+'_arm'],shoulder,elbow,.15,.15,frame)
+            forearm=scene.objects['CHR_Elias_'+side+'_forearm']
+            segment(forearm,elbow,wrist,.11,.11,frame)
+            palm=scene.objects['CHR_Elias_'+side+'_palm']
+            palm.location=root.matrix_world.inverted() @ Vector(wrist)
+            palm.rotation_euler=local_basis.to_euler()
+            for channel in ['location','rotation_euler']:palm.keyframe_insert(data_path=channel,frame=frame)
+            for obj in [forearm,palm,neck]:
+                obj.hide_render=False;obj.hide_viewport=False
+                for channel in ['hide_render','hide_viewport']:obj.keyframe_insert(data_path=channel,frame=frame)
         for side in ['left','right']:
             hip,knee,ankle=joints[side]
             segment(scene.objects['CHR_Elias_'+side+'_thigh'],hip,knee,.18,.18,frame)
@@ -33,8 +52,24 @@ def apply(bpy,scene,root,spec,box):
         lower.hide_render=False;lower.hide_viewport=False
         for channel in ['hide_render','hide_viewport']:lower.keyframe_insert(data_path=channel,frame=frame)
     # Existing standing/action pass resumes at the kitchen cut. This module owns only 1–888.
-    lower.hide_render=True;lower.hide_viewport=True
-    for channel in ['hide_render','hide_viewport']:lower.keyframe_insert(data_path=channel,frame=889)
+    for obj in [lower,neck]+[scene.objects['CHR_Elias_'+side+'_'+part] for side in ['left','right'] for part in ['forearm','palm']]:
+        obj.hide_render=True;obj.hide_viewport=True
+        for channel in ['hide_render','hide_viewport']:obj.keyframe_insert(data_path=channel,frame=889)
+    max_attachment_error=0.0
+    for frame in range(1,889):
+        scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
+        joints=opening_joints(frame,root_at(frame),BEDSIDE_LEAN_RADIANS*bedside_lean(frame))
+        for side in ['left','right']:
+            arm=scene.objects['CHR_Elias_'+side+'_arm'].evaluated_get(deps)
+            forearm=scene.objects['CHR_Elias_'+side+'_forearm'].evaluated_get(deps)
+            shoulder,elbow,wrist=map(Vector,joints[side+'_arm'])
+            errors=[(arm.matrix_world @ Vector((0,0,-.5))-shoulder).length,
+                    (arm.matrix_world @ Vector((0,0,.5))-elbow).length,
+                    (forearm.matrix_world @ Vector((0,0,-.5))-elbow).length,
+                    (forearm.matrix_world @ Vector((0,0,.5))-wrist).length]
+            max_attachment_error=max(max_attachment_error,*errors)
+    assert max_attachment_error<1e-5,'Opening arm attachment mismatch'
+
     checks=[]
     for frame in [350,661,750,810,870,888]:
         scene.frame_set(frame);bpy.context.view_layer.update()
@@ -48,5 +83,5 @@ def apply(bpy,scene,root,spec,box):
             assert abs(calf.matrix_world.to_scale().z-.64)<1e-5
             assert abs(bottom)<1e-5, 'Foot off floor '+side+' '+str(frame)
             checks.append({'frame':frame,'side':side,'foot_bottom_z':bottom,'thigh':.60,'calf':.64})
-    return {'evaluated_joint_checks':checks,'opening_articulation':'fixed_length_joint_proxy_desktop_pending','owned_frames':[1,888],
+    return {'attachment_checked_frames':888,'maximum_arm_endpoint_error':max_attachment_error,'evaluated_joint_checks':checks,'opening_articulation':'fixed_length_joint_proxy_desktop_pending','owned_frames':[1,888],
             'standing_and_handling':'existing_pass_retained','limitations':['Staged rise, not final roll','No skinning or armature yet','Drawer grip remains analytic proxy; final skinning/contact pending']}

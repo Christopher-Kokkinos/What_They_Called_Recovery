@@ -122,16 +122,10 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             obj.keyframe_insert(data_path='hide_render',frame=frame);obj.keyframe_insert(data_path='hide_viewport',frame=frame)
         from mathutils import Vector, Euler
         for side in ['left','right']:
-            active=(1400<=frame<1540 or frame>=2420) if side=='left' else (350<=frame<=870 or 2220<=frame)
+            active=(1400<=frame<1540 or frame>=2420) if side=='left' else (2220<=frame)
             palm=palms[side];palm.hide_render=not active;palm.hide_viewport=not active
             if side=='left':
                 goal=Vector(target)+Vector((.12,0,.11))
-            elif 350<=frame<810:
-                rib=Euler(root_rotation(frame)).to_matrix() @ Vector(upper_point((-.13,-.14,1.05),frame))+Vector(pos)
-                t=max(0,min(1,(frame-750)/60))**2
-                goal=rib.lerp(Vector((3.22,5.80,.72)),t)
-            elif 810<=frame<=870:
-                goal=Vector((3.22,5.80+(frame-810)/60*.48,.72))
             elif frame>=2380:
                 goal=Vector(keybase)+keys.location
             else:

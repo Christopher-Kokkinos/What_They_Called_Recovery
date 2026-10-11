@@ -4,12 +4,16 @@ import math
 THIGH_LENGTH = .60
 CALF_LENGTH = .64
 SPINE_LENGTH = .65
+UPPER_ARM_LENGTH = .36
+FOREARM_LENGTH = .34
 
 
 def add(a,b): return tuple(x+y for x,y in zip(a,b))
 def sub(a,b): return tuple(x-y for x,y in zip(a,b))
 def mul(a,k): return tuple(x*k for x in a)
 def dot(a,b): return sum(x*y for x,y in zip(a,b))
+def cross(a,b): return (a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0])
+def mix(a,b,t):return add(mul(a,1-t),mul(b,t))
 def unit(a):
     n=math.sqrt(dot(a,a))
     if n<1e-10: raise ValueError('Degenerate joint direction')
@@ -43,7 +47,29 @@ def opening_joints(frame,root_position,lean):
     chest=add(hip,mul(direction,SPINE_LENGTH))
     head=add(chest,mul(direction,.25))
     yaw=math.pi/2*smooth;lateral=(math.cos(yaw),math.sin(yaw),0)
-    joints={'pelvis':hip,'spine':middle,'chest':chest,'head':head}
+    lateral=unit(sub(lateral,mul(direction,dot(lateral,direction))))
+    forward=unit(cross(lateral,direction))
+    joints={'pelvis':hip,'spine':middle,'chest':chest,'head':head,
+            'up':direction,'lateral':lateral,'forward':forward}
+    # Every opening arm uses the same chest basis as the spine and head.
+    for side,sign in [('left',-1),('right',1)]:
+        shoulder=add(add(chest,mul(direction,-.08)),mul(lateral,sign*.225))
+        rest=add(add(add(shoulder,mul(direction,-.60)),mul(forward,.13)),mul(lateral,sign*.04))
+        wrist=rest
+        if side=='right':
+            rib=add(add(add(hip,mul(direction,.40)),mul(lateral,-.16)),mul(forward,.19))
+            support=max(0,min(1,(frame-300)/50))
+            wrist=mix(rest,rib,support)
+            if 750<=frame<=810:
+                wrist=mix(rib,(3.22,5.80,.72),((frame-750)/60)**2)
+            elif 810<frame<=870:
+                wrist=(3.22,5.80+(frame-810)/60*.48,.72)
+            elif frame>870:
+                wrist=mix((3.22,6.28,.72),rest,(frame-870)/18)
+            joints['rib_target']=rib
+        pole=add(add(shoulder,mul(forward,.7)),mul(lateral,sign*.4))
+        elbow=two_segment(shoulder,wrist,pole,UPPER_ARM_LENGTH,FOREARM_LENGTH)
+        joints[side+'_arm']=(shoulder,elbow,wrist)
     for side,sign in [('left',-1),('right',1)]:
         start=add(hip,mul(lateral,sign*.12))
         sleep=(2+sign*.12,4.70,.85)

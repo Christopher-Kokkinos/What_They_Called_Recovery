@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.4. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.5. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -33,9 +33,11 @@ def validate_spec(spec):
     assert hashlib.sha256(content).hexdigest() == spec['screenplay_sha256'], 'Screenplay changed; review specification first'
 
 
-def select_review_shots(spec, render_stills=False, render_shot_review=False):
+def select_review_shots(spec, render_stills=False, render_shot_review=False, render_targeted_review=False):
     if render_shot_review:
         return spec['shots']
+    if render_targeted_review:
+        return [s for s in spec['shots'] if s['shot_id'] in {'SC001_SH005','SC001_SH008'}]
     if render_stills:
         return [s for s in spec['shots'] if s['frame_start'] in {1, 889, 1561}]
     return []
@@ -46,6 +48,8 @@ def main():
     args.add_argument('--render-stills', action='store_true')
     args.add_argument('--render-shot-review', action='store_true',
                       help='Render one labelled still per shot; supersedes --render-stills')
+    args.add_argument('--render-targeted-review', action='store_true',
+                      help='Render SH005 and SH008 only; all-ten mode takes precedence')
     options = args.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
     spec = json.loads(SPEC.read_text(encoding='utf-8'))
     validate_spec(spec)
@@ -56,7 +60,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.4')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.5')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -159,8 +163,11 @@ def main():
     mug.location=(5.55,5.85,1.02); mug.color=(.65,.64,.59,1)
     for suffix,pos,size in [('top',(5.69,5.85,1.19),(.12,.035,.03)),('side',(5.74,5.85,1.13),(.035,.035,.13)),('bottom',(5.69,5.85,1.065),(.12,.035,.03))]:
         box('PRP_Mug_handle_'+suffix,pos,size,color=(.65,.64,.59,1))
-    box('PRP_Keys', (6.6,5.6,1.04), (.18,.1,.02))
-    box('PRP_EliasJacket', (7.2,4.4,1.1), (.5,.12,.8))
+    box('PRP_Keys', (6.9,5.6,1.035), (.06,.11,.015), color=(.7,.68,.55,1))
+    for i in range(2):
+        box('PRP_Key_shaft_%d' % i, (6.9+i*.06,5.48,1.035), (.025,.17,.015), color=(.7,.68,.55,1))
+        box('PRP_Key_tooth_%d' % i, (6.925+i*.06,5.41,1.035), (.06,.025,.015), color=(.7,.68,.55,1))
+    box('PRP_EliasJacket', (7.6,5.4,1.1), (.5,.12,.8))
     box('PRP_MACEnvelope', (6,5.65,1.015), (.65,.3,.02), color=(.9,.9,.86,1))
     label('Envelope_label', 'MAC', (5.76,5.65,1.03), .1, True)
     box('PRP_ResignationLetter', (6,5.25,1.03), (1.4,.6,.015), color=(.92,.9,.85,1))
@@ -225,10 +232,10 @@ def main():
         1: upper,
         2: ['PRP_PrescriptionStrip','Prescription_label'] + ['Prescription_cell_%02d' % i for i in range(8)],
         3: ['SET_EliasFlat_kitchen_counter', 'PRP_TorchTools', 'PRP_ClothesPost'] + [o.name for o in collections['PROPS'].objects if o.name.startswith(('PRP_Clothes_','PRP_Post_','PRP_Torch_','PRP_Tool_'))] + [o.name for o in root.children],
-        4: upper + ['SET_EliasFlat_bathroom_threshold','PRP_ShowerFixture','PRP_Shower_control'],
+        4: upper + ['PRP_ShowerFixture','PRP_Shower_control'],
         5: upper + ['PRP_CoffeeMug'] + [o.name for o in collections['PROPS'].objects if o.name.startswith('PRP_Mug_handle_')],
         6: ['PRP_ResignationLetter', 'Notice_exact_text', 'PRP_MACEnvelope', 'Envelope_label'],
-        7: upper + ['PRP_EliasJacket','PRP_Keys','PRP_CoffeeMug','PRP_ResignationLetter','PRP_MACEnvelope'],
+        7: upper + ['PRP_Keys','PRP_CoffeeMug','PRP_ResignationLetter','PRP_MACEnvelope'] + [o.name for o in collections['PROPS'].objects if o.name.startswith('PRP_Key_')],
         8: upper + ['CHR_Pigeon_A','CHR_Pigeon_B'],
         9: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'],
     }
@@ -278,13 +285,13 @@ def main():
     assert len(scene.timeline_markers) == 10
     assert all(m.camera and m.frame == s['frame_start'] for m,s in zip(scene.timeline_markers, spec['shots']))
     assert len([o for o in collections['CHARACTERS'].objects if o.name.startswith('CHR_Pigeon_')]) == 2
-    blend = out / 'SC001_blockout_v0.4.blend'
+    blend = out / 'SC001_blockout_v0.5.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Diagnostic boxes and discrete staging, not performance animation','Letter, mug and keys custody not animated','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
-    review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review)
-    report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('three_stills' if options.render_stills else 'build_only')
-    report['builder_version'] = '0.4'
+    review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
+    report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh005_sh008' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
+    report['builder_version'] = '0.5'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:
@@ -292,7 +299,7 @@ def main():
             frame = shot['frame_start']
             scene.frame_set(frame)
             scene.camera = scene.objects[shot['shot_id']]
-            filename = (shot['shot_id'] + '_frame_%04d.png' % frame) if options.render_shot_review else ('frame_%04d.png' % frame)
+            filename = (shot['shot_id'] + '_frame_%04d.png' % frame) if (options.render_shot_review or options.render_targeted_review) else ('frame_%04d.png' % frame)
             scene.render.filepath = str(out / filename)
             bpy.ops.render.render(write_still=True, scene=scene.name)
             assert Path(scene.render.filepath).is_file()

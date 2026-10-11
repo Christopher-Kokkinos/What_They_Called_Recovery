@@ -7,7 +7,9 @@ SPINE_LENGTH = .65
 UPPER_ARM_LENGTH = .36
 FOREARM_LENGTH = .34
 STANDING_HIP_HEIGHT = 1.02
-SEATED_HIP_HEIGHT = .85
+SEATED_HIP_HEIGHT = .65
+BED_TOP_HEIGHT = .54
+BED_SIDE_X = 2.75
 ANKLE_HEIGHT = .10
 
 
@@ -42,7 +44,7 @@ def opening_joints(frame,root_position,lean):
     """
     t=max(0,min(1,(frame-270)/80));smooth=t*t*(3-2*t)
     hip=(2+.5*smooth,5.9-.1*smooth,SEATED_HIP_HEIGHT)
-    if frame>=350:hip=(root_position[0],root_position[1],root_position[2]+.75)
+    if frame>=350:hip=(root_position[0],root_position[1],root_position[2]+SEATED_HIP_HEIGHT-.10)
     rise=math.pi/2*smooth
     direction=unit((math.sin(lean),math.cos(rise)*math.cos(lean),math.sin(rise)*math.cos(lean)))
     # Split spine supplies a joint for later chest/neck acting without stretching.
@@ -78,7 +80,7 @@ def opening_joints(frame,root_position,lean):
         sleep=(2+sign*.12,5.00,SEATED_HIP_HEIGHT)
         seated=(3.05,5.80+sign*.12,ANKLE_HEIGHT)
         ankle=add(mul(sleep,1-smooth),mul(seated,smooth))
-        pole=add(hip,(1.5,-1,1))
+        pole=add(hip,(2,0,2))
         knee=two_segment(start,ankle,pole,THIGH_LENGTH,CALF_LENGTH)
         joints[side]=(start,knee,ankle)
     return joints

@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.17. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.18. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -60,14 +60,14 @@ def main():
     sys.path.insert(0,str(Path(__file__).resolve().parent))
     from sc001_motion import sample_frames, preview_frames, shot_at, EVENTS, camera_radial
     from sc001_motion_blender import apply_motion
-    from sc001_preview import write_viewer
+    from sc001_preview import write_viewer, evaluated_render_state
     from mathutils import Vector
     from bpy_extras.object_utils import world_to_camera_view
     if not bpy.app.background or bpy.data.filepath:
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.17')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.18')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -116,8 +116,9 @@ def main():
     box('SET_EliasFlat_floor', (5,3.5,-.1), (10,7,.2), 'SET')
     # Cutaway layout: ceiling/front/partitions omitted for unobstructed diagnostic cameras.
     box('SET_EliasFlat_north_wall', (5,7.05,1.3), (10,.1,2.6), 'SET', (.55,.55,.52,1))
-    box('SET_EliasFlat_bed', (2,6,.35), (1.5,2,.7), 'SET')
-    box('SET_EliasFlat_pillow',(2,6.75,.75),(.85,.35,.10),'SET')
+    from elias_articulation import BED_TOP_HEIGHT
+    box('SET_EliasFlat_bed', (2,6,BED_TOP_HEIGHT/2), (1.5,2,BED_TOP_HEIGHT), 'SET')
+    box('SET_EliasFlat_pillow',(2,6.75,BED_TOP_HEIGHT+.05),(.85,.35,.10),'SET')
     # Hollow low bedside carcass: back flush with north wall, aligned with pillow.
     for suffix,pos,size in [('left',(2.91,6.6,.375),(.04,.8,.75)),('right',(3.59,6.6,.375),(.04,.8,.75)),('back',(3.25,6.98,.375),(.7,.04,.75)),('top',(3.25,6.6,.73),(.7,.8,.04)),('bottom',(3.25,6.6,.02),(.7,.8,.04)),('lower_front',(3.25,6.20,.18),(.62,.04,.28))]:
         box('SET_EliasFlat_bedside_'+suffix,pos,size,'SET')
@@ -339,20 +340,25 @@ def main():
     assert scene.objects['PRP_PrescriptionStrip'].hide_render
     motion['final_custody_readback']='PASS'
     scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
-    blend = out / 'SC001_blockout_v0.17.blend'
+    blend = out / 'SC001_blockout_v0.18.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Hinged paper and drawer motion remain coarse proxies','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
     report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh003_sh007' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.17'
+    report['builder_version'] = '0.18'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
+    report['render_evaluation'] = {'stills':[], 'preview_shot_starts':[], 'window_preview':[]}
+    still_states={}
     if review_shots:
         for shot in review_shots:
             frame = shot['frame_start']
             scene.frame_set(frame)
             scene.camera = scene.objects[shot['shot_id']]
+            state=evaluated_render_state(bpy,scene)
+            still_states[frame]=state
+            report['render_evaluation']['stills'].append(state)
             filename = (shot['shot_id'] + '_frame_%04d.png' % frame) if (options.render_shot_review or options.render_targeted_review) else ('frame_%04d.png' % frame)
             scene.render.filepath = str(out / filename)
             bpy.ops.render.render(write_still=True, scene=scene.name)
@@ -371,6 +377,16 @@ def main():
             selected_frames=preview_frames(spec) if options.render_motion_preview else [f for f in preview_frames(spec) if 361<=f<=888]
             for number,frame in enumerate(selected_frames):
                 shot=shot_at(spec,frame);scene.frame_set(frame);scene.camera=scene.objects[shot['shot_id']]
+                state=evaluated_render_state(bpy,scene)
+                if frame==shot['frame_start']:
+                    report['render_evaluation']['preview_shot_starts'].append(state)
+                    if frame in still_states:
+                        reference=still_states[frame]
+                        difference=max(abs(a-b) for field in ['camera_matrix','head_matrix','head_bounds_ndc'] for a,b in zip(reference[field],state[field]))
+                        state['still_difference']=difference
+                        state['still_state_matches']=difference<1e-5 and reference['lens']==state['lens'] and reference['camera']==state['camera']
+                if shot['shot_id']=='SC001_SH009':
+                    report['render_evaluation']['window_preview'].append(state)
                 filename='motion_frames/frame_%04d.png'%number
                 scene.render.filepath=str(out/filename)
                 bpy.ops.render.render(write_still=True,scene=scene.name)

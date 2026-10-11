@@ -2,7 +2,7 @@
 Linear blocking, editorial elisions at shot boundaries, no final performance.
 """
 import math
-from elias_articulation import STANDING_HIP_HEIGHT
+from elias_articulation import STANDING_HIP_HEIGHT, SEATED_HIP_HEIGHT
 
 # Keep standing prop offsets relative to the shared pelvis height.
 STANDING_HEIGHT_DELTA = STANDING_HIP_HEIGHT - .75
@@ -16,7 +16,7 @@ JACKET_OFFSET = (0,.18,1.1+STANDING_HEIGHT_DELTA)
 BEDSIDE_LEAN_RADIANS = .66
 
 ROOT_KEYS = [
-    (1,(2,5.15,.85)),(270,(2,5.15,.85)),(350,(2.50,5.8,.10)),
+    (1,(2,5.15,SEATED_HIP_HEIGHT)),(270,(2,5.15,SEATED_HIP_HEIGHT)),(350,(2.50,5.8,.10)),
     (888,(2.50,5.8,.10)),(889,(5,4.6,0)),(1128,(5,4.6,0)),
     (1129,(9,5,0)),(1368,(9,5,0)),(1369,(5.1,5,0)),
     (2160,(5.1,5,0)),(2161,(6.7,4.7,0)),(2440,(6.7,4.7,0)),

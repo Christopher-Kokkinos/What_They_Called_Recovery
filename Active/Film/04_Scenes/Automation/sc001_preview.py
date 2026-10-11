@@ -15,3 +15,22 @@ function show(){const f=frames[i];view.src=f.image;info.textContent=f.shot+' | s
 function stop(){clearInterval(timer);timer=null;play.textContent='Play';}
 play.onclick=()=>{if(timer){stop();return;}if(i===frames.length-1)i=0;play.textContent='Pause';timer=setInterval(()=>{show();if(i===frames.length-1){stop();}else{i++;}},250);};scrub.oninput=()=>{stop();i=Number(scrub.value);show();};show();
 </script>''',encoding='utf-8')
+
+
+def evaluated_render_state(bpy, scene):
+    """Record evaluated camera/head state immediately before a review render."""
+    from mathutils import Vector
+    from bpy_extras.object_utils import world_to_camera_view
+    bpy.context.view_layer.update()
+    deps=bpy.context.evaluated_depsgraph_get()
+    head=scene.objects['CHR_Elias_head'].evaluated_get(deps)
+    cam=scene.camera.evaluated_get(deps)
+    projected=[world_to_camera_view(scene,cam,head.matrix_world @ Vector(c)) for c in head.bound_box]
+    return {'frame':scene.frame_current,'camera':scene.camera.name,
+            'resolution':[scene.render.resolution_x,scene.render.resolution_y],
+            'camera_matrix':[v for row in cam.matrix_world for v in row],
+            'head_matrix':[v for row in head.matrix_world for v in row],
+            'lens':cam.data.lens,
+            'head_bounds_ndc':[min(p.x for p in projected),max(p.x for p in projected),
+                               min(p.y for p in projected),max(p.y for p in projected)],
+            'head_contained':all(0<=p.x<=1 and 0<=p.y<=1 and p.z>0 for p in projected)}

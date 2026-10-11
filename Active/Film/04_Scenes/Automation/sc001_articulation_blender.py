@@ -1,5 +1,5 @@
 """Apply reusable diagnostic opening joints to owned SC001 proxy meshes only."""
-from elias_articulation import opening_joints, THIGH_LENGTH, CALF_LENGTH, SPINE_LENGTH, STANDING_HIP_HEIGHT
+from elias_articulation import opening_joints, THIGH_LENGTH, CALF_LENGTH, SPINE_LENGTH, STANDING_HIP_HEIGHT, BED_TOP_HEIGHT, BED_SIDE_X
 from sc001_standing import standing_joints
 from sc001_motion_blender import linearise_owned_actions
 from sc001_motion import root_at,bedside_lean,BEDSIDE_LEAN_RADIANS,SHOWER_HAND_OFFSET
@@ -75,6 +75,7 @@ def apply(bpy,scene,root,spec,box):
     max_foot_height_error=0.0
     max_leg_endpoint_error=0.0
     max_leg_length_error=0.0
+    minimum_seated_thigh_clearance=float('inf')
     for frame in range(1,2761):
         scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
         joints=joints_at(frame)
@@ -98,6 +99,18 @@ def apply(bpy,scene,root,spec,box):
             max_leg_length_error=max(max_leg_length_error,
                 abs(thigh.matrix_world.to_scale().z-THIGH_LENGTH),
                 abs(calf.matrix_world.to_scale().z-CALF_LENGTH))
+            if 350<=frame<=888:
+                local=list(thigh.bound_box)
+                corners=[thigh.matrix_world @ Vector(c) for c in local]
+                over_bed=[c for c in corners if c.x<=BED_SIDE_X]
+                for i,a in enumerate(corners):
+                    for k,b in enumerate(corners[i+1:],i+1):
+                        if sum(abs(local[i][axis]-local[k][axis])>1e-8 for axis in range(3))!=1:
+                            continue
+                        if (a.x-BED_SIDE_X)*(b.x-BED_SIDE_X)<0:
+                            over_bed.append(a.lerp(b,(BED_SIDE_X-a.x)/(b.x-a.x)))
+                if over_bed:
+                    minimum_seated_thigh_clearance=min(minimum_seated_thigh_clearance,min(c.z for c in over_bed)-BED_TOP_HEIGHT)
             if frame>=889:
                 foot=scene.objects['CHR_Elias_'+side+'_foot'].evaluated_get(deps)
                 bottom=min((foot.matrix_world @ Vector(c)).z for c in foot.bound_box)
@@ -105,6 +118,7 @@ def apply(bpy,scene,root,spec,box):
                 max_foot_height_error=max(max_foot_height_error,abs(bottom-expected))
                 assert bottom>=-1e-5,'Later foot below floor'
 
+    assert minimum_seated_thigh_clearance>=-1e-5,'Seated thigh intersects bed top'
     assert max_leg_endpoint_error<1e-5,'Leg attachment mismatch'
     assert max_leg_length_error<1e-5,'Shared anatomy length mismatch'
     assert max_attachment_error<1e-5,'Arm attachment mismatch'
@@ -123,5 +137,5 @@ def apply(bpy,scene,root,spec,box):
             assert abs(calf.matrix_world.to_scale().z-CALF_LENGTH)<1e-5
             assert abs(bottom)<1e-5, 'Foot off floor '+side+' '+str(frame)
             checks.append({'frame':frame,'side':side,'foot_bottom_z':bottom,'thigh':THIGH_LENGTH,'calf':CALF_LENGTH})
-    return {'anatomy':{'thigh':THIGH_LENGTH,'calf':CALF_LENGTH,'spine':SPINE_LENGTH,'standing_hip_height':STANDING_HIP_HEIGHT},'maximum_leg_endpoint_error':max_leg_endpoint_error,'maximum_leg_length_error':max_leg_length_error,'anatomy_checked_frames':2760,'maximum_later_foot_height_error':max_foot_height_error,'attachment_checked_frames':2760,'maximum_arm_endpoint_error':max_attachment_error,'evaluated_joint_checks':checks,'opening_articulation':'fixed_length_joint_proxy_desktop_pending','owned_frames':[1,2760],
+    return {'minimum_seated_thigh_clearance':minimum_seated_thigh_clearance,'bed_top_height':BED_TOP_HEIGHT,'anatomy':{'thigh':THIGH_LENGTH,'calf':CALF_LENGTH,'spine':SPINE_LENGTH,'standing_hip_height':STANDING_HIP_HEIGHT},'maximum_leg_endpoint_error':max_leg_endpoint_error,'maximum_leg_length_error':max_leg_length_error,'anatomy_checked_frames':2760,'maximum_later_foot_height_error':max_foot_height_error,'attachment_checked_frames':2760,'maximum_arm_endpoint_error':max_attachment_error,'evaluated_joint_checks':checks,'opening_articulation':'fixed_length_joint_proxy_desktop_pending','owned_frames':[1,2760],
             'standing_and_handling':'shared_chest_prop_targets_provisional_exit_steps','limitations':['Staged rise, not final roll','No skinning or armature yet','Drawer grip remains analytic proxy; final skinning/contact pending']}

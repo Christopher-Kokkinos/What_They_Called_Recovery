@@ -34,7 +34,7 @@ assert all(a['frame']<b['frame'] for a,b in zip(m.EVENTS,m.EVENTS[1:]))
 print('SC001 pure motion checks PASS; Blender runtime/visual gate separate')
 
 # Bed geometry: head towards +Y pillow, sitting root beyond +X side, not foot (-Y).
-assert m.root_at(1)==(2,5.15,.85)
+assert m.root_at(1)==(2,5.15,.65)
 assert m.root_rotation(1)[0]<0
 assert 2.25<m.root_at(350)[0]<2.75 and 5<m.root_at(350)[1]<7
 assert math.isclose(m.root_rotation(350)[2],math.pi/2)
@@ -164,3 +164,19 @@ seated=opening_joints(350,m.root_at(350),0)
 assert 1.25<seated['pelvis'][0]<2.75
 assert all(seated[side][1][0]>2.75 and seated[side][2][0]>2.75 for side in ['left','right'])
 print('All 2760 frames share anatomy; supine feet on bed and seated knees beyond side PASS')
+
+# Seated thigh proxy surfaces over the bed must clear its top, not just endpoints.
+from elias_articulation import BED_TOP_HEIGHT,BED_SIDE_X,unit,mul,add
+minimum_clearance=float('inf')
+for f in range(350,889):
+ j=opening_joints(f,m.root_at(f),m.BEDSIDE_LEAN_RADIANS*m.bedside_lean(f))
+ for side in ['left','right']:
+  a,b,c=j[side];direction=unit(sub(b,a));normal=(direction[2],0,-direction[0])
+  for i in range(101):
+   center=mix(a,b,i/100)
+   for sign in [-1,1]:
+    edge=add(center,mul(normal,sign*.09))
+    if edge[0]<=BED_SIDE_X:
+     minimum_clearance=min(minimum_clearance,edge[2]-BED_TOP_HEIGHT)
+assert minimum_clearance>=0
+print(f'Seated thigh cross-section clearance PASS, minimum {minimum_clearance:.6f} m; Blender surface validation separate')

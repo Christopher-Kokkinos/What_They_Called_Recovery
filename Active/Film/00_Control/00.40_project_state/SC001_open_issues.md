@@ -9,10 +9,10 @@ Author will flag remaining concerns from personal notes before moving beyond SC0
 | Injured sit-up, pain and support acting | Coarse staging verified in v0.14; natural roll, weight transfer, restraint and expression pending. |
 | Drawer/palm and body contact | Joint attachment verified for opening; rendered grip, intersections/subframes pending. |
 | Coffee handle/sip contact | v0.16 sampled cup lift/return visible and evaluated wrist targeting passes; fingers, tilt and convincing sip/face contact pending. |
-| Folding and jacket pocket | v0.19 prepares packet inside opaque torso proxy with bounds checks, turn-following and exterior hand pause; final jacket pocket, cloth and grip pending desktop/visual review. |
-| Exit contact and pace | v0.19 extends exit by five seconds, reducing route speed from 2.45 to 0.98 m/s; gait/contact and injured pacing need desktop playback review. |
+| Folding and jacket pocket | v0.19 desktop verifies packet bounds inside opaque torso across 541 frames; sampled concealment visible. Final jacket pocket, cloth, entry contact and grip remain open. |
+| Exit contact and pace | v0.19 route speed 0.98 m/s and floor/stance checks pass. Elias leaves view early, creating roughly 6–7 seconds on room; departure composition/cutaway and injured gait need refinement. |
 | Full scene pacing | 120-second silent sample hypothesis (v0.19 adds five seconds to exit); timed playback/dialogue review pending; reaching two minutes does not pass the finished-slice gate. |
 | Dialogue, sound, pigeons and final look | Production pending; no final lighting/grain/audio certification. |
 | Author notes and scene acceptance | Reconcile before SC002; acceptance must be explicit. |
 
-Reports and decision logs retain evidence and superseded failures. Last update: v0.19 preparation; no finished-slice gate passed.
+Reports and decision logs retain evidence and superseded failures. Last update: v0.19 desktop review; no finished-slice gate passed.

@@ -1,4 +1,4 @@
-"""SC001 diagnostic blockout v0.8. Run only in a fresh background Blender.
+"""SC001 diagnostic blockout v0.9. Run only in a fresh background Blender.
 No performance animation or final assets. Outputs are isolated and never reused.
 """
 import argparse
@@ -37,7 +37,7 @@ def select_review_shots(spec, render_stills=False, render_shot_review=False, ren
     if render_shot_review:
         return spec['shots']
     if render_targeted_review:
-        return [s for s in spec['shots'] if s['shot_id'] in {'SC001_SH005','SC001_SH008'}]
+        return [s for s in spec['shots'] if s['shot_id'] in {'SC001_SH003','SC001_SH007'}]
     if render_stills:
         return [s for s in spec['shots'] if s['frame_start'] in {1, 889, 1561}]
     return []
@@ -51,7 +51,7 @@ def main():
     args.add_argument('--render-motion-preview', action='store_true',
                       help='Render 460 sampled 640x360 PNGs and local HTML player')
     args.add_argument('--render-targeted-review', action='store_true',
-                      help='Render SH005 and SH008 only; all-ten mode takes precedence')
+                      help='Render SH003 and SH007 only; all-ten mode takes precedence')
     options = args.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else [])
     spec = json.loads(SPEC.read_text(encoding='utf-8'))
     validate_spec(spec)
@@ -66,7 +66,7 @@ def main():
         raise RuntimeError('Use --background --factory-startup; loaded production files are refused')
     out = ROOT / 'Active/Film/_local/SC001' / (datetime.now(timezone.utc).strftime('run_%Y%m%d_%H%M%S_') + uuid.uuid4().hex[:8])
     out.mkdir(parents=True, exist_ok=False)
-    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.8')
+    scene = bpy.data.scenes.new('SC001_BLOCKOUT_v0.9')
     bpy.context.window.scene = scene
     scene.unit_settings.system = 'METRIC'
     scene.render.engine = 'BLENDER_WORKBENCH'
@@ -185,7 +185,7 @@ def main():
     box('PRP_MACEnvelope', (6.2,5.5,1.015), (.22,.11,.004), color=(.9,.9,.86,1))
     label('Envelope_label', 'MAC', (6.13,5.5,1.02), .018, True)
     box('PRP_ResignationLetter', (5.9,5.3,1.03), (.210,.297,.002), color=(.92,.9,.85,1))
-    label('Notice_exact_text', 'I will complete work\nalready accepted.\nI will not take further\nassignments after Friday.\nPlease arrange final payment.', (5.805,5.41,1.033), .009, True)
+    label('Notice_exact_text', 'I will complete work\nalready accepted.\nI will not take further\nassignments after Friday.\nPlease arrange final\npayment.', (5.805,5.41,1.033), .015, True)
     pigeon = box('CHR_Pigeon_A', (-.35,4.2,1.05), (.2,.35,.22), 'CHARACTERS')
     second = bpy.data.objects.new('CHR_Pigeon_B', pigeon.data)
     collections['CHARACTERS'].objects.link(second)
@@ -254,7 +254,7 @@ def main():
         3: ['SET_EliasFlat_kitchen_counter', 'PRP_TorchTools', 'PRP_ClothesPost'] + [o.name for o in collections['PROPS'].objects if o.name.startswith(('PRP_Clothes_','PRP_Post_','PRP_Torch_','PRP_Tool_'))] + [o.name for o in root.children],
         4: upper + ['PRP_ShowerFixture','PRP_Shower_control'],
         5: upper + ['PRP_CoffeeMug'] + [o.name for o in collections['PROPS'].objects if o.name.startswith('PRP_Mug_handle_')],
-        6: ['PRP_LetterFold_-1','PRP_LetterFold_1','PRP_ResignationLetter', 'Notice_exact_text', 'PRP_MACEnvelope', 'Envelope_label'],
+        6: ['PRP_LetterFold_-1','PRP_LetterFold_1','PRP_ResignationLetter', 'Notice_exact_text'],
         7: upper + ['PRP_LetterFold_-1','PRP_LetterFold_1','PRP_Keys','PRP_CoffeeMug','PRP_ResignationLetter','PRP_MACEnvelope'] + [o.name for o in collections['PROPS'].objects if o.name.startswith('PRP_Key_')],
         8: upper + ['CHR_Pigeon_A','CHR_Pigeon_B'],
         9: ['SET_EliasFlat_bed', 'CHR_Pigeon_A', 'CHR_Pigeon_B', 'Clock_display'],
@@ -276,10 +276,15 @@ def main():
                 points.extend(obj.matrix_world @ Vector(corner) for corner in obj.bound_box)
         center = sum(points, Vector()) / len(points)
         cam = scene.objects[spec['shots'][index]['shot_id']]
-        if index == 6:
+        if index == 2:
+            # Approach from the free (+X) bedside side, above drawer height.
+            cam.location = center + Vector((.85,.55,1.6))
+            cam.data.type = 'ORTHO'
+            cam.data.ortho_scale = .75
+        elif index == 6:
             # Top-down insert remains a diagnostic view, not final hand performance.
             cam.data.type = 'ORTHO'
-            cam.data.ortho_scale = .45
+            cam.data.ortho_scale = .34
             cam.location = center + Vector((0,0,2))
         else:
             direction = (cam.location - center).normalized()
@@ -321,13 +326,13 @@ def main():
     assert scene.objects['PRP_PrescriptionStrip'].hide_render
     motion['final_custody_readback']='PASS'
     scene.frame_set(1);scene.camera=scene.objects['SC001_SH001']
-    blend = out / 'SC001_blockout_v0.8.blend'
+    blend = out / 'SC001_blockout_v0.9.blend'
     bpy.ops.wm.save_as_mainfile(filepath=str(blend), check_existing=True)
     assert blend.is_file() and blend.stat().st_size > 0
     report = {'status':'structure_validated_visual_review_pending', 'blender_version':bpy.app.version_string, 'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(), 'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), 'blend':str(blend), 'engine':scene.render.engine, 'motion':motion, 'pose_checks':pose_checks, 'framing_checks':framing_checks, 'cameras':len(collections['CAMERAS'].objects), 'objects':len(scene.objects), 'fps':scene.render.fps, 'frames':[scene.frame_start,scene.frame_end], 'resolution':[scene.render.resolution_x,scene.render.resolution_y], 'stills':[], 'limitations':['Coarse linear box motion, no final performance','Hinged paper and drawer motion remain coarse proxies','No final lighting, grain, audio, materials or rigs','Camera readability and wall geometry require visual review']}
     review_shots = select_review_shots(spec, options.render_stills, options.render_shot_review, options.render_targeted_review)
-    report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh005_sh008' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
-    report['builder_version'] = '0.8'
+    report['review_mode'] = 'all_ten_shots' if options.render_shot_review else ('targeted_sh003_sh007' if options.render_targeted_review else ('three_stills' if options.render_stills else 'build_only'))
+    report['builder_version'] = '0.9'
     report['diagnostic_shadows'] = scene.display.shading.show_shadows
     report['shot_review'] = []
     if review_shots:

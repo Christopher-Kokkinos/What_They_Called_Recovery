@@ -1,6 +1,6 @@
 """Apply scoped coarse animation to owned SC001 objects; no external scene writes."""
 import math
-from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS, coffee_target
+from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS, coffee_target, CARRIED_KEYS_OFFSET, POCKET_OFFSET, JACKET_OFFSET
 
 
 def linearise_owned_actions(objects):
@@ -114,11 +114,11 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
 
         target=coffee_target(frame)
         mug.location=tuple(a-b for a,b in zip(target,(4.8,4.65,1.02)));mug.keyframe_insert(data_path='location',frame=frame)
-        keybase=(7.05,4.42,1.035);t=max(0,min(1,(frame-2380)/30));hand=carried_position(frame,(.35,-.28,1.05))
+        keybase=(7.05,4.42,1.035);t=max(0,min(1,(frame-2380)/30));hand=carried_position(frame,CARRIED_KEYS_OFFSET)
         keys.location=tuple((b-a)*t for a,b in zip(keybase,hand));keys.keyframe_insert(data_path='location',frame=frame)
         for name in ['PRP_ResignationLetter','PRP_MACEnvelope']:
             obj=scene.objects[name];base,scale=initial[name]
-            t=max(0,min(1,(frame-2300)/40));pocket=carried_position(frame,(.12,-.17,1.2))
+            t=max(0,min(1,(frame-2300)/40));pocket=carried_position(frame,POCKET_OFFSET)
             if frame>=2161:
                 base=(6.82,4.40,1.10) if name=='PRP_ResignationLetter' else (6.50,4.40,1.015)
             obj.location=tuple(a+(b-a)*t for a,b in zip(base,pocket))
@@ -174,7 +174,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             for channel in ['hide_render','hide_viewport']:
                 palm.keyframe_insert(data_path=channel,frame=frame)
         jacket=scene.objects['PRP_EliasJacket']
-        jacket.location=carried_position(frame,(0,.18,1.1)) if frame>=1369 else initial[jacket.name][0]
+        jacket.location=carried_position(frame,JACKET_OFFSET) if frame>=1369 else initial[jacket.name][0]
         jacket.keyframe_insert(data_path='location',frame=frame)
         # Opening and final peck are box translations, not bird anatomy.
         peck=.05 if frame in (60,2740) else 0

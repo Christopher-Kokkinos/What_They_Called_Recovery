@@ -2,6 +2,16 @@
 Linear blocking, editorial elisions at shot boundaries, no final performance.
 """
 import math
+from elias_articulation import STANDING_HIP_HEIGHT
+
+# Keep standing prop offsets relative to the shared pelvis height.
+STANDING_HEIGHT_DELTA = STANDING_HIP_HEIGHT - .75
+CARRIED_MUG_OFFSET = (-.4,-.28,1.05+STANDING_HEIGHT_DELTA)
+CARRIED_KEYS_OFFSET = (.35,-.28,1.05+STANDING_HEIGHT_DELTA)
+POCKET_OFFSET = (.12,-.17,1.2+STANDING_HEIGHT_DELTA)
+DRINK_MUG_OFFSET = (0,-.19,1.38+STANDING_HEIGHT_DELTA)
+SHOWER_HAND_OFFSET = (.25,-.25,1.55+STANDING_HEIGHT_DELTA)
+JACKET_OFFSET = (0,.18,1.1+STANDING_HEIGHT_DELTA)
 
 BEDSIDE_LEAN_RADIANS = .66
 
@@ -117,5 +127,5 @@ def coffee_target(frame):
     elif 1510<=frame<1540:t=1-(frame-1510)/30
     elif frame>=2420:t=min(1,(frame-2420)/20)
     else:t=0
-    hand=carried_position(frame,(0,-.19,1.38) if frame<1540 else (-.4,-.28,1.05))
+    hand=carried_position(frame,DRINK_MUG_OFFSET if frame<1540 else CARRIED_MUG_OFFSET)
     return tuple(a+(b-a)*t for a,b in zip(counter,hand))

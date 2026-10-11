@@ -1,11 +1,14 @@
 """Reusable fixed-length diagnostic joints. No Blender dependency or final acting claim."""
 import math
 
-THIGH_LENGTH = .60
-CALF_LENGTH = .64
+THIGH_LENGTH = .50
+CALF_LENGTH = .52
 SPINE_LENGTH = .65
 UPPER_ARM_LENGTH = .36
 FOREARM_LENGTH = .34
+STANDING_HIP_HEIGHT = 1.02
+SEATED_HIP_HEIGHT = .85
+ANKLE_HEIGHT = .10
 
 
 def add(a,b): return tuple(x+y for x,y in zip(a,b))
@@ -38,7 +41,7 @@ def opening_joints(frame,root_position,lean):
     Foot descent finishes at frame 350; late seated feet stay planted.
     """
     t=max(0,min(1,(frame-270)/80));smooth=t*t*(3-2*t)
-    hip=(2+.5*smooth,5.9-.1*smooth,.85)
+    hip=(2+.5*smooth,5.9-.1*smooth,SEATED_HIP_HEIGHT)
     if frame>=350:hip=(root_position[0],root_position[1],root_position[2]+.75)
     rise=math.pi/2*smooth
     direction=unit((math.sin(lean),math.cos(rise)*math.cos(lean),math.sin(rise)*math.cos(lean)))
@@ -72,8 +75,8 @@ def opening_joints(frame,root_position,lean):
         joints[side+'_arm']=(shoulder,elbow,wrist)
     for side,sign in [('left',-1),('right',1)]:
         start=add(hip,mul(lateral,sign*.12))
-        sleep=(2+sign*.12,4.70,.85)
-        seated=(3.05,5.80+sign*.12,.10)
+        sleep=(2+sign*.12,5.00,SEATED_HIP_HEIGHT)
+        seated=(3.05,5.80+sign*.12,ANKLE_HEIGHT)
         ankle=add(mul(sleep,1-smooth),mul(seated,smooth))
         pole=add(hip,(1.5,-1,1))
         knee=two_segment(start,ankle,pole,THIGH_LENGTH,CALF_LENGTH)

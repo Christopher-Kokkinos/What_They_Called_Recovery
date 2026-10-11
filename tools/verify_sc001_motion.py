@@ -6,6 +6,8 @@ from pathlib import Path
 
 root=Path(__file__).resolve().parents[1]
 path=root/'Active/Film/04_Scenes/Automation/sc001_motion.py'
+import sys
+sys.path.insert(0,str(path.parent))
 loader=importlib.util.spec_from_file_location('motion',path)
 m=importlib.util.module_from_spec(loader);loader.loader.exec_module(m)
 spec=json.loads((root/'Active/Film/04_Scenes/SC001/SC001_layout_test_spec_v0.1.json').read_text())
@@ -46,9 +48,9 @@ for frame in range(1,2761):
   assert math.dist(goal,shoulder)<=.70
  if frame>=2220:
   if frame>=2380:
-   base=(7.05,4.42,1.035);target=m.carried_position(frame,(.35,-.28,1.05));t=min(1,(frame-2380)/30)
+   base=(7.05,4.42,1.035);target=m.carried_position(frame,m.CARRIED_KEYS_OFFSET);t=min(1,(frame-2380)/30)
   else:
-   base=(6.82,4.40,1.10);target=m.carried_position(frame,(.12,-.17,1.2));t=max(0,min(1,(frame-2300)/40))
+   base=(6.82,4.40,1.10);target=m.carried_position(frame,m.POCKET_OFFSET);t=max(0,min(1,(frame-2300)/40))
   goal=tuple(a+(b-a)*t for a,b in zip(base,target));shoulder=tuple(a+b for a,b in zip(pos,(.32,0,1.4)))
   assert math.dist(goal,shoulder)<=.70
 print('All-frame handling reach audit PASS (0.70 m maximum)')
@@ -102,14 +104,14 @@ for f in range(889,2761):
  p=m.root_at(f);left=right=None
  if 1400<=f<1540 or f>=2420:left=tuple(a+b for a,b in zip(m.coffee_target(f),(.19,0,.11)))
  if f>=2220:
-  if f>=2380:base=(7.05,4.42,1.035);target=m.carried_position(f,(.35,-.28,1.05));t=min(1,(f-2380)/30)
-  else:base=(6.82,4.40,1.10);target=m.carried_position(f,(.12,-.17,1.2));t=max(0,min(1,(f-2300)/40))
+  if f>=2380:base=(7.05,4.42,1.035);target=m.carried_position(f,m.CARRIED_KEYS_OFFSET);t=min(1,(f-2380)/30)
+  else:base=(6.82,4.40,1.10);target=m.carried_position(f,m.POCKET_OFFSET);t=max(0,min(1,(f-2300)/40))
   right=tuple(a+(b-a)*t for a,b in zip(base,target))
- elif 1190<=f<=1280:right=tuple(a+b for a,b in zip(p,(.25,-.25,1.55)))
+ elif 1190<=f<=1280:right=tuple(a+b for a,b in zip(p,m.SHOWER_HAND_OFFSET))
  j=standing_joints(f,left,right)
  for side in ['left','right']:
   a,b,c=j[side+'_arm'];assert math.isclose(math.dist(a,b),.36,abs_tol=1e-9);assert math.isclose(math.dist(b,c),.34,abs_tol=1e-9)
-  a,b,c=j[side];assert math.isclose(math.dist(a,b),.38,abs_tol=1e-9);assert math.isclose(math.dist(b,c),.40,abs_tol=1e-9)
+  a,b,c=j[side];assert math.isclose(math.dist(a,b),THIGH_LENGTH,abs_tol=1e-9);assert math.isclose(math.dist(b,c),CALF_LENGTH,abs_tol=1e-9)
   assert c[2]>=.1-1e-9
   if f>=2735:assert math.isclose(c[2],.1,abs_tol=1e-9)
   if 2641<=f<2720:
@@ -138,11 +140,27 @@ def linear_sample(f,fn):
  a,b=sampled[i-1:i+1];return mix(fn(a),fn(b),(f-a)/(b-a))
 def sampled_right(f):
  base=(7.05,4.42,1.035) if f>=2380 else (6.82,4.40,1.10)
- offset=(.35,-.28,1.05) if f>=2380 else (.12,-.17,1.2)
+ offset=m.CARRIED_KEYS_OFFSET if f>=2380 else m.POCKET_OFFSET
  t=max(0,min(1,(f-(2380 if f>=2380 else 2300))/(30 if f>=2380 else 40)))
  return mix(base,m.carried_position(f,offset),t)
 for f in range(889,2761):
  left=tuple(a+b for a,b in zip(linear_sample(f,m.coffee_target),(.19,0,.11))) if 1400<=f<1540 or f>=2420 else None
- right=linear_sample(f,sampled_right) if f>=2220 else tuple(a+b for a,b in zip(m.root_at(f),(.25,-.25,1.55))) if 1190<=f<=1280 else None
+ right=linear_sample(f,sampled_right) if f>=2220 else tuple(a+b for a,b in zip(m.root_at(f),m.SHOWER_HAND_OFFSET)) if 1190<=f<=1280 else None
  standing_joints(f,left,right)
 print('Explicit legacy/layered interpolation and sampled all-frame reach PASS')
+
+# One anatomy at every shot, including the seated-to-standing editorial cut.
+for f in range(1,2761):
+ j=opening_joints(f,m.root_at(f),m.BEDSIDE_LEAN_RADIANS*m.bedside_lean(f)) if f<=888 else standing_joints(f)
+ assert math.isclose(math.dist(j['pelvis'],j['chest']),SPINE_LENGTH,abs_tol=1e-9)
+ for side in ['left','right']:
+  hip,knee,ankle=j[side]
+  assert math.isclose(math.dist(hip,knee),THIGH_LENGTH,abs_tol=1e-9)
+  assert math.isclose(math.dist(knee,ankle),CALF_LENGTH,abs_tol=1e-9)
+  if f>=350:assert ankle[2]>=.1-1e-9
+sleep=opening_joints(1,m.root_at(1),0)
+assert all(5<=sleep[side][2][1]<=7 for side in ['left','right'])
+seated=opening_joints(350,m.root_at(350),0)
+assert 1.25<seated['pelvis'][0]<2.75
+assert all(seated[side][1][0]>2.75 and seated[side][2][0]>2.75 for side in ['left','right'])
+print('All 2760 frames share anatomy; supine feet on bed and seated knees beyond side PASS')

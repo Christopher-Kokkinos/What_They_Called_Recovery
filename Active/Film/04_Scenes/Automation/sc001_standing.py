@@ -15,7 +15,10 @@ def standing_joints(frame,left_target=None,right_target=None):
         shoulder=add(add(chest,(0,0,-.08)),mul(lateral,sign*.225))
         rest=add(add(add(shoulder,(0,0,-.60)),mul(forward,.13)),mul(lateral,sign*.04))
         wrist=target if target is not None else rest
-        elbow=two_segment(shoulder,wrist,add(add(shoulder,mul(forward,.7)),mul(lateral,sign*.4)),.36,.34)
+        try:
+            elbow=two_segment(shoulder,wrist,add(add(shoulder,mul(forward,.7)),mul(lateral,sign*.4)),.36,.34)
+        except ValueError as error:
+            raise ValueError(f'SC001 frame {frame}, {side} hand: shoulder={shoulder}, wrist={wrist}, reach={math.dist(shoulder,wrist):.9f} m, limit=0.700 m') from error
         j[side+'_arm']=(shoulder,elbow,wrist)
         ankle=add(add(root,mul(lateral,sign*.12)),mul(forward,.05));ankle=(ankle[0],ankle[1],.10)
         if frame>=2641:

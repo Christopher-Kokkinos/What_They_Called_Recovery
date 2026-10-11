@@ -3,6 +3,37 @@ import math
 from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS, coffee_target
 
 
+def linearise_owned_actions(objects):
+    """Set actual curves, including Blender layered action channel bags.
+
+    Python key insertion must not rely on a UI preference. Visibility keys
+    remain constant; transform keys use the pure planner's linear contract.
+    """
+    count=0
+    for obj in objects:
+        animation=obj.animation_data
+        if animation is None or animation.action is None:
+            continue
+        action=animation.action
+        curves=[]
+        if getattr(action,'is_action_layered',False):
+            for layer in action.layers:
+                for strip in layer.strips:
+                    for bag in getattr(strip,'channelbags',()):
+                        curves.extend(bag.fcurves)
+        else:
+            curves.extend(action.fcurves)
+        if not curves:
+            raise RuntimeError('No animation curves found for '+obj.name)
+        for curve in curves:
+            interpolation='CONSTANT' if curve.data_path.startswith('hide_') else 'LINEAR'
+            for key in curve.keyframe_points:
+                key.interpolation=interpolation
+                count+=1
+            curve.update()
+    return count
+
+
 def apply_motion(bpy, scene, root, defaults, spec, box):
     bpy.context.preferences.edit.keyframe_new_interpolation_type='LINEAR'
     body=list(root.children)
@@ -149,6 +180,7 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
         peck=.05 if frame in (60,2740) else 0
         bird.location=bird_start.copy();bird.location.x+=peck
         bird.keyframe_insert(data_path='location',frame=frame)
-    return {'reach_checks':reach_checks,'events':EVENTS,'sampled_custody':[{'frame':f,**custody_at(f)} for f in [661,870,1470,1540,2340,2410,2440,2510,2720,2760]],
+    interpolation_keys=linearise_owned_actions(scene.objects)
+    return {'explicit_interpolation_keys':interpolation_keys,'reach_checks':reach_checks,'events':EVENTS,'sampled_custody':[{'frame':f,**custody_at(f)} for f in [661,870,1470,1540,2340,2410,2440,2510,2720,2760]],
             'keyframes':frames,'status':'coarse_motion_visual_review_pending',
             'limitations':['linear box posing, no gait/rig/facial performance','drawer slides into hollow carcass; contents hide at closure','hinged paper thirds; pocket entry remains proxy choreography','editorial spatial elisions at SH004/SH005/SH006/SH008/SH009 starts','no audio; dialogue and temperature changes are review cues']}

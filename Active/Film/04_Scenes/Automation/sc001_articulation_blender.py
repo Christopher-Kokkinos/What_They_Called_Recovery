@@ -1,6 +1,7 @@
 """Apply reusable diagnostic opening joints to owned SC001 proxy meshes only."""
 from elias_articulation import opening_joints
 from sc001_standing import standing_joints
+from sc001_motion_blender import linearise_owned_actions
 from sc001_motion import root_at,bedside_lean,BEDSIDE_LEAN_RADIANS
 
 
@@ -69,6 +70,7 @@ def apply(bpy,scene,root,spec,box):
             for channel in ['location','rotation_euler','scale']:foot.keyframe_insert(data_path=channel,frame=frame)
         lower.hide_render=False;lower.hide_viewport=False
         for channel in ['hide_render','hide_viewport']:lower.keyframe_insert(data_path=channel,frame=frame)
+    linearise_owned_actions(root.children)
     max_attachment_error=0.0
     max_foot_height_error=0.0
     for frame in range(1,2761):

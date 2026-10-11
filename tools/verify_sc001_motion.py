@@ -119,3 +119,30 @@ for f in range(889,2761):
     nxt=standing_joints(f+1)[side][2]
     assert math.dist(c,nxt)<1e-9
 print('Later arm/prop reach, leg lengths, stance planting and final grounded feet PASS')
+
+# Regression: sampled transform curves must follow the same linear path as targets.
+from bisect import bisect_left
+from sc001_motion_blender import linearise_owned_actions
+from types import SimpleNamespace as NS
+for layered in [False,True]:
+ curves=[NS(data_path=p,keyframe_points=[NS(interpolation='BEZIER')],update=lambda:None) for p in ['location','hide_render']]
+ action=NS(is_action_layered=layered)
+ if layered:action.layers=[NS(strips=[NS(channelbags=[NS(fcurves=curves)])])]
+ else:action.fcurves=curves
+ assert linearise_owned_actions([NS(name='test',animation_data=NS(action=action))])==2
+ assert [c.keyframe_points[0].interpolation for c in curves]==['LINEAR','CONSTANT']
+sampled=m.sample_frames(spec)
+def linear_sample(f,fn):
+ i=bisect_left(sampled,f)
+ if sampled[i]==f:return fn(f)
+ a,b=sampled[i-1:i+1];return mix(fn(a),fn(b),(f-a)/(b-a))
+def sampled_right(f):
+ base=(7.05,4.42,1.035) if f>=2380 else (6.82,4.40,1.10)
+ offset=(.35,-.28,1.05) if f>=2380 else (.12,-.17,1.2)
+ t=max(0,min(1,(f-(2380 if f>=2380 else 2300))/(30 if f>=2380 else 40)))
+ return mix(base,m.carried_position(f,offset),t)
+for f in range(889,2761):
+ left=tuple(a+b for a,b in zip(linear_sample(f,m.coffee_target),(.19,0,.11))) if 1400<=f<1540 or f>=2420 else None
+ right=linear_sample(f,sampled_right) if f>=2220 else tuple(a+b for a,b in zip(m.root_at(f),(.25,-.25,1.55))) if 1190<=f<=1280 else None
+ standing_joints(f,left,right)
+print('Explicit legacy/layered interpolation and sampled all-frame reach PASS')

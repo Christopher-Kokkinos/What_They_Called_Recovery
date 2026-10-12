@@ -2,13 +2,16 @@
 from sc001_motion import root_at,EXIT_START,EXIT_ARRIVAL,SCENE_END
 
 CLOSING_CUT=EXIT_ARRIVAL+1
+COVERAGE_CUT=2813
+INTERIOR_EYE=(8.0,3.0,2.3)
 TRACK_OFFSETS=[(5,-3,2.8),(6,-3,2.8),(5,-2,2.8),(6,-2,3.2),(5,-4,3.2),(6,-4,3.6),(5,-3,5.0),(6,-4,6.0)]
 
 
 def camera_pose(frame,offset=None):
     if frame<CLOSING_CUT:
         x,y,z=root_at(frame);dx,dy,dz=offset or TRACK_OFFSETS[0]
-        return {'phase':'departure','eye':(x+dx,y+dy,z+dz),
+        eye=INTERIOR_EYE if frame<COVERAGE_CUT else (x+dx,y+dy,z+dz)
+        return {'phase':'departure','coverage':'interior' if frame<COVERAGE_CUT else 'exterior','eye':eye,
                 'aim':(x,y,z+1.0),'scale':4.8}
     return {'phase':'pigeons','eye':(1.9,2.7,2.1),
             'aim':(-.35,4.5,1.15),'scale':2.4}
@@ -77,16 +80,16 @@ def configure(bpy,scene,cam):
             assert blocked is None,'Departure structure occlusion '+str(frame)+' '+str(blocked)
         for channel in ['location','rotation_euler']:cam.keyframe_insert(data_path=channel,frame=frame)
         cam.data.keyframe_insert(data_path='ortho_scale',frame=frame)
-        checks.append({'frame':frame,'phase':phase,'subjects_contained':True,'scale':phase_scales[phase]})
+        checks.append({'frame':frame,'phase':phase,'subjects_contained':True,'scale':phase_scales[phase],'coverage':plan.get('coverage','pigeons')})
     linearise_owned_actions([cam,cam.data])
     for owner in [cam,cam.data]:
         action=owner.animation_data.action
         curves=[c for layer in action.layers for strip in layer.strips for bag in strip.channelbags for c in bag.fcurves] if getattr(action,'is_action_layered',False) else list(action.fcurves)
         for curve in curves:
             for key in curve.keyframe_points:
-                if key.co.x>=EXIT_ARRIVAL:key.interpolation='CONSTANT'
+                if key.co.x==COVERAGE_CUT-1 or key.co.x>=EXIT_ARRIVAL:key.interpolation='CONSTANT'
             curve.update()
-    return {'closing_cut':CLOSING_CUT,'tracking_frames':[EXIT_START,EXIT_ARRIVAL],
+    return {'coverage_cut':COVERAGE_CUT,'closing_cut':CLOSING_CUT,'tracking_frames':[EXIT_START,EXIT_ARRIVAL],
             'closing_frames':[CLOSING_CUT,SCENE_END],'checked_frames':len(checks),
             'selected_offset':selected,'phase_scales':phase_scales,'view_trials':trials,
             'structure_visibility_samples':total_samples,'containment_checks':checks,

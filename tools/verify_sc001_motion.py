@@ -197,12 +197,13 @@ assert .9<speed<1.1
 assert m.SCENE_END-m.EXIT_ARRIVAL>=40
 print(f'Packet volume and revised exit speed PASS ({speed:.3f} m/s); final pacing remains provisional')
 
-from sc001_departure_camera import camera_pose,CLOSING_CUT
+from sc001_departure_camera import camera_pose,CLOSING_CUT,COVERAGE_CUT,INTERIOR_EYE
 assert CLOSING_CUT==m.EXIT_ARRIVAL+1
 for f in range(m.EXIT_START,m.EXIT_ARRIVAL+1):
  plan=camera_pose(f);p=m.root_at(f)
  assert plan['phase']=='departure'
- assert math.isclose(math.dist(plan['eye'],plan['aim']),math.sqrt(5**2+3**2+1.8**2),abs_tol=1e-9)
+ if f<COVERAGE_CUT:assert plan['eye']==INTERIOR_EYE and plan['coverage']=='interior'
+ else:assert math.isclose(math.dist(plan['eye'],plan['aim']),math.sqrt(5**2+3**2+1.8**2),abs_tol=1e-9)
 for f in range(CLOSING_CUT,m.SCENE_END+1):
  assert camera_pose(f)==camera_pose(CLOSING_CUT)
 assert camera_pose(CLOSING_CUT)['phase']=='pigeons'
@@ -288,6 +289,46 @@ from sc001_departure_camera import TRACK_OFFSETS
 for offset in TRACK_OFFSETS:
  for f in [m.EXIT_START,m.EXIT_ARRIVAL]:
   plan=camera_pose(f,offset);p=m.root_at(f)
-  assert plan['eye']==tuple(a+b for a,b in zip(p,offset))
+  assert plan['eye']==(INTERIOR_EYE if f<COVERAGE_CUT else tuple(a+b for a,b in zip(p,offset)))
 assert camera_pose(CLOSING_CUT,TRACK_OFFSETS[-1])==camera_pose(CLOSING_CUT)
 print('Candidate tracking poses and fixed pigeon cut plan PASS; bpy occlusion/constant scale gate separate')
+
+# Independent analytic structural rays for the split-view coverage plan.
+from sc001_entry import build as entry_build
+structures=[]
+def capture_entry(name,pos,size,group):
+ if name.endswith(('jamb','lintel','open_leaf')):structures.append((name,pos,size))
+ return NS(name=name)
+entry_build(capture_entry)
+def segment_hits_aabb(origin,end,center,size):
+ lo,hi=0.,1.
+ for axis in range(3):
+  delta=end[axis]-origin[axis];lower=center[axis]-size[axis]/2;upper=center[axis]+size[axis]/2
+  if abs(delta)<1e-10:
+   if not lower<=origin[axis]<=upper:return False
+  else:
+   near,far=sorted(((lower-origin[axis])/delta,(upper-origin[axis])/delta));lo=max(lo,near);hi=min(hi,far)
+   if lo>hi:return False
+ return lo<1-1e-5 and hi>0
+passing_offsets=[]
+for offset in TRACK_OFFSETS:
+ blocked=False
+ for f in range(m.EXIT_START,m.EXIT_ARRIVAL+1):
+  plan=camera_pose(f,offset);direction=unit(sub(plan['aim'],plan['eye']));targets=[]
+  for name,local,size,kind in carry_parts:
+   if kind=='jacket':continue
+   base=m.coffee_target(f) if kind=='mug' else m.carry_position(f,m.CARRIED_KEYS_OFFSET)
+   targets += [add(base,m.carry_vector(f,add(local,tuple(p[k]*size[k] for k in range(3))))) for p in cube]
+  j=standing_joints(f,m.mug_grip(f),m.carry_position(f,m.CARRIED_KEYS_OFFSET))
+  for center,size in [(j['head'],(.25,.25,.3)),(mix(j['spine'],j['chest'],.5),(.45,.25,.325))]:
+   targets += [add(center,m.carry_vector(f,tuple(p[k]*size[k] for k in range(3)))) for p in cube]
+  for side in ['left','right']:
+   a,b,c=j[side+'_arm'];targets+=segment_box(b,c,.11)
+  for target in targets:
+   depth=dot(sub(target,plan['eye']),direction);origin=sub(target,mul(direction,depth))
+   if any(segment_hits_aabb(origin,target,center,size) for name,center,size in structures):blocked=True;break
+  if blocked:break
+ if not blocked:passing_offsets.append(offset)
+assert passing_offsets,'No planned split-view structural ray coverage'
+assert camera_pose(COVERAGE_CUT-1)['coverage']=='interior' and camera_pose(COVERAGE_CUT)['coverage']=='exterior'
+print(f'Split-view analytic structural rays PASS, {len(passing_offsets)} candidate offsets; evaluated bpy rays separate')

@@ -114,16 +114,23 @@
         {
           "frames": [
             2641,
+            2812
+          ],
+          "purpose": "interior camera pans with approach"
+        },
+        {
+          "frames": [
+            2813,
             2840
           ],
-          "purpose": "track Elias to entry with mug and keys"
+          "purpose": "hard cut to exterior arrival tracking"
         },
         {
           "frames": [
             2841,
             2880
           ],
-          "purpose": "hard cut to outside pigeons; final peck at 2860"
+          "purpose": "hard cut to pigeons; peck at 2860"
         }
       ]
     }

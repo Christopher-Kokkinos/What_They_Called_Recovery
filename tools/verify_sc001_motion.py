@@ -202,7 +202,7 @@ assert CLOSING_CUT==m.EXIT_ARRIVAL+1
 for f in range(m.EXIT_START,m.EXIT_ARRIVAL+1):
  plan=camera_pose(f);p=m.root_at(f)
  assert plan['phase']=='departure'
- assert math.isclose(math.dist(plan['eye'],plan['aim']),math.sqrt(3**2+4**2+1.8**2),abs_tol=1e-9)
+ assert math.isclose(math.dist(plan['eye'],plan['aim']),math.sqrt(5**2+3**2+1.8**2),abs_tol=1e-9)
 for f in range(CLOSING_CUT,m.SCENE_END+1):
  assert camera_pose(f)==camera_pose(CLOSING_CUT)
 assert camera_pose(CLOSING_CUT)['phase']=='pigeons'
@@ -283,3 +283,11 @@ for f in range(m.EXIT_START,m.SCENE_END+1):
 assert minimum_carry_clearance>=0,(minimum_carry_clearance,worst)
 assert opening_clearance((5.5510001183,.1159996018,1.3199999332))<0
 print(f'Complete carry assembly clearance PASS, minimum {minimum_carry_clearance:.6f} m; actual Blender gate separate')
+
+from sc001_departure_camera import TRACK_OFFSETS
+for offset in TRACK_OFFSETS:
+ for f in [m.EXIT_START,m.EXIT_ARRIVAL]:
+  plan=camera_pose(f,offset);p=m.root_at(f)
+  assert plan['eye']==tuple(a+b for a,b in zip(p,offset))
+assert camera_pose(CLOSING_CUT,TRACK_OFFSETS[-1])==camera_pose(CLOSING_CUT)
+print('Candidate tracking poses and fixed pigeon cut plan PASS; bpy occlusion/constant scale gate separate')

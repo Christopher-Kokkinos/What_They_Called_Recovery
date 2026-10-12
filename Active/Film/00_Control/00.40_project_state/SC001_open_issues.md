@@ -16,4 +16,4 @@ Author will flag remaining concerns from personal notes before moving beyond SC0
 | Dialogue, sound, pigeons and final look | Production pending; no final lighting/grain/audio certification. |
 | Author notes and scene acceptance | Reconcile before SC002; acceptance must be explicit. |
 
-Reports and decision logs retain evidence and superseded failures. Last update: v0.24 desktop review; no finished-slice gate passed.
+Reports and decision logs retain evidence and superseded failures. Last update: v0.25 camera preparation; no finished-slice gate passed.

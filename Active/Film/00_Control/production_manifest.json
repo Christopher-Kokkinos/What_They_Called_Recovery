@@ -23,7 +23,7 @@
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": "SC001",
-    "status": "v020_departure_tracking_pigeon_cut_prepared_desktop_pending",
+    "status": "v020_departure_coverage_verified_entry_geometry_and_performance_open",
     "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
     "timing_hypothesis_seconds": 120,
     "finished_slice_gate_passed": false,
@@ -31,12 +31,12 @@
     "build_script": "Active/Film/04_Scenes/Automation/build_sc001_blockout.py",
     "desktop_test": {
       "blender": "5.2.2 LTS",
-      "builder_version": "0.19",
-      "result": "2880_frame_anatomy_attachment_541_frame_packet_bounds_seat_clearance_custody_render_states_verified",
-      "evidence": "Reports/Film/2026-10-11_sc001_v019_desktop_review.md",
-      "visual_result": "sampled_packet_concealment_present_exit_leaves_view_early_long_room_hold_open"
+      "builder_version": "0.20",
+      "result": "480_previews_13_stills_240_departure_containment_checks_anatomy_packet_clearance_custody_verified",
+      "evidence": "Reports/Film/2026-10-12_sc001_v020_desktop_review.md",
+      "visual_result": "sampled_tracking_arrival_pigeon_cut_readable_entry_marker_and_missing_landing_open"
     },
-    "review_report": "Reports/Film/2026-10-11_sc001_v019_desktop_review.md",
+    "review_report": "Reports/Film/2026-10-12_sc001_v020_desktop_review.md",
     "build_preparation_report": "Reports/Film/2026-10-11_sc001_v020_departure_composition_preparation.md",
     "open_issues": "Active/Film/00_Control/00.40_project_state/SC001_open_issues.md",
     "failed_desktop_test": {

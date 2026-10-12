@@ -50,7 +50,7 @@ def validate(bpy,scene):
     from mathutils import Vector
     support_names=['SET_EliasFlat_floor','SET_EliasFlat_landing','SET_EliasFlat_entry_threshold']
     subjects=[o.name for o in scene.objects['CHR_Elias_proxy_root'].children]+['PRP_CoffeeMug','PRP_Keys','PRP_EliasJacket']
-    checked=0;crossing=[];minimum_clearance=float('inf');maximum_support_gap=0.0
+    checked=0;crossing=[];minimum_clearance=float('inf');maximum_support_gap=0.0;leaf_candidates=0
     for frame in range(EXIT_START,SCENE_END+1):
         scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
         for name in subjects:
@@ -59,7 +59,10 @@ def validate(bpy,scene):
             leaf=scene.objects['SET_EliasFlat_entry_open_leaf'].evaluated_get(deps)
             leaf_corners=[leaf.matrix_world @ Vector(c) for c in leaf.bound_box]
             overlap=all(min(c[axis] for c in corners)<max(c[axis] for c in leaf_corners)-1e-5 and max(c[axis] for c in corners)>min(c[axis] for c in leaf_corners)+1e-5 for axis in range(3))
-            assert not overlap,'Possible parked-door collision: '+name+' frame '+str(frame)
+            if overlap:
+                leaf_candidates+=1
+                intersects=boxes_overlap(corners,box_axes(corners,local),leaf_corners,box_axes(leaf_corners,list(leaf.bound_box)))
+                assert not intersects,f'Confirmed oriented-box parked-door intersection: {name} frame {frame}; subject={[tuple(c) for c in corners]}; leaf={[tuple(c) for c in leaf_corners]}'
             if min(c.y for c in corners)>ENTRY_Y+WALL_HALF_DEPTH or max(c.y for c in corners)<ENTRY_Y-WALL_HALF_DEPTH:continue
             points=clipped_box_points(corners,local)
             for point in points:
@@ -89,4 +92,25 @@ def validate(bpy,scene):
     assert crossing,'Route never crosses entry opening'
     return {'checked_frames':checked,'crossing_frames':[min(crossing),max(crossing)],
             'minimum_opening_clearance':minimum_clearance,'maximum_stance_support_gap':maximum_support_gap,
-            'status':'evaluated_opening_and_built_support_verified','door_leaf':'parked_open_interaction_pending'}
+            'parked_leaf_broadphase_candidates':leaf_candidates,'parked_leaf_confirmed_intersections':0,'status':'evaluated_opening_and_built_support_verified','door_leaf':'parked_open_interaction_pending'}
+
+
+def box_axes(corners,local):
+    from elias_articulation import sub,unit
+    axes=[]
+    for k in range(1,len(local)):
+        if sum(abs(local[0][axis]-local[k][axis])>1e-8 for axis in range(3))==1:
+            axes.append(unit(sub(corners[k],corners[0])))
+    assert len(axes)==3,'Expected three box edge axes'
+    return axes
+
+
+def boxes_overlap(a,axes_a,b,axes_b,tolerance=1e-5):
+    """Separating-axis test for two oriented boxes, including edge-cross axes."""
+    from elias_articulation import cross,dot,unit
+    axes=list(axes_a)+list(axes_b)+[cross(x,y) for x in axes_a for y in axes_b]
+    for axis in axes:
+        if dot(axis,axis)<1e-12:continue
+        axis=unit(axis);pa=[dot(p,axis) for p in a];pb=[dot(p,axis) for p in b]
+        if min(max(pa),max(pb))-max(min(pa),min(pb))<=tolerance:return False
+    return True

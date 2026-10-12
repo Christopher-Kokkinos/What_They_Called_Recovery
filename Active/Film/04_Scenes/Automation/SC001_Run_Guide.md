@@ -12,7 +12,7 @@ git pull --ff-only
 
 No add-ons/codecs/pip needed. Runs in an isolated background process; refuses loaded files or interactive execution. Each run creates a new ignored folder under `Active/Film/_local/SC001/`, retaining previous runs.
 
-Full-review output (use `--render-shot-review --render-motion-preview`): `SC001_blockout_v0.22.blend`, `validation.json`, ten 1280×720 shot-start PNGs, `motion_preview.html`, a manifest and 480 640×360 preview PNGs. Open HTML beside its image folder in a browser, click Play and pause/scrub. Send the entire run ZIP and terminal ending. Missing/partial output after an error is not a passed run.
+Full-review output (use `--render-shot-review --render-motion-preview`): `SC001_blockout_v0.23.blend`, `validation.json`, ten 1280×720 shot-start PNGs, `motion_preview.html`, a manifest and 480 640×360 preview PNGs. Open HTML beside its image folder in a browser, click Play and pause/scrub. Send the entire run ZIP and terminal ending. Missing/partial output after an error is not a passed run.
 
 Review low bedside drawers against the pillow-end wall, clock on top, medicine inside drawer, corrected bed head direction/side seating, portrait notice, hinged thirds, unchanged-size envelope and reach/grip. Verify SH002 foreground clearance and SH008 handling readability. Workbench is diagnostic: no final lighting/grain/audio or rigs. 120 seconds remains a hypothesis (v0.19 extends only the final exit shot). Preview samples 24fps source at 4fps; runtime not benchmarked.
 
@@ -47,3 +47,5 @@ v0.20 tracks Elias through departure, cuts at 2841 to outside pigeons, and retai
 v0.21 replaces the entry marker with clear opening/flush threshold and outside landing, with a parked-open leaf. Nine helpers hashed. Full preview required: review diagonal passage, feet on threshold/landing, mug/key clearance, parked leaf, arrival framing and pigeon cut. validation.json motion.entry_geometry reports crossing frames, opening margin and stance support error. Door-use performance is not implemented.
 
 v0.22 corrects exit elbow bend after v0.21 failed left-forearm doorway clearance at 2787. Wrists, limb lengths, opening and timing retained. Pure carried-arm volume regression added; runtime errors now print exact point/margin. Use full review command. Empty v0.21 run is failed evidence, not a render result; retain it and rerun in a new directory.
+
+v0.23 classifies parked-leaf AABB candidates with evaluated oriented-box separation. Geometry and pose retained until actual intersection is determined. A confirmed intersection stops with full corners in traceback; successful validation records candidate count and zero confirmed intersections. Full command and ZIP review remain required.

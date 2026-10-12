@@ -246,3 +246,22 @@ old_elbow=two_segment(a,c,old_pole,UPPER_ARM_LENGTH,FOREARM_LENGTH)
 old_margin=min(opening_clearance(p) for p in clipped_box_points(segment_box(old_elbow,c,.11),cube))
 assert old_margin<0
 print(f'Carried arm-volume regression PASS: old frame-2787 margin {old_margin:.6f} m, revised all-frame minimum {minimum_arm_clearance:.6f} m; bpy evaluation separate')
+
+# AABB overlap is only broad-phase evidence; test exact oriented-box separation.
+from sc001_entry import boxes_overlap,box_axes
+angle=math.pi/4
+rotated=[(p[0]*2*math.cos(angle)-p[1]*.2*math.sin(angle),p[0]*2*math.sin(angle)+p[1]*.2*math.cos(angle),p[2]*2) for p in cube]
+def small_box(center):return [tuple(a+b*.2 for a,b in zip(center,p)) for p in cube]
+separate=small_box((.7,-.7,0));intersecting=small_box((.3,.3,0))
+assert all(min(p[k] for p in rotated)<max(p[k] for p in separate) and max(p[k] for p in rotated)>min(p[k] for p in separate) for k in range(3))
+assert not boxes_overlap(rotated,box_axes(rotated,cube),separate,box_axes(separate,cube))
+assert boxes_overlap(rotated,box_axes(rotated,cube),intersecting,box_axes(intersecting,cube))
+assert boxes_overlap(intersecting,box_axes(intersecting,cube),rotated,box_axes(rotated,cube))
+leaf=[(5.72+p[0]*.045,-.75+p[1]*1.6,1.1+p[2]*2.2) for p in cube]
+for f in range(m.EXIT_START,m.SCENE_END+1):
+ j=standing_joints(f,add(m.coffee_target(f),(.19,0,.11)),m.carried_position(f,m.CARRIED_KEYS_OFFSET))
+ for side in ['left','right']:
+  a,b,c=j[side+'_arm']
+  for cs in [segment_box(a,b,.15),segment_box(b,c,.11)]:
+   assert not boxes_overlap(cs,box_axes(cs,cube),leaf,box_axes(leaf,cube))
+print('Oriented-box broad/narrow collision regression and planned carried-arm leaf clearance PASS; actual Blender overlap classification pending')

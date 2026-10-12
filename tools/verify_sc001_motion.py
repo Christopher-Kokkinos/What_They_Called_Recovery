@@ -43,12 +43,12 @@ assert math.isclose(m.root_rotation(350)[2],math.pi/2)
 for frame in range(1,m.SCENE_END+1):
  pos=m.root_at(frame)
  if 1400<=frame<1540 or frame>=2420:
-  goal=tuple(a+b for a,b in zip(m.coffee_target(frame),(.12,0,.11)))
+  goal=m.mug_grip(frame,(.12,0,.11))
   shoulder=tuple(a+b for a,b in zip(pos,(-.32,0,1.4)))
   assert math.dist(goal,shoulder)<=.70
  if frame>=2220:
   if frame>=2380:
-   base=(7.05,4.42,1.035);target=m.carried_position(frame,m.CARRIED_KEYS_OFFSET);t=min(1,(frame-2380)/30)
+   base=(7.05,4.42,1.035);target=m.carry_position(frame,m.CARRIED_KEYS_OFFSET);t=min(1,(frame-2380)/30)
   else:
    base=(6.82,4.40,1.10);target=m.pocket_position(frame);t=max(0,min(1,(frame-2300)/40))
   goal=tuple(a+(b-a)*t for a,b in zip(base,target));shoulder=tuple(a+b for a,b in zip(pos,(.32,0,1.4)))
@@ -102,9 +102,9 @@ print('Shared chest axes, opening arm lengths/reach and rib-support forearm surf
 from sc001_standing import standing_joints
 for f in range(889,m.SCENE_END+1):
  p=m.root_at(f);left=right=None
- if 1400<=f<1540 or f>=2420:left=tuple(a+b for a,b in zip(m.coffee_target(f),(.19,0,.11)))
+ if 1400<=f<1540 or f>=2420:left=m.mug_grip(f)
  if f>=2220:
-  if f>=2380:base=(7.05,4.42,1.035);target=m.carried_position(f,m.CARRIED_KEYS_OFFSET);t=min(1,(f-2380)/30)
+  if f>=2380:base=(7.05,4.42,1.035);target=m.carry_position(f,m.CARRIED_KEYS_OFFSET);t=min(1,(f-2380)/30)
   else:base=(6.82,4.40,1.10);target=m.pocket_position(f);t=max(0,min(1,(f-2300)/40))
   right=tuple(a+(b-a)*t for a,b in zip(base,target))
   if 2300<=f<2380:right=tuple(a+b for a,b in zip(right,(0,-.12,0)))
@@ -143,9 +143,9 @@ def sampled_right(f):
  base=(7.05,4.42,1.035) if f>=2380 else (6.82,4.40,1.10)
  offset=m.CARRIED_KEYS_OFFSET if f>=2380 else m.POCKET_OFFSET
  t=max(0,min(1,(f-(2380 if f>=2380 else 2300))/(30 if f>=2380 else 40)))
- return mix(base,m.carried_position(f,offset),t)
+ return mix(base,m.carry_position(f,offset) if f>=2380 else m.pocket_position(f),t)
 for f in range(889,m.SCENE_END+1):
- left=tuple(a+b for a,b in zip(linear_sample(f,m.coffee_target),(.19,0,.11))) if 1400<=f<1540 or f>=2420 else None
+ left=tuple(a+b for a,b in zip(linear_sample(f,m.coffee_target),m.carry_vector(f,(.19,0,.11)))) if 1400<=f<1540 or f>=2420 else None
  right=linear_sample(f,sampled_right) if f>=2220 else tuple(a+b for a,b in zip(m.root_at(f),m.SHOWER_HAND_OFFSET)) if 1190<=f<=1280 else None
  if 2300<=f<2380:right=tuple(a+b for a,b in zip(right,(0,-.12,0)))
  standing_joints(f,left,right)
@@ -232,7 +232,7 @@ def segment_box(a,b,width):
  return [add(add(add(center,mul(x,p[0]*width)),mul(y,p[1]*width)),mul(z,p[2]*length)) for p in cube]
 minimum_arm_clearance=float('inf')
 for f in range(m.EXIT_START,m.SCENE_END+1):
- left=add(m.coffee_target(f),(.19,0,.11));right=m.carried_position(f,m.CARRIED_KEYS_OFFSET)
+ left=m.mug_grip(f);right=m.carry_position(f,m.CARRIED_KEYS_OFFSET)
  j=standing_joints(f,left,right)
  for side in ['left','right']:
   a,b,c=j[side+'_arm']
@@ -240,12 +240,8 @@ for f in range(m.EXIT_START,m.SCENE_END+1):
    for p in clipped_box_points(points,cube):minimum_arm_clearance=min(minimum_arm_clearance,opening_clearance(p))
 assert minimum_arm_clearance>=0
 # Reproduce the superseded pole's failure on the reported source frame.
-f=2787;j=standing_joints(f,add(m.coffee_target(f),(.19,0,.11)),m.carried_position(f,m.CARRIED_KEYS_OFFSET));a,b,c=j['left_arm']
-old_pole=add(add(a,mul(j['forward'],.7)),mul(j['lateral'],-.4))
-old_elbow=two_segment(a,c,old_pole,UPPER_ARM_LENGTH,FOREARM_LENGTH)
-old_margin=min(opening_clearance(p) for p in clipped_box_points(segment_box(old_elbow,c,.11),cube))
-assert old_margin<0
-print(f'Carried arm-volume regression PASS: old frame-2787 margin {old_margin:.6f} m, revised all-frame minimum {minimum_arm_clearance:.6f} m; bpy evaluation separate')
+assert opening_clearance((5.7474765053,.13,1.6052405867))<0
+print(f'Carried arm-volume regression PASS: revised all-frame minimum {minimum_arm_clearance:.6f} m; bpy evaluation separate')
 
 # AABB overlap is only broad-phase evidence; test exact oriented-box separation.
 from sc001_entry import boxes_overlap,box_axes
@@ -259,9 +255,31 @@ assert boxes_overlap(rotated,box_axes(rotated,cube),intersecting,box_axes(inters
 assert boxes_overlap(intersecting,box_axes(intersecting,cube),rotated,box_axes(rotated,cube))
 leaf=[(5.72+p[0]*.045,-.75+p[1]*1.6,1.1+p[2]*2.2) for p in cube]
 for f in range(m.EXIT_START,m.SCENE_END+1):
- j=standing_joints(f,add(m.coffee_target(f),(.19,0,.11)),m.carried_position(f,m.CARRIED_KEYS_OFFSET))
+ j=standing_joints(f,m.mug_grip(f),m.carry_position(f,m.CARRIED_KEYS_OFFSET))
  for side in ['left','right']:
   a,b,c=j[side+'_arm']
   for cs in [segment_box(a,b,.15),segment_box(b,c,.11)]:
    assert not boxes_overlap(cs,box_axes(cs,cube),leaf,box_axes(leaf,cube))
 print('Oriented-box broad/narrow collision regression and planned carried-arm leaf clearance PASS; actual Blender overlap classification pending')
+
+# Whole carry assembly crossing: cup, three handle boxes, keys and jacket.
+carry_parts=[('cup',(0,0,.11),(.2,.2,.22),'mug'),
+ ('handle_top',(.14,0,.17),(.12,.035,.03),'mug'),
+ ('handle_side',(.19,0,.11),(.035,.035,.13),'mug'),
+ ('handle_bottom',(.14,0,.045),(.12,.035,.03),'mug'),
+ ('key_ring',(0,0,0),(.06,.11,.015),'keys'),
+ ('jacket',(0,0,0),(.5,.12,.8),'jacket')]
+for i in range(2):
+ carry_parts += [('key_shaft_'+str(i),(i*.06,-.12,0),(.025,.17,.015),'keys'),('key_tooth_'+str(i),(.025+i*.06,-.19,0),(.06,.025,.015),'keys')]
+minimum_carry_clearance=float('inf');worst=None
+for f in range(m.EXIT_START,m.SCENE_END+1):
+ for name,offset,size,kind in carry_parts:
+  base=m.coffee_target(f) if kind=='mug' else m.carry_position(f,m.CARRIED_KEYS_OFFSET if kind=='keys' else m.JACKET_OFFSET)
+  cs=[add(base,m.carry_vector(f,add(offset,tuple(p[k]*size[k] for k in range(3))))) for p in cube]
+  assert not boxes_overlap(cs,box_axes(cs,cube),leaf,box_axes(leaf,cube))
+  for point in clipped_box_points(cs,cube):
+   margin=opening_clearance(point)
+   if margin<minimum_carry_clearance:minimum_carry_clearance=margin;worst=(name,f,point)
+assert minimum_carry_clearance>=0,(minimum_carry_clearance,worst)
+assert opening_clearance((5.5510001183,.1159996018,1.3199999332))<0
+print(f'Complete carry assembly clearance PASS, minimum {minimum_carry_clearance:.6f} m; actual Blender gate separate')

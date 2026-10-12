@@ -130,7 +130,7 @@ def coffee_target(frame):
     elif 1510<=frame<1540:t=1-(frame-1510)/30
     elif frame>=2420:t=min(1,(frame-2420)/20)
     else:t=0
-    hand=carried_position(frame,DRINK_MUG_OFFSET if frame<1540 else CARRIED_MUG_OFFSET)
+    hand=carried_position(frame,DRINK_MUG_OFFSET) if frame<1540 else carry_position(frame,CARRIED_MUG_OFFSET)
     return tuple(a+(b-a)*t for a,b in zip(counter,hand))
 
 
@@ -141,3 +141,21 @@ def standing_yaw(frame):
 def pocket_position(frame):
     x,y,z=POCKET_OFFSET;angle=standing_yaw(frame)
     return carried_position(frame,(x*math.cos(angle)-y*math.sin(angle),x*math.sin(angle)+y*math.cos(angle),z))
+
+
+def carry_vector(frame,offset):
+    x,y,z=offset;angle=standing_yaw(frame)
+    return (x*math.cos(angle)-y*math.sin(angle),x*math.sin(angle)+y*math.cos(angle),z)
+
+
+def carry_position(frame,offset):
+    if frame>=EXIT_START and offset==CARRIED_MUG_OFFSET:
+        offset=(-.30,offset[1],offset[2])
+    if frame>=EXIT_START and offset==CARRIED_KEYS_OFFSET:
+        offset=(.25,offset[1],offset[2])
+    return carried_position(frame,carry_vector(frame,offset))
+
+
+def mug_grip(frame,offset=(.19,0,.11)):
+    from elias_articulation import add
+    return add(coffee_target(frame),carry_vector(frame,offset))

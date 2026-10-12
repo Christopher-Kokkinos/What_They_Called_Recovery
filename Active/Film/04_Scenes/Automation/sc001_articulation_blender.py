@@ -24,8 +24,8 @@ def apply(bpy,scene,root,spec,box):
             deps=bpy.context.evaluated_depsgraph_get()
             left_target=right_target=None
             if 1400<=frame<1540 or frame>=2420:
-                p=scene.objects['PRP_CoffeeMug'].evaluated_get(deps).matrix_world.translation
-                left_target=tuple(p+Vector((.19,0,.11)))
+                mug=scene.objects['PRP_CoffeeMug'].evaluated_get(deps)
+                left_target=tuple(mug.matrix_world @ Vector((.19,0,.11)))
             if frame>=2220:
                 name='PRP_Keys' if frame>=2380 else 'PRP_ResignationLetter'
                 right_target=tuple(scene.objects[name].evaluated_get(deps).matrix_world.translation)

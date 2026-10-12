@@ -1,6 +1,6 @@
 """Apply scoped coarse animation to owned SC001 objects; no external scene writes."""
 import math
-from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS, coffee_target, CARRIED_KEYS_OFFSET, POCKET_OFFSET, JACKET_OFFSET, pocket_position, standing_yaw, EXIT_ARRIVAL, SCENE_END
+from sc001_motion import root_at, pose_weights, carried_position, sample_frames, custody_at, EVENTS, root_rotation, bedside_lean, upper_point, BEDSIDE_LEAN_RADIANS, coffee_target, CARRIED_KEYS_OFFSET, POCKET_OFFSET, JACKET_OFFSET, pocket_position, standing_yaw, EXIT_ARRIVAL, SCENE_END, carry_position, carry_vector, mug_grip
 
 
 def linearise_owned_actions(objects):
@@ -113,9 +113,14 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
                 obj.keyframe_insert(data_path='hide_viewport',frame=frame)
 
         target=coffee_target(frame)
-        mug.location=tuple(a-b for a,b in zip(target,(4.8,4.65,1.02)));mug.keyframe_insert(data_path='location',frame=frame)
-        keybase=(7.05,4.42,1.035);t=max(0,min(1,(frame-2380)/30));hand=carried_position(frame,CARRIED_KEYS_OFFSET)
-        keys.location=tuple((b-a)*t for a,b in zip(keybase,hand));keys.keyframe_insert(data_path='location',frame=frame)
+        mug.rotation_euler=(0,0,standing_yaw(frame))
+        mug.location=tuple(a-b for a,b in zip(target,carry_vector(frame,(4.8,4.65,1.02))))
+        for channel in ['location','rotation_euler']:mug.keyframe_insert(data_path=channel,frame=frame)
+        keybase=(7.05,4.42,1.035);t=max(0,min(1,(frame-2380)/30));hand=carry_position(frame,CARRIED_KEYS_OFFSET)
+        key_target=tuple(a+(b-a)*t for a,b in zip(keybase,hand))
+        keys.rotation_euler=(0,0,standing_yaw(frame))
+        keys.location=tuple(a-b for a,b in zip(key_target,carry_vector(frame,keybase)))
+        for channel in ['location','rotation_euler']:keys.keyframe_insert(data_path=channel,frame=frame)
         for name in ['PRP_ResignationLetter','PRP_MACEnvelope']:
             obj=scene.objects[name];base,scale=initial[name]
             t=max(0,min(1,(frame-2300)/40));pocket=pocket_position(frame)
@@ -145,9 +150,9 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             active=(1400<=frame<1540 or frame>=2420) if side=='left' else (2220<=frame)
             palm=palms[side];palm.hide_render=not active;palm.hide_viewport=not active
             if side=='left':
-                goal=Vector(target)+Vector((.12,0,.11))
+                goal=Vector(mug_grip(frame,(.12,0,.11)))
             elif frame>=2380:
-                goal=Vector(keybase)+keys.location
+                goal=Vector(key_target)
             else:
                 goal=scene.objects['PRP_ResignationLetter'].location.copy()
             if active:
@@ -174,8 +179,9 @@ def apply_motion(bpy, scene, root, defaults, spec, box):
             for channel in ['hide_render','hide_viewport']:
                 palm.keyframe_insert(data_path=channel,frame=frame)
         jacket=scene.objects['PRP_EliasJacket']
-        jacket.location=carried_position(frame,JACKET_OFFSET) if frame>=1369 else initial[jacket.name][0]
-        jacket.keyframe_insert(data_path='location',frame=frame)
+        jacket.location=carry_position(frame,JACKET_OFFSET) if frame>=1369 else initial[jacket.name][0]
+        jacket.rotation_euler=(0,0,standing_yaw(frame))
+        for channel in ['location','rotation_euler']:jacket.keyframe_insert(data_path=channel,frame=frame)
         # Opening and final peck are box translations, not bird anatomy.
         peck=.05 if frame in (60,2860) else 0
         bird.location=bird_start.copy();bird.location.x+=peck

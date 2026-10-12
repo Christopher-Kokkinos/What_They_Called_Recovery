@@ -49,7 +49,7 @@ def opening_clearance(point):
 def validate(bpy,scene):
     from mathutils import Vector
     support_names=['SET_EliasFlat_floor','SET_EliasFlat_landing','SET_EliasFlat_entry_threshold']
-    subjects=[o.name for o in scene.objects['CHR_Elias_proxy_root'].children]+['PRP_CoffeeMug','PRP_Keys','PRP_EliasJacket']
+    subjects=[o.name for o in scene.objects['CHR_Elias_proxy_root'].children]+['PRP_CoffeeMug','PRP_Keys','PRP_EliasJacket']+[o.name for o in scene.objects if o.name.startswith(('PRP_Mug_handle_','PRP_Key_'))]
     checked=0;crossing=[];minimum_clearance=float('inf');maximum_support_gap=0.0;leaf_candidates=0
     for frame in range(EXIT_START,SCENE_END+1):
         scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()

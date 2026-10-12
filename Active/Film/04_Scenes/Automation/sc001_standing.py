@@ -18,7 +18,7 @@ def standing_joints(frame,left_target=None,right_target=None):
         pole=add(add(shoulder,mul(forward,.7)),mul(lateral,sign*.4))
         if frame>=2641:
             # Carry elbows down through the oblique doorway; preserve wrists/lengths.
-            pole=add(add(add(shoulder,mul(forward,.1)),mul(lateral,sign*.4)),(0,0,-.5))
+            pole=add(add(shoulder,mul(forward,.7)),(0,0,-.3)) if side=='right' else add(add(add(shoulder,mul(forward,.1)),mul(lateral,-.1)),(0,0,-.5))
         try:
             elbow=two_segment(shoulder,wrist,pole,UPPER_ARM_LENGTH,FOREARM_LENGTH)
         except ValueError as error:

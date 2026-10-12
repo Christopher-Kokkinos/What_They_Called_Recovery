@@ -174,8 +174,8 @@
       1.4
     ],
     "entry_location": [
-      7.5,
-      0,
+      6.6,
+      0.05,
       0
     ],
     "camera_walls": "hide obstructing walls per shot, not story-visible changes"

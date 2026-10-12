@@ -11,9 +11,9 @@ Author will flag remaining concerns from personal notes before moving beyond SC0
 | Coffee handle/sip contact | v0.16 sampled cup lift/return visible and evaluated wrist targeting passes; fingers, tilt and convincing sip/face contact pending. |
 | Folding and jacket pocket | v0.19 desktop verifies packet bounds inside opaque torso across 541 frames; sampled concealment visible. Final jacket pocket, cloth, entry contact and grip remain open. |
 | Exit contact and pace | v0.19 route speed 0.98 m/s and floor/stance checks pass. Elias leaves view early, creating roughly 6–7 seconds on room; v0.20 desktop verifies tracking containment across 240 frames; sampled arrival and pigeon cut readable. Natural injured gait and final camera performance remain open. |
-| Entry opening and outside floor | v0.20 shows solid entry marker rather than a usable opening; floor ends before outside arrival. Build threshold/opening and landing before physical passage/contact approval. |
+| Entry opening and outside floor | v0.21 opening/flush threshold/landing prepared; evaluated clearance, parked-leaf overlap and sole support checks desktop-pending. Door handle/opening/closing performance remains open. |
 | Full scene pacing | 120-second silent sample hypothesis (v0.19 adds five seconds to exit); timed playback/dialogue review pending; reaching two minutes does not pass the finished-slice gate. |
 | Dialogue, sound, pigeons and final look | Production pending; no final lighting/grain/audio certification. |
 | Author notes and scene acceptance | Reconcile before SC002; acceptance must be explicit. |
 
-Reports and decision logs retain evidence and superseded failures. Last update: v0.20 desktop review; no finished-slice gate passed.
+Reports and decision logs retain evidence and superseded failures. Last update: v0.21 preparation; no finished-slice gate passed.

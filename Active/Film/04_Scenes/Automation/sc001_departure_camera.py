@@ -26,7 +26,7 @@ def configure(bpy,scene,cam):
         plan=camera_pose(frame);cam.location=plan['eye'];cam.data.ortho_scale=plan['scale']
         cam.rotation_euler=(Vector(plan['aim'])-cam.location).to_track_quat('-Z','Y').to_euler()
         names=body+['PRP_CoffeeMug','PRP_Keys','PRP_EliasJacket'] if frame<CLOSING_CUT else ['CHR_Pigeon_A','CHR_Pigeon_B']
-        if EXIT_ARRIVAL-20<=frame<CLOSING_CUT:names+=['SET_EliasFlat_entry_marker']
+        if EXIT_ARRIVAL-20<=frame<CLOSING_CUT:names+=['SET_EliasFlat_entry_left_jamb','SET_EliasFlat_entry_right_jamb','SET_EliasFlat_entry_lintel']
         bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
         points=[]
         for name in names:

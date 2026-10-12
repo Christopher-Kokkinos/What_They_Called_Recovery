@@ -207,3 +207,18 @@ for f in range(CLOSING_CUT,m.SCENE_END+1):
  assert camera_pose(f)==camera_pose(CLOSING_CUT)
 assert camera_pose(CLOSING_CUT)['phase']=='pigeons'
 print('Departure tracking offset and explicit pigeon cut plan PASS')
+
+from sc001_entry import supported_xy,ENTRY_Y,ENTRY_CENTER,ENTRY_HALF_WIDTH,ENTRY_HEIGHT
+cross=1.2+6.3*(4.5-ENTRY_Y)/5.2
+assert abs(cross-ENTRY_CENTER)<.02
+for f in range(m.EXIT_START,m.SCENE_END+1):
+ j=standing_joints(f)
+ for side in ['left','right']:
+  ankle=j[side][2]
+  center=add(ankle,mul(j['forward'],.05))
+  for a in [-1,1]:
+   for b in [-1,1]:
+    point=add(add(center,mul(j['lateral'],a*.09)),mul(j['forward'],b*.11))
+    assert supported_xy(point[0],point[1])
+assert ENTRY_HEIGHT>1.92+.14
+print('Entry route alignment and full sole plan supported by floor/landing PASS; evaluated collision/support separate')

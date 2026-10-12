@@ -222,3 +222,27 @@ for f in range(m.EXIT_START,m.SCENE_END+1):
     assert supported_xy(point[0],point[1])
 assert ENTRY_HEIGHT>1.92+.14
 print('Entry route alignment and full sole plan supported by floor/landing PASS; evaluated collision/support separate')
+
+# Regression: entry checks need carried-arm volumes, not root/sole coverage alone.
+from sc001_entry import clipped_box_points,opening_clearance
+from elias_articulation import cross,two_segment,UPPER_ARM_LENGTH,FOREARM_LENGTH
+cube=[(x,y,z) for x in [-.5,.5] for y in [-.5,.5] for z in [-.5,.5]]
+def segment_box(a,b,width):
+ z=unit(sub(b,a));x=unit(cross((0,1,0),z));y=cross(z,x);center=mix(a,b,.5);length=math.dist(a,b)
+ return [add(add(add(center,mul(x,p[0]*width)),mul(y,p[1]*width)),mul(z,p[2]*length)) for p in cube]
+minimum_arm_clearance=float('inf')
+for f in range(m.EXIT_START,m.SCENE_END+1):
+ left=add(m.coffee_target(f),(.19,0,.11));right=m.carried_position(f,m.CARRIED_KEYS_OFFSET)
+ j=standing_joints(f,left,right)
+ for side in ['left','right']:
+  a,b,c=j[side+'_arm']
+  for points in [segment_box(a,b,.15),segment_box(b,c,.11)]:
+   for p in clipped_box_points(points,cube):minimum_arm_clearance=min(minimum_arm_clearance,opening_clearance(p))
+assert minimum_arm_clearance>=0
+# Reproduce the superseded pole's failure on the reported source frame.
+f=2787;j=standing_joints(f,add(m.coffee_target(f),(.19,0,.11)),m.carried_position(f,m.CARRIED_KEYS_OFFSET));a,b,c=j['left_arm']
+old_pole=add(add(a,mul(j['forward'],.7)),mul(j['lateral'],-.4))
+old_elbow=two_segment(a,c,old_pole,UPPER_ARM_LENGTH,FOREARM_LENGTH)
+old_margin=min(opening_clearance(p) for p in clipped_box_points(segment_box(old_elbow,c,.11),cube))
+assert old_margin<0
+print(f'Carried arm-volume regression PASS: old frame-2787 margin {old_margin:.6f} m, revised all-frame minimum {minimum_arm_clearance:.6f} m; bpy evaluation separate')

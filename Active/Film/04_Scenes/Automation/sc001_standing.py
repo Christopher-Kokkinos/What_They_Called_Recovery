@@ -15,8 +15,12 @@ def standing_joints(frame,left_target=None,right_target=None):
         shoulder=add(add(chest,(0,0,-.08)),mul(lateral,sign*.225))
         rest=add(add(add(shoulder,(0,0,-.60)),mul(forward,.13)),mul(lateral,sign*.04))
         wrist=target if target is not None else rest
+        pole=add(add(shoulder,mul(forward,.7)),mul(lateral,sign*.4))
+        if frame>=2641:
+            # Carry elbows down through the oblique doorway; preserve wrists/lengths.
+            pole=add(add(add(shoulder,mul(forward,.1)),mul(lateral,sign*.4)),(0,0,-.5))
         try:
-            elbow=two_segment(shoulder,wrist,add(add(shoulder,mul(forward,.7)),mul(lateral,sign*.4)),UPPER_ARM_LENGTH,FOREARM_LENGTH)
+            elbow=two_segment(shoulder,wrist,pole,UPPER_ARM_LENGTH,FOREARM_LENGTH)
         except ValueError as error:
             raise ValueError(f'SC001 frame {frame}, {side} hand: shoulder={shoulder}, wrist={wrist}, reach={math.dist(shoulder,wrist):.9f} m, limit={UPPER_ARM_LENGTH+FOREARM_LENGTH:.3f} m') from error
         j[side+'_arm']=(shoulder,elbow,wrist)

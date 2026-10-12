@@ -23,7 +23,7 @@
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": "SC001",
-    "status": "v021_entry_opening_landing_prepared_desktop_pending",
+    "status": "v021_entry_clearance_failed_v022_carry_pose_repair_prepared",
     "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
     "timing_hypothesis_seconds": 120,
     "finished_slice_gate_passed": false,
@@ -37,13 +37,13 @@
       "visual_result": "sampled_tracking_arrival_pigeon_cut_readable_entry_marker_and_missing_landing_open"
     },
     "review_report": "Reports/Film/2026-10-12_sc001_v020_desktop_review.md",
-    "build_preparation_report": "Reports/Film/2026-10-12_sc001_v021_entry_support_preparation.md",
+    "build_preparation_report": "Reports/Film/2026-10-12_sc001_v022_entry_clearance_repair.md",
     "open_issues": "Active/Film/00_Control/00.40_project_state/SC001_open_issues.md",
     "failed_desktop_test": {
-      "builder_version": "0.15",
+      "builder_version": "0.21",
       "blender": "5.2.2 LTS",
-      "result": "unreachable_arm_target_0.738464338_m_before_save",
-      "evidence": "Reports/Film/2026-10-11_sc001_v016_runtime_repair.md"
+      "result": "entry_clearance_failed_left_forearm_frame_2787_before_save",
+      "evidence": "Reports/Film/2026-10-12_sc001_v022_entry_clearance_repair.md"
     }
   },
   "story_authority": {

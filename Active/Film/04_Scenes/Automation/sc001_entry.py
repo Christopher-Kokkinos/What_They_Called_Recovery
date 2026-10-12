@@ -29,6 +29,23 @@ def build(box):
     return [o.name for o in parts]
 
 
+
+def clipped_box_points(corners,local):
+    """Clip box vertices/edges to the entry depth slab in world coordinates."""
+    from elias_articulation import mix
+    points=[tuple(c) for c in corners if abs(c[1]-ENTRY_Y)<=WALL_HALF_DEPTH]
+    for i,a in enumerate(corners):
+        for k,b in enumerate(corners[i+1:],i+1):
+            if sum(abs(local[i][axis]-local[k][axis])>1e-8 for axis in range(3))!=1:continue
+            for plane in [ENTRY_Y-WALL_HALF_DEPTH,ENTRY_Y+WALL_HALF_DEPTH]:
+                if (a[1]-plane)*(b[1]-plane)<0:points.append(mix(a,b,(plane-a[1])/(b[1]-a[1])))
+    return points
+
+
+def opening_clearance(point):
+    return min(point[0]-(ENTRY_CENTER-ENTRY_HALF_WIDTH),(ENTRY_CENTER+ENTRY_HALF_WIDTH)-point[0],ENTRY_HEIGHT-point[2])
+
+
 def validate(bpy,scene):
     from mathutils import Vector
     support_names=['SET_EliasFlat_floor','SET_EliasFlat_landing','SET_EliasFlat_entry_threshold']
@@ -44,16 +61,11 @@ def validate(bpy,scene):
             overlap=all(min(c[axis] for c in corners)<max(c[axis] for c in leaf_corners)-1e-5 and max(c[axis] for c in corners)>min(c[axis] for c in leaf_corners)+1e-5 for axis in range(3))
             assert not overlap,'Possible parked-door collision: '+name+' frame '+str(frame)
             if min(c.y for c in corners)>ENTRY_Y+WALL_HALF_DEPTH or max(c.y for c in corners)<ENTRY_Y-WALL_HALF_DEPTH:continue
-            points=[c for c in corners if abs(c.y-ENTRY_Y)<=WALL_HALF_DEPTH]
-            for i,a in enumerate(corners):
-                for k,b in enumerate(corners[i+1:],i+1):
-                    if sum(abs(local[i][axis]-local[k][axis])>1e-8 for axis in range(3))!=1:continue
-                    for plane in [ENTRY_Y-WALL_HALF_DEPTH,ENTRY_Y+WALL_HALF_DEPTH]:
-                        if (a.y-plane)*(b.y-plane)<0:points.append(a.lerp(b,(plane-a.y)/(b.y-a.y)))
-            for p in points:
-                clearance=min(p.x-(ENTRY_CENTER-ENTRY_HALF_WIDTH),(ENTRY_CENTER+ENTRY_HALF_WIDTH)-p.x,ENTRY_HEIGHT-p.z)
+            points=clipped_box_points(corners,local)
+            for point in points:
+                clearance=opening_clearance(point)
                 minimum_clearance=min(minimum_clearance,clearance)
-                assert clearance>=-1e-5,'Entry clearance failed: '+name+' frame '+str(frame)
+                assert clearance>=-1e-5,f'Entry clearance failed: {name} frame {frame}, point={point}, margin={clearance:.6f} m'
             if points:crossing.append(frame)
         for side in ['left','right']:
             foot=scene.objects['CHR_Elias_'+side+'_foot'].evaluated_get(deps)

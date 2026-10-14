@@ -134,13 +134,14 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0054",
+    "decision": "DEC-0055",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "hand_mapping_revision_prepared_desktop_pending",
+    "status": "hand_visual_fail_camera_repair_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
-    "hand_review_flag": "--render-hand-review"
+    "hand_review_flag": "--render-hand-review",
+    "hand_review_renderer": "Active/Film/04_Scenes/Automation/render_sc001_hand_review.py"
   }
 }

@@ -22,3 +22,18 @@ To reproduce the accepted box performance, omit `--rig-test`; earlier outputs ar
 ## Hand revision v0.2
 
 Add `--render-hand-review` to the rig-test command for twelve dedicated hand/prop close-ups. With the full flags, outputs include 46 scene stills, twelve hand stills and 528 motion frames. All-frame Blender checks now include evaluated palm mesh centroid vs the accepted action-specific target. This is a mapping test, not a fingertip collision/grip certificate. Fingers remain provisional articulated closed components. The scene filename remains SC001_rig_performance_v0.1.blend (scene scaffold version); its reusable character collection is v0.2.
+
+## Corrected hand-only diagnostics
+
+The first twelve hand renders were pixel-identical to scene stills because dedicated camera selection failed. DEC-0055 isolates marker bindings and adds actual render camera records. Reuse the existing scene in Git Bash:
+
+```bash
+cd /c/Projects/what_they_called_recovery
+git pull --ff-only
+"/c/Program Files/Blender Foundation/Blender 5.2/blender.exe" \
+  --background "Active/Film/_local/SC001/rig_scene_20261014_154220_2ff584bb/SC001_rig_performance_v0.1.blend" \
+  --python-exit-code 1 \
+  --python "Active/Film/04_Scenes/Automation/render_sc001_hand_review.py"
+```
+
+This renders twelve images into a new `hands_...` folder beneath `_local/SC001`, with `hand_review_validation.json`. ZIP that folder for review. It does not resave the input scene or regenerate the full preview. Finger geometry remains unchanged; review assesses camera correction before finger anatomy/grip refinement. Hand/prop containment is checked; occlusion remains visual-review pending.

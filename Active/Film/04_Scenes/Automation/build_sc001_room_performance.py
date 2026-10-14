@@ -160,13 +160,10 @@ def main():
         scene.camera=cameras[name]
     for f in review_frames:
         scene.frame_set(f);select_camera(f);scene.render.resolution_percentage=100;scene.render.filepath=str(out/f'SC001_rooms_frame_{f:04d}.png');bpy.ops.render.render(write_still=True)
-    hand_stills=[]
+    hand_stills=[];hand_records=[]
     if opts.render_hand_review:
-        from elias_hand_math import hands
-        data=bpy.data.cameras.new('CAM_hand_review');cam=bpy.data.objects.new('CAM_hand_review',data);scene.collection.objects.link(cam);data.type='ORTHO';data.ortho_scale=.48
-        for f,side in [(600,'left'),(640,'left'),(850,'left'),(1213,'right'),(1411,'left'),(2227,'left'),(2260,'right'),(2300,'left'),(2320,'right'),(2395,'right'),(2510,'left'),(2629,'right')]:
-            scene.frame_set(f);center=Vector(hands(state(f,layout))[side]['palm']['center']);cam.location=center+Vector((.45,-.55,.40));cam.rotation_euler=(center-cam.location).to_track_quat('-Z','Y').to_euler();scene.camera=cam
-            path=f'SC001_hand_{side}_{f:04d}.png';scene.render.filepath=str(out/path);bpy.ops.render.render(write_still=True);hand_stills.append(path)
+        from sc001_hand_review_blender import render as render_hands
+        hand_records=render_hands(bpy,scene,state,layout,out);hand_stills=[r['image'] for r in hand_records]
     if opts.render_motion_preview:
         scene.render.resolution_percentage=50
         for i,f in enumerate(range(1,END+1,6)):
@@ -178,7 +175,7 @@ def main():
     scene.render.resolution_percentage=100;scene.frame_set(1);scene.camera=cameras['SH001'];blend=out/('SC001_rig_performance_v0.1.blend' if opts.rig_test else 'SC001_room_performance_v0.1.blend');bpy.ops.wm.save_as_mainfile(filepath=str(blend))
     report={'status':'evaluated_review_frames_validated_visual_review_pending','blender_version':bpy.app.version_string,'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(),'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'module_sha256':{n:hashlib.sha256((Path(__file__).parent/n).read_bytes()).hexdigest() for n in ['sc001_room_performance.py','sc001_layout.py','elias_articulation.py','sc001_motion_blender.py','sc001_motion.py','sc001_preview.py']},'static_layout':static,'frame_end':END,'duration_seconds':END/24,'evaluated_review_frames':sorted(expected),'maximum_transform_error':max_error,'maximum_stationary_support_gap':maximum_floor_error,'performance_spec_sha256':hashlib.sha256(plan_path.read_bytes()).hexdigest(),'motion_samples':len(manifest),'packet_evaluated_corner_checks':packet_points,'stills':[f'SC001_rooms_frame_{f:04d}.png' for f in review_frames],'blend':str(blend),'letter_sequence':'mug on table; both hands fold; envelope supported left; right inserts and pockets; keys then mug retrieved','limitations':['Diagnostic low walls; door-use and final occlusion review pending','Box anatomy without final skinning or performance','No final water/lighting/grain/audio','No whole-scene acceptance'],'scene_accepted':False}
     if opts.rig_test:
-        report['hand_stills']=hand_stills;report['rig']=rig_report;report['module_sha256']['elias_rig_blender.py']=hashlib.sha256((Path(__file__).parent/'elias_rig_blender.py').read_bytes()).hexdigest()
+        report['hand_camera_records']=hand_records;report['hand_stills']=hand_stills;report['rig']=rig_report;report['module_sha256']['elias_rig_blender.py']=hashlib.sha256((Path(__file__).parent/'elias_rig_blender.py').read_bytes()).hexdigest()
         report['hand_math_sha256']=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_hand_math.py').read_bytes()).hexdigest()
         report['rig_math_sha256']=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py').read_bytes()).hexdigest()
         report['limitations']=[x for x in report['limitations'] if x!='Box anatomy without final skinning or performance']+rig_report['limitations']

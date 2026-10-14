@@ -77,16 +77,27 @@
       "existing_v026_retained": true,
       "scene_accepted": false,
       "author_review": {
-        "status": "conditional_pass_pending_frame_1213",
+        "status": "conditional_pass_overlay_blocker_cleared_by_technical_review",
         "accepted": "major_posture_support_and_mechanical_blocking",
         "deferred": [
           "letter_hold_duration",
           "furniture_placement",
           "remaining_visual_polish"
         ],
-        "open": "frame_1213_right_arm_graphical_artifact",
+        "open": null,
         "diagnosis_report": "Reports/Film/2026-10-14_sc001_shower_overlay_diagnosis.md",
-        "rerender_status": "targeted_shower_review_prepared_not_executed"
+        "rerender_status": "targeted_desktop_review_overlay_absent"
+      },
+      "targeted_desktop_review": {
+        "run": "rooms_20261014_131017_6e0f153a",
+        "report": "Reports/Film/2026-10-14_sc001_shower_targeted_desktop_review.md",
+        "hashes_matched": 9,
+        "stills_inspected": 6,
+        "maximum_transform_error_m": 1.353957258653706e-06,
+        "maximum_stationary_support_gap_m": 3.5762786898541066e-09,
+        "packet_corner_checks": 832,
+        "full_motion_review": false,
+        "finished_slice_accepted": false
       }
     }
   },

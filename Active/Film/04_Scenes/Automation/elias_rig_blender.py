@@ -6,7 +6,7 @@ from elias_rig_math import bones,skin
 
 def create(bpy,scene,rest):
     definition=bones(rest);surface=skin(rest)
-    asset=bpy.data.collections.new('CHR_Elias_rig_v0.1');scene.collection.children.link(asset);asset['asset_id']='CHR_Elias';asset['status']='deformation_mannequin_not_final_design'
+    asset=bpy.data.collections.new('CHR_Elias_rig_v0.2');scene.collection.children.link(asset);asset['asset_id']='CHR_Elias';asset['status']='deformation_mannequin_not_final_design'
     data=bpy.data.armatures.new('Elias_skeleton');rig=bpy.data.objects.new('CHR_Elias_RIG',data);asset.objects.link(rig);rig.show_in_front=True;rig['source']='verified SC001 joint targets'
     bpy.context.view_layer.objects.active=rig;rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
     for name,b in definition.items():
@@ -43,6 +43,8 @@ def animate_and_validate(bpy,scene,layout,state,end):
         scene.frame_set(frame);pose_frame(bpy,rig,state(frame,layout),frame)
     from sc001_motion_blender import linearise_owned_actions
     linearise_owned_actions([rig])
+    palm_indices={suffix:[i for i,v in enumerate(obj.data.vertices) if any(obj.vertex_groups[g.group].name=='hand.'+suffix and g.weight>.999 for g in v.groups)] for suffix in ('L','R')}
+    palm_error=0
     endpoint=scale=0;lowest=math.inf;checked=0
     # Read back the keyed action, including frames between rendered preview samples.
     for frame in range(1,end+1):
@@ -57,8 +59,14 @@ def animate_and_validate(bpy,scene,layout,state,end):
             assert len(mesh.vertices)==len(obj.data.vertices),'Unexpected skin topology change'
             points=[skin_obj.matrix_world@v.co for v in mesh.vertices]
             assert all(math.isfinite(v) for p in points for v in p),'Non-finite skin vertex'
+            from elias_hand_math import hands
+            for side,hand in hands(state(frame,layout)).items():
+                indices=palm_indices[hand['suffix']];assert indices,'Missing palm skin weights'
+                center=sum((points[i] for i in indices),Vector((0,0,0)))/len(indices)
+                palm_error=max(palm_error,(center-Vector(hand['palm']['center'])).length)
             lowest=min(lowest,min(p.z for p in points));checked+=len(points)
         finally:skin_obj.to_mesh_clear()
     assert endpoint<1e-4,f'Rig endpoint mismatch: {endpoint}'
     assert scale<1e-4,f'Rig bone scale mismatch: {scale}'
-    return {'frames_checked':end,'mesh_vertex_checks':checked,'maximum_endpoint_error':endpoint,'maximum_bone_scale_error':scale,'minimum_skin_world_z':lowest,'skin_contact_status':'visual_review_required; proxy contact gates retained','limitations':['Skin volume differs from box contacts; not a skin collision pass','No fingers or final grip retargeting','Integer-frame FK bake; fractional-frame interpolation not validated']}
+    assert palm_error<1e-4,f'Palm target mapping mismatch: {palm_error}'
+    return {'maximum_palm_center_error':palm_error,'frames_checked':end,'mesh_vertex_checks':checked,'maximum_endpoint_error':endpoint,'maximum_bone_scale_error':scale,'minimum_skin_world_z':lowest,'skin_contact_status':'visual_review_required; proxy contact gates retained','limitations':['Skin volume differs from box contacts; not a skin collision pass','Articulated provisional fingers; exact grips/collisions require visual review','Integer-frame FK bake; fractional-frame interpolation not validated']}

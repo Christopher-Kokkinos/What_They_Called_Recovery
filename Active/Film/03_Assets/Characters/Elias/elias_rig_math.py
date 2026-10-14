@@ -2,6 +2,7 @@
 import math
 from elias_articulation import add,sub,mul,mix,unit,dot,cross
 from sc001_room_performance import joint_boxes
+from elias_hand_math import hands
 POSE_FRAMES=[61,360,780,1225,1460,2227,2300,2510,2629,2810]
 
 
@@ -17,11 +18,16 @@ def bones(s):
     bone('spine_01',j['pelvis'],j['spine'],'pelvis');bone('spine_02',j['spine'],j['chest'],'spine_01')
     bone('neck',j['chest'],add(j['chest'],mul(j['up'],.10)),'spine_02')
     bone('head',add(j['head'],mul(j['up'],-.15)),add(j['head'],mul(j['up'],.15)),'neck')
-    boxes=joint_boxes(s)
+    boxes=joint_boxes(s);hand_plan=hands(s)
     for side,suffix in [('left','L'),('right','R')]:
         a,e,w=j[side+'_arm'];h,k,ankle=j[side]
         bone('upper_arm.'+suffix,a,e,'spine_02');bone('forearm.'+suffix,e,w,'upper_arm.'+suffix)
-        bone('hand.'+suffix,w,add(w,mul(s['ground_forward'],.10)),'forearm.'+suffix)
+        palm=hand_plan[side]['palm'];center=palm['center'];axis=mul(palm['basis'][2],-1)
+        bone('hand.'+suffix,center,add(center,mul(axis,.10)),'forearm.'+suffix,palm['basis'][0])
+        for digit,points in hand_plan[side]['chains'].items():
+            for digit_index,(a,b) in enumerate(zip(points,points[1:])):
+                name=f'{digit}_{digit_index+1}.{suffix}';parent='hand.'+suffix if digit_index==0 else f'{digit}_{digit_index}.{suffix}'
+                bone(name,a,b,parent,palm['basis'][0])
         bone('thigh.'+suffix,h,k,'pelvis');bone('calf.'+suffix,k,ankle,'thigh.'+suffix)
         foot=boxes[side+'_foot'];axis=foot['basis'][1]
         bone('foot.'+suffix,add(foot['center'],mul(axis,-.11)),add(foot['center'],mul(axis,.11)),'calf.'+suffix,foot['basis'][0])
@@ -76,4 +82,9 @@ def skin(rest):
             tube(centers,radii,axes,groups,0)
         for name,bone_name,material in [(side+'_palm','hand.'+suffix,1),(side+'_foot','foot.'+suffix,2)]:
             b=boxes[name];ellipsoid(b['center'],b['size'],b['basis'],bone_name,material)
+    for side,hand in hands(rest).items():
+        for digit,points in hand['chains'].items():
+            for digit_index,(a,b) in enumerate(zip(points,points[1:])):
+                axis=unit(sub(b,a));name=f'{digit}_{digit_index+1}.{hand["suffix"]}'
+                tube([a,b],[.008 if digit!='thumb' else .010]*2,[axis,axis],[{name:1},{name:1}],1)
     return {'vertices':verts,'faces':faces,'weights':weights,'face_materials':materials}

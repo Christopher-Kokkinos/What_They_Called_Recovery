@@ -4,12 +4,17 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'Active/Film/04_Scenes/Automation'),str(ROOT/'Active/Film/03_Assets/Characters/Elias')]
 from sc001_room_performance import state,END
+from elias_hand_math import hands
 from elias_rig_math import bones,skin,POSE_FRAMES
 layout=json.loads((ROOT/'Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json').read_text(encoding='utf-8'))
 if __name__=='__main__':
     rest=state(889,layout);reference=bones(rest);mesh=skin(rest);edges=collections.Counter()
     for frame in range(1,END+1):
-        actual=bones(state(frame,layout));assert set(actual)==set(reference)
+        pose=state(frame,layout);actual=bones(pose);
+        for side,hand in hands(pose).items():
+            expected=tuple(x-y for x,y in zip(hand['palm']['center'],pose['root']))
+            assert math.dist(actual['hand.'+hand['suffix']]['head'],expected)<1e-9,'Palm target mismatch'
+        assert set(actual)==set(reference)
         for name,b in actual.items():assert abs(b['length']-reference[name]['length'])<1e-9,(frame,name)
     for p,w in zip(mesh['vertices'],mesh['weights']):
         assert all(math.isfinite(v) for v in p);assert abs(sum(w.values())-1)<1e-9;assert set(w)<=set(reference)

@@ -34,3 +34,7 @@ The gallery samples source frames 61, 360, 780, 1225, 1460, 2227, 2300, 2510, 26
 Inspect elbow/knee volume, shoulder/hip joins, wrist orientation and head/neck attachment. The first rig keeps bone wrist targets; the different grip offsets of proxy palms still need retargeting to real fingers/skin before scene integration. ZIP the output folder for readback.
 
 Pure preflight: `python tools/verify_elias_rig.py`. Next gate: Blender evaluated endpoints/scale and finite deformation checks, then visual review. Only after that integrate with SC001 and rerun mesh contact/collision checks.
+
+## Hand refinement v0.2
+
+Author gallery visual pass and subsequent SC001 integer-frame rig run are logged. Current shared rig adds 30 digit bones (48 total), and uses accepted action-specific palm targets. Independent gallery command now saves CHR_Elias_rig_v0.2.blend and Elias_rig_pose_gallery_v0.2.blend. Use SC001_Rig_Test_Run_Guide.md for scene contact testing. Digits, palm/wrist join and shoulder/hip seams remain provisional; this is not final Elias appearance or certified grip geometry.

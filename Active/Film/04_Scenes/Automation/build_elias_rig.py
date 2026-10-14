@@ -23,7 +23,7 @@ def main():
     rig,obj,definition=create(bpy,scene,rest)
     mesh=obj.data
     camera_data=bpy.data.cameras.new('Rig_review_camera');camera=bpy.data.objects.new('Rig_review_camera',camera_data);scene.collection.objects.link(camera);camera.location=(3.5,4.5,2.8);camera.rotation_euler=(Vector((0,0,1))-camera.location).to_track_quat('-Z','Y').to_euler();camera_data.type='ORTHO';camera_data.ortho_scale=4.0;scene.camera=camera
-    report={'status':'rig_gallery_runtime_checks_pending','pose_sources':POSE_FRAMES,'bones':len(definition),'vertices':len(mesh.vertices),'faces':len(mesh.polygons),'poses':[],'limitations':['Neutral mannequin, not approved Elias appearance','Closed disconnected skin components; topology and skin weights provisional','No IK controls, fingers, face, cloth or SC001 replacement','Gallery snapshots are not a continuous action'],'scene_accepted':False}
+    report={'status':'rig_gallery_runtime_checks_pending','pose_sources':POSE_FRAMES,'bones':len(definition),'vertices':len(mesh.vertices),'faces':len(mesh.polygons),'poses':[],'limitations':['Neutral mannequin, not approved Elias appearance','Closed disconnected skin components; topology and skin weights provisional','Provisional articulated fingers; no IK, face, cloth or final grips','Gallery snapshots are not a continuous action'],'scene_accepted':False}
     max_error=0;max_scale_error=0
     def matrix(b):
         m=Matrix(b['basis']).transposed().to_4x4();m.translation=Vector(b['head']);return m
@@ -64,12 +64,12 @@ def main():
         for gallery_frame,source_frame in enumerate(POSE_FRAMES,1):
             scene.frame_set(gallery_frame);scene.render.filepath=str(out/f'Elias_pose_{gallery_frame:02d}_source_{source_frame:04d}.png');bpy.ops.render.render(write_still=True)
     scene.frame_set(1);action.name='Elias_SC001_pose_gallery_v0.1';action.use_fake_user=True
-    bpy.ops.wm.save_as_mainfile(filepath=str(out/'Elias_rig_pose_gallery_v0.1.blend'))
+    bpy.ops.wm.save_as_mainfile(filepath=str(out/'Elias_rig_pose_gallery_v0.2.blend'))
     # Reusable asset starts neutral; gallery action is retained as a separate file.
     rig.animation_data.action=None
     for pose in rig.pose.bones:pose.matrix_basis=Matrix.Identity(4)
     bpy.context.view_layer.update()
-    bpy.ops.wm.save_as_mainfile(filepath=str(out/'CHR_Elias_rig_v0.1.blend'))
+    bpy.ops.wm.save_as_mainfile(filepath=str(out/'CHR_Elias_rig_v0.2.blend'))
     report.update(status='evaluated_rig_gallery_validated_visual_review_pending',blender_version=bpy.app.version_string,maximum_endpoint_error=max_error,maximum_bone_scale_error=max_scale_error,camera_scale=camera_data.ortho_scale,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),rig_math_sha256=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py').read_bytes()).hexdigest(),module_sha256={n:hashlib.sha256((Path(__file__).parent/n).read_bytes()).hexdigest() for n in ['sc001_room_performance.py','elias_articulation.py']},layout_sha256=hashlib.sha256((ROOT/'Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json').read_bytes()).hexdigest())
     (out/'rig_validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print('ELIAS RIG OUTPUT:',out);print('RIG GALLERY VALIDATED; DEFORMATION VISUAL REVIEW PENDING')
 

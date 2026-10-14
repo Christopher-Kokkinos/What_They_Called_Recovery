@@ -18,3 +18,7 @@ ZIP the entire newest `rig_scene_...` folder under `C:\Projects\what_they_called
 Review all movements with particular attention to shoulder/hip seams, elbow/knee deformation, bed and sole support, drawer palm contact, shower control reach, mug grip, both-handed folding/insertion, pocketing, keys and departure. Box contact tests remain useful but do not prove the new skin clears furniture. Skin is a neutral mannequin, without final fingers, face, clothes, materials or continuous fractional-frame validation.
 
 To reproduce the accepted box performance, omit `--rig-test`; earlier outputs are never overwritten.
+
+## Hand revision v0.2
+
+Add `--render-hand-review` to the rig-test command for twelve dedicated hand/prop close-ups. With the full flags, outputs include 46 scene stills, twelve hand stills and 528 motion frames. All-frame Blender checks now include evaluated palm mesh centroid vs the accepted action-specific target. This is a mapping test, not a fingertip collision/grip certificate. Fingers remain provisional articulated closed components. The scene filename remains SC001_rig_performance_v0.1.blend (scene scaffold version); its reusable character collection is v0.2.

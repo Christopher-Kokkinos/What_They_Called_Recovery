@@ -53,6 +53,16 @@
       "exit_camera_direction": "retain_author_liked",
       "clock_style": "deferred_by_author",
       "next_gate": "connected_room_layout_and_anatomical_poses_before_contact_choreography"
+    },
+    "layout_revision": {
+      "status": "static_layout_prepared_desktop_pending",
+      "spec": "Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json",
+      "builder": "Active/Film/04_Scenes/Automation/build_sc001_apartment_layout.py",
+      "guide": "Active/Film/04_Scenes/Automation/SC001_Apartment_Layout_Run_Guide.md",
+      "report": "Reports/Film/2026-10-14_sc001_apartment_layout_preparation.md",
+      "gross_floor_area_m2": 168,
+      "existing_animation_retained": "v0.26",
+      "motion_migrated": false
     }
   },
   "story_authority": {

@@ -21,3 +21,5 @@ Reports and decision logs retain evidence and superseded failures. Last update: 
 ## Author review received 2026-10-14
 
 V0.26 rendered successfully but is visually unaccepted. The actionable register AR01–AR17 in [Reports/Film/2026-10-14_sc001_v026_author_review.md](../../../../Reports/Film/2026-10-14_sc001_v026_author_review.md) supersedes optimistic closure interpretations above. Anatomy, apartment layout, prop scale/contact and two-handed paper handling remain open; exit camera direction is liked, clock style deferred. See DEC-0049. No scene or finished-slice acceptance.
+
+AR13–AR14: independent static room-layout proposal prepared under DEC-0050 (14 × 12 m, four rooms). Pure layout checks pass; desktop runtime/author review pending. Neither issue is closed; original animation and all anatomy/contact defects remain open.

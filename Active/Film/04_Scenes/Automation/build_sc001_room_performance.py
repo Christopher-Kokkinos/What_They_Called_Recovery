@@ -13,8 +13,9 @@ def main():
     from sc001_room_performance import state,joint_boxes,box_corners,END,SHOTS,NOTICE,bedside_geometry,drawer_geometry
     import bpy
     from mathutils import Matrix,Vector
-    p=argparse.ArgumentParser();p.add_argument('--render-hand-review',action='store_true',help='Twelve dedicated palm/prop close-ups; requires --rig-test');p.add_argument('--rig-test',action='store_true',help='Separate weighted Elias rig integration test; proxy contact checks retained');p.add_argument('--render-shot-review',action='store_true');p.add_argument('--render-motion-preview',action='store_true');p.add_argument('--render-shower-review',action='store_true',help='Six shower contact/cue stills only; full-scene flag takes precedence')
+    p=argparse.ArgumentParser();p.add_argument('--rig-sample-review',action='store_true',help='Bake/check only twelve hand poses; no motion preview, diagnostic scene only');p.add_argument('--render-hand-review',action='store_true',help='Twelve dedicated palm/prop close-ups; requires --rig-test');p.add_argument('--rig-test',action='store_true',help='Separate weighted Elias rig integration test; proxy contact checks retained');p.add_argument('--render-shot-review',action='store_true');p.add_argument('--render-motion-preview',action='store_true');p.add_argument('--render-shower-review',action='store_true',help='Six shower contact/cue stills only; full-scene flag takes precedence')
     opts=p.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
+    if opts.rig_sample_review and (not opts.rig_test or not opts.render_hand_review or opts.render_motion_preview or opts.render_shot_review):raise RuntimeError('--rig-sample-review requires --rig-test --render-hand-review only')
     if opts.render_hand_review and not opts.rig_test:raise RuntimeError('--render-hand-review requires --rig-test')
     if not bpy.app.background or bpy.data.filepath:raise RuntimeError('Use --background --factory-startup; loaded production files refused')
     plan_path=ROOT/'Active/Film/04_Scenes/SC001/SC001_room_performance_spec_v0.1.json'
@@ -124,7 +125,9 @@ def main():
     if opts.rig_test:
         sys.path.insert(0,str(ROOT/'Active/Film/03_Assets/Characters/Elias'))
         from elias_rig_blender import animate_and_validate
-        rig_report=animate_and_validate(bpy,scene,layout,state,END)
+        from sc001_hand_review_blender import SAMPLES
+        rig_report=animate_and_validate(bpy,scene,layout,state,END,sorted(set(f for f,side in SAMPLES)) if opts.rig_sample_review else None)
+        if opts.rig_sample_review:scene['rig_coverage']='TWELVE DIAGNOSTIC POSES ONLY; intermediate motion not validated'
         for proxy in actor.values():proxy.hide_render=True
     # Read evaluated Blender transforms back at review frames, not only authored keys.
     max_error=0;packet_points=0
@@ -158,6 +161,14 @@ def main():
     def select_camera(f):
         name=next(n for a,b,n in SHOTS if a<=f<=b) if f<2641 else ('departure_inside' if f<=3060 else 'departure_outside' if f<=3120 else 'pigeons')
         scene.camera=cameras[name]
+    # Preserve validated scene and provenance before any diagnostic renderer can fail.
+    blend=out/('SC001_rig_performance_v0.1.blend' if opts.rig_test else 'SC001_room_performance_v0.1.blend')
+    scene.frame_set(1);scene.camera=cameras['SH001'];bpy.ops.wm.save_as_mainfile(filepath=str(blend))
+    checkpoint={'status':'validated_build_checkpoint_render_pending','rig':rig_report,'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(),'module_sha256':{'sc001_room_performance.py':hashlib.sha256((Path(__file__).parent/'sc001_room_performance.py').read_bytes()).hexdigest()},'scene_accepted':False}
+    if opts.rig_test:
+        checkpoint['hand_math_sha256']=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_hand_math.py').read_bytes()).hexdigest()
+        checkpoint['rig_math_sha256']=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py').read_bytes()).hexdigest()
+    (out/'validation.json').write_text(json.dumps(checkpoint,indent=2),encoding='utf-8');print('SC001 VALIDATED CHECKPOINT:',out,flush=True)
     for f in review_frames:
         scene.frame_set(f);select_camera(f);scene.render.resolution_percentage=100;scene.render.filepath=str(out/f'SC001_rooms_frame_{f:04d}.png');bpy.ops.render.render(write_still=True)
     hand_stills=[];hand_records=[]
@@ -179,6 +190,7 @@ def main():
         report['hand_math_sha256']=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_hand_math.py').read_bytes()).hexdigest()
         report['rig_math_sha256']=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py').read_bytes()).hexdigest()
         report['limitations']=[x for x in report['limitations'] if x!='Box anatomy without final skinning or performance']+rig_report['limitations']
+    if opts.rig_sample_review:report['limitations'].append('Twelve rig diagnostic poses only; intermediate animation is not validated')
     (out/'validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print('SC001 ROOMS OUTPUT:',out);print('EVALUATED REVIEW FRAMES VALIDATED; VISUAL REVIEW PENDING')
 
 if __name__=='__main__':main()

@@ -31,16 +31,25 @@ def create(bpy,scene,rest):
 def pose_frame(bpy,rig,s,frame):
     rig.location=s['root'];rig.keyframe_insert(data_path='location',frame=frame)
     target=bones(s)
+    matrices={}
+    for name,b in target.items():
+        matrix=Matrix(b['basis']).transposed().to_4x4();matrix.translation=Vector(b['head']);matrices[name]=matrix
     for name,b in target.items():
         pose=rig.pose.bones[name];pose.rotation_mode='QUATERNION'
-        matrix=Matrix(b['basis']).transposed().to_4x4();matrix.translation=Vector(b['head']);pose.matrix=matrix
+        rest=rig.data.bones[name].matrix_local
+        parent=b['parent']
+        # Exact FK conversion avoids a depsgraph rebuild per bone. All targets
+        # are already known in armature space and use default full inheritance.
+        pose.matrix_basis=rest.inverted() @ rig.data.bones[parent].matrix_local @ matrices[parent].inverted() @ matrices[name] if parent else rest.inverted() @ matrices[name]
         for field in ('location','rotation_quaternion','scale'):pose.keyframe_insert(data_path=field,frame=frame)
-        bpy.context.view_layer.update()
+    bpy.context.view_layer.update()
 
 
-def animate_and_validate(bpy,scene,layout,state,end):
+
+def animate_and_validate(bpy,scene,layout,state,end,frames=None):
     rig,obj,definition=create(bpy,scene,state(889,layout))
-    for frame in range(1,end+1):
+    checked_frames=list(frames) if frames is not None else list(range(1,end+1))
+    for frame in checked_frames:
         scene.frame_set(frame);pose_frame(bpy,rig,state(frame,layout),frame)
     from sc001_motion_blender import linearise_owned_actions
     linearise_owned_actions([rig])
@@ -48,7 +57,7 @@ def animate_and_validate(bpy,scene,layout,state,end):
     palm_error=0
     endpoint=scale=0;lowest=math.inf;checked=0
     # Read back the keyed action, including frames between rendered preview samples.
-    for frame in range(1,end+1):
+    for frame in checked_frames:
         scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
         evaluated=rig.evaluated_get(deps);target=bones(state(frame,layout))
         for name,b in target.items():
@@ -70,4 +79,4 @@ def animate_and_validate(bpy,scene,layout,state,end):
     assert endpoint<1e-4,f'Rig endpoint mismatch: {endpoint}'
     assert scale<1e-4,f'Rig bone scale mismatch: {scale}'
     assert palm_error<1e-4,f'Palm target mapping mismatch: {palm_error}'
-    return {'maximum_palm_center_error':palm_error,'frames_checked':end,'mesh_vertex_checks':checked,'maximum_endpoint_error':endpoint,'maximum_bone_scale_error':scale,'minimum_skin_world_z':lowest,'skin_contact_status':'visual_review_required; proxy contact gates retained','limitations':['Skin volume differs from box contacts; not a skin collision pass','Articulated provisional fingers; exact grips/collisions require visual review','Integer-frame FK bake; fractional-frame interpolation not validated']}
+    return {'maximum_palm_center_error':palm_error,'frames_checked':len(checked_frames),'source_frames_checked':checked_frames,'coverage':'diagnostic_snapshots_only' if frames is not None else 'all_integer_frames','mesh_vertex_checks':checked,'maximum_endpoint_error':endpoint,'maximum_bone_scale_error':scale,'minimum_skin_world_z':lowest,'skin_contact_status':'visual_review_required; proxy contact gates retained','limitations':['Skin volume differs from box contacts; not a skin collision pass','Articulated provisional fingers; exact grips/collisions require visual review','Integer-frame FK bake; fractional-frame interpolation not validated']}

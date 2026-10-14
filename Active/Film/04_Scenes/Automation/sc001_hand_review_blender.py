@@ -36,14 +36,29 @@ def render(bpy,scene,state,layout,out):
             target=sum(points,Vector())/len(points);visibility_trials=[]
             offset=Vector(state(frame,layout)['joints']['lateral'])*.65+Vector((0,0,.35)) if frame==2629 else Vector((.45,-.55,.40))
             if frame==1213:
+                from mathutils.bvhtree import BVHTree
+                vertices=[];triangles=[];owners=[]
+                # Viewport scene.ray_cast includes hide_render objects. Build
+                # explicit world-space render-visible geometry instead.
+                excluded=[]
+                for source_obj in scene.objects:
+                    if source_obj.type!='MESH':continue
+                    if source_obj.hide_render:excluded.append(source_obj.name);continue
+                    evaluated=source_obj.evaluated_get(deps);mesh=evaluated.to_mesh()
+                    try:
+                        base=len(vertices);vertices.extend(evaluated.matrix_world@v.co for v in mesh.vertices);mesh.calc_loop_triangles()
+                        for tri in mesh.loop_triangles:triangles.append(tuple(base+i for i in tri.vertices));owners.append(source_obj.name)
+                    finally:evaluated.to_mesh_clear()
+                bvh=BVHTree.FromPolygons(vertices,triangles,all_triangles=True)
                 probes=[center]+[Vector(chain[-1]) for chain in hand['chains'].values()]
                 for candidate in [(.8,0,.35),(-.8,0,.35),(.65,.65,.35),(.65,-.65,.35),(-.65,.65,.35),(-.65,-.65,.35),(0,.8,.5),(0,-.8,.5)]:
                     delta=Vector(candidate);visible=0;blockers=[]
                     for point in probes:
-                        hit,where,normal,index,obj,matrix=scene.ray_cast(deps,point+delta,-delta.normalized(),distance=delta.length)
+                        where,normal,index,distance=bvh.ray_cast(point+delta,-delta.normalized(),delta.length)
+                        hit=where is not None
                         if not hit or (where-point).length<=.025:visible+=1
-                        else:blockers.append({'object':obj.name,'distance_to_contact':(where-point).length})
-                    visibility_trials.append({'offset':candidate,'visible_probes':visible,'total':len(probes),'blockers':blockers})
+                        else:blockers.append({'object':owners[index],'distance_to_contact':(where-point).length})
+                    visibility_trials.append({'offset':candidate,'visible_probes':visible,'total':len(probes),'blockers':blockers,'excluded_render_hidden':excluded})
                 chosen=max(visibility_trials,key=lambda q:q['visible_probes'])
                 assert chosen['visible_probes']>=4,'No shower diagnostic angle clears sufficient contact probes: '+str(visibility_trials)
                 offset=Vector(chosen['offset'])

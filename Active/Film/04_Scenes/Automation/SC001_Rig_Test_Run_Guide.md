@@ -45,3 +45,11 @@ Changed skin requires a fresh build; the old blend rerender intentionally reject
 ## Focused wrist/pinch revision v0.4
 
 Use the same fresh `--rig-test --render-hand-review` command; ZIP newest rig_scene folder. Twelve hand renders only. Shower view now selects from eight angles using evaluated contact rays and records blockers in hand_camera_records. A visibility failure stops rather than silently rendering the known obstructed view. At least four of six contact probes must pass; whole-hand visibility still requires review. Index/thumb targets and tapered wrist geometry are provisional, with all body source motion retained.
+
+## Fast twelve-pose diagnostic mode
+
+After DEC-0058 use `--rig-test --rig-sample-review --render-hand-review`. It bakes/checks only twelve rig poses; scene/report explicitly identify snapshot coverage. It cannot render a motion preview or whole-scene still review and is not a full-motion acceptance. Props retain their existing animation. FK matrices now update the graph once per pose, rather than per bone; runtime speed remains unmeasured.
+
+A blend and validation.json checkpoint now save before rendering, with status validated_build_checkpoint_render_pending. If rendering fails, preserve this folder; the read-only render_sc001_hand_review.py command can reuse its blend with matching source hashes. The 192618 failed run predates checkpointing and cannot be recovered from three PNGs alone.
+
+Shower visibility tests use only evaluated render-visible meshes; excluded proxy/water names are recorded in angle trials. Real body/control occlusion still stops the diagnostic if four of six probes cannot be seen.

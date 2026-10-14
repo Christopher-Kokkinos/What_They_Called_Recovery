@@ -23,7 +23,7 @@
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": "SC001",
-    "status": "v026_author_review_corrections_open",
+    "status": "connected_room_anatomy_contacts_prepared_desktop_pending",
     "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
     "timing_hypothesis_seconds": 120,
     "finished_slice_gate_passed": false,
@@ -63,6 +63,19 @@
       "gross_floor_area_m2": 168,
       "existing_animation_retained": "v0.26",
       "motion_migrated": false
+    },
+    "connected_room_performance": {
+      "status": "prepared_desktop_pending",
+      "spec": "Active/Film/04_Scenes/SC001/SC001_room_performance_spec_v0.1.json",
+      "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
+      "guide": "Active/Film/04_Scenes/Automation/SC001_Room_Performance_Run_Guide.md",
+      "report": "Reports/Film/2026-10-14_sc001_connected_room_performance_preparation.md",
+      "fps": 24,
+      "frame_end": 3168,
+      "duration_seconds": 132,
+      "preview_frames": 528,
+      "existing_v026_retained": true,
+      "scene_accepted": false
     }
   },
   "story_authority": {

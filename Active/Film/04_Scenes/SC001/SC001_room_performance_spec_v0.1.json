@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "scene_id": "SC001",
+  "status": "connected_room_performance_prepared_desktop_pending",
+  "authority": [
+    "DEC-0049",
+    "DEC-0050",
+    "DEC-0051"
+  ],
+  "screenplay": "Active/Film/01_Adaptation/Screenplay/SC001_Elias_Apartment_draft.fountain",
+  "screenplay_sha256": "95b545cc0605d0590c7e6267352599a3415132e3c365faba5b5e1408c936cadd",
+  "layout": "Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json",
+  "layout_sha256_lf": "ba781ec6402f9bc42896b2d73bb9805d9f23902c23f1edc4b9ce832f00e9419b",
+  "fps": 24,
+  "frame_start": 1,
+  "frame_end": 3168,
+  "duration_seconds": 132.0,
+  "shots": [
+    {
+      "shot_id": "SC001_SH001",
+      "frame_start": 1,
+      "frame_end": 360
+    },
+    {
+      "shot_id": "SC001_SH002",
+      "frame_start": 361,
+      "frame_end": 660
+    },
+    {
+      "shot_id": "SC001_SH003",
+      "frame_start": 661,
+      "frame_end": 888
+    },
+    {
+      "shot_id": "SC001_SH004",
+      "frame_start": 889,
+      "frame_end": 1128
+    },
+    {
+      "shot_id": "SC001_SH005",
+      "frame_start": 1129,
+      "frame_end": 1368
+    },
+    {
+      "shot_id": "SC001_SH006",
+      "frame_start": 1369,
+      "frame_end": 1560
+    },
+    {
+      "shot_id": "SC001_SH007",
+      "frame_start": 1561,
+      "frame_end": 2160
+    },
+    {
+      "shot_id": "SC001_SH008",
+      "frame_start": 2161,
+      "frame_end": 2520
+    },
+    {
+      "shot_id": "SC001_SH009",
+      "frame_start": 2521,
+      "frame_end": 2640
+    },
+    {
+      "shot_id": "SC001_SH010",
+      "frame_start": 2641,
+      "frame_end": 3168
+    }
+  ],
+  "timing_judgment": "Exit extends by 12 seconds for separated-room route; earlier beats retain source-frame ranges.",
+  "camera_direction": "retain interior pan then exterior cut; reframe for new rooms; visual review pending",
+  "limitations": [
+    "Blocking proxies, not final performance",
+    "Full-height walls math-checked; diagnostic low walls rendered",
+    "Door operation, initial envelope opening and final skin contact require refinement"
+  ]
+}

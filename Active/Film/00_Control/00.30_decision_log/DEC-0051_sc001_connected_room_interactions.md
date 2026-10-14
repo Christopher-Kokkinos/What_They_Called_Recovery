@@ -27,3 +27,5 @@ Previous elbow reach/length checks did not constrain anatomical bend direction, 
 No final skin, finger rig, natural pain acting, door operation, final light/grain/audio or scene acceptance. Initial envelope opening before reading still needs refinement; this revision rebuilds the author-requested folding/insertion/pocket sequence. Generated scene uses low diagnostic walls; math tests full-height partitions. Readback validates selected evaluated meshes/support/packet bounds; full rendered visual review is still necessary.
 
 Evidence and validation: `Reports/Film/2026-10-14_sc001_connected_room_performance_preparation.md`. Run instructions: `SC001_Room_Performance_Run_Guide.md`.
+
+Follow-up 2026-10-14: Author conditionally passes major mechanical/posture improvements, pending graphical glitch at 1213; timing/furniture polish deferred. Confirmed solid water overlay intersects upper arm, while planned pose is constant. Remove overlay from renders and retain viewport wire guide; targeted review prepared. Exact observed-artifact diagnosis remains pending render inspection. See Reports/Film/2026-10-14_sc001_shower_overlay_diagnosis.md.

@@ -75,7 +75,19 @@
       "duration_seconds": 132,
       "preview_frames": 528,
       "existing_v026_retained": true,
-      "scene_accepted": false
+      "scene_accepted": false,
+      "author_review": {
+        "status": "conditional_pass_pending_frame_1213",
+        "accepted": "major_posture_support_and_mechanical_blocking",
+        "deferred": [
+          "letter_hold_duration",
+          "furniture_placement",
+          "remaining_visual_polish"
+        ],
+        "open": "frame_1213_right_arm_graphical_artifact",
+        "diagnosis_report": "Reports/Film/2026-10-14_sc001_shower_overlay_diagnosis.md",
+        "rerender_status": "targeted_shower_review_prepared_not_executed"
+      }
     }
   },
   "story_authority": {

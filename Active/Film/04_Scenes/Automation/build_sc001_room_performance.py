@@ -13,7 +13,7 @@ def main():
     from sc001_room_performance import state,joint_boxes,box_corners,END,SHOTS,NOTICE,bedside_geometry,drawer_geometry
     import bpy
     from mathutils import Matrix,Vector
-    p=argparse.ArgumentParser();p.add_argument('--render-shot-review',action='store_true');p.add_argument('--render-motion-preview',action='store_true')
+    p=argparse.ArgumentParser();p.add_argument('--render-shot-review',action='store_true');p.add_argument('--render-motion-preview',action='store_true');p.add_argument('--render-shower-review',action='store_true',help='Six shower contact/cue stills only; full-scene flag takes precedence')
     opts=p.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
     if not bpy.app.background or bpy.data.filepath:raise RuntimeError('Use --background --factory-startup; loaded production files refused')
     plan_path=ROOT/'Active/Film/04_Scenes/SC001/SC001_room_performance_spec_v0.1.json'
@@ -86,6 +86,7 @@ def main():
     # Parent scale cancels here so the label remains in metres, not envelope units.
     mac.parent=None;mac_parent=empty('Envelope_text_anchor');mac.parent=mac_parent
     water=box('REVIEW_ShowerWater',(12.9,.65,1.5),(.4,.04,1.0),(.48,.62,.67,1))
+    water.display_type='WIRE';water.hide_render=True
     cold=label('REVIEW_ShowerCue','COLD / Excellent',(12.1,1.7,2),.10);cold.rotation_euler=(math.pi/2,0,0)
     cameras={}
     for name,eye,target,scale in [('SH001',(7.0,6.5,4.6),(2.5,10.7,.9),7),('SH002',(6,9.0,2.4),(3,10.9,1),4),('SH003',(3.5,10.7,1.4),(3.5,11.1,.54),.55),('SH004',(16,6,5),(10.5,9.5,1),10),('SH005',(10.5,3.6,2.6),(12.9,.7,1.1),4),('SH006',(8.5,6.8,2.7),(11.0,9.2,1.0),4),('SH007',(11.18,9.42,1.80),(11.18,9.42,.772),.60),('SH008',(8.5,6.8,2.7),(11.0,9.2,1.0),4),('SH009',(3.8,7.8,2.6),(.9,10.4,1.1),4),('departure_inside',(8,4.4,4.5),(4.5,8,1),14),('departure_outside',(18,3,2.8),(14.8,6,1),14),('pigeons',(2.5,9.0,2),(-.3,10.4,1.3),2.4)]:
@@ -110,12 +111,12 @@ def main():
         envelope.location=s['envelope'];envelope.hide_render=s['packet_pocket'];key(envelope,f,('location','rotation_euler','hide_render'));mac_parent.location=s['envelope'];key(mac_parent,f,('location','rotation_euler'));mac.hide_render=s['packet_pocket'];key(mac,f,('hide_render',))
         close=max(0,min(1,(f-2320)/20));angle=math.pi*close;envelope_flap.location=(0,-.085-.025*math.cos(angle),.001+.025*math.sin(angle)+.009*close);envelope_flap.rotation_euler=(-angle,0,0);key(envelope_flap,f,('location','rotation_euler'))
         for obj in envelope_surfaces:obj.hide_render=s['packet_pocket'];key(obj,f,('hide_render',))
-        water.hide_render=not s['shower_on'];cold.hide_render=not(s['shower_on'] and s['shower_cold']);key(water,f,('hide_render',));key(cold,f,('hide_render',))
+        water.hide_render=True;water.hide_viewport=not s['shower_on'];cold.hide_render=not(s['shower_on'] and s['shower_cold']);key(water,f,('hide_render','hide_viewport'));key(cold,f,('hide_render',))
         peck=max(0,1-abs(f-60)/15) if f<100 else max(0,1-abs(f-3148)/10)
         bird=scene.objects['Pigeon_head_0'];bird.location=(-.22+.18*peck,10.05,1.36-.05*peck);key(bird,f,('location',))
         if f>=2641:
             cam=cameras['departure_inside' if f<=3060 else 'departure_outside'];target=Vector(s['root'])+Vector((0,0,1));cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();key(cam,f,('rotation_euler',))
-        if f in [61,271,360,505,580,590,600,640,661,780,850,870,888,1003,1210,1225,1282,1411,1540,1561,2161,2215,2227,2260,2275,2300,2320,2340,2360,2395,2430,2450,2510,2587,2629,2810,3060,3061,3120,3121,3148]:expected[f]=boxes
+        if f in [61,271,360,505,580,590,600,640,661,780,850,870,888,1003,1195,1207,1210,1213,1225,1237,1282,1285,1411,1540,1561,2161,2215,2227,2260,2275,2300,2320,2340,2360,2395,2430,2450,2510,2587,2629,2810,3060,3061,3120,3121,3148]:expected[f]=boxes
     from sc001_motion_blender import linearise_owned_actions
     linearise_owned_actions(list(scene.objects))
     # Read evaluated Blender transforms back at review frames, not only authored keys.
@@ -145,7 +146,7 @@ def main():
                 if f<2641:maximum_floor_error=max(maximum_floor_error,abs(gap));assert abs(gap)<1e-5,'Stationary sole floats'
     assert max_error<1e-4,'Evaluated mesh differs from exact transform plan'
     manifest=[]
-    review_frames=sorted(expected) if opts.render_shot_review else []
+    review_frames=sorted(expected) if opts.render_shot_review else [1195,1207,1213,1225,1237,1285] if opts.render_shower_review else []
     if opts.render_motion_preview:(out/'motion_frames').mkdir()
     def select_camera(f):
         name=next(n for a,b,n in SHOTS if a<=f<=b) if f<2641 else ('departure_inside' if f<=3060 else 'departure_outside' if f<=3120 else 'pigeons')

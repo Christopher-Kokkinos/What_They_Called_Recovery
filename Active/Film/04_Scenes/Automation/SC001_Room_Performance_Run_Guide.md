@@ -38,3 +38,7 @@ Optional preflight (if your Git Bash Python command is `python`):
 python tools/verify_sc001_layout.py
 python tools/verify_sc001_room_performance.py
 ```
+
+## Frame 1213 targeted follow-up
+
+The opaque water diagnostic intersected the right upper arm. It is now wireframe-only in the viewport and excluded from renders; cold cue remains. The joint plan does not change. For six contact/cue stills instead of the entire preview, use the same command with `-- --render-shower-review`. Frames: 1195, 1207, 1213, 1225, 1237, 1285. Full-scene checks and a fresh `.blend` still run. Upload the new `SC001_rooms_frame_1213.png` and `validation.json` to confirm whether this clears the observed artifact.

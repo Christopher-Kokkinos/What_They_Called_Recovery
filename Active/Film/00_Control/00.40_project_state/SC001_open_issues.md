@@ -25,3 +25,5 @@ V0.26 rendered successfully but is visually unaccepted. The actionable register 
 AR13–AR14: independent static room-layout proposal prepared under DEC-0050 (14 × 12 m, four rooms). Pure layout checks pass; desktop runtime/author review pending. Neither issue is closed; original animation and all anatomy/contact defects remain open.
 
 AR01–AR16 correction pass implemented as connected-room performance preparation (DEC-0051); full-frame pure geometry regression and desktop evaluated-frame checks distinguish preparation from visual closure. See new report. Clock style stays deferred; initial envelope opening, natural acting, final skin/finger grips and door operation remain open. AR17 camera intent retained, reframed render review pending.
+
+Author review of connected-room pass: major posture/support accepted conditionally, with frame 1213 right-arm graphical glitch outstanding. Letter hold length, furniture and minor posture/visual refinements explicitly deferred. Confirmed opaque-water/upper-arm intersection corrected in render setup; actual frame image and rerender review pending. This does not close the finished-slice gate.

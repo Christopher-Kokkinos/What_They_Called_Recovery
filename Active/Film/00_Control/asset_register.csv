@@ -1,5 +1,5 @@
 asset_id,asset_type,name,source,canonical_path,status,notes
-CHR_Elias,character,Elias,inherited diagnostic dimensions; DEC-0051,Active/Film/03_Assets/Characters/Elias/Elias_proxy_anatomy_v0.1.md,joint_proxy_prepared_runtime_pending,Fixed limbs; lowered bend plane; not final armature/skin/model; connected-room readback pending
+CHR_Elias,character,Elias,accepted SC001 target contract; DEC-0052,Active/Film/03_Assets/Characters/Elias/README.md,armature_skin_prototype_prepared_runtime_pending,Neutral mannequin; appearance unapproved; no SC001 replacement; ten-pose deformation gallery pending
 CHR_Pigeon,character,Pigeon reused twice,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected
 SET_EliasFlat,set,Elias flat and movable set components,author AR13-AR14; Chapter 1 mirror; DEC-0050,Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json,static_layout_prepared_runtime_pending,Provisional 14x12m placement proposal; v0.26 motion retained separately; no final asset or scene acceptance
 PRP_AlarmClock,prop,Bedside alarm clock,unselected,,planned,SC001 packet v0.1 dependency; no existing asset or licence implied; source/path assigned when built or selected

@@ -23,7 +23,7 @@
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": "SC001",
-    "status": "connected_room_anatomy_contacts_prepared_desktop_pending",
+    "status": "mechanical_blocking_pass_reusable_elias_rig_prepared",
     "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
     "timing_hypothesis_seconds": 120,
     "finished_slice_gate_passed": false,
@@ -99,6 +99,17 @@
         "full_motion_review": false,
         "finished_slice_accepted": false
       }
+    },
+    "elias_rig": {
+      "status": "neutral_deformation_prototype_prepared_desktop_pending",
+      "asset_entry": "Active/Film/03_Assets/Characters/Elias/README.md",
+      "builder": "Active/Film/04_Scenes/Automation/build_elias_rig.py",
+      "verifier": "tools/verify_elias_rig.py",
+      "report": "Reports/Film/2026-10-14_elias_rig_preparation.md",
+      "bones": 18,
+      "gallery_poses": 10,
+      "scene_proxies_replaced": false,
+      "appearance_approved": false
     }
   },
   "story_authority": {

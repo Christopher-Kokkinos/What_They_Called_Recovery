@@ -33,7 +33,7 @@ def render(bpy,scene,state,layout,out):
             for obj in scene.objects:
                 if (obj.name.startswith(prefix) or (prefix=='Drawer_front' and obj.name=='Drawer_handle')) and obj.type=='MESH' and not obj.hide_render:
                     evaluated=obj.evaluated_get(deps);points.extend(evaluated.matrix_world@Vector(v) for v in evaluated.bound_box)
-            target=sum(points,Vector())/len(points);cam.location=target+Vector((.45,-.55,.40));cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();data.ortho_scale=.48;scene.camera=cam
+            target=sum(points,Vector())/len(points);offset=Vector((.45,.55,.35)) if frame==1213 else Vector(state(frame,layout)['joints']['lateral'])*.65+Vector((0,0,.35)) if frame==2629 else Vector((.45,-.55,.40));cam.location=target+offset;cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();data.ortho_scale=.48;scene.camera=cam
             bpy.context.view_layer.update()
             for _ in range(40):
                 projected=[world_to_camera_view(scene,cam,p) for p in points]

@@ -36,7 +36,7 @@ def bones(s):
 
 def skin(rest):
     """Closed components in one mesh; blended elbow/knee tube weights."""
-    verts=[];faces=[];weights=[];materials=[];j=rest['joints'];root=rest['root'];boxes=joint_boxes(rest)
+    verts=[];faces=[];weights=[];materials=[];palm_indices={};j=rest['joints'];root=rest['root'];boxes=joint_boxes(rest)
     def vertex(p,w):verts.append(sub(p,root));weights.append(w);return len(verts)-1
     def face(ids,material):faces.append(tuple(ids));materials.append(material)
     def tube(centers,radii,axes,groups,material):
@@ -81,10 +81,23 @@ def skin(rest):
                 w=max(0,min(1,(t-.85)/.30));groups.append({first:1-w,second:w})
             tube(centers,radii,axes,groups,0)
         for name,bone_name,material in [(side+'_palm','hand.'+suffix,1),(side+'_foot','foot.'+suffix,2)]:
-            b=boxes[name];ellipsoid(b['center'],b['size'],b['basis'],bone_name,material)
+            b=hands(rest)[side]['palm'] if name.endswith('_palm') else boxes[name];begin=len(verts);ellipsoid(b['center'],b['size'],b['basis'],bone_name,material)
+            if name.endswith('_palm'):palm_indices[suffix]=list(range(begin,len(verts)))
     for side,hand in hands(rest).items():
+        # Continuous blended digit tubes replace three visibly capped rods.
         for digit,points in hand['chains'].items():
-            for digit_index,(a,b) in enumerate(zip(points,points[1:])):
-                axis=unit(sub(b,a));name=f'{digit}_{digit_index+1}.{hand["suffix"]}'
-                tube([a,b],[.008 if digit!='thumb' else .010]*2,[axis,axis],[{name:1},{name:1}],1)
-    return {'vertices':verts,'faces':faces,'weights':weights,'face_materials':materials}
+            centers=[];axes=[];radii=[];groups=[];suffix=hand['suffix']
+            lengths=[math.dist(a,b) for a,b in zip(points,points[1:])]
+            for seg in range(3):
+                axis=unit(sub(points[seg+1],points[seg]))
+                for t in ([0,.45,.85] if seg<2 else [0,.45,.85,1]):
+                    center=mix(points[seg],points[seg+1],t);w={f'{digit}_{seg+1}.{suffix}':1}
+                    if seg>0 and t==0:w={f'{digit}_{seg}.{suffix}':.5,f'{digit}_{seg+1}.{suffix}':.5}
+                    if seg<2 and t==.85:w={f'{digit}_{seg+1}.{suffix}':.85,f'{digit}_{seg+2}.{suffix}':.15}
+                    centers.append(center);axes.append(axis);radii.append((.008 if digit!='thumb' else .010)*(1-.25*(seg+t)/3));groups.append(w)
+            tube(centers,radii,axes,groups,1)
+        # Small rounded bridge masks the abrupt wrist cap; not final welded topology.
+        wrist=j[side+'_arm'][2];center=hand['palm']['center']
+        begin=len(verts);ellipsoid(mix(wrist,center,.5),(.07,.05,.055),hand['palm']['basis'],'hand.'+suffix,1)
+        for index in range(begin,len(verts)):weights[index]={'forearm.'+suffix:.5,'hand.'+suffix:.5}
+    return {'vertices':verts,'faces':faces,'weights':weights,'face_materials':materials,'palm_vertex_indices':palm_indices}

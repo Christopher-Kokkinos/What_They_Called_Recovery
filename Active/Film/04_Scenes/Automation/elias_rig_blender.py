@@ -6,7 +6,7 @@ from elias_rig_math import bones,skin
 
 def create(bpy,scene,rest):
     definition=bones(rest);surface=skin(rest)
-    asset=bpy.data.collections.new('CHR_Elias_rig_v0.2');scene.collection.children.link(asset);asset['asset_id']='CHR_Elias';asset['status']='deformation_mannequin_not_final_design'
+    asset=bpy.data.collections.new('CHR_Elias_rig_v0.3');scene.collection.children.link(asset);asset['asset_id']='CHR_Elias';asset['status']='deformation_mannequin_not_final_design'
     data=bpy.data.armatures.new('Elias_skeleton');rig=bpy.data.objects.new('CHR_Elias_RIG',data);asset.objects.link(rig);rig.show_in_front=True;rig['source']='verified SC001 joint targets'
     bpy.context.view_layer.objects.active=rig;rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
     for name,b in definition.items():
@@ -21,6 +21,7 @@ def create(bpy,scene,rest):
             if value>0:obj.vertex_groups[name].add([index],value,'REPLACE')
     for name,color in [('neutral_wardrobe',(.25,.32,.36,1)),('neutral_mannequin',(.52,.52,.49,1)),('shoe_proxy',(.16,.19,.21,1))]:
         material=bpy.data.materials.new(name);material.diffuse_color=color;mesh.materials.append(material)
+    obj['palm_vertex_indices_json']=__import__('json').dumps(surface['palm_vertex_indices'])
     for polygon,material in zip(mesh.polygons,surface['face_materials']):polygon.material_index=material;polygon.use_smooth=True
     modifier=obj.modifiers.new('Elias_armature_deform','ARMATURE');modifier.object=rig;modifier.use_deform_preserve_volume=True
     obj.parent=rig
@@ -43,7 +44,7 @@ def animate_and_validate(bpy,scene,layout,state,end):
         scene.frame_set(frame);pose_frame(bpy,rig,state(frame,layout),frame)
     from sc001_motion_blender import linearise_owned_actions
     linearise_owned_actions([rig])
-    palm_indices={suffix:[i for i,v in enumerate(obj.data.vertices) if any(obj.vertex_groups[g.group].name=='hand.'+suffix and g.weight>.999 for g in v.groups)] for suffix in ('L','R')}
+    palm_indices=__import__('json').loads(obj['palm_vertex_indices_json'])
     palm_error=0
     endpoint=scale=0;lowest=math.inf;checked=0
     # Read back the keyed action, including frames between rendered preview samples.

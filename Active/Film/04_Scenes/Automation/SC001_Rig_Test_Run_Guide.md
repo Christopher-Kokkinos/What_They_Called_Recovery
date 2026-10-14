@@ -37,3 +37,7 @@ git pull --ff-only
 ```
 
 This renders twelve images into a new `hands_...` folder beneath `_local/SC001`, with `hand_review_validation.json`. ZIP that folder for review. It does not resave the input scene or regenerate the full preview. Finger geometry remains unchanged; review assesses camera correction before finger anatomy/grip refinement. Hand/prop containment is checked; occlusion remains visual-review pending.
+
+## Hand cleanup v0.3
+
+Changed skin requires a fresh build; the old blend rerender intentionally rejects changed hand hashes. Run the normal fresh builder with only `--rig-test --render-hand-review`. All-frame checks still run, but only twelve hand images render, without the 528-image motion preview. Output is a new `rig_scene_...` folder with blend/validation/twelve images. ZIP that entire folder. Current hand asset collection v0.3; scene scaffold filename remains v0.1.

@@ -137,7 +137,9 @@
     "decision": "DEC-0053",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "prepared_desktop_execution_pending",
-    "author_gallery_visual_pass": true
+    "status": "desktop_integer_frame_validation_pass_sampled_visual_review_complete",
+    "author_gallery_visual_pass": true,
+    "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
+    "author_scene_visual_pass": false
   }
 }

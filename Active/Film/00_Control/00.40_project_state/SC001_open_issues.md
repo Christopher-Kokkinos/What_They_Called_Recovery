@@ -17,3 +17,7 @@ Author will flag remaining concerns from personal notes before moving beyond SC0
 | Author notes and scene acceptance | Reconcile before SC002; acceptance must be explicit. |
 
 Reports and decision logs retain evidence and superseded failures. Last update: v0.26 split coverage preparation; no finished-slice gate passed.
+
+## Author review received 2026-10-14
+
+V0.26 rendered successfully but is visually unaccepted. The actionable register AR01–AR17 in [Reports/Film/2026-10-14_sc001_v026_author_review.md](../../../../Reports/Film/2026-10-14_sc001_v026_author_review.md) supersedes optimistic closure interpretations above. Anatomy, apartment layout, prop scale/contact and two-handed paper handling remain open; exit camera direction is liked, clock style deferred. See DEC-0049. No scene or finished-slice acceptance.

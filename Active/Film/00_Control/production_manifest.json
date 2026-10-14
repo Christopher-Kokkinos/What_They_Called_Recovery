@@ -23,7 +23,7 @@
     "target_duration_minutes_min": 2,
     "target_duration_minutes_max": 5,
     "scene_id": "SC001",
-    "status": "v025_all_global_angles_blocked_v026_split_coverage_prepared",
+    "status": "v026_author_review_corrections_open",
     "packet": "Active/Film/01_Adaptation/Scene_Packets/SC001_Elias_Apartment_packet_v0.1.md",
     "timing_hypothesis_seconds": 120,
     "finished_slice_gate_passed": false,
@@ -44,6 +44,15 @@
       "blender": "5.2.2 LTS",
       "result": "all_eight_tracking_offsets_blocked_by_lintel_before_save",
       "evidence": "Reports/Film/2026-10-12_sc001_v026_split_departure_coverage.md"
+    },
+    "author_review": {
+      "report": "Reports/Film/2026-10-14_sc001_v026_author_review.md",
+      "run": "run_20261012_104556_ababe7b1",
+      "correction_ids": "AR01-AR17",
+      "scene_accepted": false,
+      "exit_camera_direction": "retain_author_liked",
+      "clock_style": "deferred_by_author",
+      "next_gate": "connected_room_layout_and_anatomical_poses_before_contact_choreography"
     }
   },
   "story_authority": {

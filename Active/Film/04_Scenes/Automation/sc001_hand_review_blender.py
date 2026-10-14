@@ -33,7 +33,21 @@ def render(bpy,scene,state,layout,out):
             for obj in scene.objects:
                 if (obj.name.startswith(prefix) or (prefix=='Drawer_front' and obj.name=='Drawer_handle')) and obj.type=='MESH' and not obj.hide_render:
                     evaluated=obj.evaluated_get(deps);points.extend(evaluated.matrix_world@Vector(v) for v in evaluated.bound_box)
-            target=sum(points,Vector())/len(points);offset=Vector((.45,.55,.35)) if frame==1213 else Vector(state(frame,layout)['joints']['lateral'])*.65+Vector((0,0,.35)) if frame==2629 else Vector((.45,-.55,.40));cam.location=target+offset;cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();data.ortho_scale=.48;scene.camera=cam
+            target=sum(points,Vector())/len(points);visibility_trials=[]
+            offset=Vector(state(frame,layout)['joints']['lateral'])*.65+Vector((0,0,.35)) if frame==2629 else Vector((.45,-.55,.40))
+            if frame==1213:
+                probes=[center]+[Vector(chain[-1]) for chain in hand['chains'].values()]
+                for candidate in [(.8,0,.35),(-.8,0,.35),(.65,.65,.35),(.65,-.65,.35),(-.65,.65,.35),(-.65,-.65,.35),(0,.8,.5),(0,-.8,.5)]:
+                    delta=Vector(candidate);visible=0;blockers=[]
+                    for point in probes:
+                        hit,where,normal,index,obj,matrix=scene.ray_cast(deps,point+delta,-delta.normalized(),distance=delta.length)
+                        if not hit or (where-point).length<=.025:visible+=1
+                        else:blockers.append({'object':obj.name,'distance_to_contact':(where-point).length})
+                    visibility_trials.append({'offset':candidate,'visible_probes':visible,'total':len(probes),'blockers':blockers})
+                chosen=max(visibility_trials,key=lambda q:q['visible_probes'])
+                assert chosen['visible_probes']>=4,'No shower diagnostic angle clears sufficient contact probes: '+str(visibility_trials)
+                offset=Vector(chosen['offset'])
+            cam.location=target+offset;cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();data.ortho_scale=.48;scene.camera=cam
             bpy.context.view_layer.update()
             for _ in range(40):
                 projected=[world_to_camera_view(scene,cam,p) for p in points]
@@ -43,7 +57,7 @@ def render(bpy,scene,state,layout,out):
             path=f'SC001_hand_{side}_{frame:04d}.png';scene.render.filepath=str(out/path);before=len(active);bpy.ops.render.render(write_still=True)
             assert len(active)==before+1,'Render camera guard did not run'
             assert scene.camera==cam,'Hand camera changed during render'
-            records.append({'frame':frame,'side':side,'image':path,'render_camera':active[-1],'camera_location':list(cam.location),'target':list(target),'ortho_scale':data.ortho_scale,'containment_points':len(points),'containment_pass':True,'image_sha256':hashlib.sha256((out/path).read_bytes()).hexdigest(),'occlusion_status':'visual_review_pending'})
+            records.append({'frame':frame,'side':side,'image':path,'render_camera':active[-1],'camera_location':list(cam.location),'target':list(target),'ortho_scale':data.ortho_scale,'containment_points':len(points),'containment_pass':True,'image_sha256':hashlib.sha256((out/path).read_bytes()).hexdigest(),'visibility_trials':visibility_trials,'occlusion_status':'sampled_shower_rays_checked_visual_review_pending' if visibility_trials else 'visual_review_pending'})
     finally:
         if guard in bpy.app.handlers.render_pre:bpy.app.handlers.render_pre.remove(guard)
         for marker,camera in bindings:marker.camera=camera

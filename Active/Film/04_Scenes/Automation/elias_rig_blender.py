@@ -6,7 +6,7 @@ from elias_rig_math import bones,skin
 
 def create(bpy,scene,rest):
     definition=bones(rest);surface=skin(rest)
-    asset=bpy.data.collections.new('CHR_Elias_rig_v0.3');scene.collection.children.link(asset);asset['asset_id']='CHR_Elias';asset['status']='deformation_mannequin_not_final_design'
+    asset=bpy.data.collections.new('CHR_Elias_rig_v0.4');scene.collection.children.link(asset);asset['asset_id']='CHR_Elias';asset['status']='deformation_mannequin_not_final_design'
     data=bpy.data.armatures.new('Elias_skeleton');rig=bpy.data.objects.new('CHR_Elias_RIG',data);asset.objects.link(rig);rig.show_in_front=True;rig['source']='verified SC001 joint targets'
     bpy.context.view_layer.objects.active=rig;rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
     for name,b in definition.items():

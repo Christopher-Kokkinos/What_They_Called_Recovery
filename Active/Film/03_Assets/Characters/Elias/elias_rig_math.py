@@ -96,8 +96,9 @@ def skin(rest):
                     if seg<2 and t==.85:w={f'{digit}_{seg+1}.{suffix}':.85,f'{digit}_{seg+2}.{suffix}':.15}
                     centers.append(center);axes.append(axis);radii.append((.008 if digit!='thumb' else .010)*(1-.25*(seg+t)/3));groups.append(w)
             tube(centers,radii,axes,groups,1)
-        # Small rounded bridge masks the abrupt wrist cap; not final welded topology.
-        wrist=j[side+'_arm'][2];center=hand['palm']['center']
-        begin=len(verts);ellipsoid(mix(wrist,center,.5),(.07,.05,.055),hand['palm']['basis'],'hand.'+suffix,1)
-        for index in range(begin,len(verts)):weights[index]={'forearm.'+suffix:.5,'hand.'+suffix:.5}
+        # Tapered sleeve overlaps the distal forearm and proximal palm;
+        # replace the conspicuous separate spherical wrist connector.
+        wrist=j[side+'_arm'][2];elbow=j[side+'_arm'][1];center=hand['palm']['center']
+        a=mix(elbow,wrist,.92);b=mix(wrist,center,.5);c=center
+        axis=unit(sub(wrist,elbow));tube([a,b,c],[.042,.030,.020],[axis]*3,[{'forearm.'+suffix:1},{'forearm.'+suffix:.5,'hand.'+suffix:.5},{'hand.'+suffix:1}],1)
     return {'vertices':verts,'faces':faces,'weights':weights,'face_materials':materials,'palm_vertex_indices':palm_indices}

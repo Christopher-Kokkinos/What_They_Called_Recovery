@@ -14,6 +14,9 @@ if __name__=='__main__':
         for side,hand in hands(pose).items():
             expected=tuple(x-y for x,y in zip(hand['palm']['center'],pose['root']))
             assert math.dist(actual['hand.'+hand['suffix']]['head'],expected)<1e-9,'Palm target mismatch'
+            pinch=hand.get('pinch')
+            if pinch and pinch['amount']==1:
+                for digit in ('index','thumb'):assert math.dist(pinch[digit+'_tip'],pinch[digit+'_target'])<1e-6,(frame,side,digit,'Pinch target unreachable')
         assert set(actual)==set(reference)
         for name,b in actual.items():assert abs(b['length']-reference[name]['length'])<1e-9,(frame,name)
     for p,w in zip(mesh['vertices'],mesh['weights']):

@@ -1,6 +1,6 @@
 """Provisional reusable five-digit hands driven by existing SC001 palm targets."""
 import math
-from elias_articulation import add,sub,mul,unit,dot,cross,mix
+from elias_articulation import add,sub,mul,unit,dot,cross,mix,two_segment
 from sc001_room_performance import joint_boxes
 
 
@@ -34,7 +34,7 @@ def hands(s):
         direction=mul(z,-1);bend=y
         chains={}
         for i,name in enumerate(['index','middle','ring','little']):
-            length=[.065,.072,.068,.055][i];base=add(center,add(mul(x,(i-1.5)*.019),mul(direction,palm['size'][2]*.36)))
+            length=[.065,.072,.068,.055][i];base=add(center,add(mul(x,(i-1.5)*.019*(-1 if side=='right' else 1)),mul(direction,palm['size'][2]*.36)))
             points=[base]
             for k,fraction in enumerate([.42,.33,.25]):
                 angle=curl*(k+1)*.75;
@@ -48,5 +48,23 @@ def hands(s):
             step=unit(add(add(mul(x,sign*(1-curl*.85)),mul(direction,.85)),mul(y,curl*(k+1)*.25)))
             points.append(add(points[-1],mul(step,length)))
         chains['thumb']=points
-        out[side]={'palm':palm,'chains':chains,'mode':mode,'curl':curl,'suffix':suffix,'legacy_palm':original}
+        pinch=None
+        if mode in ('paper','keys'):
+            # Opposed index/thumb pads, with a 16 mm centre separation.
+            # Targets are provisional surface contacts, not force constraints.
+            index_target=add(add(center,mul(direction,.052)),add(mul(x,sign*.0285),mul(y,-.024))) if mode=='paper' else add(s['keys'],(0,0,.008))
+            thumb_target=add(index_target,mul(y,-.016)) if mode=='paper' else add(s['keys'],(0,0,-.008))
+            amount=ramp(2161,2215)*(1-ramp(2340,2360)) if mode=='paper' else ramp(2380,2395)
+            for digit,target,lengths in [('index',index_target,[.065*.42,.065*.33,.065*.25]),('thumb',thumb_target,[.025,.023,.020])]:
+                original_chain=chains[digit];base=original_chain[0];target=mix(original_chain[-1],target,amount)
+                # Preserve every phalange length while changing the contact.
+                distal=lengths[1]+lengths[2];delta=sub(target,base);distance=math.sqrt(dot(delta,delta))
+                maximum=sum(lengths)-1e-6;minimum=abs(lengths[0]-distal)+1e-6
+                if not minimum<=distance<=maximum:target=add(base,mul(unit(delta),max(minimum,min(maximum,distance))))
+                middle=two_segment(base,target,add(base,mul(y,.08)),lengths[0],distal)
+                last_joint=mix(middle,target,lengths[1]/distal)
+                chains[digit]=[base,middle,last_joint,target]
+            pinch={'index_target':index_target,'thumb_target':thumb_target,'amount':amount,'index_tip':chains['index'][-1],'thumb_tip':chains['thumb'][-1]}
+
+        out[side]={'palm':palm,'chains':chains,'mode':mode,'curl':curl,'suffix':suffix,'legacy_palm':original,'pinch':pinch}
     return out

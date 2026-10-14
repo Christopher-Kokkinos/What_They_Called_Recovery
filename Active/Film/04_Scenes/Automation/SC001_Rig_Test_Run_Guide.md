@@ -41,3 +41,7 @@ This renders twelve images into a new `hands_...` folder beneath `_local/SC001`,
 ## Hand cleanup v0.3
 
 Changed skin requires a fresh build; the old blend rerender intentionally rejects changed hand hashes. Run the normal fresh builder with only `--rig-test --render-hand-review`. All-frame checks still run, but only twelve hand images render, without the 528-image motion preview. Output is a new `rig_scene_...` folder with blend/validation/twelve images. ZIP that entire folder. Current hand asset collection v0.3; scene scaffold filename remains v0.1.
+
+## Focused wrist/pinch revision v0.4
+
+Use the same fresh `--rig-test --render-hand-review` command; ZIP newest rig_scene folder. Twelve hand renders only. Shower view now selects from eight angles using evaluated contact rays and records blockers in hand_camera_records. A visibility failure stops rather than silently rendering the known obstructed view. At least four of six contact probes must pass; whole-hand visibility still requires review. Index/thumb targets and tapered wrist geometry are provisional, with all body source motion retained.

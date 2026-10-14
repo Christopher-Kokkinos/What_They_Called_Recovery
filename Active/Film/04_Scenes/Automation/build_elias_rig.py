@@ -64,12 +64,12 @@ def main():
         for gallery_frame,source_frame in enumerate(POSE_FRAMES,1):
             scene.frame_set(gallery_frame);scene.render.filepath=str(out/f'Elias_pose_{gallery_frame:02d}_source_{source_frame:04d}.png');bpy.ops.render.render(write_still=True)
     scene.frame_set(1);action.name='Elias_SC001_pose_gallery_v0.1';action.use_fake_user=True
-    bpy.ops.wm.save_as_mainfile(filepath=str(out/'Elias_rig_pose_gallery_v0.3.blend'))
+    bpy.ops.wm.save_as_mainfile(filepath=str(out/'Elias_rig_pose_gallery_v0.4.blend'))
     # Reusable asset starts neutral; gallery action is retained as a separate file.
     rig.animation_data.action=None
     for pose in rig.pose.bones:pose.matrix_basis=Matrix.Identity(4)
     bpy.context.view_layer.update()
-    bpy.ops.wm.save_as_mainfile(filepath=str(out/'CHR_Elias_rig_v0.3.blend'))
+    bpy.ops.wm.save_as_mainfile(filepath=str(out/'CHR_Elias_rig_v0.4.blend'))
     report.update(status='evaluated_rig_gallery_validated_visual_review_pending',blender_version=bpy.app.version_string,maximum_endpoint_error=max_error,maximum_bone_scale_error=max_scale_error,camera_scale=camera_data.ortho_scale,script_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),rig_math_sha256=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py').read_bytes()).hexdigest(),module_sha256={n:hashlib.sha256((Path(__file__).parent/n).read_bytes()).hexdigest() for n in ['sc001_room_performance.py','elias_articulation.py']},layout_sha256=hashlib.sha256((ROOT/'Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json').read_bytes()).hexdigest())
     (out/'rig_validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print('ELIAS RIG OUTPUT:',out);print('RIG GALLERY VALIDATED; DEFORMATION VISUAL REVIEW PENDING')
 

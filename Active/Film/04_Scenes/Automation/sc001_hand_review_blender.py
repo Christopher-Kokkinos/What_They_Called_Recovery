@@ -51,7 +51,7 @@ def render(bpy,scene,state,layout,out):
                     finally:evaluated.to_mesh_clear()
                 bvh=BVHTree.FromPolygons(vertices,triangles,all_triangles=True)
                 probes=[center]+[Vector(chain[-1]) for chain in hand['chains'].values()]
-                for candidate in [(.8,0,.35),(-.8,0,.35),(.65,.65,.35),(.65,-.65,.35),(-.65,.65,.35),(-.65,-.65,.35),(0,.8,.5),(0,-.8,.5)]:
+                for candidate in [(.8,0,-.25),(-.8,0,-.25),(.65,.35,-.35),(-.65,.35,-.35),(.8,0,.35),(-.8,0,.35),(.65,.65,.35),(.65,-.65,.35),(-.65,.65,.35),(-.65,-.65,.35),(0,.8,.5),(0,-.8,.5)]:
                     delta=Vector(candidate);visible=0;blockers=[]
                     for point in probes:
                         where,normal,index,distance=bvh.ray_cast(point+delta,-delta.normalized(),delta.length)

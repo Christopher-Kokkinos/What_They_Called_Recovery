@@ -1,0 +1,7 @@
+# Focused checkpoint readback and shower view-space diagnosis
+
+ZIP rig_scene_20261014_204455_57a2b099 inspected: checkpoint blend, validation and three drawer stills. Sample coverage exactly 600,640,850,1213,1411,2227,2260,2300,2320,2395,2510,2629; 28,800 evaluated skin vertex checks. Endpoint error 1.169385180e-6 m, palm error 6.676784499e-6, scale error 1.192092896e-6. Four checkpoint source hashes verify against current source. Drawer image shows retained shape improvements but wrist seam still visible; no visual hand pass.
+
+User log confirms first image at 1:48 versus prior 57:18; runs have different coverage (twelve versus 3,168 rig frames), so do not attribute entire improvement to FK optimisation alone. Hidden proxy/water filtering confirmed; actual skin/controls remain blockers. All eight candidates are above hand. Source controls bound Z1.04–1.16; index/middle/ring tips Z1.0281/1.0233/1.0260, below controls. Lower side rays avoid this specific above-view control obstruction in the source geometry; evaluated body/skin visibility still must be tested.
+
+Add four below-hand side offsets without altering geometry, ray threshold or source motion. Compilation and film workspace verifier PASS; runtime selection and images pending. Existing checkpoint can be rerendered read-only, with original blend retained. Exact skin contact, wrist topology, fingers and full motion remain open.

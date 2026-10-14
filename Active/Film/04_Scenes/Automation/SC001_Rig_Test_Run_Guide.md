@@ -53,3 +53,7 @@ After DEC-0058 use `--rig-test --rig-sample-review --render-hand-review`. It bak
 A blend and validation.json checkpoint now save before rendering, with status validated_build_checkpoint_render_pending. If rendering fails, preserve this folder; the read-only render_sc001_hand_review.py command can reuse its blend with matching source hashes. The 192618 failed run predates checkpointing and cannot be recovered from three PNGs alone.
 
 Shower visibility tests use only evaluated render-visible meshes; excluded proxy/water names are recorded in angle trials. Real body/control occlusion still stops the diagnostic if four of six probes cannot be seen.
+
+## Lower side shower rerender
+
+DEC-0059 adds four lower side directions to the existing shower search. Reuse `rig_scene_20261014_204455_57a2b099/SC001_rig_performance_v0.1.blend` with render_sc001_hand_review.py; do not run the fresh builder. Source hashes still match. Output goes to new hands_ folder; ZIP it. Existing checkpoint is twelve poses only; this rerender does not advance a full-motion gate.

@@ -19,24 +19,9 @@ def main():
     out=ROOT/'Active/Film/_local/Characters/Elias'/('rig_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(parents=True,exist_ok=False)
     scene=bpy.data.scenes.new('ELIAS_RIG_GALLERY_v0.1');bpy.context.window.scene=scene;scene.unit_settings.system='METRIC';scene.render.engine='BLENDER_WORKBENCH';scene.render.fps=1;scene.frame_start=1;scene.frame_end=len(POSE_FRAMES)
     scene.render.resolution_x=1280;scene.render.resolution_y=960;scene.render.resolution_percentage=100;scene.display.shading.color_type='MATERIAL';scene.display.shading.light='STUDIO';scene.render.film_transparent=False
-    asset=bpy.data.collections.new('CHR_Elias_rig_v0.1');scene.collection.children.link(asset);asset['asset_id']='CHR_Elias';asset['status']='deformation_mannequin_not_final_design'
-    data=bpy.data.armatures.new('Elias_skeleton');rig=bpy.data.objects.new('CHR_Elias_RIG',data);asset.objects.link(rig);rig.show_in_front=True;rig['source']='verified SC001 joint targets'
-    bpy.context.view_layer.objects.active=rig;rig.select_set(True);bpy.ops.object.mode_set(mode='EDIT')
-    for name,b in definition.items():
-        bone=data.edit_bones.new(name);bone.head=b['head'];bone.tail=b['tail'];bone.align_roll(Vector(b['basis'][2]));bone.use_deform=name!='root'
-        if b['parent']:bone.parent=data.edit_bones[b['parent']];bone.use_connect=False
-    bpy.ops.object.mode_set(mode='OBJECT')
-    mesh=bpy.data.meshes.new('Elias_procedural_skin');mesh.from_pydata(surface['vertices'],[],surface['faces']);mesh.update()
-    obj=bpy.data.objects.new('CHR_Elias_SKIN',mesh);asset.objects.link(obj)
-    for name in definition:obj.vertex_groups.new(name=name)
-    for index,w in enumerate(surface['weights']):
-        for name,value in w.items():
-            if value>0:obj.vertex_groups[name].add([index],value,'REPLACE')
-    for name,color in [('neutral_wardrobe',(.25,.32,.36,1)),('neutral_mannequin',(.52,.52,.49,1)),('shoe_proxy',(.16,.19,.21,1))]:
-        material=bpy.data.materials.new(name);material.diffuse_color=color;mesh.materials.append(material)
-    for polygon,material in zip(mesh.polygons,surface['face_materials']):polygon.material_index=material;polygon.use_smooth=True
-    modifier=obj.modifiers.new('Elias_armature_deform','ARMATURE');modifier.object=rig;modifier.use_deform_preserve_volume=True
-    obj.parent=rig
+    from elias_rig_blender import create
+    rig,obj,definition=create(bpy,scene,rest)
+    mesh=obj.data
     camera_data=bpy.data.cameras.new('Rig_review_camera');camera=bpy.data.objects.new('Rig_review_camera',camera_data);scene.collection.objects.link(camera);camera.location=(3.5,4.5,2.8);camera.rotation_euler=(Vector((0,0,1))-camera.location).to_track_quat('-Z','Y').to_euler();camera_data.type='ORTHO';camera_data.ortho_scale=4.0;scene.camera=camera
     report={'status':'rig_gallery_runtime_checks_pending','pose_sources':POSE_FRAMES,'bones':len(definition),'vertices':len(mesh.vertices),'faces':len(mesh.polygons),'poses':[],'limitations':['Neutral mannequin, not approved Elias appearance','Closed disconnected skin components; topology and skin weights provisional','No IK controls, fingers, face, cloth or SC001 replacement','Gallery snapshots are not a continuous action'],'scene_accepted':False}
     max_error=0;max_scale_error=0

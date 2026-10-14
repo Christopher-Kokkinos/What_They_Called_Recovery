@@ -13,7 +13,7 @@ def main():
     from sc001_room_performance import state,joint_boxes,box_corners,END,SHOTS,NOTICE,bedside_geometry,drawer_geometry
     import bpy
     from mathutils import Matrix,Vector
-    p=argparse.ArgumentParser();p.add_argument('--render-shot-review',action='store_true');p.add_argument('--render-motion-preview',action='store_true');p.add_argument('--render-shower-review',action='store_true',help='Six shower contact/cue stills only; full-scene flag takes precedence')
+    p=argparse.ArgumentParser();p.add_argument('--rig-test',action='store_true',help='Separate weighted Elias rig integration test; proxy contact checks retained');p.add_argument('--render-shot-review',action='store_true');p.add_argument('--render-motion-preview',action='store_true');p.add_argument('--render-shower-review',action='store_true',help='Six shower contact/cue stills only; full-scene flag takes precedence')
     opts=p.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
     if not bpy.app.background or bpy.data.filepath:raise RuntimeError('Use --background --factory-startup; loaded production files refused')
     plan_path=ROOT/'Active/Film/04_Scenes/SC001/SC001_room_performance_spec_v0.1.json'
@@ -24,7 +24,7 @@ def main():
     assert hashlib.sha256(SPEC.read_bytes().replace(b'\r\n',b'\n')).hexdigest()==plan['layout_sha256_lf'],'Room layout changed; review contacts first'
     assert [(q['frame_start'],q['frame_end'],q['shot_id']) for q in plan['shots']]==[(a,b,'SC001_'+n) for a,b,n in SHOTS]
     layout=json.loads(SPEC.read_text(encoding='utf-8'));static=validate(layout)
-    out=ROOT/'Active/Film/_local/SC001'/('rooms_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(parents=True,exist_ok=False)
+    out=ROOT/'Active/Film/_local/SC001'/(('rig_scene_' if opts.rig_test else 'rooms_')+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(parents=True,exist_ok=False)
     scene=bpy.data.scenes.new('SC001_ROOM_PERFORMANCE_v0.1');bpy.context.window.scene=scene
     scene.unit_settings.system='METRIC';scene.render.engine='BLENDER_WORKBENCH';scene.render.fps=24;scene.frame_start=1;scene.frame_end=END
     scene.render.resolution_x=1280;scene.render.resolution_y=720;scene.render.resolution_percentage=100
@@ -119,6 +119,12 @@ def main():
         if f in [61,271,360,505,580,590,600,640,661,780,850,870,888,1003,1195,1207,1210,1213,1225,1237,1282,1285,1411,1540,1561,2161,2215,2227,2260,2275,2300,2320,2340,2360,2395,2430,2450,2510,2587,2629,2810,3060,3061,3120,3121,3148]:expected[f]=boxes
     from sc001_motion_blender import linearise_owned_actions
     linearise_owned_actions(list(scene.objects))
+    rig_report=None
+    if opts.rig_test:
+        sys.path.insert(0,str(ROOT/'Active/Film/03_Assets/Characters/Elias'))
+        from elias_rig_blender import animate_and_validate
+        rig_report=animate_and_validate(bpy,scene,layout,state,END)
+        for proxy in actor.values():proxy.hide_render=True
     # Read evaluated Blender transforms back at review frames, not only authored keys.
     max_error=0;packet_points=0
     for f,boxes in expected.items():
@@ -161,8 +167,12 @@ def main():
     if manifest:
         from sc001_preview import write_viewer
         write_viewer(out/'motion_preview.html',manifest)
-    scene.render.resolution_percentage=100;scene.frame_set(1);scene.camera=cameras['SH001'];blend=out/'SC001_room_performance_v0.1.blend';bpy.ops.wm.save_as_mainfile(filepath=str(blend))
+    scene.render.resolution_percentage=100;scene.frame_set(1);scene.camera=cameras['SH001'];blend=out/('SC001_rig_performance_v0.1.blend' if opts.rig_test else 'SC001_room_performance_v0.1.blend');bpy.ops.wm.save_as_mainfile(filepath=str(blend))
     report={'status':'evaluated_review_frames_validated_visual_review_pending','blender_version':bpy.app.version_string,'spec_sha256':hashlib.sha256(SPEC.read_bytes()).hexdigest(),'script_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'module_sha256':{n:hashlib.sha256((Path(__file__).parent/n).read_bytes()).hexdigest() for n in ['sc001_room_performance.py','sc001_layout.py','elias_articulation.py','sc001_motion_blender.py','sc001_motion.py','sc001_preview.py']},'static_layout':static,'frame_end':END,'duration_seconds':END/24,'evaluated_review_frames':sorted(expected),'maximum_transform_error':max_error,'maximum_stationary_support_gap':maximum_floor_error,'performance_spec_sha256':hashlib.sha256(plan_path.read_bytes()).hexdigest(),'motion_samples':len(manifest),'packet_evaluated_corner_checks':packet_points,'stills':[f'SC001_rooms_frame_{f:04d}.png' for f in review_frames],'blend':str(blend),'letter_sequence':'mug on table; both hands fold; envelope supported left; right inserts and pockets; keys then mug retrieved','limitations':['Diagnostic low walls; door-use and final occlusion review pending','Box anatomy without final skinning or performance','No final water/lighting/grain/audio','No whole-scene acceptance'],'scene_accepted':False}
+    if opts.rig_test:
+        report['rig']=rig_report;report['module_sha256']['elias_rig_blender.py']=hashlib.sha256((Path(__file__).parent/'elias_rig_blender.py').read_bytes()).hexdigest()
+        report['rig_math_sha256']=hashlib.sha256((ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py').read_bytes()).hexdigest()
+        report['limitations']=[x for x in report['limitations'] if x!='Box anatomy without final skinning or performance']+rig_report['limitations']
     (out/'validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print('SC001 ROOMS OUTPUT:',out);print('EVALUATED REVIEW FRAMES VALIDATED; VISUAL REVIEW PENDING')
 
 if __name__=='__main__':main()

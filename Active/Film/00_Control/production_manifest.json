@@ -132,5 +132,12 @@
     "palette": "muted_full_colour",
     "contrast": "strong_shadows_with_information_readability",
     "grain": "subtle_strength_pending_moving_image_review"
+  },
+  "elias_rig_motion_test": {
+    "decision": "DEC-0053",
+    "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
+    "flag": "--rig-test",
+    "status": "prepared_desktop_execution_pending",
+    "author_gallery_visual_pass": true
   }
 }

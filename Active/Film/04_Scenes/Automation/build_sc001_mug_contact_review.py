@@ -36,6 +36,7 @@ def main():
     scene['rig_coverage']='SIX MUG SNAPSHOTS; not continuous animation';scene.frame_set(FRAMES[0]);report['status']='mug_checkpoint_validated_render_pending'
     bpy.ops.wm.save_as_mainfile(filepath=str(out/'SC001_mug_contact_test_v0.1.blend'));(out/'validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print('MUG CHECKPOINT:',out,flush=True)
     samples=[(f,'left') for f in FRAMES];report['closeups']=render(bpy,scene,state,layout,out,samples);report['arm_views']=render(bpy,scene,state,layout,out,samples,arm_context=True)
+    report['top_views']=render(bpy,scene,state,layout,out,[(1460,'left'),(2510,'left')],top_down=True)
     report['status']='mug_snapshot_rig_validated_visual_review_pending';(out/'validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print('SC001 MUG OUTPUT:',out)
 
 if __name__=='__main__':main()

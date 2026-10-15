@@ -20,18 +20,24 @@ def state(frame,layout):
     along=add(mul(forward,math.cos(tilt)),(0,0,math.sin(tilt)))
     up=add(mul(forward,-math.sin(tilt)),(0,0,math.cos(tilt)))
     def world(x,y,z):return add(mug,add(add(mul(lat,x),mul(along,y)),mul(up,z)))
-    center=world(-.150,-.015,.005);axis=along;wrist=sub(center,mul(axis,.055));shoulder,old_elbow,old_wrist=s['joints']['left_arm']
-    chain=solve_arm(shoulder,wrist,s['joints']['up'],lat,-1)
+    diagonal=math.radians(-30);stand_off=.0345
+    grip_lat=add(mul(lat,math.cos(diagonal)),mul(along,math.sin(diagonal)))
+    grip_along=add(mul(lat,-math.sin(diagonal)),mul(along,math.cos(diagonal)))
+    def grip_world(x,y,z):
+        dx=x+.12
+        return world(-.12+dx*math.cos(diagonal)-y*math.sin(diagonal)-stand_off,dx*math.sin(diagonal)+y*math.cos(diagonal),z)
+    center=grip_world(-.150,-.015,.005);axis=grip_along;wrist=sub(center,mul(axis,.055));shoulder,old_elbow,old_wrist=s['joints']['left_arm']
+    chain=solve_arm(shoulder,wrist,s['joints']['up'],lat,-1,.35)
     wrist_angle=math.degrees(math.acos(max(-1,min(1,dot(unit(sub(wrist,chain[1])),axis)))))
     assert wrist_angle<65,('Excessive experimental wrist angle',frame,wrist_angle)
-    basis=(mul(up,-1),lat,mul(along,-1));chains={};metrics={}
+    basis=(mul(up,-1),grip_lat,mul(grip_along,-1));chains={};metrics={}
     for i,digit in enumerate(('index','middle','ring','little')):
         length=[.065,.072,.068,.055][i];lengths=[length*.42,length*.33,length*.25]
         height=.005-(i-1.5)*.019
         # Common grip plane and direction: around outer/front rail corner.
         # Pads stop 1 mm outside nominal handle faces after 8 mm skin radius.
-        base=world(-.1415,.024+lengths[2]-lengths[0],height);points=[base]
-        for direction,segment_length in zip((along,lat,mul(along,-1)),lengths):points.append(add(points[-1],mul(direction,segment_length)))
+        base=grip_world(-.1415,.024+lengths[2]-lengths[0],height);points=[base]
+        for direction,segment_length in zip((grip_along,grip_lat,mul(grip_along,-1)),lengths):points.append(add(points[-1],mul(direction,segment_length)))
         chains[digit]=points;gap=1e9
         for a,b in zip(points,points[1:]):
             for k in range(33):
@@ -41,12 +47,12 @@ def state(frame,layout):
                     signed=math.sqrt(sum(max(0,q)**2 for q in d))+min(0,max(d));gap=min(gap,signed-.008)
         assert gap>=.0009,('Planned finger/rail overlap',frame,digit,gap)
         metrics[digit]={'bend_degrees':[90,90],'sampled_handle_clearance_metres':gap,'grip_height_metres':height}
-    thumb_base=world(-.150,-.015,.036);thumb_tip=world(-.12,-.026,.040);pole=world(-.18,-.065,.06)
+    thumb_base=grip_world(-.150,-.015,.036);thumb_tip=world(-.1425,-.026,.040);pole=grip_world(-.18,-.065,.06)
     lengths=[.025,.023,.020];distal=.030
     joint=two_segment(thumb_base,thumb_tip,pole,lengths[0],distal)
     last=two_segment(joint,thumb_tip,pole,lengths[1],lengths[2]);chains['thumb']=[thumb_base,joint,last,thumb_tip]
     hand['chains']=chains;hand['palm']={'center':center,'size':(.075,.026,.075),'basis':basis}
     s['joints']['left_arm']=chain;s['_hand_plan']=plan;s['_hand_origins']={'left':wrist};s['_mug_basis']=(lat,along,up)
-    s['_mug_contact_metrics']={'frame':frame,'wrist_axis_angle_degrees':wrist_angle,'palm_offset_metres':math.dist(wrist,center),'source_wrist_adjustment_metres':math.dist(wrist,old_wrist),'mug_tilt_degrees':math.degrees(tilt),'finger_clearance':metrics,'thumb_contact_status':'opposed_target_only_skin_clearance_pending'}
+    s['_mug_contact_metrics']={'frame':frame,'wrist_axis_angle_degrees':wrist_angle,'palm_offset_metres':math.dist(wrist,center),'source_wrist_adjustment_metres':math.dist(wrist,old_wrist),'grip_diagonal_degrees':-30,'grip_outward_shift_metres':stand_off,'mug_tilt_degrees':math.degrees(tilt),'finger_clearance':metrics,'thumb_contact_status':'opposed_target_only_skin_clearance_pending'}
     _CACHE[key]=deepcopy(s)
     return s

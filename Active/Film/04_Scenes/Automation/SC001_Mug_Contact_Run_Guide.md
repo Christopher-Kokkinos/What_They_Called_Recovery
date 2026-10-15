@@ -26,3 +26,7 @@ Same command/six poses/twelve images. Four fingers now use two open orthogonal b
 ## Shared grip frame (DEC-0063)
 
 Same original checkpoint and builder command. Mug position path retained; experiment now keys up to45-degree mug/grip tilt during the first drink. All four finger planes share one frame rather than individual searches. Pure sampled clearance against all three bars passes for four fingers; thumb and evaluated skin contact still need review. Six poses, twelve images, fresh mug_ folder. Wrist joint remains connected but now articulates; previous neutral-wrist assertion is superseded for this isolated test.
+
+## Diagonal wrap (DEC-0064)
+
+Same command and original source checkpoint. Preserves U bends while moving/rotating whole hand and solving connected arm. Six poses, now fourteen images: six close-ups, six arm views, two extra `_top` images at1460/2510 along mug axis. Check diagonal grip and wrist-side movement in top views; thumb/skin contact and seam remain pending. ZIP entire newest mug_ folder.

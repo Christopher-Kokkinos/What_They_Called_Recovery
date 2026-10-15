@@ -7,7 +7,7 @@ from elias_hand_math import hands
 SAMPLES=[(600,'left'),(640,'left'),(850,'left'),(1213,'right'),(1411,'left'),(2227,'left'),(2260,'right'),(2300,'left'),(2320,'right'),(2395,'right'),(2510,'left'),(2629,'right')]
 
 
-def render(bpy,scene,state,layout,out,samples=None,arm_context=False):
+def render(bpy,scene,state,layout,out,samples=None,arm_context=False,top_down=False):
     bindings=[(m,m.camera) for m in scene.timeline_markers];old_camera=scene.camera;old_frame=scene.frame_current
     old_path=scene.render.filepath;old_percentage=scene.render.resolution_percentage
     data=bpy.data.cameras.new('CAM_hand_review_verified');cam=bpy.data.objects.new('CAM_hand_review_verified',data);scene.collection.objects.link(cam);data.type='ORTHO'
@@ -63,6 +63,7 @@ def render(bpy,scene,state,layout,out,samples=None,arm_context=False):
                 chosen=max(visibility_trials,key=lambda q:q['visible_probes'])
                 assert chosen['visible_probes']>=4,'No shower diagnostic angle clears sufficient contact probes: '+str(visibility_trials)
                 offset=Vector(chosen['offset'])
+            if top_down:offset=Vector(state(frame,layout)['_mug_basis'][2])*.8
             cam.location=target+offset;cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();data.ortho_scale=.48;scene.camera=cam
             bpy.context.view_layer.update()
             for _ in range(40):
@@ -70,7 +71,7 @@ def render(bpy,scene,state,layout,out,samples=None,arm_context=False):
                 if all(.08<=p.x<=.92 and .08<=p.y<=.92 and p.z>0 for p in projected):break
                 data.ortho_scale*=1.08
             else:raise RuntimeError(f'Hand/prop framing failed at {frame}')
-            path=f'SC001_hand_{side}_{frame:04d}'+('_arm' if arm_context else '')+'.png';scene.render.filepath=str(out/path);before=len(active);bpy.ops.render.render(write_still=True)
+            path=f'SC001_hand_{side}_{frame:04d}'+('_top' if top_down else '_arm' if arm_context else '')+'.png';scene.render.filepath=str(out/path);before=len(active);bpy.ops.render.render(write_still=True)
             assert len(active)==before+1,'Render camera guard did not run'
             assert scene.camera==cam,'Hand camera changed during render'
             records.append({'frame':frame,'side':side,'image':path,'render_camera':active[-1],'camera_location':list(cam.location),'target':list(target),'ortho_scale':data.ortho_scale,'containment_points':len(points),'containment_pass':True,'image_sha256':hashlib.sha256((out/path).read_bytes()).hexdigest(),'visibility_trials':visibility_trials,'occlusion_status':'sampled_shower_rays_checked_visual_review_pending' if visibility_trials else 'visual_review_pending'})

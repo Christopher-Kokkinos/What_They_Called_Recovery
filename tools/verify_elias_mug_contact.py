@@ -18,15 +18,20 @@ for frame in frames:
 for frame in FRAMES:
     pose=state(frame,layout);m=pose['_mug_contact_metrics']
     assert m['palm_body_gap_metres']>.015
-    assert m['thumb_handle_clearance_metres']>=.0005
+    assert .0005<=m['thumb_handle_clearance_metres']<.0011
     for digit,q in m['finger_clearance'].items():
         assert q['sampled_handle_clearance_metres']>=.0005
         if digit in ('index','middle'):
             assert q['role']=='loop_insert'
+            assert q['sampled_handle_clearance_metres']<.0011,'Inserted fingers not seated near rail'
             for p in (q['crease_local'],q['tip_local']):
                 assert -.099<p[0]<-.060 and abs(p[2])<.027,'Distal segments outside loop'
             assert q['proximal_end_local'][1]>.017,'Proximal segment enters handle'
         else:
             assert q['role']=='under_handle_support'
-            assert q['crease_local'][2]<-.047,'Support finger not below lower rail'
+            assert q['crease_local'][2]<-.033,'Support finger not below sloping return'
+    assert m['finger_clearance']['ring']['sampled_handle_clearance_metres']<.002,'Ring finger too far from support'
+    upper=m['finger_clearance']['middle']['proximal_end_local'][2]
+    lower=m['finger_clearance']['ring']['proximal_end_local'][2]
+    assert upper-lower<.025,'Excessive upper/lower finger separation'
 print(json.dumps({'status':'pure_connected_mug_pass','source_frames':len(frames),'maximum_wrist_axis_angle_degrees':maximum,'limitations':['Role-based contact contract; no force simulation','Blender skin/contact and motion visuals pending']}))

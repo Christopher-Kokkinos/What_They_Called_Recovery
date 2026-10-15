@@ -38,3 +38,7 @@ Same command and original checkpoint. Builder modifies only the copied diagnosti
 ## Tapered handle trial (DEC-0066)
 
 Same original checkpoint/command;14 images in fresh mug_ folder. Hand/arm poses unchanged. Shorter outer rail and diagonal lower return replace rectangular bottom; source scene retained. Inspect lower finger clearance and overall handle shape first. Ring/little spacing and exact thumb/crease contacts remain pending subsequent refinement.
+
+## Contact seating (DEC-0067)
+
+Same command and original checkpoint;14 images. Tapered handle retained. Index/middle crease seating and thumb extension refined; lower pair raised closer to upper pair/return. Review thumb top contact, ring support, little-finger spacing, distal crease contact and skin intersections. New quantitative nominal contact bounds pass, rendered surface contact pending. ZIP newest mug_ folder.

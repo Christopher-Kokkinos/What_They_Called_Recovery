@@ -127,3 +127,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 2026-10-15: DEC-0065 supersedes polygon grip with author-confirmed two fingers inside, thumb top, two below and palm gap. Shared smaller diagnostic handle contract; fixed-length/clearance checks pass246 frames, wrist max51.135 degrees. Six-pose/fourteen-image Blender review pending; original checkpoint retained.
 
 2026-10-15: Author requests tapered handle trial (DEC-0066). Shorter outer bar and sloping lower return prepared; all six hand/arm poses unchanged versus DEC-0065. Oriented-rail pure246-frame clearance checks PASS. Fourteen-image handle-only desktop review pending; finger spacing/contact tightening deferred until trial reviewed.
+
+2026-10-15: DEC-0067 prepares contact seating on unchanged tapered handle: index/middle and thumb nominal gaps1 mm, ring below2 mm, upper/lower proximal split24 mm. Pure246-frame regression PASS. Six-pose14-image Blender/author review pending; little remains adjacent below ring, skin/seams/continuous movement still open.

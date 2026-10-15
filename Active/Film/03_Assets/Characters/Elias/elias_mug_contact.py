@@ -51,12 +51,19 @@ def state(frame,layout):
         delta=sub(point,mug);return (dot(delta,lat),dot(delta,along),dot(delta,up))
     for i,digit in enumerate(('index','middle','ring','little')):
         length=[.065,.072,.068,.055][i];lengths=[length*.42,length*.33,length*.25]
-        inserted=i<2;height=[.016,-.003,-.048,-.067][i]
-        first=world(-.105,.026,height)
-        proximal=lat if inserted else unit(add(lat,mul(up,-.65)))
+        inserted=i<2;height=[.018,.001,-.023,-.040][i]
+        first=world(-.105,.032,height)
+        proximal=lat if inserted else unit(add(lat,mul(up,-.35)))
         base=sub(first,mul(proximal,lengths[0]))
-        middle=unit(add(mul(lat,.88),mul(along,-.475)))
-        crease=add(first,mul(middle,lengths[1]))
+        if inserted:
+            # Seat distal crease beside inner outer-rail face: 9 mm centreline
+            # separation allows 8 mm nominal skin radius plus 1 mm gap.
+            dx=.015;dy=-math.sqrt(lengths[1]**2-dx**2)
+            crease=add(first,add(mul(lat,dx),mul(along,dy)))
+        else:
+            # Lower fingers follow the underside of the tapered return.
+            dx=.012;dz=-.011;dy=-math.sqrt(lengths[1]**2-dx**2-dz**2)
+            crease=add(first,add(add(mul(lat,dx),mul(along,dy)),mul(up,dz)))
         tip=add(crease,mul(along,-lengths[2]))
         points=[base,first,crease,tip];chains[digit]=points
         gap=rail_gap(points,local)
@@ -64,8 +71,8 @@ def state(frame,layout):
         metrics[digit]={'role':'loop_insert' if inserted else 'under_handle_support',
             'sampled_handle_clearance_metres':gap,'crease_local':local(crease),
             'tip_local':local(tip),'proximal_end_local':local(first)}
-    thumb_base=world(-.151,-.018,.025);thumb_tip=world(-.101,0,.048)
-    pole=world(-.14,-.045,.075);lengths=[.025,.023,.020];distal=.038
+    thumb_base=world(-.153,-.018,.035);thumb_tip=world(-.092,0,.048)
+    pole=world(-.130,-.010,.058);lengths=[.025,.023,.020];distal=.0415
     joint=two_segment(thumb_base,thumb_tip,pole,lengths[0],distal)
     last=two_segment(joint,thumb_tip,pole,lengths[1],lengths[2]);chains['thumb']=[thumb_base,joint,last,thumb_tip]
     thumb_gap=rail_gap(chains['thumb'],local)

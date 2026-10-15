@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0068",
+    "decision": "DEC-0069",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "bounded_mug_motion_prepared",
+    "status": "mug_contact_cycle_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -145,6 +145,8 @@
     "hand_review_renderer": "Active/Film/04_Scenes/Automation/render_sc001_hand_review.py",
     "focused_flag": "--rig-sample-review",
     "mug_builder": "Active/Film/04_Scenes/Automation/build_sc001_mug_contact_review.py",
-    "mug_motion_flag": "--motion-preview"
+    "mug_motion_flag": "--motion-preview",
+    "mug_contact_cycle_flag": "--contact-cycle",
+    "author_first_drink_blockout_motion_pass": true
   }
 }

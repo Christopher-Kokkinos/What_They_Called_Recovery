@@ -58,3 +58,7 @@ git pull --ff-only
 ```
 
 New **mug_motion_...** folder under Active/Film/_local/SC001. Bake/check140 integer frames1400–1539; render48 PNGs640x360. Open **motion_preview.html** in a browser from its folder, click Play or scrub. Keep motion_frames beside HTML. Original timing24 fps, preview samples8 fps with exact source timestamps. This starts with grip formed and returns towards table; approach/release, exact placement at1540 and later carry excluded. Review wrist/arm continuity, handle slipping, mug tilt and occlusion. This is a bounded motion test, not full-scene/contact acceptance. ZIP the entire newest mug_motion_ folder. Default command without flag still produces14 stills.
+
+## Contact cycle (DEC-0069)
+
+Use the original checkpoint and add **-- --contact-cycle** (instead of --motion-preview). New **mug_cycle_...** folder.186 integer frames1375–1560,48 motion PNGs640x360 and4 contact close-ups1387/1399/1544/1550. Open motion_preview.html, then review contact stills. Passed1400–1539 poses retained; source cup top/handle/motion retained with copied body extended20 mm downward for table support. Evaluate grip formation, supported release and withdrawal. This is a bounded contact-cycle prototype; transitions into surrounding scene/later carry remain pending. ZIP entire newest mug_cycle_ folder.

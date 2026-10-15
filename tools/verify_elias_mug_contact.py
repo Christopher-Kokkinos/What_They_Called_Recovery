@@ -16,10 +16,17 @@ for frame in frames:
     assert s['_mug_contact_metrics']['wrist_axis_angle_degrees']<65,'Excessive wrist bend'
     maximum=max(maximum,s['_mug_contact_metrics']['wrist_axis_angle_degrees'])
 for frame in FRAMES:
-    pose=state(frame,layout)
-    for digit,q in pose['_mug_contact_metrics']['finger_clearance'].items():
-        assert q['bend_degrees']==[90,90]
-        assert q['sampled_handle_clearance_metres']>=.0009
-        points=pose['_hand_plan']['left']['chains'][digit]
-        for point in points:assert abs(sum((point[i]-pose['mug'][i])*pose['_mug_basis'][2][i] for i in range(3))-q['grip_height_metres'])<1e-8,'Finger left common grip plane'
-print(json.dumps({'status':'pure_connected_mug_pass','source_frames':len(frames),'maximum_wrist_axis_angle_degrees':maximum,'limitations':['Shared mug-local grip and articulated wrist; not final acting','Blender skin/contact and motion visuals pending']}))
+    pose=state(frame,layout);m=pose['_mug_contact_metrics']
+    assert m['palm_body_gap_metres']>.015
+    assert m['thumb_handle_clearance_metres']>=.0005
+    for digit,q in m['finger_clearance'].items():
+        assert q['sampled_handle_clearance_metres']>=.0005
+        if digit in ('index','middle'):
+            assert q['role']=='loop_insert'
+            for p in (q['crease_local'],q['tip_local']):
+                assert -.099<p[0]<-.060 and abs(p[2])<.027,'Distal segments outside loop'
+            assert q['proximal_end_local'][1]>.017,'Proximal segment enters handle'
+        else:
+            assert q['role']=='under_handle_support'
+            assert q['crease_local'][2]<-.047,'Support finger not below lower rail'
+print(json.dumps({'status':'pure_connected_mug_pass','source_frames':len(frames),'maximum_wrist_axis_angle_degrees':maximum,'limitations':['Role-based contact contract; no force simulation','Blender skin/contact and motion visuals pending']}))

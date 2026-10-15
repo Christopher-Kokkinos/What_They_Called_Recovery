@@ -8,7 +8,7 @@ sys.path[:0]=[str(Path(__file__).parent),str(ROOT/'Active/Film/03_Assets/Charact
 
 def main():
     import bpy
-    from elias_mug_contact import state,FRAMES
+    from elias_mug_contact import state,FRAMES,HANDLE
     from elias_rig_blender import animate_and_validate
     from sc001_hand_review_blender import render
     if not bpy.app.background or not bpy.data.filepath:raise RuntimeError('Open existing SC001 checkpoint in background')
@@ -26,7 +26,11 @@ def main():
         if obj.name.startswith('CHR_Elias'):
             obj.hide_render=True;obj.name='BASELINE_'+obj.name
     out=local/('mug_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(exist_ok=False)
-    report={'status':'mug_test_build_pending','source_blend':str(source),'scene_accepted':False,'limitations':['Six snapshots only; no continuous motion pass','Paper/dials/keys revisions queued separately','Fixed neutral wrist is a test hypothesis; grip skin/contact pending visual review']}
+    report={'status':'mug_test_build_pending','source_blend':str(source),'scene_accepted':False,'limitations':['Six snapshots only; no continuous motion pass','Paper/dials/keys revisions queued separately','Role-based grip and articulated wrist; skin/contact pending visual review']}
+    # Resize only the copied diagnostic prop, using the same contract as pose checks.
+    for name,position,size in HANDLE:
+        obj=scene.objects['Mug_handle_'+name];obj.location=position;obj.dimensions=size
+    report['handle_geometry_metres']=HANDLE
     from mathutils import Matrix
     for frame in FRAMES:
         scene.frame_set(frame);mug=scene.objects['PRP_CoffeeMug'];mug.rotation_euler=Matrix(state(frame,layout)['_mug_basis']).transposed().to_euler();mug.keyframe_insert(data_path='rotation_euler',frame=frame)

@@ -30,3 +30,7 @@ Same original checkpoint and builder command. Mug position path retained; experi
 ## Diagonal wrap (DEC-0064)
 
 Same command and original source checkpoint. Preserves U bends while moving/rotating whole hand and solving connected arm. Six poses, now fourteen images: six close-ups, six arm views, two extra `_top` images at1460/2510 along mug axis. Check diagonal grip and wrist-side movement in top views; thumb/skin contact and seam remain pending. ZIP entire newest mug_ folder.
+
+## Role-based contacts (DEC-0065; supersedes polygon grip)
+
+Same command and original checkpoint. Builder modifies only the copied diagnostic handle to a78 mm outer height and rebuilds six rig poses: index/middle distal segments inside, thumb above, ring/little below. Source position/timing retained. Fourteen images, fresh mug_ folder. Review crease seating, thumb top contact, support placement, palm gap and wrist continuity. Pure geometry gates pass; rendered skin and continuous movement remain pending. ZIP the entire newest mug_ folder.

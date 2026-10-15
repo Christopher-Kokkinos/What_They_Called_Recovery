@@ -7,9 +7,9 @@ from sc001_room_performance import state as source_state,solve_arm
 FRAMES=[1400,1411,1460,1500,2450,2510]
 _CACHE={}
 # Shared by the pose checks and isolated Blender prop update (metres).
-HANDLE=[('outer',(-.105,0,0),(.012,.018,.078)),
-        ('top',(-.081,0,.033),(.060,.018,.012)),
-        ('bottom',(-.081,0,-.033),(.060,.018,.012))]
+HANDLE=[('outer',(-.105,0,.0135),(.012,.018,.051),0),
+        ('top',(-.081,0,.033),(.060,.018,.012),0),
+        ('bottom',(-.081,0,-.0225),(math.hypot(.048,.021),.018,.012),math.atan2(.021,.048))]
 FINGER_RADIUS=.008
 
 def rail_gap(points,world_to_local):
@@ -17,8 +17,11 @@ def rail_gap(points,world_to_local):
     for a,b in zip(points,points[1:]):
         for k in range(65):
             local=world_to_local(add(a,mul(sub(b,a),k/64)))
-            for _,center,size in HANDLE:
-                d=[abs(q-c)-h/2 for q,c,h in zip(local,center,size)]
+            for _,center,size,angle in HANDLE:
+                delta=sub(local,center)
+                # Inverse of the same local Y rotation used by Blender.
+                rotated=(math.cos(angle)*delta[0]-math.sin(angle)*delta[2],delta[1],math.sin(angle)*delta[0]+math.cos(angle)*delta[2])
+                d=[abs(q)-h/2 for q,h in zip(rotated,size)]
                 signed=math.sqrt(sum(max(0,q)**2 for q in d))+min(0,max(d))
                 gap=min(gap,signed-FINGER_RADIUS)
     return gap

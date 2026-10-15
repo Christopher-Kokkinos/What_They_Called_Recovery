@@ -28,8 +28,8 @@ def main():
     out=local/('mug_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(exist_ok=False)
     report={'status':'mug_test_build_pending','source_blend':str(source),'scene_accepted':False,'limitations':['Six snapshots only; no continuous motion pass','Paper/dials/keys revisions queued separately','Role-based grip and articulated wrist; skin/contact pending visual review']}
     # Resize only the copied diagnostic prop, using the same contract as pose checks.
-    for name,position,size in HANDLE:
-        obj=scene.objects['Mug_handle_'+name];obj.location=position;obj.dimensions=size
+    for name,position,size,angle in HANDLE:
+        obj=scene.objects['Mug_handle_'+name];obj.rotation_euler=(0,0,0);obj.location=position;obj.dimensions=size;obj.rotation_euler=(0,angle,0)
     report['handle_geometry_metres']=HANDLE
     from mathutils import Matrix
     for frame in FRAMES:

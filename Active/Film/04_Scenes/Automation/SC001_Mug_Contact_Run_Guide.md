@@ -34,3 +34,7 @@ Same command and original source checkpoint. Preserves U bends while moving/rota
 ## Role-based contacts (DEC-0065; supersedes polygon grip)
 
 Same command and original checkpoint. Builder modifies only the copied diagnostic handle to a78 mm outer height and rebuilds six rig poses: index/middle distal segments inside, thumb above, ring/little below. Source position/timing retained. Fourteen images, fresh mug_ folder. Review crease seating, thumb top contact, support placement, palm gap and wrist continuity. Pure geometry gates pass; rendered skin and continuous movement remain pending. ZIP the entire newest mug_ folder.
+
+## Tapered handle trial (DEC-0066)
+
+Same original checkpoint/command;14 images in fresh mug_ folder. Hand/arm poses unchanged. Shorter outer rail and diagonal lower return replace rectangular bottom; source scene retained. Inspect lower finger clearance and overall handle shape first. Ring/little spacing and exact thumb/crease contacts remain pending subsequent refinement.

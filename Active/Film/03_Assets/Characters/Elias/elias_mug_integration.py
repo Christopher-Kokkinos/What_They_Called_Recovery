@@ -64,5 +64,6 @@ def state(frame,layout):
             s=blend_hand(s,cycle_state(1560,layout),1-t)
         elif 2400<=frame<2430:
             s=blend_hand(s,cycle_state(2430,layout),ramp(frame,2400,2430))
+    s['_palm_controls']=('left',)
     _CACHE[key]=deepcopy(s)
     return s

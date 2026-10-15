@@ -25,9 +25,13 @@ def bones(s):
         palm=hand_plan[side]['palm'];center=palm['center'];axis=mul(palm['basis'][2],-1)
         hand_origin=s.get('_hand_origins',{}).get(side,center)
         bone('hand.'+suffix,hand_origin,add(hand_origin,mul(axis,.10)),'forearm.'+suffix,palm['basis'][0])
+        palm_parent='hand.'+suffix
+        if side in s.get('_palm_controls',()):
+            palm_parent='palm.'+suffix
+            bone(palm_parent,center,add(center,mul(axis,.06)),'hand.'+suffix,palm['basis'][0])
         for digit,points in hand_plan[side]['chains'].items():
             for digit_index,(a,b) in enumerate(zip(points,points[1:])):
-                name=f'{digit}_{digit_index+1}.{suffix}';parent='hand.'+suffix if digit_index==0 else f'{digit}_{digit_index}.{suffix}'
+                name=f'{digit}_{digit_index+1}.{suffix}';parent=palm_parent if digit_index==0 else f'{digit}_{digit_index}.{suffix}'
                 bone(name,a,b,parent,palm['basis'][0])
         bone('thigh.'+suffix,h,k,'pelvis');bone('calf.'+suffix,k,ankle,'thigh.'+suffix)
         foot=boxes[side+'_foot'];axis=foot['basis'][1]
@@ -82,6 +86,7 @@ def skin(rest):
                 w=max(0,min(1,(t-.85)/.30));groups.append({first:1-w,second:w})
             tube(centers,radii,axes,groups,0)
         for name,bone_name,material in [(side+'_palm','hand.'+suffix,1),(side+'_foot','foot.'+suffix,2)]:
+            if name.endswith('_palm') and side in rest.get('_palm_controls',()):bone_name='palm.'+suffix
             b=hands(rest)[side]['palm'] if name.endswith('_palm') else boxes[name];begin=len(verts);ellipsoid(b['center'],b['size'],b['basis'],bone_name,material)
             if name.endswith('_palm'):palm_indices[suffix]=list(range(begin,len(verts)))
     for side,hand in hands(rest).items():
@@ -101,5 +106,6 @@ def skin(rest):
         # replace the conspicuous separate spherical wrist connector.
         wrist=j[side+'_arm'][2];elbow=j[side+'_arm'][1];center=hand['palm']['center']
         a=mix(elbow,wrist,.92);b=mix(wrist,center,.5);c=center
-        axis=unit(sub(wrist,elbow));tube([a,b,c],[.042,.030,.020],[axis]*3,[{'forearm.'+suffix:1},{'forearm.'+suffix:.5,'hand.'+suffix:.5},{'hand.'+suffix:1}],1)
+        palm_bone='palm.'+suffix if side in rest.get('_palm_controls',()) else 'hand.'+suffix
+        axis=unit(sub(wrist,elbow));tube([a,b,c],[.042,.030,.020],[axis]*3,[{'forearm.'+suffix:1},{'forearm.'+suffix:.5,palm_bone:.5},{palm_bone:1}],1)
     return {'vertices':verts,'faces':faces,'weights':weights,'face_materials':materials,'palm_vertex_indices':palm_indices}

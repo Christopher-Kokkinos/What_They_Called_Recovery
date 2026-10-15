@@ -70,3 +70,7 @@ Same original checkpoint and builder, use **-- --second-pickup**. Fresh **mug_se
 ## Boundary joins (DEC-0071)
 
 Same original checkpoint and builder, use **-- --join-review**. New **mug_joins_...** folder: four subfolders first_approach/release_to_rest/second_approach/carry_join,62 motion images total plus4 root contact closeups. Open **review_index.html** and each linked player, then inspect closeups1374/1561/2429/2511. ZIP entire newest mug_joins_ folder.175 disjoint integer poses are baked/read back; saved .blend defaults to first clip, gaps between clips are NOT whole-scene animation validation. Original body/table and known support gap retained. Initial approach lengthened; source1561 pop smoothed; scene room cuts preserved. Blender boundary/skin/roll review pending before full-scene bake.
+
+## Palm mapping repair (DEC-0072)
+
+If --join-review fails at palm target mapping~0.055 m, pull update and rerun the identical command against the original checkpoint. Integrated rig now uses49 bones with independent left palm control; all earlier diagnostic modes keep48 bones.100-micron evaluated palm gate remains unchanged. New output folder only after a successful build; failed folder can remain. Same four clips/62 motion images+4 closeups; inspect review_index.html after successful execution.

@@ -28,7 +28,7 @@ def render(bpy,scene,state,layout,out,samples=None,arm_context=False):
             for x in (-1,1):
                 for y in (-1,1):
                     for z in (-1,1):points.append(center+sum((Vector(palm['basis'][i])*palm['size'][i]*v/2 for i,v in enumerate((x,y,z))),Vector()))
-            prefix='Drawer_front' if frame in (600,640,850) else 'SET_rear_wall_taps' if frame==1213 else 'Mug_' if frame in (1411,2510) else 'Key_' if frame in (2395,2629) else 'Envelope_' if frame in (2300,2320) else 'Letter_'
+            prefix='Mug_' if '_mug_contact_metrics' in state(frame,layout) else 'Drawer_front' if frame in (600,640,850) else 'SET_rear_wall_taps' if frame==1213 else 'Mug_' if frame in (1411,2510) else 'Key_' if frame in (2395,2629) else 'Envelope_' if frame in (2300,2320) else 'Letter_'
             deps=bpy.context.evaluated_depsgraph_get()
             for obj in scene.objects:
                 if (obj.name.startswith(prefix) or (prefix=='Drawer_front' and obj.name=='Drawer_handle')) and obj.type=='MESH' and not obj.hide_render:

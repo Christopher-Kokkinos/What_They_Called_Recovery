@@ -14,3 +14,7 @@ git pull --ff-only
 Reuses apartment/props, rebuilds only experimental Elias rig at six mug poses. Saves a new mug_ folder under Active/Film/_local/SC001 before rendering six close-ups and six wider arm views. ZIP that entire newest mug_ folder. Input blend retained. No full animation rebuild.
 
 Review wrist attachment, forearm rotation, elbow position and actual mug grip. Neutral aligned wrist is a hypothesis; anatomy/handle clearance still need visual assessment. Intermediate animation, paper/dial/keys revisions and final scene acceptance remain pending. See DEC-0060.
+
+## Handle-target refinement (DEC-0061)
+
+Run the same command against the original rig_scene_20261014_204455_57a2b099 checkpoint. New code rebuilds only six experimental mug poses with handle-coordinate finger/thumb targets and corrected Mug_ framing at every pose. Output remains a fresh mug_ folder with twelve images. Wrist surface seam remains open. Validation records any finger target residuals; six planned review grips are required reachable by pure tests. Skin contact and motion still require review.

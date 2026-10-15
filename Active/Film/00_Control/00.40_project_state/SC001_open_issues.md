@@ -33,3 +33,5 @@ Frame 1213 opaque-water overlay: CLEARED by targeted desktop review (Reports/Fil
 ## 2026-10-15 mug/table/posture correction — DEFERRED (DEC-0070)
 
 Author passes bounded mug contact-cycle motion for this stage, flags telescopic mug and crouched reach. Restore original180 mm body (remove20 mm diagnostic extension), raise table and coordinate its letter/envelope/keys/chair contacts and both mug pickups. Reduce knee bend, use small forward lean from upright stance. Height/lean targets pending coordinated solve;20 mm initial support discrepancy alone does not determine desired working height. Keep this open through later layout/posture pass. Second-pickup review retains original checkpoint body/table and known support gap; no support acceptance. Final wrist seam/skin contact and keys pinch/immediate pocketing remain open.
+
+2026-10-15 DEC-0071: Source1561 crouch-to-stand pop corrected in integrated target preparation, not yet Blender/visually passed. Review boundaries and consistent connected-left-wrist convention before full-scene bake. Table height, original mug/body support, upright working reach and skin/contact polish remain open.

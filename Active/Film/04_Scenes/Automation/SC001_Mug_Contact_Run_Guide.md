@@ -66,3 +66,7 @@ Use the original checkpoint and add **-- --contact-cycle** (instead of --motion-
 ## Second pickup (DEC-0070)
 
 Same original checkpoint and builder, use **-- --second-pickup**. Fresh **mug_second_...** folder:81 integer frames2430–2510,41 motion images640x360 plus4 contact closeups2430/2440/2450/2510. Open motion_preview.html and review stills, then ZIP entire folder. Passed carry poses2450–2510 retained; right arm/key geometry/targets retained, not accepted as final key action. Original checkpoint mug body used; table/posture and20 mm support gap explicitly deferred. Historical --contact-cycle retains extended trial body for reproducibility. Whole-scene integration pending.
+
+## Boundary joins (DEC-0071)
+
+Same original checkpoint and builder, use **-- --join-review**. New **mug_joins_...** folder: four subfolders first_approach/release_to_rest/second_approach/carry_join,62 motion images total plus4 root contact closeups. Open **review_index.html** and each linked player, then inspect closeups1374/1561/2429/2511. ZIP entire newest mug_joins_ folder.175 disjoint integer poses are baked/read back; saved .blend defaults to first clip, gaps between clips are NOT whole-scene animation validation. Original body/table and known support gap retained. Initial approach lengthened; source1561 pop smoothed; scene room cuts preserved. Blender boundary/skin/roll review pending before full-scene bake.

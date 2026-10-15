@@ -22,9 +22,12 @@ def second_schedule():
     return list(range(2430,2511)),list(range(2430,2511,2))
 
 
-def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False):
+def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None):
     """One fixed camera/scale for the full path, avoiding auto-frame pumping."""
     bake_frames,render_frames=second_schedule() if second_pickup else cycle_schedule() if contact_cycle else (BAKE_FRAMES,RENDER_FRAMES)
+    if window is not None:
+        _,a,b=window;bake_frames=list(range(a,b+1));render_frames=list(range(a,b+1,3))
+        if render_frames[-1]!=b:render_frames.append(b)
     start,end=bake_frames[0],bake_frames[-1];step=2 if second_pickup else 4 if contact_cycle else STEP
     from mathutils import Vector
     from bpy_extras.object_utils import world_to_camera_view
@@ -80,7 +83,7 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False):
             'source_start':start,'source_end':end,'duration_seconds':(end-start+1)/SOURCE_FPS,
             'entries':entries,'camera':{'name':cam.name,'location':list(cam.location),'target':list(target),'ortho_scale':data.ortho_scale,
             'fixed_for_entire_clip':True,'containment_pass':True,'occlusion_status':'visual_review_pending'},
-            'limitations':['Second pickup only; table/posture correction and scene integration pending' if second_pickup else 'Bounded contact cycle; integration with previous/following scene motion pending' if contact_cycle else 'Starts with grip formed; approach/release excluded',str(len(render_frames))+' low-resolution samples; every integer pose validated separately','Final sample may have shorter interval; use timestamps for exact timing','No force simulation or evaluated skin collision pass']}
+            'limitations':['Boundary join clip; full-scene Blender validation pending' if window is not None else 'Second pickup only; table/posture correction and scene integration pending' if second_pickup else 'Bounded contact cycle; integration with previous/following scene motion pending' if contact_cycle else 'Starts with grip formed; approach/release excluded',str(len(render_frames))+' low-resolution samples; every integer pose validated separately','Final sample may have shorter interval; use timestamps for exact timing','No force simulation or evaluated skin collision pass']}
         (out/'motion_preview_manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
         # Local image-sequence player: no video encoder or new software required.
         player="""<!doctype html><meta charset="utf-8"><title>SC001 mug motion review</title>
@@ -96,6 +99,7 @@ seek.oninput=()=>{show(Number(seek.value));start=performance.now()-frames[curren
 function tick(now){if(running){let time=((now-start)/1000)%manifest.duration_seconds;let i=0;while(i+1<frames.length&&frames[i+1].time_seconds<=time)i++;if(i!==current)show(i);}requestAnimationFrame(tick);}
 show(0);requestAnimationFrame(tick);
 </script>"""
+        if window is not None:player=player.replace('SC001 first mug lift and return','SC001 '+window[0]).replace('Grip already formed; approach and release excluded.','Boundary transition review; full-scene Blender validation remains pending.')
         if second_pickup:player=player.replace('SC001 first mug lift and return','SC001 second mug pickup').replace('Grip already formed; approach and release excluded.','Second pickup after letter pocketing. Table height/posture correction remains deferred.')
         if contact_cycle:player=player.replace('Grip already formed; approach and release excluded.','Contact-cycle trial includes approach, grip formation, placement and release. Scene integration remains pending.')
         (out/'motion_preview.html').write_text(player.replace('__MANIFEST__',json.dumps(manifest)),encoding='utf-8')

@@ -1,0 +1,13 @@
+# DEC-0071 — Join mug actions to surrounding motion
+
+2026-10-15. Second-pickup ZIP mug_second_20261015_172936_1248a6a0 reviewed:41 motion images plus4 closeups, all45 hashes match.81 Blender frames pass; wrist gap2.95926191e-7 m, endpoint1.39727689e-6 m,194400 finite vertices; mug position error0 and basis4.37113883e-8. Assistant provisionally passes second pickup for blockout; author requests continuation. Not final scene/contact acceptance.
+
+Add elias_mug_integration as target-state layer over unchanged source, lifecycle and held-grip modules. Passed formed grip and first release remain exact1387–1560; second cycle exact2430–2510. Continue tested held grip through end3168. Outside mug work, preserve source hand target positions but use connected-left-wrist origin consistently, avoiding a roll-convention switch at patch edges. Right-hand paper/keys contact quality is not passed by this structural convention.
+
+Initial source resting wrist differs from cycle start by~573 mm; six-frame bridge would move up to138 mm/frame. Extend approach1369–1387 using smoothstep palm/wrist/base and normalized segment-direction interpolation, preserving segment lengths. Revises earlier approach1375–1386; retained formed-grip interval starts1387. Room relocation at1369 stays a cut, not a physical traverse.
+
+Release-to-rest1560–1600 blends wrist/palm/fingers. Original source jumps crouched to upright at1561 (~761 mm wrist jump in naive join). Reuse source's existing smooth table-rise kinematics from1410–1460, retimed to1560–1600, then solve left rest/bridge with fixed arm lengths. Actual-time prop/root paths remain unchanged. This removes a transition pop, not the deferred higher-table/less-crouched working stance redesign.
+
+Second approach blends2400–2430 to tested open hand. Carry continues past2510;2521 room cut retained. Pure3168-frame regression passes fixed bone lengths, left wrist connection, all root/mug/keys/letter/envelope paths, exact retained actions and transition bounds. Maximum wrist steps first58.947/release21.153/second28.588/carry16.573 mm per source frame; numerical bound is not final naturalness certification.
+
+--join-review bakes/reads175 poses in four disjoint windows1369–1400,1540–1600,2400–2450,2490–2520; renders62 small images plus4 closeups. HTML index links four players. Original checkpoint body/table retained; known support gap and table/posture correction remain open. Sparse .blend is explicitly not whole-scene animation. All-frame pure target validation is distinct from175-frame Blender boundary readback, which remains pending. No full-scene render requested yet.

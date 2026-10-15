@@ -1,0 +1,9 @@
+# SC001 second pickup review and join preparation
+
+Reviewed mug_second_20261015_172936_1248a6a0.zip all41 motion images and4 contact closeups; all45 hashes match.81-frame Blender readback passes; wrist gap2.95926191e-7 m, endpoint1.39727689e-6 m; mug position0 m, basis4.37113883e-8. Hand approach/grip/lift reads coherent at blockout scale. Table support gap/crouch, hooked finger relaxation and wrist seams remain open. Author requests next step after provisional review.
+
+DEC-0071 adds integrated target-state layer, preserving root/prop routes and tested1387–1560/2430–2510 states, extending held grip to3168. Initial approach is lengthened, revising1375–1386. Source1561 body pop smoothed using existing source-rise kinematics. No canonical source choreography file modified; wrapper records judgment explicitly. Consistent connected-left-wrist origin also applies outside mug intervals; generic hand positions retained, deformation appearance still needs review.
+
+Validation: tools/verify_elias_mug_integration.py PASS3168 source frames, fixed bones, left wrist continuity, source root/mug/keys/letter/envelope equality and retained intervals. Max wrist steps58.94627962/21.15233097/28.58709720/16.57231912 mm in four review windows. Python compilation, film workspace, HTML player JavaScript syntax and diff checks PASS. No Blender installed locally.
+
+Next --join-review:175 disjoint integer-frame rig/mug readbacks,62 images640x360 plus4 closeups1374/1561/2429/2511. review_index.html links four fixed-camera players. Whole-scene sparse key gaps must not be played as validated animation. Original180 mm mug and table retained, support gap deferred. Boundary skin/occlusion/roll checks pending; after review, integrate target provider into full scene build. Mathematical continuity does not certify exact skin collisions, forces or whole-scene acting.

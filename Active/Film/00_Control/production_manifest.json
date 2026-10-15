@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0072",
+    "decision": "DEC-0073",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "mug_join_palm_mapping_fix_prepared",
+    "status": "integrated_full_scene_review_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -153,6 +153,8 @@
     "table_posture_correction": "deferred_in_SC001_open_issues",
     "mug_join_review_flag": "--join-review",
     "integrated_target_module": "Active/Film/03_Assets/Characters/Elias/elias_mug_integration.py",
-    "integrated_palm_control": "left_only_opt_in_49_bones"
+    "integrated_palm_control": "left_only_opt_in_49_bones",
+    "full_scene_review_flag": "--full-scene-review",
+    "integrated_boundary_palm_mapping_runtime_pass": true
   }
 }

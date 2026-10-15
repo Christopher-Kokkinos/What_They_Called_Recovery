@@ -74,3 +74,7 @@ Same original checkpoint and builder, use **-- --join-review**. New **mug_joins_
 ## Palm mapping repair (DEC-0072)
 
 If --join-review fails at palm target mapping~0.055 m, pull update and rerun the identical command against the original checkpoint. Integrated rig now uses49 bones with independent left palm control; all earlier diagnostic modes keep48 bones.100-micron evaluated palm gate remains unchanged. New output folder only after a successful build; failed folder can remain. Same four clips/62 motion images+4 closeups; inspect review_index.html after successful execution.
+
+## Continuous scene bake / overnight review (DEC-0073)
+
+Same original checkpoint/builder, use **-- --full-scene-review**. New **sc001_integrated_...** folder.3168 rig and mug integer-frame readbacks, then save **SC001_integrated_rig_v0.1.blend** and validation before rendering529 PNGs640x360. Existing source cameras/shot cuts retained. Progress prints RIG BAKE, RIG READBACK and FULL SCENE REVIEW; runtime hardware-dependent. Open **motion_preview.html** after completion; partial player/manifest retained if render stops. ZIP entire newest sc001_integrated_ folder. Computer must remain awake; screen may turn off. This is sampled4fps review of24fps bake, not final frames/scene acceptance. Deferred table/posture/skin/contact corrections remain open.

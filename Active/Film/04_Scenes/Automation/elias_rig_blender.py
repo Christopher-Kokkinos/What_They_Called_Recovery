@@ -49,7 +49,8 @@ def pose_frame(bpy,rig,s,frame):
 def animate_and_validate(bpy,scene,layout,state,end,frames=None):
     rig,obj,definition=create(bpy,scene,state(889,layout))
     checked_frames=list(frames) if frames is not None else list(range(1,end+1))
-    for frame in checked_frames:
+    for index,frame in enumerate(checked_frames):
+        if len(checked_frames)>500 and index%240==0:print(f'RIG BAKE: {index}/{len(checked_frames)} frames',flush=True)
         scene.frame_set(frame);pose_frame(bpy,rig,state(frame,layout),frame)
     from sc001_motion_blender import linearise_owned_actions
     linearise_owned_actions([rig])
@@ -58,7 +59,8 @@ def animate_and_validate(bpy,scene,layout,state,end,frames=None):
     wrist_gap=0
     endpoint=scale=0;lowest=math.inf;checked=0
     # Read back the keyed action, including frames between rendered preview samples.
-    for frame in checked_frames:
+    for index,frame in enumerate(checked_frames):
+        if len(checked_frames)>500 and index%240==0:print(f'RIG READBACK: {index}/{len(checked_frames)} frames',flush=True)
         scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
         evaluated=rig.evaluated_get(deps);target=bones(state(frame,layout))
         for name,b in target.items():

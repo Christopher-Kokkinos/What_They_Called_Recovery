@@ -37,3 +37,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 2026-10-15 DEC-0071: Source1561 crouch-to-stand pop corrected in integrated target preparation, not yet Blender/visually passed. Review boundaries and consistent connected-left-wrist convention before full-scene bake. Table height, original mug/body support, upright working reach and skin/contact polish remain open.
 
 2026-10-15 DEC-0072: Integrated boundary test FAILED55.005 mm rigid palm mapping; opt-in independent left palm control/weights prepared. Pure centroid mapping regression added, desktop evaluated skin rerun pending. Do not close from bone targets alone.
+
+2026-10-15 DEC-0073:55 mm palm mapping defect CLEARED in175-frame integrated boundary readback (0.00996 mm maximum under0.1 mm gate). Whole-scene3168-frame runtime remains pending. Initial reach partly body-occluded, clearance not established. No final scene pass.

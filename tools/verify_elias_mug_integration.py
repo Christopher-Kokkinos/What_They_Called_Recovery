@@ -9,6 +9,11 @@ from elias_mug_contact import state as held
 from sc001_room_performance import state as source
 from elias_rig_math import bones,skin
 from elias_articulation import add,sub,mul,dot
+from sc001_full_scene_review import SAMPLES,camera_name
+assert len(SAMPLES)==529 and SAMPLES[0]==1 and SAMPLES[-1]==3168
+assert len(set(SAMPLES))==len(SAMPLES)
+assert camera_name(2641)=='CAM_departure_inside' and camera_name(3061)=='CAM_departure_outside' and camera_name(3121)=='CAM_pigeons'
+assert all(camera_name(f).startswith('CAM_') for f in range(1,3169))
 layout=json.loads((ROOT/'Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json').read_text())
 rest=state(889,layout);reference=bones(rest);surface=skin(rest);max_steps={};previous=None;maximum_palm_error=0
 # Predict centroid deformation from actual saved skin weights/rest transforms,

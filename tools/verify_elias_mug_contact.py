@@ -17,5 +17,11 @@ for frame in frames:
     maximum=max(maximum,s['_mug_contact_metrics']['wrist_axis_angle_degrees'])
 for frame in FRAMES:
     residuals=state(frame,layout)['_mug_contact_metrics']['handle_target_residuals_metres']
-    assert max(residuals.values())<1e-8,('Review-pose handle target unreachable',frame,residuals)
+    for digit in ('index','middle','ring','little'):
+        assert residuals[digit]['bend_degrees']==[90,90]
+        assert math.isfinite(residuals[digit]['sampled_rail_clearance_metres'])
+        points=state(frame,layout)['_hand_plan']['left']['chains'][digit]
+        vectors=[tuple(b-a for a,b in zip(p,q)) for p,q in zip(points,points[1:])]
+        for u,v in zip(vectors,vectors[1:]):assert abs(sum(a*b for a,b in zip(u,v)))<1e-9,'Finger folded instead of orthogonal U bend'
+        assert math.dist(points[0],points[-1])>.018,'Grip opening collapsed'
 print(json.dumps({'status':'pure_connected_mug_pass','source_frames':len(frames),'maximum_wrist_axis_angle_degrees':maximum,'limitations':['Neutral aligned wrist test, not final acting','Blender skin/contact and motion visuals pending']}))

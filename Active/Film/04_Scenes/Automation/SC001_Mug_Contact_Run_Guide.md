@@ -18,3 +18,7 @@ Review wrist attachment, forearm rotation, elbow position and actual mug grip. N
 ## Handle-target refinement (DEC-0061)
 
 Run the same command against the original rig_scene_20261014_204455_57a2b099 checkpoint. New code rebuilds only six experimental mug poses with handle-coordinate finger/thumb targets and corrected Mug_ framing at every pose. Output remains a fresh mug_ folder with twelve images. Wrist surface seam remains open. Validation records any finger target residuals; six planned review grips are required reachable by pure tests. Skin contact and motion still require review.
+
+## Open U bend shape (DEC-0062)
+
+Same command/six poses/twelve images. Four fingers now use two open orthogonal bends rather than endpoint folding. Validation planned_contacts records signed sampled rail clearance for each finger; negative gap means remaining overlap, not a contact pass. Review U shape, middle segment spacing and thumb opposition; retain connected wrist. Search is cached per pose/layout. Finger/handle fit and wrist surface seam remain open.

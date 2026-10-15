@@ -18,10 +18,14 @@ def cycle_schedule():
     return bake,renders
 
 
-def render(bpy,scene,state,layout,out,contact_cycle=False):
+def second_schedule():
+    return list(range(2430,2511)),list(range(2430,2511,2))
+
+
+def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False):
     """One fixed camera/scale for the full path, avoiding auto-frame pumping."""
-    bake_frames,render_frames=cycle_schedule() if contact_cycle else (BAKE_FRAMES,RENDER_FRAMES)
-    start,end=bake_frames[0],bake_frames[-1];step=4 if contact_cycle else STEP
+    bake_frames,render_frames=second_schedule() if second_pickup else cycle_schedule() if contact_cycle else (BAKE_FRAMES,RENDER_FRAMES)
+    start,end=bake_frames[0],bake_frames[-1];step=2 if second_pickup else 4 if contact_cycle else STEP
     from mathutils import Vector
     from bpy_extras.object_utils import world_to_camera_view
     from elias_hand_math import hands
@@ -47,10 +51,11 @@ def render(bpy,scene,state,layout,out,contact_cycle=False):
             scene.frame_set(frame);bpy.context.view_layer.update();s=state(frame,layout)
             points.extend(Vector(p) for chain in hands(s)['left']['chains'].values() for p in chain)
             points.extend(Vector(p) for p in s['joints']['left_arm'])
+            if second_pickup:points.extend(Vector(p) for p in s['joints']['right_arm'])
             points.extend(Vector(s['joints'][name]) for name in ('head','pelvis'))
             deps=bpy.context.evaluated_depsgraph_get()
             for obj in scene.objects:
-                if obj.type=='MESH' and obj.name.startswith('Mug_') and not obj.hide_render:
+                if obj.type=='MESH' and (obj.name.startswith('Mug_') or (second_pickup and obj.name.startswith('Key_'))) and not obj.hide_render:
                     evaluated=obj.evaluated_get(deps)
                     points.extend(evaluated.matrix_world@Vector(v) for v in evaluated.bound_box)
         low=Vector(tuple(min(p[i] for p in points) for i in range(3)))
@@ -75,7 +80,7 @@ def render(bpy,scene,state,layout,out,contact_cycle=False):
             'source_start':start,'source_end':end,'duration_seconds':(end-start+1)/SOURCE_FPS,
             'entries':entries,'camera':{'name':cam.name,'location':list(cam.location),'target':list(target),'ortho_scale':data.ortho_scale,
             'fixed_for_entire_clip':True,'containment_pass':True,'occlusion_status':'visual_review_pending'},
-            'limitations':['Bounded contact cycle; integration with previous/following scene motion pending' if contact_cycle else 'Starts with grip formed; approach/release excluded','48 low-resolution samples; every integer pose validated separately','Final sample may have shorter interval; use timestamps for exact timing','No force simulation or evaluated skin collision pass']}
+            'limitations':['Second pickup only; table/posture correction and scene integration pending' if second_pickup else 'Bounded contact cycle; integration with previous/following scene motion pending' if contact_cycle else 'Starts with grip formed; approach/release excluded',str(len(render_frames))+' low-resolution samples; every integer pose validated separately','Final sample may have shorter interval; use timestamps for exact timing','No force simulation or evaluated skin collision pass']}
         (out/'motion_preview_manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
         # Local image-sequence player: no video encoder or new software required.
         player="""<!doctype html><meta charset="utf-8"><title>SC001 mug motion review</title>
@@ -91,6 +96,7 @@ seek.oninput=()=>{show(Number(seek.value));start=performance.now()-frames[curren
 function tick(now){if(running){let time=((now-start)/1000)%manifest.duration_seconds;let i=0;while(i+1<frames.length&&frames[i+1].time_seconds<=time)i++;if(i!==current)show(i);}requestAnimationFrame(tick);}
 show(0);requestAnimationFrame(tick);
 </script>"""
+        if second_pickup:player=player.replace('SC001 first mug lift and return','SC001 second mug pickup').replace('Grip already formed; approach and release excluded.','Second pickup after letter pocketing. Table height/posture correction remains deferred.')
         if contact_cycle:player=player.replace('Grip already formed; approach and release excluded.','Contact-cycle trial includes approach, grip formation, placement and release. Scene integration remains pending.')
         (out/'motion_preview.html').write_text(player.replace('__MANIFEST__',json.dumps(manifest)),encoding='utf-8')
         return manifest

@@ -20,11 +20,16 @@ def state(frame,layout):
     key=(frame,json.dumps(layout,sort_keys=True))
     if key in _CACHE:return deepcopy(_CACHE[key])
     s=deepcopy(held_state(frame,layout))
-    if frame==889 or 1400<=frame<=1539:return s
+    if frame==889 or 1400<=frame<=1539 or 2450<=frame<=2510:return s
+    if not (1375<=frame<=1560 or 2430<=frame<2450):return s
     lat,along,up=s['_mug_basis'];hand=s['_hand_plan']['left']
-    approach=frame<1400
-    grip=ramp(frame,1387,1400) if approach else 1-ramp(frame,1540,1550)
-    away=(1-ramp(frame,1375,1390)) if approach else ramp(frame,1550,1560)
+    second=2430<=frame<2450
+    approach=frame<1400 or second
+    if second:
+        grip=ramp(frame,2438,2450);away=1-ramp(frame,2430,2440)
+    else:
+        grip=ramp(frame,1387,1400) if approach else 1-ramp(frame,1540,1550)
+        away=(1-ramp(frame,1375,1390)) if approach else ramp(frame,1550,1560)
     offset=add(mul(lat,-.09*away),mul(along,-.025*away))
     # Rotate digit fans out of the loop, preserving every segment length.
     # Opposite thumb sweep opens the opposed anchor rather than crossing it.
@@ -51,7 +56,7 @@ def state(frame,layout):
     angle_wrist=math.degrees(math.acos(max(-1,min(1,dot(unit(sub(wrist,s['joints']['left_arm'][1])),along)))))
     assert angle_wrist<65,('Lifecycle wrist bend',frame,angle_wrist)
     s['_mug_contact_metrics'].update(wrist_axis_angle_degrees=angle_wrist)
-    s['_mug_lifecycle']={'phase':'approach_and_form_grip' if approach else 'place_open_withdraw',
+    s['_mug_lifecycle']={'phase':'second_approach_and_form_grip' if second else 'approach_and_form_grip' if approach else 'place_open_withdraw',
         'grip_amount':grip,'withdrawal_fraction':away,'sampled_digit_rail_gaps_metres':gaps}
     _CACHE[key]=deepcopy(s)
     return s

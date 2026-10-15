@@ -62,3 +62,7 @@ New **mug_motion_...** folder under Active/Film/_local/SC001. Bake/check140 inte
 ## Contact cycle (DEC-0069)
 
 Use the original checkpoint and add **-- --contact-cycle** (instead of --motion-preview). New **mug_cycle_...** folder.186 integer frames1375–1560,48 motion PNGs640x360 and4 contact close-ups1387/1399/1544/1550. Open motion_preview.html, then review contact stills. Passed1400–1539 poses retained; source cup top/handle/motion retained with copied body extended20 mm downward for table support. Evaluate grip formation, supported release and withdrawal. This is a bounded contact-cycle prototype; transitions into surrounding scene/later carry remain pending. ZIP entire newest mug_cycle_ folder.
+
+## Second pickup (DEC-0070)
+
+Same original checkpoint and builder, use **-- --second-pickup**. Fresh **mug_second_...** folder:81 integer frames2430–2510,41 motion images640x360 plus4 contact closeups2430/2440/2450/2510. Open motion_preview.html and review stills, then ZIP entire folder. Passed carry poses2450–2510 retained; right arm/key geometry/targets retained, not accepted as final key action. Original checkpoint mug body used; table/posture and20 mm support gap explicitly deferred. Historical --contact-cycle retains extended trial body for reproducibility. Whole-scene integration pending.

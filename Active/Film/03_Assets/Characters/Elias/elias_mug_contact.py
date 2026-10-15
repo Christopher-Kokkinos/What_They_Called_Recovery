@@ -1,76 +1,52 @@
-"""Isolated connected-wrist mug experiment; no source choreography mutation."""
+"""Isolated mug-local shared grip; source position/timing retained."""
 from copy import deepcopy
 import math,json
 from elias_articulation import add,sub,mul,unit,dot,cross,two_segment
 from elias_hand_math import hands
 from sc001_room_performance import state as source_state,solve_arm
-_CACHE={}
 FRAMES=[1400,1411,1460,1500,2450,2510]
+_CACHE={}
 
 
 def state(frame,layout):
-    # Shared constructor requests 889 as rest; choose a mug hold rest pose.
     frame=1460 if frame==889 else frame
-    cache_key=(frame,json.dumps(layout,sort_keys=True))
-    if cache_key in _CACHE:return deepcopy(_CACHE[cache_key])
-    s=deepcopy(source_state(frame,layout));plan=hands(s);hand=plan['left'];palm=hand['palm'];old_center=palm['center'];center=old_center;palm={**palm,'center':center}
-    shoulder,elbow,old_wrist=s['joints']['left_arm'];axis=unit(sub(center,elbow))
-    for _ in range(120):
-        wrist=sub(center,mul(axis,.055))
-        chain=solve_arm(shoulder,wrist,s['joints']['up'],s['joints']['lateral'],-1)
-        next_axis=unit(sub(wrist,chain[1]))
-        if math.dist(axis,next_axis)<1e-10:axis=next_axis;break
-        axis=next_axis
-    wrist=sub(center,mul(axis,.055));chain=solve_arm(shoulder,wrist,s['joints']['up'],s['joints']['lateral'],-1)
-    forearm_axis=unit(sub(wrist,chain[1]));angle=math.degrees(math.acos(max(-1,min(1,dot(axis,forearm_axis)))))
-    assert angle<.1,('Wrist alignment did not converge',frame,angle)
-    # Palm length points along the distal forearm; curl plane faces the mug.
-    toward=sub(s['mug'],center);bend=sub(toward,mul(axis,dot(toward,axis)))
-    if dot(bend,bend)<1e-10:bend=s['joints']['lateral']
-    y=unit(bend);z=mul(axis,-1);x=unit(cross(y,z));basis=(x,y,z);old_basis=palm['basis']
-    def transform(point):
-        delta=sub(point,old_center);return add(center,add(add(mul(x,dot(delta,old_basis[0])),mul(y,dot(delta,old_basis[1]))),mul(z,dot(delta,old_basis[2]))))
-    hand['chains']={name:[transform(point) for point in points] for name,points in hand['chains'].items()}
-    # Wrap around the existing boxout handle's outer rail. Frame targets
-    # in mug coordinates, not world coordinates or generic finger curls.
-    lateral=s['joints']['lateral'];forward=s['ground_forward'];mug=s['mug'];residuals={}
-    for i,digit in enumerate(['index','middle','ring','little','thumb']):
-        points=hand['chains'][digit];base=points[0];lengths=[math.dist(a,b) for a,b in zip(points,points[1:])]
-        # Opposed thumb across the handle depth; fingers along rail height.
-        height=max(-.05,min(.05,base[2]-mug[2]))
-        target=add(add(mug,mul(lateral,-.105)),add(mul(forward,.024 if digit!='thumb' else -.018),(0,0,height)))
-        if digit!='thumb':
-            candidates=[]
-            for degrees in range(0,360,10):
-                theta=math.radians(degrees);u=add(mul(forward,math.cos(theta)),mul(lateral,math.sin(theta)));v=add(mul(forward,-math.sin(theta)),mul(lateral,math.cos(theta)))
-                joints=[base]
-                for direction,length in zip((u,v,mul(u,-1)),lengths):joints.append(add(joints[-1],mul(direction,length)))
-                gaps=[]
-                for start,end in zip(joints,joints[1:]):
-                    for k in range(9):
-                        point=add(start,mul(sub(end,start),k/8));relative=sub(point,mug)
-                        local=(dot(relative,lateral)+.12,dot(relative,forward),relative[2]);half=(.0125,.015,.07)
-                        outside=[abs(q)-h for q,h in zip(local,half)]
-                        signed=math.sqrt(sum(max(0,q)**2 for q in outside))+min(0,max(outside))
-                        gaps.append(signed-.008)
-                gap=min(gaps);score=1000*max(0,-gap)+abs(gap)+.2*math.dist(joints[-1],target)
-                candidates.append((score,joints,gap,degrees))
-            _,joints,gap,degrees=min(candidates,key=lambda q:q[0]);hand['chains'][digit]=joints
-            residuals[digit]={'target_distance_metres':math.dist(joints[-1],target),'sampled_rail_clearance_metres':gap,'bend_degrees':[90,90],'orientation_degrees':degrees}
-            continue
-        delta=sub(target,base);distance=math.sqrt(dot(delta,delta));hi=sum(lengths)-1e-5
-        reached=add(base,mul(unit(delta),hi)) if distance>hi else target
-        pole=add(base,add(mul(forward,.06 if digit!='thumb' else -.06),mul(axis,.025)))
-        distance=math.dist(base,reached)
-        equal_reach_angle=math.degrees(math.acos(max(-1,min(1,(lengths[0]**2-lengths[1]**2-lengths[2]**2)/(2*lengths[1]*lengths[2])))))
-        for bend_degrees in (65,90,120,30,150,equal_reach_angle,0):
-            distal=min(sum(lengths[1:])-2e-6,math.sqrt(lengths[1]**2+lengths[2]**2+2*lengths[1]*lengths[2]*math.cos(math.radians(bend_degrees))))
-            if abs(lengths[0]-distal)+1e-7<distance<lengths[0]+distal-1e-7:break
-        else:raise ValueError(('No fixed-length finger bend reaches handle',frame,digit,distance))
-        joint=two_segment(base,reached,pole,lengths[0],distal)
-        last=two_segment(joint,reached,pole,lengths[1],lengths[2])
-        hand['chains'][digit]=[base,joint,last,reached];residuals[digit]=math.dist(reached,target)
-    hand['palm']={**palm,'basis':basis};s['joints']['left_arm']=chain;s['_hand_plan']=plan;s['_hand_origins']={'left':wrist}
-    s['_mug_contact_metrics']={'frame':frame,'wrist_axis_angle_degrees':angle,'palm_offset_metres':math.dist(wrist,center),'source_wrist_adjustment_metres':math.dist(wrist,old_wrist),'handle_target_residuals_metres':residuals}
-    _CACHE[cache_key]=deepcopy(s)
+    key=(frame,json.dumps(layout,sort_keys=True))
+    if key in _CACHE:return deepcopy(_CACHE[key])
+    s=deepcopy(source_state(frame,layout));plan=hands(s);hand=plan['left'];mug=s['mug'];lat=s['joints']['lateral'];forward=s['ground_forward']
+    # Tilt the mug and its grip together during the first drink, avoiding an
+    # upright handle demanding an approximately right-angle wrist extension.
+    lift=max(0,min(1,(frame-1400)/60))*(1-max(0,min(1,(frame-1500)/40))) if frame<1540 else 0
+    tilt=math.radians(45)*lift
+    along=add(mul(forward,math.cos(tilt)),(0,0,math.sin(tilt)))
+    up=add(mul(forward,-math.sin(tilt)),(0,0,math.cos(tilt)))
+    def world(x,y,z):return add(mug,add(add(mul(lat,x),mul(along,y)),mul(up,z)))
+    center=world(-.150,-.015,.005);axis=along;wrist=sub(center,mul(axis,.055));shoulder,old_elbow,old_wrist=s['joints']['left_arm']
+    chain=solve_arm(shoulder,wrist,s['joints']['up'],lat,-1)
+    wrist_angle=math.degrees(math.acos(max(-1,min(1,dot(unit(sub(wrist,chain[1])),axis)))))
+    assert wrist_angle<65,('Excessive experimental wrist angle',frame,wrist_angle)
+    basis=(mul(up,-1),lat,mul(along,-1));chains={};metrics={}
+    for i,digit in enumerate(('index','middle','ring','little')):
+        length=[.065,.072,.068,.055][i];lengths=[length*.42,length*.33,length*.25]
+        height=.005-(i-1.5)*.019
+        # Common grip plane and direction: around outer/front rail corner.
+        # Pads stop 1 mm outside nominal handle faces after 8 mm skin radius.
+        base=world(-.1415,.024+lengths[2]-lengths[0],height);points=[base]
+        for direction,segment_length in zip((along,lat,mul(along,-1)),lengths):points.append(add(points[-1],mul(direction,segment_length)))
+        chains[digit]=points;gap=1e9
+        for a,b in zip(points,points[1:]):
+            for k in range(33):
+                point=add(a,mul(sub(b,a),k/32));delta=sub(point,mug);local=(dot(delta,lat),dot(delta,along),dot(delta,up))
+                for rail_center,half in [((-.12,0,0),(.0125,.015,.07)),((-.09,0,.065),(.04,.015,.0125)),((-.09,0,-.065),(.04,.015,.0125))]:
+                    d=[abs(q-c)-h for q,c,h in zip(local,rail_center,half)]
+                    signed=math.sqrt(sum(max(0,q)**2 for q in d))+min(0,max(d));gap=min(gap,signed-.008)
+        assert gap>=.0009,('Planned finger/rail overlap',frame,digit,gap)
+        metrics[digit]={'bend_degrees':[90,90],'sampled_handle_clearance_metres':gap,'grip_height_metres':height}
+    thumb_base=world(-.150,-.015,.036);thumb_tip=world(-.12,-.026,.040);pole=world(-.18,-.065,.06)
+    lengths=[.025,.023,.020];distal=.030
+    joint=two_segment(thumb_base,thumb_tip,pole,lengths[0],distal)
+    last=two_segment(joint,thumb_tip,pole,lengths[1],lengths[2]);chains['thumb']=[thumb_base,joint,last,thumb_tip]
+    hand['chains']=chains;hand['palm']={'center':center,'size':(.075,.026,.075),'basis':basis}
+    s['joints']['left_arm']=chain;s['_hand_plan']=plan;s['_hand_origins']={'left':wrist};s['_mug_basis']=(lat,along,up)
+    s['_mug_contact_metrics']={'frame':frame,'wrist_axis_angle_degrees':wrist_angle,'palm_offset_metres':math.dist(wrist,center),'source_wrist_adjustment_metres':math.dist(wrist,old_wrist),'mug_tilt_degrees':math.degrees(tilt),'finger_clearance':metrics,'thumb_contact_status':'opposed_target_only_skin_clearance_pending'}
+    _CACHE[key]=deepcopy(s)
     return s

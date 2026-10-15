@@ -27,6 +27,9 @@ def main():
             obj.hide_render=True;obj.name='BASELINE_'+obj.name
     out=local/('mug_'+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(exist_ok=False)
     report={'status':'mug_test_build_pending','source_blend':str(source),'scene_accepted':False,'limitations':['Six snapshots only; no continuous motion pass','Paper/dials/keys revisions queued separately','Fixed neutral wrist is a test hypothesis; grip skin/contact pending visual review']}
+    from mathutils import Matrix
+    for frame in FRAMES:
+        scene.frame_set(frame);mug=scene.objects['PRP_CoffeeMug'];mug.rotation_euler=Matrix(state(frame,layout)['_mug_basis']).transposed().to_euler();mug.keyframe_insert(data_path='rotation_euler',frame=frame)
     report['rig']=animate_and_validate(bpy,scene,layout,state,3168,FRAMES)
     report['planned_contacts']=[state(f,layout)['_mug_contact_metrics'] for f in FRAMES]
     report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_mug_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_hand_math.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_hand_review_blender.py']}

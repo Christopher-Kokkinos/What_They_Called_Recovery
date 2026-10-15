@@ -22,3 +22,7 @@ Run the same command against the original rig_scene_20261014_204455_57a2b099 che
 ## Open U bend shape (DEC-0062)
 
 Same command/six poses/twelve images. Four fingers now use two open orthogonal bends rather than endpoint folding. Validation planned_contacts records signed sampled rail clearance for each finger; negative gap means remaining overlap, not a contact pass. Review U shape, middle segment spacing and thumb opposition; retain connected wrist. Search is cached per pose/layout. Finger/handle fit and wrist surface seam remain open.
+
+## Shared grip frame (DEC-0063)
+
+Same original checkpoint and builder command. Mug position path retained; experiment now keys up to45-degree mug/grip tilt during the first drink. All four finger planes share one frame rather than individual searches. Pure sampled clearance against all three bars passes for four fingers; thumb and evaluated skin contact still need review. Six poses, twelve images, fresh mug_ folder. Wrist joint remains connected but now articulates; previous neutral-wrist assertion is superseded for this isolated test.

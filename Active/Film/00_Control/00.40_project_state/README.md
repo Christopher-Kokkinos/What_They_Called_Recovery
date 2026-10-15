@@ -129,3 +129,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 2026-10-15: Author requests tapered handle trial (DEC-0066). Shorter outer bar and sloping lower return prepared; all six hand/arm poses unchanged versus DEC-0065. Oriented-rail pure246-frame clearance checks PASS. Fourteen-image handle-only desktop review pending; finger spacing/contact tightening deferred until trial reviewed.
 
 2026-10-15: DEC-0067 prepares contact seating on unchanged tapered handle: index/middle and thumb nominal gaps1 mm, ring below2 mm, upper/lower proximal split24 mm. Pure246-frame regression PASS. Six-pose14-image Blender/author review pending; little remains adjacent below ring, skin/seams/continuous movement still open.
+
+2026-10-15: Author agrees bounded mug motion test after provisional still review. DEC-0068 prepares --motion-preview:140 source integer frames1400–1539,48 images640x360, fixed camera and local HTML player in mug_motion_ folder. Pure schedule/mug checks PASS; Blender readback and motion visuals pending. Formed grip only, approach/release/later carry and final surface contact remain open.

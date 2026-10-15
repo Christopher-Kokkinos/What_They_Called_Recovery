@@ -6,6 +6,10 @@ sys.path[:0]=[str(ROOT/'Active/Film/04_Scenes/Automation'),str(ROOT/'Active/Film
 from elias_mug_contact import state,FRAMES
 from sc001_room_performance import state as baseline
 from elias_rig_math import bones
+from sc001_mug_motion_review import START,END,BAKE_FRAMES,RENDER_FRAMES
+assert BAKE_FRAMES==list(range(1400,1540))
+assert RENDER_FRAMES[0]==START and RENDER_FRAMES[-1]==END and len(RENDER_FRAMES)==48
+assert set(RENDER_FRAMES)<=set(BAKE_FRAMES)
 layout=json.loads((ROOT/'Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json').read_text(encoding='utf-8'))
 reference=bones(state(889,layout));maximum=0;frames=list(range(1375,1540))+list(range(2430,2511))
 for frame in frames:

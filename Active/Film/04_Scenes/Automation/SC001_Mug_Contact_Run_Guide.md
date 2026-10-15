@@ -42,3 +42,19 @@ Same original checkpoint/command;14 images in fresh mug_ folder. Hand/arm poses 
 ## Contact seating (DEC-0067)
 
 Same command and original checkpoint;14 images. Tapered handle retained. Index/middle crease seating and thumb extension refined; lower pair raised closer to upper pair/return. Review thumb top contact, ring support, little-finger spacing, distal crease contact and skin intersections. New quantitative nominal contact bounds pass, rendered surface contact pending. ZIP newest mug_ folder.
+
+## Bounded motion test (DEC-0068)
+
+From repository root, reuse the original rig checkpoint:
+
+```bash
+cd /c/Projects/what_they_called_recovery
+git pull --ff-only
+"/c/Program Files/Blender Foundation/Blender 5.2/blender.exe" \
+  --background "Active/Film/_local/SC001/rig_scene_20261014_204455_57a2b099/SC001_rig_performance_v0.1.blend" \
+  --python-exit-code 1 \
+  --python "Active/Film/04_Scenes/Automation/build_sc001_mug_contact_review.py" \
+  -- --motion-preview
+```
+
+New **mug_motion_...** folder under Active/Film/_local/SC001. Bake/check140 integer frames1400–1539; render48 PNGs640x360. Open **motion_preview.html** in a browser from its folder, click Play or scrub. Keep motion_frames beside HTML. Original timing24 fps, preview samples8 fps with exact source timestamps. This starts with grip formed and returns towards table; approach/release, exact placement at1540 and later carry excluded. Review wrist/arm continuity, handle slipping, mug tilt and occlusion. This is a bounded motion test, not full-scene/contact acceptance. ZIP the entire newest mug_motion_ folder. Default command without flag still produces14 stills.

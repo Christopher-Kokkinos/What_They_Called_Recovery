@@ -21,9 +21,10 @@ def bones(s):
     boxes=joint_boxes(s);hand_plan=hands(s)
     for side,suffix in [('left','L'),('right','R')]:
         a,e,w=j[side+'_arm'];h,k,ankle=j[side]
-        bone('upper_arm.'+suffix,a,e,'spine_02');bone('forearm.'+suffix,e,w,'upper_arm.'+suffix)
+        bone('upper_arm.'+suffix,a,e,'spine_02');bone('forearm.'+suffix,e,w,'upper_arm.'+suffix,hand_plan[side]['palm']['basis'][0] if side in s.get('_hand_origins',{}) else None)
         palm=hand_plan[side]['palm'];center=palm['center'];axis=mul(palm['basis'][2],-1)
-        bone('hand.'+suffix,center,add(center,mul(axis,.10)),'forearm.'+suffix,palm['basis'][0])
+        hand_origin=s.get('_hand_origins',{}).get(side,center)
+        bone('hand.'+suffix,hand_origin,add(hand_origin,mul(axis,.10)),'forearm.'+suffix,palm['basis'][0])
         for digit,points in hand_plan[side]['chains'].items():
             for digit_index,(a,b) in enumerate(zip(points,points[1:])):
                 name=f'{digit}_{digit_index+1}.{suffix}';parent='hand.'+suffix if digit_index==0 else f'{digit}_{digit_index}.{suffix}'

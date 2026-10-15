@@ -1,0 +1,9 @@
+# Connected mug wrist experiment
+
+Latest hands_20261014_220643_f837885b ZIP read: twelve image records; shower lower-side candidate (-0.65,0.35,-0.35) passes all six contact probes. This resolves the diagnostic camera-search failure, not physical control or hand acceptance. Mug close-up agrees with author: palm/hand orientation visibly disconnected from forearm despite hierarchy.
+
+Root diagnosis from rig source: forearm tail is wrist; hand head independently placed at palm centre. The wrist connector mesh hides neither orientation independence nor joint offset. Experimental mug-only state solves a common wrist, fixed 55 mm wrist-to-palm offset, neutral aligned distal axes and matching forearm roll. The source palm/mug position and root path stay fixed; left wrist moves 55 mm and upper-arm/elbow direction updates through fixed-length solve. This is a deliberate bounded contact adaptation. No final hand appearance or exact handle-wrap proof.
+
+Dedicated builder loads the preserved SC001 checkpoint, verifies source layout/choreography hashes, hides old character geometry, constructs shared rig using experimental state and saves a new mug_ checkpoint before twelve renders. Six close-ups plus six arm-context views; six evaluated rig poses, not full animation. Baseline saved scene is never overwritten. Paper, dial, keys/pocket and lock directions are logged in DEC-0060 for dependent passes.
+
+Validation: tools/verify_elias_mug_contact.py PASS across 246 source frames spanning first mug pickup/drink/return and second pickup. Fixed bone lengths, exact common wrist and matched roll; maximum planned wrist-axis discrepancy 1.478779334e-6 degrees. Existing tools/verify_elias_rig.py PASS, compilation PASS, film workspace verifier PASS. Blender construction, skin deformation, evaluated joint-gap assertion, prop clearance and visual review pending. Do not generalise snapshot checks to continuous performance.

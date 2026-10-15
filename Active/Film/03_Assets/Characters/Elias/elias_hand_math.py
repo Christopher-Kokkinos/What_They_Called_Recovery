@@ -5,6 +5,7 @@ from sc001_room_performance import joint_boxes
 
 
 def hands(s):
+    if '_hand_plan' in s:return s['_hand_plan']
     boxes=joint_boxes(s);out={};f=s['frame']
     def ramp(a,b):return max(0,min(1,(f-a)/(b-a)))
     for side,suffix in [('left','L'),('right','R')]:

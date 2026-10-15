@@ -55,6 +55,7 @@ def animate_and_validate(bpy,scene,layout,state,end,frames=None):
     linearise_owned_actions([rig])
     palm_indices=__import__('json').loads(obj['palm_vertex_indices_json'])
     palm_error=0
+    wrist_gap=0
     endpoint=scale=0;lowest=math.inf;checked=0
     # Read back the keyed action, including frames between rendered preview samples.
     for frame in checked_frames:
@@ -64,6 +65,8 @@ def animate_and_validate(bpy,scene,layout,state,end,frames=None):
             pose=evaluated.pose.bones[name]
             endpoint=max(endpoint,(pose.head-Vector(b['head'])).length,(pose.tail-Vector(b['tail'])).length)
             scale=max(scale,*[abs(v-1) for v in pose.matrix.to_scale()])
+        for side in state(frame,layout).get('_hand_origins',{}):
+            suffix='L' if side=='left' else 'R';wrist_gap=max(wrist_gap,(evaluated.pose.bones['forearm.'+suffix].tail-evaluated.pose.bones['hand.'+suffix].head).length)
         skin_obj=obj.evaluated_get(deps);mesh=skin_obj.to_mesh()
         try:
             assert len(mesh.vertices)==len(obj.data.vertices),'Unexpected skin topology change'
@@ -79,4 +82,5 @@ def animate_and_validate(bpy,scene,layout,state,end,frames=None):
     assert endpoint<1e-4,f'Rig endpoint mismatch: {endpoint}'
     assert scale<1e-4,f'Rig bone scale mismatch: {scale}'
     assert palm_error<1e-4,f'Palm target mapping mismatch: {palm_error}'
-    return {'maximum_palm_center_error':palm_error,'frames_checked':len(checked_frames),'source_frames_checked':checked_frames,'coverage':'diagnostic_snapshots_only' if frames is not None else 'all_integer_frames','mesh_vertex_checks':checked,'maximum_endpoint_error':endpoint,'maximum_bone_scale_error':scale,'minimum_skin_world_z':lowest,'skin_contact_status':'visual_review_required; proxy contact gates retained','limitations':['Skin volume differs from box contacts; not a skin collision pass','Articulated provisional fingers; exact grips/collisions require visual review','Integer-frame FK bake; fractional-frame interpolation not validated']}
+    assert wrist_gap<1e-4,f'Connected wrist gap: {wrist_gap}'
+    return {'maximum_connected_wrist_gap':wrist_gap,'maximum_palm_center_error':palm_error,'frames_checked':len(checked_frames),'source_frames_checked':checked_frames,'coverage':'diagnostic_snapshots_only' if frames is not None else 'all_integer_frames','mesh_vertex_checks':checked,'maximum_endpoint_error':endpoint,'maximum_bone_scale_error':scale,'minimum_skin_world_z':lowest,'skin_contact_status':'visual_review_required; proxy contact gates retained','limitations':['Skin volume differs from box contacts; not a skin collision pass','Articulated provisional fingers; exact grips/collisions require visual review','Integer-frame FK bake; fractional-frame interpolation not validated']}

@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0084",
+    "decision": "DEC-0085",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "insertion_withdrawal_cutaway_prepared",
+    "status": "envelope_closure_pocket_approach_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -178,6 +178,10 @@
     "author_envelope_opening_stage_pass": true,
     "envelope_opening_runtime_pass": true,
     "envelope_insertion_only_flag": "--envelope-review --envelope-insertion-only",
-    "envelope_insertion_runtime_pass": false
+    "envelope_insertion_runtime_pass": true,
+    "envelope_finish_only_flag": "--envelope-review --envelope-finish-only",
+    "envelope_finish_scope": "isolated_2474_2654",
+    "envelope_finish_runtime_pass": false,
+    "pocket_release_complete": false
   }
 }

@@ -17,3 +17,7 @@ DEC-0083: add `--envelope-opening-only` alongside `--envelope-review` to check o
 ## Insertion and withdrawal — DEC-0084
 
 Use `-- --envelope-review --envelope-insertion-only` with the same builder/original checkpoint. Mutually exclusive with opening-only. Output `envelope_insert_<timestamp>_<id>/`; open review_index.html and zip entire folder.110 baked/readback poses,76 images across normal_context and cutaway_contact. The cutaway hides front/flap/MAC label only for inspection after full-geometry validation; it is not a final camera or collision pass. Check guiding index/thumb, extraction through mouth, then lowering after fingers clear. Opening/pickup/insertion targets unchanged; pocketing and integrated timing pending. Full envelope mode now spans2281–2474 (194 poses); focused review avoids repeating it.
+
+## Closure / handover / pocket approach (DEC-0085)
+
+Use the same original rig checkpoint and builder with `--envelope-review --envelope-finish-only`. Output: `Active/Film/_local/SC001/envelope_finish_<timestamp>_<id>/`. Open `review_index.html`; ZIP the whole output folder.181 poses/122 images, two normal-geometry views. Packet remains held at the provisional pocket target; clothing fit and release are pending. Earlier insertion motion is unchanged. Full-scene timing is not yet integrated.

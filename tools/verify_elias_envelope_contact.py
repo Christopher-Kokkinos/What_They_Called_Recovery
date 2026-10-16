@@ -22,6 +22,13 @@ for f in range(START,END+1):
         assert bend<65,(f,side,bend)
         assert math.dist(wrist,s['_hand_origins'][side])<1e-8
         if previous:step=max(step,math.dist(wrist,previous['joints'][side+'_arm'][-1]))
+    if f<=2340:
+        shoulder,elbow,wrist=j['right_arm'];relative=sub(elbow,j['spine'])
+        side=dot(relative,j['lateral']);front=dot(relative,j['forward'])
+        assert side>.15,('Elbow crossed torso midline',f,side)
+        assert dot(sub(elbow,shoulder),j['up'])<-.15,('Opening elbow raised',f)
+        #70 mm upper-arm/elbow radius separated from450×250 mm torso proxy.
+        assert max(side-.225,front-.125)-.07>.01,('Elbow/torso proxy clearance',f)
     if s['_insertion']>.80:
         tip=s['_hand_plan']['right']['chains']['thumb'][-1]
         if f<=2420:assert tip[1]+.010<s['envelope'][1]-.085,('Thumb enters slot',f)

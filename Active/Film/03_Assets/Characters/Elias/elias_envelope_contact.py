@@ -55,7 +55,8 @@ def flap_grip(frame):
     flap,_=envelope_geometry(frame);env=(11.26,9.30,1.21)
     contact=add(env,(.10,-.085+.045*math.cos(flap),.010+.045*math.sin(flap)))
     normal=(0,-math.sin(flap),math.cos(flap))
-    hand,wrist=pinch(contact,normal,(.8,0,-.6),'right',palm_normal=(.6,0,.8))
+    direction=unit((.65,.75,-.12));palm_normal=unit(sub((0,0,1),mul(direction,direction[2])))
+    hand,wrist=pinch(contact,normal,direction,'right',palm_normal=palm_normal)
     return hand,wrist,{'surface':'flap','index_active':True,'thumb_active':True,'contact':contact,'normal':normal,'index_offset':.009,'thumb_offset':.011}
 
 def state(frame,layout):
@@ -84,7 +85,10 @@ def state(frame,layout):
     contacts['right']=c;s['_hand_plan']={'left':left,'right':right};s['_hand_origins']={'left':lw,'right':rw}
     for side,wrist in [('left',lw),('right',rw)]:
         j=s['joints'];shoulder=j[side+'_arm'][0];direction=mul(s['_hand_plan'][side]['palm']['basis'][2],-1)
-        elbow=two_segment(shoulder,wrist,sub(wrist,mul(direction,FOREARM_LENGTH)),UPPER_ARM_LENGTH,FOREARM_LENGTH)
+        pole=sub(wrist,mul(direction,FOREARM_LENGTH))
+        if side=='right' and frame<2340:
+            pole=add(add(add(shoulder,mul(j['up'],-.35)),mul(j['lateral'],.45)),mul(j['forward'],.15))
+        elbow=two_segment(shoulder,wrist,pole,UPPER_ARM_LENGTH,FOREARM_LENGTH)
         j[side+'_arm']=(shoulder,elbow,wrist)
     insertion=progress(frame,2365,2420)
     s['_envelope_contacts']=contacts;s['_envelope_phase']=phase;s['_insertion']=insertion

@@ -24,7 +24,7 @@ def main():
     else:
         from elias_paper_contact import state,START,END
     if opts.paper_sequence_review:
-        from elias_paper_sequence import state,START,END
+        from elias_paper_refinement import state,START,END
     from elias_mug_contact import HANDLE
     from elias_rig_blender import animate_and_validate
     from sc001_mug_motion_review import render
@@ -73,7 +73,7 @@ def main():
     if opts.envelope_opening_only:report['scope']='2281–2340: flap opening and transfer to parked letter only; insertion unchanged/excluded'
     if opts.envelope_insertion_only:report['scope']='2365–2474: insertion and slower withdrawal only; opening unchanged/excluded'
     if opts.envelope_finish_only:report.update(scope='2474–2654: closure, handover and provisional pocket approach/hold',limitations=['No cloth pocket or insertion/release certification; packet remains held at existing target','No adhesive simulation or full skin collision certification','Isolated diagnostic; full scene retiming pending'])
-    if opts.paper_sequence_review:report.update(scope='2161–2762: folding, supported table set-down, envelope pickup, insertion, closure and held pocket approach',limitations=['Starts with paper grip formed; clothing pocket insertion/release and full-scene timing pending','Parked envelope staged180mm closer for reachable pickup','No force simulation or full skin collision certification'])
+    if opts.paper_sequence_review:report.update(scope='2161–2720: continuous paper sequence with shorter regrip and direct flap transfer',limitations=['Starts with paper grip formed; clothing pocket insertion/release and full-scene timing pending','Parked envelope staged180mm closer for reachable pickup','No force simulation or full skin collision certification'])
     report['rig']=animate_and_validate(bpy,scene,layout,state,END,list(range(START,END+1)))
     errors=[]
     for f in range(START,END+1):
@@ -105,7 +105,7 @@ def main():
         report['contact_phases']=[{'frame':f,'phase':state(f,layout).get('_sequence_phase',state(f,layout).get('_envelope_phase')),'paper_support':state(f,layout).get('_paper_support','hands'),'insertion_fraction':state(f,layout).get('_insertion',0)} for f in range(START,END+1)]
     if opts.paper_sequence_review:report['contact_surface_readback']='Fold/set-down pads checked against evaluated letter planes; active envelope/letter/flap grips checked against evaluated surfaces; free transfers excluded'
     report['maximum_prop_or_pad_target_error_m']=max(errors)
-    report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_sequence.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_finish.py',Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_contact.py',Path(__file__).parent/'sc001_envelope_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_reach.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_mug_motion_review.py']}
+    report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_refinement.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_sequence.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_finish.py',Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_contact.py',Path(__file__).parent/'sc001_envelope_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_reach.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_mug_motion_review.py']}
     scene.frame_start=START;scene.frame_end=END;scene.frame_set(START)
     report['status']='envelope_checkpoint_validated_render_pending' if opts.envelope_review else 'paper_fold_checkpoint_validated_render_pending'
     bpy.ops.wm.save_as_mainfile(filepath=str(out/('SC001_envelope_diagnostic.blend' if opts.envelope_review else 'SC001_paper_fold_diagnostic.blend')))

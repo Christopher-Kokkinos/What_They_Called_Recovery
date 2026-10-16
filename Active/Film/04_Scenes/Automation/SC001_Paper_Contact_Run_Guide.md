@@ -27,3 +27,7 @@ DEC-0086: same finish-only command now uses a body-relative right-elbow guide; h
 ## Continuous paper sequence (DEC-0087)
 
 Use original checkpoint and `build_sc001_paper_contact_review.py -- --paper-sequence-review` (standalone flag; do not combine envelope subset flags). Output `Active/Film/_local/SC001/paper_sequence_<timestamp>_<id>/`. Open `review_index.html`; ZIP the whole folder.602 poses/204 images: fold, supported table set-down, envelope pickup, insertion, closure and held pocket approach. Initial paper grip already formed; pocket clothing release and whole-scene mug timing pending. New staging brings parked envelope180mm nearer. Both views retain all geometry.
+
+### DEC-0088 refinement — current sequence command
+
+Same `--paper-sequence-review` command and original checkpoint. Now560 poses/190 images (2161–2720): shorter regrip, direct hand transfer from cleared mouth to flap. Output remains `paper_sequence_<timestamp>_<id>/`; open `review_index.html`, ZIP the whole new output folder. The602-pose sequence is retained as the reviewed baseline in code. New timing still requires full-scene integration; pocket remains held.

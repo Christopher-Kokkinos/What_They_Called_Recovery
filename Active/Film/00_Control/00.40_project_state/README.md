@@ -169,3 +169,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0086: finish ZIP technical record and122 hashes passed; visual pass held for raised right elbow. Body-relative pole correction prepared; hand/packet targets unchanged across181 poses. Height/continuity gates pass; rerender/author visual review pending. Pocket fit/release and full skin collision clearance remain open.
 
 - DEC-0087: author provisionally accepted corrected envelope finishing for blockout. Continuous paper diagnostic prepared (602 poses/204 images), including supported set-down/envelope pickup. Envelope restaged180mm nearer; release elbow continuity corrected without changing reused hand/prop paths. Runtime/visual review, pocket release and full-scene retiming pending.
+
+- DEC-0088: joined paper ZIP runtime/hash checks passed; two author-authorised refinements prepared:10-frame regrip and direct32-frame transfer to flap.560 poses/190 images, local checks pass. Blender/visual review pending; pocket release, fine contact and full-scene retiming remain open.

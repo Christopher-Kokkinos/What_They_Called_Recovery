@@ -145,3 +145,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 2026-10-16: Overnight rig gates finish, then mug orientation fails1.4142 before save. DEC-0074 diagnoses singular parked body/ground axes in sleep, fixes stable table orientation and adds proper-basis/Euler preflight before bake. Diagnostic .blend now saved immediately after full rig readback, before mug gate. Pure3168-frame basis/palm tests PASS; full Blender rerun pending. Original checkpoint retained; overnight unsaved bake not recoverable from log.
 
 - DEC-0075: prior full integrated runtime confirmed (3168 frames/529 hashed images). Raised-table reach trial prepared as two bounded clips; Blender and author visual review pending.
+
+- DEC-0076: author flagged backward resting elbows; shoulder-relative rest and forward elbow poles prepared, passed cup arm retained; rerender pending.

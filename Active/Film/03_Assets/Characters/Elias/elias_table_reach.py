@@ -1,8 +1,9 @@
 """Provisional raised-table variant; existing integrated take remains reproducible."""
 from copy import deepcopy
 import math
-from elias_articulation import add,sub,mul,unit,cross,two_segment,SPINE_LENGTH,THIGH_LENGTH,CALF_LENGTH
-from elias_mug_integration import state as integrated
+from elias_articulation import add,sub,mul,mix,unit,cross,two_segment,SPINE_LENGTH,THIGH_LENGTH,CALF_LENGTH,UPPER_ARM_LENGTH,FOREARM_LENGTH
+from elias_mug_integration import state as integrated,blend_hand
+from elias_hand_math import hands
 from sc001_room_performance import solve_arm,progress
 TABLE_TOP=.97
 TABLE_RISE=.20
@@ -14,7 +15,20 @@ def offsets(frame):
     return {'mug':MUG_RISE*(1-lift),'letter':TABLE_RISE*(1-progress(frame,2161,2215)),
             'envelope':TABLE_RISE*(1-progress(frame,2275,2300)), 'keys':TABLE_RISE*(1-progress(frame,2395,2430))}
 
-def state(frame,layout):
+def relaxed_arm(s,side):
+    """Shoulder-relative rest: elbow pole stays forward of the upper arm."""
+    j=s['joints'];sign=-1 if side=='left' else 1
+    shoulder=j[side+'_arm'][0];up=j['up'];forward=j['forward'];lat=j['lateral']
+    wrist=add(add(add(shoulder,mul(up,-.62)),mul(forward,.08)),mul(lat,sign*.03))
+    pole=add(add(add(shoulder,mul(up,-.30)),mul(forward,.25)),mul(lat,sign*.08))
+    j[side+'_arm']=(shoulder,two_segment(shoulder,wrist,pole,UPPER_ARM_LENGTH,FOREARM_LENGTH),wrist)
+    neutral=deepcopy(s);neutral.pop('_hand_plan',None);neutral['frame']=1000;neutral['paper_two_hands']=False
+    s['_hand_plan'][side]=hands(neutral)[side]
+    if side=='left':s['_hand_origins']['left']=wrist
+    return s
+
+
+def raised_state(frame,layout):
     s=deepcopy(integrated(frame,layout));delta=offsets(frame)
     for name,dz in delta.items():s[name]=add(s[name],(0,0,dz))
     if not any(a<=frame<=b for _,a,b in WINDOWS):return s
@@ -43,4 +57,25 @@ def state(frame,layout):
         hip=add(j['pelvis'],mul(lat,sign*.12));ankle=add(old[side][-1],(.22,0,0))
         j[side]=(hip,two_segment(hip,ankle,add(hip,forward),THIGH_LENGTH,CALF_LENGTH),ankle)
     s['_table_reach_trial']={'table_top':TABLE_TOP,'lean_radians':lean,'offsets':delta}
+    return s
+
+
+def state(frame,layout):
+    s=raised_state(frame,layout)
+    if not any(a<=frame<=b for _,a,b in WINDOWS):return s
+    j=s['joints']
+    # The old deep-lean wrist offsets are not valid resting poses for the new torso.
+    old_right_wrist=j['right_arm'][-1]
+    relaxed_arm(s,'right')
+    if frame>=2400:
+        # Keep the existing key proxy with the lowered hand; detailed pinch/pocket remains open.
+        s['keys']=add(s['keys'],sub(j['right_arm'][-1],old_right_wrist))
+    if frame<1387:
+        target=deepcopy(s);relaxed_arm(s,'left');pole=s['joints']['left_arm'][1];t=progress(frame,1369,1387)
+        blend_hand(s,target,t)
+        shoulder,_,wrist=j['left_arm'];j['left_arm']=(shoulder,two_segment(shoulder,wrist,mix(pole,target['joints']['left_arm'][1],t),UPPER_ARM_LENGTH,FOREARM_LENGTH),wrist)
+    elif 2400<=frame<2430:
+        target=deepcopy(s);relaxed_arm(s,'left');pole=s['joints']['left_arm'][1];t=progress(frame,2400,2430)
+        blend_hand(s,target,t)
+        shoulder,_,wrist=j['left_arm'];j['left_arm']=(shoulder,two_segment(shoulder,wrist,mix(pole,target['joints']['left_arm'][1],t),UPPER_ARM_LENGTH,FOREARM_LENGTH),wrist)
     return s

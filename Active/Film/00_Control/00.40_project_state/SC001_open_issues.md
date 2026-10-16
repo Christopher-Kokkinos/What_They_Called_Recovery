@@ -39,3 +39,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 2026-10-15 DEC-0072: Integrated boundary test FAILED55.005 mm rigid palm mapping; opt-in independent left palm control/weights prepared. Pure centroid mapping regression added, desktop evaluated skin rerun pending. Do not close from bone targets alone.
 
 2026-10-15 DEC-0073:55 mm palm mapping defect CLEARED in175-frame integrated boundary readback (0.00996 mm maximum under0.1 mm gate). Whole-scene3168-frame runtime remains pending. Initial reach partly body-occluded, clearance not established. No final scene pass.
+
+2026-10-16 DEC-0074: Overnight full-scene orientation FAILED1.4142; invalid parked basis in sleeping segment diagnosed. Stable table basis/preflight and earlier rig diagnostic save prepared. Pure basis checks pass; full evaluated Blender rerun pending. Rig function gates completed but no numerical report/checkpoint survived that run.

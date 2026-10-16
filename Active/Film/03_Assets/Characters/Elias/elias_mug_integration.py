@@ -13,7 +13,7 @@ def baseline(frame,layout):
     s=deepcopy(source_state(frame,layout))
     # One left-wrist origin convention throughout the integrated rig avoids a
     # forearm roll convention changing at a patch boundary.
-    s['_mug_basis']=(s['joints']['lateral'],s['ground_forward'],(0,0,1))
+    s['_mug_basis']=((0,-1,0),(1,0,0),(0,0,1))
     s['_mug_contact_metrics']={'frame':frame,'phase':'surrounding_motion_no_grasp_claim'}
     s['_hand_plan']=hands(s);s['_hand_origins']={'left':s['joints']['left_arm'][-1]}
     return s
@@ -58,7 +58,7 @@ def state(frame,layout):
             rest=add(add(add(shoulder,mul(j['up'],-.60)),mul(s['ground_forward'],.10)),mul(j['lateral'],-.045))
             j['left_arm']=solve_arm(shoulder,rest,j['up'],j['lateral'],-1,.16)
             s.pop('_hand_plan',None)
-            s['_mug_basis']=(s['joints']['lateral'],s['ground_forward'],(0,0,1))
+            s['_mug_basis']=((0,-1,0),(1,0,0),(0,0,1))
             s['_mug_contact_metrics']={'frame':frame,'phase':'surrounding_motion_no_grasp_claim'}
             s['_hand_plan']=hands(s);s['_hand_origins']={'left':s['joints']['left_arm'][-1]}
             s=blend_hand(s,cycle_state(1560,layout),1-t)

@@ -12,6 +12,15 @@ HANDLE=[('outer',(-.105,0,.0135),(.012,.018,.051),0),
         ('bottom',(-.081,0,-.0225),(math.hypot(.048,.021),.018,.012),math.atan2(.021,.048))]
 FINGER_RADIUS=.008
 
+def validate_mug_basis(basis,frame):
+    """A proper rotation needs three unit, orthogonal, right-handed axes."""
+    assert len(basis)==3 and all(len(v)==3 for v in basis),('Invalid mug basis shape',frame)
+    error=max(abs(dot(a,b)-(1 if i==j else 0)) for i,a in enumerate(basis) for j,b in enumerate(basis))
+    determinant=dot(basis[0],cross(basis[1],basis[2]))
+    assert math.isfinite(error) and error<1e-8 and abs(determinant-1)<1e-8,('Invalid mug orientation basis',frame,error,determinant,basis)
+    return {'orthogonality_error':error,'determinant':determinant}
+
+
 def rail_gap(points,world_to_local):
     gap=1e9
     for a,b in zip(points,points[1:]):

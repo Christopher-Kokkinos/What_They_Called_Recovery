@@ -5,7 +5,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'Active/Film/04_Scenes/Automation'),str(ROOT/'Active/Film/03_Assets/Characters/Elias')]
 from elias_mug_integration import state,WINDOWS
 from elias_mug_lifecycle import state as cycle
-from elias_mug_contact import state as held
+from elias_mug_contact import state as held,validate_mug_basis
 from sc001_room_performance import state as source
 from elias_rig_math import bones,skin
 from elias_articulation import add,sub,mul,dot
@@ -39,8 +39,14 @@ sip=held(1460,layout);sip_bone=bones(sip)[name];delta=sub(center,legacy_bones[na
 for axis in range(3):mapped=add(mapped,mul(sip_bone['basis'][axis],dot(delta,legacy_bones[name]['basis'][axis])))
 legacy_error=math.dist(add(mapped,sip['root']),sip['_hand_plan']['left']['palm']['center'])
 assert abs(legacy_error-.055)<1e-8,'Failed to reproduce reported mapping fault'
+# The old sleeping body/ground basis is singular, reproducing the missed gate.
+legacy_source=source(1,layout)
+try:validate_mug_basis((legacy_source['joints']['lateral'],legacy_source['ground_forward'],(0,0,1)),1)
+except AssertionError:pass
+else:raise AssertionError('Legacy singular mug basis was not rejected')
 for frame in range(1,3169):
     s=state(frame,layout);old=source(frame,layout);target=bones(s)
+    validate_mug_basis(s['_mug_basis'],frame)
     for side,(name,centroid) in centroids.items():
         delta=sub(centroid,reference[name]['head']);mapped=target[name]['head']
         for axis in range(3):mapped=add(mapped,mul(target[name]['basis'][axis],dot(delta,reference[name]['basis'][axis])))

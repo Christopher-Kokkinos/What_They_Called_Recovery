@@ -78,3 +78,7 @@ If --join-review fails at palm target mapping~0.055 m, pull update and rerun the
 ## Continuous scene bake / overnight review (DEC-0073)
 
 Same original checkpoint/builder, use **-- --full-scene-review**. New **sc001_integrated_...** folder.3168 rig and mug integer-frame readbacks, then save **SC001_integrated_rig_v0.1.blend** and validation before rendering529 PNGs640x360. Existing source cameras/shot cuts retained. Progress prints RIG BAKE, RIG READBACK and FULL SCENE REVIEW; runtime hardware-dependent. Open **motion_preview.html** after completion; partial player/manifest retained if render stops. ZIP entire newest sc001_integrated_ folder. Computer must remain awake; screen may turn off. This is sampled4fps review of24fps bake, not final frames/scene acceptance. Deferred table/posture/skin/contact corrections remain open.
+
+## Full-scene parked orientation repair (DEC-0074)
+
+After overnight mug orientation mismatch1.4142, pull and rerun identical --full-scene-review against original checkpoint. Stable parked table axes replace invalid sleeping body/ground combination. All basis/Euler preflight runs before rig bake. After rig gates, **SC001_integrated_rig_diagnostic.blend** saves with pending-mug status; this diagnostic is not a validated scene. Normal **SC001_integrated_rig_v0.1.blend** still requires mug readback pass before renders. Previous failed process exited before saving, so another bake is necessary. Same529-image output/player; original input remains unchanged.

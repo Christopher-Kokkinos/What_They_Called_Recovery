@@ -16,7 +16,7 @@ def main():
     modes.add_argument('--contact-cycle',action='store_true',help='Approach, formed grip, table placement and release trial')
     modes.add_argument('--motion-preview',action='store_true',help='Bake first drink integer frames and render48 small motion images')
     opts=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
-    from elias_mug_contact import state,FRAMES,HANDLE
+    from elias_mug_contact import state,FRAMES,HANDLE,validate_mug_basis
     from elias_rig_blender import animate_and_validate
     from sc001_hand_review_blender import render
     from sc001_mug_motion_review import BAKE_FRAMES,START,END
@@ -66,23 +66,42 @@ def main():
         report['deferred_layout_issue']='Original180 mm body/table retained;20 mm initial support gap not corrected or passed in this mode. Raise table and coordinate supported props/posture later.'
     if opts.join_review:report['limitations'][0]='Four disjoint boundary clips; no continuous full-scene Blender pass'
     if opts.full_scene_review:report['limitations'][0]='All integer-frame rig/mug readback; sampled renders only, no full-resolution final animation'
-    from mathutils import Matrix
+    from mathutils import Matrix,Vector
+    # Reject singular/reflected target bases and Euler conversion errors before rig bake.
+    conversion_error=0
+    for frame in frames:
+        basis=state(frame,layout)['_mug_basis'];validate_mug_basis(basis,frame)
+        converted=Matrix(basis).transposed().to_euler().to_matrix()
+        for axis in range(3):
+            conversion_error=max(conversion_error,(converted.col[axis]-Vector(basis[axis])).length)
+    assert conversion_error<1e-4,('Mug Euler preflight mismatch',conversion_error)
+    report['mug_orientation_preflight']={'frames_checked':len(frames),'maximum_euler_basis_error':conversion_error}
     for frame in frames:
         scene.frame_set(frame);mug=scene.objects['PRP_CoffeeMug'];mug.rotation_euler=Matrix(state(frame,layout)['_mug_basis']).transposed().to_euler();mug.keyframe_insert(data_path='rotation_euler',frame=frame)
     report['rig']=animate_and_validate(bpy,scene,layout,state,3168,frames)
+    # Preserve completed rig work even if a later prop readback fails.
+    if opts.full_scene_review:
+        scene.frame_start=START;scene.frame_end=END;scene.frame_set(1)
+        report['rig']['coverage']='all_integer_frames'
+        report['status']='rig_readback_passed_mug_readback_pending'
+        bpy.ops.wm.save_as_mainfile(filepath=str(out/'SC001_integrated_rig_diagnostic.blend'))
+        (out/'validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+        print('SC001 RIG DIAGNOSTIC CHECKPOINT:',out,flush=True)
     if moving:
         report['rig']['coverage']='bounded_integer_frames';scene.frame_start=START;scene.frame_end=END;scene.render.fps=24
         from mathutils import Vector
-        position_error=basis_error=0
+        position_error=basis_error=0;basis_worst=None
         for frame in frames:
             scene.frame_set(frame);bpy.context.view_layer.update();target=state(frame,layout)
             actual=scene.objects['PRP_CoffeeMug'].evaluated_get(bpy.context.evaluated_depsgraph_get()).matrix_world
             position_error=max(position_error,(actual.translation-Vector(target['mug'])).length)
             for axis,planned in enumerate(target['_mug_basis']):
-                basis_error=max(basis_error,(actual.to_3x3().col[axis].normalized()-Vector(planned)).length)
+                error=(actual.to_3x3().col[axis].normalized()-Vector(planned)).length
+                if error>basis_error:
+                    basis_error=error;basis_worst={'frame':frame,'axis':axis,'actual':list(actual.to_3x3().col[axis].normalized()),'planned':list(planned)}
         assert position_error<1e-4,('Mug motion position mismatch',position_error)
-        assert basis_error<1e-4,('Mug motion orientation mismatch',basis_error)
-        report['mug_motion_readback']={'frames_checked':len(frames),'maximum_position_error_metres':position_error,'maximum_basis_vector_error':basis_error}
+        assert basis_error<1e-4,('Mug motion orientation mismatch',basis_error,basis_worst)
+        report['mug_motion_readback']={'frames_checked':len(frames),'maximum_position_error_metres':position_error,'maximum_basis_vector_error':basis_error,'worst_orientation_sample':basis_worst}
         if opts.contact_cycle:
             support=[]
             for frame in (1375,1400,1540,1550,1560):

@@ -86,3 +86,5 @@ After overnight mug orientation mismatch1.4142, pull and rerun identical --full-
 ## Raised-table reach trial (DEC-0075)
 
 Use the original rig_scene_20261014_204455_57a2b099 checkpoint with `--table-reach-review` instead of other review flags. Output: `Active/Film/_local/SC001/table_reach_<timestamp>_<id>/`. Open `review_index.html` for two clips; zip that entire table_reach folder with validation.json and both clip subfolders.353 integer poses/119 small images, no close-up batch. This is not a continuous scene bake. Check mug support, upright reach, elbows and both pickups. Paper/key contact and high-table seating are still pending.
+
+DEC-0078: append `--first-table-reach-only` to `--table-reach-review` for232 poses/78 images in first_table_reach only. Second reach is author accepted and unchanged. First mug lift torso-clearance revision remains pending Blender/visual review.

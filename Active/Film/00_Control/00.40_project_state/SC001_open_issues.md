@@ -47,3 +47,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0076: resting-arm revision prepared; author visual confirmation pending. Cup arm retained exactly in contact intervals; keys pinch/pocket remains open.
 
 - DEC-0077: author clarified elbow behind wrist. Forward-elbow requirement replaced; revised resting pose prepared, runtime/visual confirmation pending.
+
+- DEC-0078: second table reach author accepted. First lift mug/torso collision correction prepared; first-only preview/runtime and visual confirmation pending.

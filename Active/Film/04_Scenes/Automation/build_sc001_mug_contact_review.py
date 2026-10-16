@@ -16,7 +16,9 @@ def main():
     modes.add_argument('--second-pickup',action='store_true',help='Second mug approach and pickup after letter pocketing')
     modes.add_argument('--contact-cycle',action='store_true',help='Approach, formed grip, table placement and release trial')
     modes.add_argument('--motion-preview',action='store_true',help='Bake first drink integer frames and render48 small motion images')
+    parser.add_argument('--first-table-reach-only',action='store_true',help='With table reach review, render only the first clip')
     opts=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
+    if opts.first_table_reach_only and not opts.table_reach_review:parser.error('--first-table-reach-only requires --table-reach-review')
     from elias_mug_contact import state,FRAMES,HANDLE,validate_mug_basis
     from elias_rig_blender import animate_and_validate
     from sc001_hand_review_blender import render
@@ -38,6 +40,7 @@ def main():
         BAKE_FRAMES=list(range(1,3169));START,END=1,3168
     if opts.table_reach_review:
         from elias_table_reach import state,WINDOWS,TABLE_TOP,TABLE_RISE
+        if opts.first_table_reach_only:WINDOWS=WINDOWS[:1]
         BAKE_FRAMES=sorted({f for _,a,b in WINDOWS for f in range(a,b+1)});START,END=BAKE_FRAMES[0],BAKE_FRAMES[-1]
     frames=BAKE_FRAMES if moving else FRAMES
     if not bpy.app.background or not bpy.data.filepath:raise RuntimeError('Open existing SC001 checkpoint in background')
@@ -74,7 +77,7 @@ def main():
         assert abs(scene.objects['Mug_body'].dimensions.z-.18)<1e-4,'Use original180 mm mug checkpoint'
         table=scene.objects['SET_table'];table.location.z+=TABLE_RISE
         report['table_reach_trial']={'table_top_metres':TABLE_TOP,'original_mug_depth_metres':.18,'chairs':'Floor-standing proxies unchanged; high-table seating design pending','full_scene_accepted':False}
-        report['limitations'][0]='Two disjoint table-reach clips; paper/key motion and whole-scene integration not passed'
+        report['limitations'][0]='Bounded table-reach clips; paper/key motion and whole-scene integration not passed'
     from mathutils import Matrix,Vector
     # Reject singular/reflected target bases and Euler conversion errors before rig bake.
     conversion_error=0
@@ -133,11 +136,11 @@ def main():
     if opts.contact_cycle or opts.second_pickup:report['contact_cycle']=[{'frame':f,**state(f,layout).get('_mug_lifecycle',{'phase':'held'})} for f in frames]
     if opts.full_scene_review:report['rig']['coverage']='all_integer_frames'
     if opts.join_review or opts.table_reach_review:
-        report['rig']['coverage']='two_table_reach_windows' if opts.table_reach_review else 'four_disjoint_boundary_windows';report['boundary_windows']=WINDOWS
+        report['rig']['coverage']='bounded_table_reach_windows' if opts.table_reach_review else 'four_disjoint_boundary_windows';report['boundary_windows']=WINDOWS
         scene.frame_start=WINDOWS[0][1];scene.frame_end=WINDOWS[0][2]
     report['planned_contacts']=[state(f,layout)['_mug_contact_metrics'] for f in ([1400,1460,1539,1561,2450,2511,3168] if opts.full_scene_review else [1369,1375,1560,1561,1600,2429,2430,2510,2511] if (opts.join_review or opts.table_reach_review) else [2430,2440,2450,2480,2510] if opts.second_pickup else [1400,1411,1460,1500,1539] if moving else FRAMES)]
     report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_reach.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_mug_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_hand_math.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_hand_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_mug_integration.py',Path(__file__).parent/'sc001_full_scene_review.py',Path(__file__).parent/'sc001_preview.py',Path(__file__).parent/'sc001_mug_motion_review.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_mug_lifecycle.py']}
-    scene['rig_coverage']='TWO TABLE REACH CLIPS; paper/key contacts and full-scene integration pending' if opts.table_reach_review else 'ALL3168 INTEGER FRAMES; sampled full-scene review pending' if opts.full_scene_review else 'FOUR DISJOINT BOUNDARY CLIPS; no whole-scene validation' if opts.join_review else 'SECOND MUG PICKUP; whole-scene integration pending' if opts.second_pickup else 'BOUNDED CONTACT CYCLE; scene integration pending' if opts.contact_cycle else 'FIRST DRINK INTEGER FRAMES; approach/release excluded' if moving else 'SIX MUG SNAPSHOTS; not continuous animation';scene.frame_set(frames[0]);report['status']='mug_checkpoint_validated_render_pending'
+    scene['rig_coverage']='BOUNDED TABLE REACH CLIPS; paper/key contacts and full-scene integration pending' if opts.table_reach_review else 'ALL3168 INTEGER FRAMES; sampled full-scene review pending' if opts.full_scene_review else 'FOUR DISJOINT BOUNDARY CLIPS; no whole-scene validation' if opts.join_review else 'SECOND MUG PICKUP; whole-scene integration pending' if opts.second_pickup else 'BOUNDED CONTACT CYCLE; scene integration pending' if opts.contact_cycle else 'FIRST DRINK INTEGER FRAMES; approach/release excluded' if moving else 'SIX MUG SNAPSHOTS; not continuous animation';scene.frame_set(frames[0]);report['status']='mug_checkpoint_validated_render_pending'
     bpy.ops.wm.save_as_mainfile(filepath=str(out/('SC001_integrated_rig_v0.1.blend' if opts.full_scene_review else 'SC001_mug_contact_test_v0.1.blend')));(out/'validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8');print('MUG CHECKPOINT:',out,flush=True)
     if moving:
         from sc001_mug_motion_review import render as render_motion
@@ -151,7 +154,7 @@ def main():
                 report['boundary_previews'].append({'folder':window[0],'preview':render_motion(bpy,scene,state,layout,folder,window=window)})
             if not opts.table_reach_review:report['contact_closeups']=render(bpy,scene,state,layout,out,[(f,'left') for f in (1374,1561,2429,2511)])
             links=''.join(f'<li><a href="{name}/motion_preview.html">{name}: source frames {a}–{b}</a></li>' for name,a,b in WINDOWS)
-            if opts.table_reach_review:links='<p>Raised table reach trial; two clips only. Paper/key contacts, seating and full-scene integration pending.</p>'+links
+            if opts.table_reach_review:links='<p>Raised table reach trial; bounded clips only. Paper/key contacts, seating and full-scene integration pending.</p>'+links
             (out/'review_index.html').write_text('<!doctype html><meta charset="utf-8"><title>SC001 mug joins</title><h1>SC001 mug joins</h1><p>Disjoint review clips; full-scene Blender validation remains pending.</p><ul>'+links+'</ul>',encoding='utf-8')
         else:report['motion_preview']=render_motion(bpy,scene,state,layout,out,contact_cycle=opts.contact_cycle,second_pickup=opts.second_pickup)
         if opts.second_pickup:report['contact_closeups']=render(bpy,scene,state,layout,out,[(f,'left') for f in (2430,2440,2450,2510)])

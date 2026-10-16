@@ -78,4 +78,12 @@ def state(frame,layout):
         target=deepcopy(s);relaxed_arm(s,'left');pole=s['joints']['left_arm'][1];t=progress(frame,2400,2430)
         blend_hand(s,target,t)
         shoulder,_,wrist=j['left_arm'];j['left_arm']=(shoulder,two_segment(shoulder,wrist,mix(pole,target['joints']['left_arm'][1],t),UPPER_ARM_LENGTH,FOREARM_LENGTH),wrist)
+    if 1400<=frame<=1540:
+        lift=progress(frame,1400,1460)*(1-progress(frame,1500,1540))
+        shift=mul(s['ground_forward'],.28*lift)
+        s['mug']=add(s['mug'],shift)
+        hand=s['_hand_plan']['left'];hand['palm']['center']=add(hand['palm']['center'],shift)
+        hand['chains']={digit:[add(p,shift) for p in points] for digit,points in hand['chains'].items()}
+        wrist=add(s['_hand_origins']['left'],shift);s['_hand_origins']['left']=wrist
+        j['left_arm']=solve_arm(j['left_arm'][0],wrist,j['up'],j['lateral'],-1,.35)
     return s

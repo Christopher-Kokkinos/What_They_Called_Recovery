@@ -29,12 +29,17 @@ for name,a,b in WINDOWS:
                 original=old['_hand_plan'][side]['chains'][digit]
                 for p,q,x,y in zip(points,points[1:],original,original[1:]):assert abs(math.dist(p,q)-math.dist(x,y))<1e-8
         check_rest(j,'right',f)
-        if 1387<=f<=1600 or f>=2430:
+        if 1387<=f<1400 or 1540<=f<=1600 or f>=2430:
             previous_variant=raised_state(f,layout)
             assert j['left_arm']==previous_variant['joints']['left_arm'],('Passed cup arm changed',f)
             assert s['_hand_plan']['left']==previous_variant['_hand_plan']['left']
         if f in (1369,2400):
             check_rest(j,'left',f)
+        if 1400<=f<=1540:
+            axis=j['forward'];basis=s['_mug_basis']
+            radius_projection=.06*math.hypot(dot(axis,basis[0]),dot(axis,basis[1]))+.09*abs(dot(axis,basis[2]))
+            torso_front=max(dot(j['spine'],axis),dot(j['chest'],axis))+.125
+            assert dot(s['mug'],axis)-radius_projection-torso_front>.01,('Mug/torso separating plane failed',f)
         assert abs(j['pelvis'][2]-1.02)<1e-8
         assert abs(math.atan2(j['up'][0],j['up'][2]))<=.200001
         if previous:maximum_step=max(maximum_step,math.dist(previous,j['left_arm'][-1]))

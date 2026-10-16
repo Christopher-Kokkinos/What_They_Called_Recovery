@@ -171,3 +171,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0087: author provisionally accepted corrected envelope finishing for blockout. Continuous paper diagnostic prepared (602 poses/204 images), including supported set-down/envelope pickup. Envelope restaged180mm nearer; release elbow continuity corrected without changing reused hand/prop paths. Runtime/visual review, pocket release and full-scene retiming pending.
 
 - DEC-0088: joined paper ZIP runtime/hash checks passed; two author-authorised refinements prepared:10-frame regrip and direct32-frame transfer to flap.560 poses/190 images, local checks pass. Blender/visual review pending; pocket release, fine contact and full-scene retiming remain open.
+
+- DEC-0089: author provisionally accepted refined paper blockout. Mug/paper handover diagnostic prepared:772 connected poses,172 images across two handover windows. Mug supported during paper; envelope remains held in right hand for second pickup. Local checks pass; Blender/visual review, pocket release and complete-scene retiming pending.

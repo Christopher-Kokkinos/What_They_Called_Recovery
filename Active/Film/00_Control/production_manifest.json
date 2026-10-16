@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0088",
+    "decision": "DEC-0089",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "paper_regrip_direct_transfer_prepared",
+    "status": "mug_paper_handovers_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -188,10 +188,17 @@
     "envelope_finish_author_acceptance": "provisional_blockout_only",
     "paper_sequence_flag": "--paper-sequence-review",
     "paper_sequence_scope": "isolated_2161_2720",
-    "paper_sequence_runtime_pass": false,
-    "paper_sequence_visual_pass": false,
+    "paper_sequence_runtime_pass": true,
+    "paper_sequence_visual_pass": true,
     "paper_sequence_previous_602_pose_runtime_pass": true,
     "paper_sequence_pose_count": 560,
-    "paper_sequence_review_image_count": 190
+    "paper_sequence_review_image_count": 190,
+    "paper_sequence_author_acceptance": "provisional_blockout_only",
+    "table_handover_flag": "--mug-paper-handover-review",
+    "table_handover_scope": "isolated_1500_2271",
+    "table_handover_pose_count": 772,
+    "table_handover_review_image_count": 172,
+    "table_handover_runtime_pass": false,
+    "table_handover_visual_pass": false
   }
 }

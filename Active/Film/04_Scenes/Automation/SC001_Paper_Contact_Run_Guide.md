@@ -31,3 +31,7 @@ Use original checkpoint and `build_sc001_paper_contact_review.py -- --paper-sequ
 ### DEC-0088 refinement — current sequence command
 
 Same `--paper-sequence-review` command and original checkpoint. Now560 poses/190 images (2161–2720): shorter regrip, direct hand transfer from cleared mouth to flap. Output remains `paper_sequence_<timestamp>_<id>/`; open `review_index.html`, ZIP the whole new output folder. The602-pose sequence is retained as the reviewed baseline in code. New timing still requires full-scene integration; pocket remains held.
+
+## Mug/paper handovers (DEC-0089)
+
+Use original rig checkpoint with `build_sc001_paper_contact_review.py -- --mug-paper-handover-review` (standalone flag). Output `Active/Film/_local/SC001/table_handover_<timestamp>_<id>/`.772 poses validated;172 images render only the two handovers, in context/contact views. Open `review_index.html` for four links; ZIP entire new output folder. Connected bake is `SC001_table_handover_diagnostic.blend`. Right hand retains packet during left second pickup; pocket release and full-scene/key/departure timing pending. Source checkpoint read-only.

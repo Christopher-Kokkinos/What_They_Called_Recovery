@@ -147,3 +147,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0075: prior full integrated runtime confirmed (3168 frames/529 hashed images). Raised-table reach trial prepared as two bounded clips; Blender and author visual review pending.
 
 - DEC-0076: author flagged backward resting elbows; shoulder-relative rest and forward elbow poles prepared, passed cup arm retained; rerender pending.
+
+- DEC-0077: author clarified elbow behind wrist. Forward-elbow requirement replaced; revised resting pose prepared, runtime/visual confirmation pending.

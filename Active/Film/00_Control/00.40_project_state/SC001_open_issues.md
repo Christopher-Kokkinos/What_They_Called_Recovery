@@ -45,3 +45,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0075 trial: raised table/original mug and upright reach prepared; two clips only. Paper/key contact, chair/table relationship and continuous scene promotion remain open.
 
 - DEC-0076: resting-arm revision prepared; author visual confirmation pending. Cup arm retained exactly in contact intervals; keys pinch/pocket remains open.
+
+- DEC-0077: author clarified elbow behind wrist. Forward-elbow requirement replaced; revised resting pose prepared, runtime/visual confirmation pending.

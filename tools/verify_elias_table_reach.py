@@ -7,6 +7,16 @@ from elias_table_reach import state,raised_state,WINDOWS,TABLE_TOP
 from elias_mug_integration import state as baseline
 from elias_articulation import dot,sub,UPPER_ARM_LENGTH,FOREARM_LENGTH,THIGH_LENGTH,CALF_LENGTH
 layout=json.loads((ROOT/'Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json').read_text())
+def check_rest(j,side,frame):
+    shoulder,elbow,wrist=j[side+'_arm']
+    assert dot(sub(wrist,elbow),j['forward'])>.02,('Wrist must be ahead of elbow',frame,side)
+    upper=math.degrees(math.acos(max(-1,min(1,-dot(sub(elbow,shoulder),j['up'])/UPPER_ARM_LENGTH))))
+    assert upper<15,('Upper arm not hanging close to torso',frame,side,upper)
+    distance=math.dist(shoulder,wrist)
+    bend=180-math.degrees(math.acos(max(-1,min(1,(UPPER_ARM_LENGTH**2+FOREARM_LENGTH**2-distance**2)/(2*UPPER_ARM_LENGTH*FOREARM_LENGTH)))))
+    assert 5<bend<30,('Rest elbow flexion',frame,side,bend)
+    assert dot(sub(wrist,shoulder),j['up'])<-.67
+
 maximum_step=0
 for name,a,b in WINDOWS:
     previous=None
@@ -18,17 +28,13 @@ for name,a,b in WINDOWS:
             for digit,points in s['_hand_plan'][side]['chains'].items():
                 original=old['_hand_plan'][side]['chains'][digit]
                 for p,q,x,y in zip(points,points[1:],original,original[1:]):assert abs(math.dist(p,q)-math.dist(x,y))<1e-8
-        shoulder,elbow,wrist=j['right_arm']
-        assert dot(sub(elbow,shoulder),j['forward'])>0,('Rest elbow backward',f)
-        assert dot(sub(wrist,shoulder),j['up'])<-.60,('Rest wrist not down',f)
+        check_rest(j,'right',f)
         if 1387<=f<=1600 or f>=2430:
             previous_variant=raised_state(f,layout)
             assert j['left_arm']==previous_variant['joints']['left_arm'],('Passed cup arm changed',f)
             assert s['_hand_plan']['left']==previous_variant['_hand_plan']['left']
         if f in (1369,2400):
-            shoulder,elbow,wrist=j['left_arm']
-            assert dot(sub(elbow,shoulder),j['forward'])>0
-            assert dot(sub(wrist,shoulder),j['up'])<-.60
+            check_rest(j,'left',f)
         assert abs(j['pelvis'][2]-1.02)<1e-8
         assert abs(math.atan2(j['up'][0],j['up'][2]))<=.200001
         if previous:maximum_step=max(maximum_step,math.dist(previous,j['left_arm'][-1]))

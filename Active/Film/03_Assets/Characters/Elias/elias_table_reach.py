@@ -16,11 +16,11 @@ def offsets(frame):
             'envelope':TABLE_RISE*(1-progress(frame,2275,2300)), 'keys':TABLE_RISE*(1-progress(frame,2395,2430))}
 
 def relaxed_arm(s,side):
-    """Shoulder-relative rest: elbow pole stays forward of the upper arm."""
+    """Shoulder-relative rest: elbow sits behind wrist, upper arm close to vertical."""
     j=s['joints'];sign=-1 if side=='left' else 1
     shoulder=j[side+'_arm'][0];up=j['up'];forward=j['forward'];lat=j['lateral']
-    wrist=add(add(add(shoulder,mul(up,-.62)),mul(forward,.08)),mul(lat,sign*.03))
-    pole=add(add(add(shoulder,mul(up,-.30)),mul(forward,.25)),mul(lat,sign*.08))
+    wrist=add(add(add(shoulder,mul(up,-.685)),mul(forward,.06)),mul(lat,sign*.02))
+    pole=add(add(add(shoulder,mul(up,-.34)),mul(forward,-.15)),mul(lat,sign*.02))
     j[side+'_arm']=(shoulder,two_segment(shoulder,wrist,pole,UPPER_ARM_LENGTH,FOREARM_LENGTH),wrist)
     neutral=deepcopy(s);neutral.pop('_hand_plan',None);neutral['frame']=1000;neutral['paper_two_hands']=False
     s['_hand_plan'][side]=hands(neutral)[side]

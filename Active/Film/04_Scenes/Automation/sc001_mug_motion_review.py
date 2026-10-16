@@ -22,13 +22,14 @@ def second_schedule():
     return list(range(2430,2511)),list(range(2430,2511,2))
 
 
-def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False,cutaway_objects=()):
+def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False,cutaway_objects=(),window_step=3):
     """One fixed camera/scale for the full path, avoiding auto-frame pumping."""
     bake_frames,render_frames=second_schedule() if second_pickup else cycle_schedule() if contact_cycle else (BAKE_FRAMES,RENDER_FRAMES)
     if window is not None:
-        _,a,b=window;bake_frames=list(range(a,b+1));render_frames=list(range(a,b+1,3))
+        assert isinstance(window_step,int) and window_step>0
+        _,a,b=window;bake_frames=list(range(a,b+1));render_frames=list(range(a,b+1,window_step))
         if render_frames[-1]!=b:render_frames.append(b)
-    start,end=bake_frames[0],bake_frames[-1];step=2 if second_pickup else 4 if contact_cycle else STEP
+    start,end=bake_frames[0],bake_frames[-1];step=window_step if window is not None else 2 if second_pickup else 4 if contact_cycle else STEP
     from mathutils import Vector
     from bpy_extras.object_utils import world_to_camera_view
     from elias_hand_math import hands
@@ -110,6 +111,8 @@ show(0);requestAnimationFrame(tick);
         if window is not None and window[0]=='envelope_open_insert':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Envelope opening, supported letter pickup, insertion and release. Pocketing and integrated transitions remain pending.')
         if window is not None and window[0]=='envelope_opening_only':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Envelope opening and transfer only. Insertion, release and pocketing excluded.')
         if window is not None and window[0]=='envelope_insertion_only':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Insertion and slower hand withdrawal. Opening excluded; pocketing and integrated timing pending.')
+        if window is not None and window[0]=='paper_sequence':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Continuous fold, table set-down, envelope pickup, insertion and closure. Packet held at pocket target; release/full scene pending.')
+        if window is not None and window[0]=='envelope_finish_only':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Closure, handover and provisional pocket approach; clothing fit/release pending.')
         if cutaway_objects:player=player.replace('<h1>','<h1>DIAGNOSTIC CUTAWAY — ',1).replace('<img id=', '<p>Front panel, flap and label hidden for inspection only. Full geometry was retained for validation and the normal view.</p><img id=',1)
         if second_pickup:player=player.replace('SC001 first mug lift and return','SC001 second mug pickup').replace('Grip already formed; approach and release excluded.','Second pickup after letter pocketing. Table height/posture correction remains deferred.')
         if contact_cycle:player=player.replace('Grip already formed; approach and release excluded.','Contact-cycle trial includes approach, grip formation, placement and release. Scene integration remains pending.')

@@ -167,3 +167,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0085: insertion ZIP runtime/hash checks and Codex blockout review passed; author acceptance pending. Closure/handover/pocket-approach diagnostic prepared (181 poses/122 images). Blender/visual review and clothing-pocket release pending; full sequence retiming remains open.
 
 - DEC-0086: finish ZIP technical record and122 hashes passed; visual pass held for raised right elbow. Body-relative pole correction prepared; hand/packet targets unchanged across181 poses. Height/continuity gates pass; rerender/author visual review pending. Pocket fit/release and full skin collision clearance remain open.
+
+- DEC-0087: author provisionally accepted corrected envelope finishing for blockout. Continuous paper diagnostic prepared (602 poses/204 images), including supported set-down/envelope pickup. Envelope restaged180mm nearer; release elbow continuity corrected without changing reused hand/prop paths. Runtime/visual review, pocket release and full-scene retiming pending.

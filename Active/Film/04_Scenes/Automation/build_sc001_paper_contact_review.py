@@ -44,7 +44,7 @@ def main():
         text=scene.objects['Notice_exact_text'];text.hide_render=f>=2220;text.keyframe_insert(data_path='hide_render',frame=f)
     linearise_owned_actions(owned)
     report={'status':'paper_fold_bake_pending','source_blend':str(source),'scene_accepted':False,
-        'scope':'2161–2260: formed edge pinch, pickup, two-handed fold only',
+        'scope':'2161–2280: formed pinch, pickup, partial fold, release/regrip, closing fold',
         'limitations':['No reach-in/release or envelope insertion/pocketing yet','Not sheet or force simulation; full skin collisions require visual review','Approved mug clips unchanged; thigh contact remains non-blocking']}
     report['rig']=animate_and_validate(bpy,scene,layout,state,END,list(range(START,END+1)))
     errors=[]
@@ -57,17 +57,19 @@ def main():
         for side,suffix in [('left','L'),('right','R')]:
             contact=s['_paper_contacts'][side]
             surface=scene.objects['Letter_fold' if side=='left' else 'Letter_fixed'].evaluated_get(deps)
-            local=Vector((-.065/.21,(.135-.07425)/.1485,0)) if side=='left' else Vector((.065/.21,(-.135+.07425)/.1485,0))
+            local=Vector((-.105/.21,(.135-.07425)/.1485,0)) if side=='left' else Vector((.065/.21,(-.135+.07425)/.1485,0))
             plane=surface.matrix_world@local;normal=surface.matrix_world.to_3x3().col[2].normalized()
-            assert (plane-Vector(contact['contact'])).length<1e-4,(f,side,'Paper edge mapping')
+            assert (plane-Vector(contact['surface_contact'])).length<1e-4,(f,side,'Paper edge mapping')
             for digit in ('index','thumb'):
                 actual=scene.objects['CHR_Elias_RIG'].matrix_world@scene.objects['CHR_Elias_RIG'].pose.bones[digit+'_3.'+suffix].tail
                 error=(actual-Vector(contact[digit+'_tip'])).length
                 assert error<1e-4,(f,side,digit,error);errors.append(error)
-                signed=(actual-plane).dot(normal);expected=.009 if digit=='index' else -.011
-                assert abs(signed-expected)<1e-4,(f,side,digit,'Paper pad clearance',signed)
-    report['rig']['coverage']='all_integer_frames_in_2161_2260_only'
-    report['contact_surface_readback']='Both opposed index/thumb targets checked against evaluated sheet-half planes at all100 frames'
+                if contact['active']:
+                    signed=(actual-plane).dot(normal)*contact['surface_sign'];expected=.009 if digit=='index' else -contact['thumb_offset']
+                    assert abs(signed-expected)<1e-4,(f,side,digit,'Paper pad clearance',signed)
+    report['rig']['coverage']='all_integer_frames_in_2161_2280_only'
+    report['contact_surface_readback']='Pad targets checked at all120 frames; sheet-plane clearance checked only for declared active grips. Right hand continuously supports sheet; fold pauses during left regrip'
+    report['contact_phases']=[{'frame':f,'phase':state(f,layout)['_paper_phase'],'support_hands':state(f,layout)['_paper_support_hands'],'left_grip_active':state(f,layout)['_paper_contacts']['left']['active']} for f in range(START,END+1)]
     report['maximum_prop_or_pad_target_error_m']=max(errors)
     report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_reach.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_mug_motion_review.py']}
     scene.frame_start=START;scene.frame_end=END;scene.frame_set(START)

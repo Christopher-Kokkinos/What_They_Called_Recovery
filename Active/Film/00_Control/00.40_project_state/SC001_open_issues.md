@@ -53,3 +53,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0079: first-only support check incorrectly visited unbaked second-clip frame2400; scope corrected and schedule regression passed. Same first-only rerun required.
 
 - DEC-0080: both table reaches author provisionally accepted; hand/outer-thigh collision non-blocking and open. Paper pickup/fold contact diagnostic prepared (100 poses/68 images); runtime/visual review pending, insertion/pocketing next.
+
+- DEC-0081: author anatomical guidance incorporated. Supported paper regrip prepared (120 poses/82 images); initial folded-hand roll remains pending runtime/visual correction confirmation. Envelope opening/insertion/pocketing follow; left stabilises/right manipulates.

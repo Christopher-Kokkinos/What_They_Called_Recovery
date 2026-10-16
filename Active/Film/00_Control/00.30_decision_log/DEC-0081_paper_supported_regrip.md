@@ -1,0 +1,9 @@
+# DEC-0081 — Supported paper regrip and anatomical choreography
+
+Author supplies reach/pronation, precision pinch, flap opening, asymmetric bilateral insertion and progressive release as animation guidance. Production envelope roles: left stabilises, right opens/inserts and later pockets; role choice is provisional film blocking, not a new claim of canonical handedness. Fold still requires both hands before envelope pickup. Preserve these dependencies when building insertion/pocketing.
+
+Prior uploaded paper_fold_20261016_081615_e3bcc1b1.zip passes100 rig frames,68 image hashes; maximum prop/pad target error0.00000152662 m and palm error0.00000540664 m. Visual inspection shows folding hand rolling excessively with the half-sheet; correct contact targets alone do not establish anatomical acting. No author acceptance inferred from 'not bad first attempt'.
+
+Revision: move folding grip to side edge. Left palm pitch changes with pickup, then stays stable during fold. Aim elbow solution towards forearm/hand alignment; retain fixed anatomy. Translate raised sheet140 mm forward to leave torso working space. Fold first90 degrees2220–2240, hold90 degrees2240–2260 while left loosens and withdraws80 mm around edge, then regrip opposite face and close2260–2280. Right grip continuously stabilises sheet. Finger target opening is explicit; inactive left contact is not counted as supporting or subjected to a false contact-plane assertion. Additional2 mm thumb allowance closes around both proxy layers. No full skin collision/force simulation claim.
+
+This isolated test extends to2280 (+20 frames); future envelope timing/integration must incorporate it explicitly, not overlay original insertion. Starts with grip formed; reach-in, release, envelope opening/insertion and pocketing remain pending.120 poses,82 images. Pure checks pass; Blender/author visual review pending. Existing mug/table clips unchanged.

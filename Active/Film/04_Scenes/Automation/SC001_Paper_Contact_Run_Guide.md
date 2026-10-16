@@ -2,6 +2,8 @@
 
 From repository root, open the original rig checkpoint in background using build_sc001_paper_contact_review.py. No extra flags. Same Blender executable and rig_scene_20261014_204455_57a2b099/SC001_rig_performance_v0.1.blend checkpoint as the mug tests.
 
-Output: Active/Film/_local/SC001/paper_fold_<timestamp>_<id>/. Open review_index.html. Review arm_context and paper_contact players;100 integer poses,34 small images per view (68 total). Zip the whole paper_fold folder, including validation.json and both view subfolders.
+Output: Active/Film/_local/SC001/paper_fold_<timestamp>_<id>/. Open review_index.html. Review arm_context and paper_contact players;120 integer poses,41 small images per view (82 total). Zip the whole paper_fold folder, including validation.json and both view subfolders.
 
-Check opposed finger/thumb contact, wrist continuity, left hand following fold, right hand stabilising sheet, and visible hand/paper collisions. Diagnostic starts with formed pinch. No reach-in/release, insertion/pocketing or full-scene acceptance. Original exact notice retained; source checkpoint never resaved.
+Check opposed finger/thumb contact, wrist continuity, left hand following fold, right hand stabilising sheet, and visible hand/paper collisions. Diagnostic starts with formed pinch. Supported halfway regrip is included. No initial reach-in/final release, insertion/pocketing or full-scene acceptance. Original exact notice retained; source checkpoint never resaved.
+
+DEC-0081: watch the partial fold, supported pause/regrip, and closing fold. The folding palm should no longer roll180 degrees with the sheet. This isolated clip extends to2280; later envelope timing remains to be coordinated.

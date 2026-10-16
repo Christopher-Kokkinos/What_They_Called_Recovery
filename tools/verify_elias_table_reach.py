@@ -17,6 +17,12 @@ def check_rest(j,side,frame):
     assert 5<bend<30,('Rest elbow flexion',frame,side,bend)
     assert dot(sub(wrist,shoulder),j['up'])<-.67
 
+from build_sc001_mug_contact_review import support_review_frames
+first=list(range(1369,1601));both=first+list(range(2400,2521))
+assert support_review_frames(first,True)==(1375,1400,1540,1550,1560)
+assert support_review_frames(both,True)==(1375,1400,1540,1550,1560,2400,2430,2450)
+assert support_review_frames(first)==(1375,1400,1540,1550,1560)
+
 maximum_step=0
 for name,a,b in WINDOWS:
     previous=None

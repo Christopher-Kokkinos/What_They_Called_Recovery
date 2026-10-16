@@ -6,6 +6,13 @@ ROOT=Path(__file__).resolve().parents[4]
 sys.path[:0]=[str(Path(__file__).parent),str(ROOT/'Active/Film/03_Assets/Characters/Elias')]
 
 
+def support_review_frames(baked_frames,table_reach=False):
+    """Only evaluate resting support samples belonging to this bake."""
+    candidates=(1375,1400,1540,1550,1560,2400,2430,2450) if table_reach else (1375,1400,1540,1550,1560)
+    baked=set(baked_frames)
+    return tuple(frame for frame in candidates if frame in baked)
+
+
 def main():
     import bpy
     parser=argparse.ArgumentParser(description=__doc__)
@@ -123,7 +130,7 @@ def main():
         report['mug_motion_readback']={'frames_checked':len(frames),'maximum_position_error_metres':position_error,'maximum_basis_vector_error':basis_error,'worst_orientation_sample':basis_worst}
         if opts.contact_cycle or opts.table_reach_review:
             support=[]
-            for frame in ((1375,1400,1540,1550,1560,2400,2430,2450) if opts.table_reach_review else (1375,1400,1540,1550,1560)):
+            for frame in support_review_frames(frames,opts.table_reach_review):
                 scene.frame_set(frame);bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
                 def corners(name):
                     obj=scene.objects[name].evaluated_get(deps)

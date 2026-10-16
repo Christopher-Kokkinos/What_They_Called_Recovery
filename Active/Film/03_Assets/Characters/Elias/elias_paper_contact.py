@@ -7,7 +7,7 @@ from sc001_room_performance import progress,solve_arm
 START,END=2161,2280
 _CACHE={}
 
-def pinch(contact,normal,direction,side,palm_normal=None,opening=0,thumb_offset=.011):
+def pinch(contact,normal,direction,side,palm_normal=None,opening=0,thumb_offset=.011,index_offset=.009):
     """Opposed pads at a paper edge; fixed phalange lengths and connected wrist."""
     palm_normal=palm_normal or normal
     z=mul(direction,-1);x=unit(cross(palm_normal,z));basis=(x,palm_normal,z)
@@ -16,7 +16,7 @@ def pinch(contact,normal,direction,side,palm_normal=None,opening=0,thumb_offset=
     for i,digit in enumerate(('index','middle','ring','little')):
         length=(.065,.072,.068,.055)[i];lengths=(length*.42,length*.33,length*.25)
         base=add(add(center,mul(direction,.027)),mul(x,(i-1.5)*.019))
-        if digit=='index':tip=add(contact,mul(normal,.009+opening))
+        if digit=='index':tip=add(contact,mul(normal,index_offset+opening))
         else:tip=add(add(base,mul(direction,length*.68)),mul(normal,.012))
         middle=two_segment(base,tip,add(base,mul(normal,.07)),lengths[0],sum(lengths[1:]))
         chains[digit]=[base,middle,mix(middle,tip,lengths[1]/sum(lengths[1:])),tip]

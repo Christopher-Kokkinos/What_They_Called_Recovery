@@ -157,3 +157,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0080: both table reaches author provisionally accepted; hand/outer-thigh collision non-blocking and open. Paper pickup/fold contact diagnostic prepared (100 poses/68 images); runtime/visual review pending, insertion/pocketing next.
 
 - DEC-0081: author anatomical guidance incorporated. Supported paper regrip prepared (120 poses/82 images); initial folded-hand roll remains pending runtime/visual correction confirmation. Envelope opening/insertion/pocketing follow; left stabilises/right manipulates.
+
+- DEC-0082: envelope opening/insertion diagnostic prepared (160 poses/108 images). Fold remains working blockout; mechanical pause and crease press open. Envelope runtime/visual check, transition, pocketing and coordinated scene retiming pending.

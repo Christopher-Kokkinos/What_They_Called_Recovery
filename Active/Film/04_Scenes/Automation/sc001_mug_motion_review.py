@@ -103,6 +103,7 @@ show(0);requestAnimationFrame(tick);
 </script>"""
         if window is not None:player=player.replace('SC001 first mug lift and return','SC001 '+window[0]).replace('Grip already formed; approach and release excluded.','Boundary transition review; full-scene Blender validation remains pending.')
         if paper_review:player=player.replace('Boundary transition review; full-scene Blender validation remains pending.','Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.')
+        if window is not None and window[0]=='envelope_open_insert':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Envelope opening, supported letter pickup, insertion and release. Pocketing and integrated transitions remain pending.')
         if second_pickup:player=player.replace('SC001 first mug lift and return','SC001 second mug pickup').replace('Grip already formed; approach and release excluded.','Second pickup after letter pocketing. Table height/posture correction remains deferred.')
         if contact_cycle:player=player.replace('Grip already formed; approach and release excluded.','Contact-cycle trial includes approach, grip formation, placement and release. Scene integration remains pending.')
         (out/'motion_preview.html').write_text(player.replace('__MANIFEST__',json.dumps(manifest)),encoding='utf-8')

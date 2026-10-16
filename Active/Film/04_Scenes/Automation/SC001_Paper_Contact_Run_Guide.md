@@ -7,3 +7,7 @@ Output: Active/Film/_local/SC001/paper_fold_<timestamp>_<id>/. Open review_index
 Check opposed finger/thumb contact, wrist continuity, left hand following fold, right hand stabilising sheet, and visible hand/paper collisions. Diagnostic starts with formed pinch. Supported halfway regrip is included. No initial reach-in/final release, insertion/pocketing or full-scene acceptance. Original exact notice retained; source checkpoint never resaved.
 
 DEC-0081: watch the partial fold, supported pause/regrip, and closing fold. The folding palm should no longer roll180 degrees with the sheet. This isolated clip extends to2280; later envelope timing remains to be coordinated.
+
+## Envelope diagnostic — DEC-0082
+
+Use the same original checkpoint and builder, adding `-- --envelope-review` after the Python path. Output `Active/Film/_local/SC001/envelope_<timestamp>_<id>/`. Open review_index.html and zip entire envelope folder.160 baked poses,54 samples in each of arm_context and paper_contact (108 total). Check flap opening, left support, right transfer/pickup, insertion and thumb withdrawal. Starts with grips formed. Pocketing/closing and fold-to-envelope transition excluded. Isolated review timings overlap older pickup and must not be promoted without retiming.

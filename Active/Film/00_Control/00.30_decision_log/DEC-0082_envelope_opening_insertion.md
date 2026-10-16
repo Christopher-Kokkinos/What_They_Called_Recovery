@@ -1,0 +1,9 @@
+# DEC-0082 — Envelope opening and supported insertion diagnostic
+
+Author agrees supported fold is an improved working blockout. Mechanical pause and missing crease press remain open; no finished paper-interaction acceptance. Uploaded paper_fold_20261016_083146_3adae889.zip:120 poses,82 matching image hashes, maximum palm error0.00000427993 m and prop/pad error0.00000143051 m. Existing mug/table acceptance unchanged; thigh contact remains non-blocking.
+
+Next isolated stage: left stabilises envelope; right opens flap, releases it, picks up folded letter from table, aligns/inserts, then withdraws. The letter rests on the table while right opens flap; it is not held by an unavailable third hand. Envelope and right hand share support during insertion; thumb withdraws outside entry before fingers reach slot. Index guides while envelope takes support. Flap opens0–180 degrees; front proxy panel tilts0.20 rad about closed edge to create a mouth. This is proxy deformation, not paper/cloth/force simulation or final envelope design.
+
+Review interval2281–2440,160 integer poses, two54-image previews. These are isolated review coordinates. They overlap old second-pickup coordinates: full-scene timings MUST be retimed/validated before integration; do not overlay this test on the approved mug sequence. Starts with left envelope grip and right flap grip formed; transition from fold, initial approach, closing/sealing and pocketing are not included. Pocketing follows the contact review.
+
+Pure tests cover fixed anatomy, support phases, wrist bend, cavity/letter corners, thumb slot clearance and full final insertion. Blender validates active pads against evaluated back/front/flap/letter planes and all prop/rig targets. Full skin collision and natural performance remain visual gates. No canonical prose change.

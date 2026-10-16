@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0074",
+    "decision": "DEC-0075",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "parked_mug_basis_fix_prepared",
+    "status": "raised_table_reach_trial_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -150,12 +150,13 @@
     "author_first_drink_blockout_motion_pass": true,
     "mug_second_pickup_flag": "--second-pickup",
     "author_first_contact_cycle_stage_pass": true,
-    "table_posture_correction": "deferred_in_SC001_open_issues",
+    "table_posture_correction": "bounded_trial_runtime_visual_pending",
     "mug_join_review_flag": "--join-review",
     "integrated_target_module": "Active/Film/03_Assets/Characters/Elias/elias_mug_integration.py",
     "integrated_palm_control": "left_only_opt_in_49_bones",
     "full_scene_review_flag": "--full-scene-review",
     "integrated_boundary_palm_mapping_runtime_pass": true,
-    "full_scene_orientation_runtime_pass": false
+    "full_scene_orientation_runtime_pass": true,
+    "table_reach_review_flag": "--table-reach-review"
   }
 }

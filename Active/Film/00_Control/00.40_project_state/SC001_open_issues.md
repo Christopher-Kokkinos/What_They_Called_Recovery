@@ -41,3 +41,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 2026-10-15 DEC-0073:55 mm palm mapping defect CLEARED in175-frame integrated boundary readback (0.00996 mm maximum under0.1 mm gate). Whole-scene3168-frame runtime remains pending. Initial reach partly body-occluded, clearance not established. No final scene pass.
 
 2026-10-16 DEC-0074: Overnight full-scene orientation FAILED1.4142; invalid parked basis in sleeping segment diagnosed. Stable table basis/preflight and earlier rig diagnostic save prepared. Pure basis checks pass; full evaluated Blender rerun pending. Rig function gates completed but no numerical report/checkpoint survived that run.
+
+- DEC-0075 trial: raised table/original mug and upright reach prepared; two clips only. Paper/key contact, chair/table relationship and continuous scene promotion remain open.

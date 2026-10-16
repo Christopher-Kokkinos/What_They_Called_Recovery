@@ -82,3 +82,7 @@ Same original checkpoint/builder, use **-- --full-scene-review**. New **sc001_in
 ## Full-scene parked orientation repair (DEC-0074)
 
 After overnight mug orientation mismatch1.4142, pull and rerun identical --full-scene-review against original checkpoint. Stable parked table axes replace invalid sleeping body/ground combination. All basis/Euler preflight runs before rig bake. After rig gates, **SC001_integrated_rig_diagnostic.blend** saves with pending-mug status; this diagnostic is not a validated scene. Normal **SC001_integrated_rig_v0.1.blend** still requires mug readback pass before renders. Previous failed process exited before saving, so another bake is necessary. Same529-image output/player; original input remains unchanged.
+
+## Raised-table reach trial (DEC-0075)
+
+Use the original rig_scene_20261014_204455_57a2b099 checkpoint with `--table-reach-review` instead of other review flags. Output: `Active/Film/_local/SC001/table_reach_<timestamp>_<id>/`. Open `review_index.html` for two clips; zip that entire table_reach folder with validation.json and both clip subfolders.353 integer poses/119 small images, no close-up batch. This is not a continuous scene bake. Check mug support, upright reach, elbows and both pickups. Paper/key contact and high-table seating are still pending.

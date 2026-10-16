@@ -62,7 +62,13 @@ def state(frame,layout):
     s['_hand_plan']={'left':left,'right':right};s['_hand_origins']={'left':lw,'right':rw}
     for side,w in [('left',lw),('right',rw)]:
         j=s['joints'];axis=mul(s['_hand_plan'][side]['palm']['basis'][2],-1)
-        elbow=two_segment(j[side+'_arm'][0],w,sub(w,mul(axis,FOREARM_LENGTH)),UPPER_ARM_LENGTH,FOREARM_LENGTH)
+        pole=sub(w,mul(axis,FOREARM_LENGTH))
+        if side=='right':
+            # Hand orientation must not select a raised elbow as the grip rolls.
+            shoulder=j[side+'_arm'][0]
+            low=add(add(add(shoulder,mul(j['up'],-.35)),mul(j['lateral'],.25)),mul(j['forward'],-.10))
+            pole=mix(prior(START,layout)['joints']['right_arm'][1],low,progress(frame,START,2498))
+        elbow=two_segment(j[side+'_arm'][0],w,pole,UPPER_ARM_LENGTH,FOREARM_LENGTH)
         j[side+'_arm']=(j[side+'_arm'][0],elbow,w)
     s['_envelope_contacts']={'left':lc,'right':rc};s['_envelope_phase']=phase;s['_paper_support']='envelope';s['_insertion']=1
     return s

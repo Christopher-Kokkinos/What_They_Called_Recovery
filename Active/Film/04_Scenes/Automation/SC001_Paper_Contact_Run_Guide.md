@@ -21,3 +21,5 @@ Use `-- --envelope-review --envelope-insertion-only` with the same builder/origi
 ## Closure / handover / pocket approach (DEC-0085)
 
 Use the same original rig checkpoint and builder with `--envelope-review --envelope-finish-only`. Output: `Active/Film/_local/SC001/envelope_finish_<timestamp>_<id>/`. Open `review_index.html`; ZIP the whole output folder.181 poses/122 images, two normal-geometry views. Packet remains held at the provisional pocket target; clothing fit and release are pending. Earlier insertion motion is unchanged. Full-scene timing is not yet integrated.
+
+DEC-0086: same finish-only command now uses a body-relative right-elbow guide; hand and packet targets unchanged. New output required to review the correction. Prior runtime passed but prior visual pass was held.

@@ -21,12 +21,17 @@ for f in range(START,END+1):
   axis=mul(s['_hand_plan'][side]['palm']['basis'][2],-1)
   bend=math.degrees(math.acos(max(-1,min(1,dot(unit(sub(wrist,elbow)),axis)))));maxbend=max(maxbend,bend)
   if previous:maximum=max(maximum,math.dist(wrist,previous['_hand_origins'][side]))
+ if f>=2550:
+  shoulder,elbow,wrist=s['joints']['right_arm']
+  assert dot(sub(elbow,shoulder),s['joints']['up'])<-.20,('Raised right elbow',f)
  if f>=2594:
   expected=rotate(sub(prior(2474,layout)['letter'],prior(2474,layout)['envelope']),s.get('_packet_rotation_x',0))
   assert math.dist(sub(s['letter'],s['envelope']),expected)<1e-9
  previous=s
 for side in ('left','right'):
  assert math.dist(state(START,layout)['_hand_origins'][side],prior(START,layout)['_hand_origins'][side])<1e-9
+elbow_steps=[math.dist(state(f,layout)['joints']['right_arm'][1],state(f-1,layout)['joints']['right_arm'][1]) for f in range(START+1,END+1)]
+assert max(elbow_steps)<.05,('Elbow jump',max(elbow_steps))
 assert maximum<.045,maximum
 assert maxbend<65,maxbend
 assert state(2550,layout)['_envelope_flap_angle']==0

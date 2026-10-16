@@ -22,7 +22,7 @@ def second_schedule():
     return list(range(2430,2511)),list(range(2430,2511,2))
 
 
-def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None):
+def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False):
     """One fixed camera/scale for the full path, avoiding auto-frame pumping."""
     bake_frames,render_frames=second_schedule() if second_pickup else cycle_schedule() if contact_cycle else (BAKE_FRAMES,RENDER_FRAMES)
     if window is not None:
@@ -53,12 +53,14 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
         for frame in bake_frames:
             scene.frame_set(frame);bpy.context.view_layer.update();s=state(frame,layout)
             points.extend(Vector(p) for chain in hands(s)['left']['chains'].values() for p in chain)
-            points.extend(Vector(p) for p in s['joints']['left_arm'])
-            if second_pickup:points.extend(Vector(p) for p in s['joints']['right_arm'])
-            points.extend(Vector(s['joints'][name]) for name in ('head','pelvis'))
+            if not paper_closeup:points.extend(Vector(p) for p in s['joints']['left_arm'])
+            if paper_review:
+                points.extend(Vector(p) for chain in hands(s)['right']['chains'].values() for p in chain)
+            if not paper_closeup and (second_pickup or paper_review):points.extend(Vector(p) for p in s['joints']['right_arm'])
+            if not paper_closeup:points.extend(Vector(s['joints'][name]) for name in ('head','pelvis'))
             deps=bpy.context.evaluated_depsgraph_get()
             for obj in scene.objects:
-                if obj.type=='MESH' and (obj.name.startswith('Mug_') or (second_pickup and obj.name.startswith('Key_'))) and not obj.hide_render:
+                if obj.type=='MESH' and (obj.name.startswith('Mug_') or (second_pickup and obj.name.startswith('Key_')) or (paper_review and obj.name.startswith(('Letter_','Envelope_')))) and not obj.hide_render:
                     evaluated=obj.evaluated_get(deps)
                     points.extend(evaluated.matrix_world@Vector(v) for v in evaluated.bound_box)
         low=Vector(tuple(min(p[i] for p in points) for i in range(3)))
@@ -100,6 +102,7 @@ function tick(now){if(running){let time=((now-start)/1000)%manifest.duration_sec
 show(0);requestAnimationFrame(tick);
 </script>"""
         if window is not None:player=player.replace('SC001 first mug lift and return','SC001 '+window[0]).replace('Grip already formed; approach and release excluded.','Boundary transition review; full-scene Blender validation remains pending.')
+        if paper_review:player=player.replace('Boundary transition review; full-scene Blender validation remains pending.','Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.')
         if second_pickup:player=player.replace('SC001 first mug lift and return','SC001 second mug pickup').replace('Grip already formed; approach and release excluded.','Second pickup after letter pocketing. Table height/posture correction remains deferred.')
         if contact_cycle:player=player.replace('Grip already formed; approach and release excluded.','Contact-cycle trial includes approach, grip formation, placement and release. Scene integration remains pending.')
         (out/'motion_preview.html').write_text(player.replace('__MANIFEST__',json.dumps(manifest)),encoding='utf-8')

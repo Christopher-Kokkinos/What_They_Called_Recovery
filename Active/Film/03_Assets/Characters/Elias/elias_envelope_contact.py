@@ -5,7 +5,7 @@ from elias_articulation import add,sub,mul,mix,unit,cross,dot,two_segment,UPPER_
 from elias_paper_contact import pinch
 from elias_table_reach import state as table_state,relaxed_arm
 from sc001_room_performance import progress
-START,END=2281,2440
+START,END=2281,2474
 _CACHE={}
 
 def digit_target(hand,digit,tip):
@@ -80,8 +80,21 @@ def state(frame,layout):
     elif frame<=2420:
         right,rw,c=letter_grip(frame);phase='lift_align' if frame<2365 else 'insert'
     else:
-        a,aw,_=letter_grip(2420);neutral=deepcopy(s);relaxed_arm(neutral,'right');b=neutral['_hand_plan']['right'];bw=neutral['joints']['right_arm'][-1]
-        right,rw=blend_hand(a,aw,b,bw,progress(frame,2420,2440));c={'surface':'free_release','index_active':False,'thumb_active':False};phase='withdraw_hand'
+        a,aw,_=letter_grip(2420)
+        # Retract through the slot at the insertion height before dropping the arm.
+        offset=(0,-.10,0);waypoint=deepcopy(a)
+        waypoint['palm']['center']=add(waypoint['palm']['center'],offset)
+        waypoint['chains']={digit:[add(p,offset) for p in points] for digit,points in waypoint['chains'].items()}
+        waypoint_wrist=add(aw,offset)
+        if frame<=2434:
+            t=progress(frame,2420,2434);right=deepcopy(a);shift=mul(offset,t)
+            right['palm']['center']=add(right['palm']['center'],shift)
+            right['chains']={digit:[add(p,shift) for p in points] for digit,points in right['chains'].items()};rw=add(aw,shift)
+            phase='clear_envelope_mouth'
+        else:
+            neutral=deepcopy(s);relaxed_arm(neutral,'right');b=neutral['_hand_plan']['right'];bw=neutral['joints']['right_arm'][-1]
+            right,rw=blend_hand(waypoint,waypoint_wrist,b,bw,progress(frame,2434,2474));phase='lower_hand_to_rest'
+        c={'surface':'free_release','index_active':False,'thumb_active':False}
     contacts['right']=c;s['_hand_plan']={'left':left,'right':right};s['_hand_origins']={'left':lw,'right':rw}
     for side,wrist in [('left',lw),('right',rw)]:
         j=s['joints'];shoulder=j[side+'_arm'][0];direction=mul(s['_hand_plan'][side]['palm']['basis'][2],-1)

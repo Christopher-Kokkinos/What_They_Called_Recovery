@@ -8,13 +8,14 @@ sys.path[:0]=[str(Path(__file__).parent),str(ROOT/'Active/Film/03_Assets/Charact
 def main():
     import bpy
     from mathutils import Vector,Matrix
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--envelope-review',action='store_true');parser.add_argument('--envelope-opening-only',action='store_true')
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--envelope-review',action='store_true');scope=parser.add_mutually_exclusive_group();scope.add_argument('--envelope-opening-only',action='store_true');scope.add_argument('--envelope-insertion-only',action='store_true')
     opts=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
-    if opts.envelope_opening_only and not opts.envelope_review:parser.error('--envelope-opening-only requires --envelope-review')
+    if (opts.envelope_opening_only or opts.envelope_insertion_only) and not opts.envelope_review:parser.error('Envelope subset requires --envelope-review')
     if opts.envelope_review:
         from elias_envelope_contact import state,START,END
         from sc001_envelope_review_blender import key_geometry,validate as validate_envelope
         if opts.envelope_opening_only:END=2340
+        if opts.envelope_insertion_only:START=2365
     else:
         from elias_paper_contact import state,START,END
     from elias_mug_contact import HANDLE
@@ -32,7 +33,7 @@ def main():
     assert matches(spec,old['spec_sha256']),'Layout checkpoint mismatch'
     assert matches(Path(__file__).parent/'sc001_room_performance.py',old['module_sha256']['sc001_room_performance.py']),'Source choreography checkpoint mismatch'
     layout=json.loads(spec.read_text());scene=bpy.context.scene
-    out=local/(('envelope_open_' if opts.envelope_opening_only else 'envelope_' if opts.envelope_review else 'paper_fold_')+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(exist_ok=False)
+    out=local/(('envelope_insert_' if opts.envelope_insertion_only else 'envelope_open_' if opts.envelope_opening_only else 'envelope_' if opts.envelope_review else 'paper_fold_')+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(exist_ok=False)
     for obj in list(scene.objects):
         obj.select_set(False)
         if obj.name.startswith('CHR_Elias'):obj.hide_render=True;obj.name='BASELINE_'+obj.name
@@ -61,8 +62,9 @@ def main():
         'scope':'2161–2280: formed pinch, pickup, partial fold, release/regrip, closing fold',
         'limitations':['No reach-in/release or envelope insertion/pocketing yet','Not sheet or force simulation; full skin collisions require visual review','Approved mug clips unchanged; thigh contact remains non-blocking']}
     if opts.envelope_review:
-        report.update(scope='2281–2440: left stabilises envelope; right opens flap, retrieves supported letter, inserts, releases',limitations=['Isolated stage; transitions from fold and pocketing not included','Proxy mouth/front deformation; not cloth or force simulation','No full skin collision certification'])
+        report.update(scope='2281–2474: left stabilises envelope; right opens flap, retrieves supported letter, inserts, releases',limitations=['Isolated stage; transitions from fold and pocketing not included','Proxy mouth/front deformation; not cloth or force simulation','No full skin collision certification'])
     if opts.envelope_opening_only:report['scope']='2281–2340: flap opening and transfer to parked letter only; insertion unchanged/excluded'
+    if opts.envelope_insertion_only:report['scope']='2365–2474: insertion and slower withdrawal only; opening unchanged/excluded'
     report['rig']=animate_and_validate(bpy,scene,layout,state,END,list(range(START,END+1)))
     errors=[]
     for f in range(START,END+1):
@@ -100,15 +102,18 @@ def main():
     def save():(out/'validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
     save();print('PAPER CHECKPOINT:',out,flush=True)
     report['previews']={}
-    for name,close in [('arm_context',False),('paper_contact',True)]:
+    views=[('normal_context',False,()),('cutaway_contact',True,('Envelope_front','Envelope_flap','MAC_label'))] if opts.envelope_insertion_only else [('arm_context',False,()),('paper_contact',True,())]
+    for name,close,cutaway in views:
         folder=out/name;folder.mkdir(exist_ok=False)
-        report['previews'][name]=render(bpy,scene,state,layout,folder,window=('envelope_opening_only' if opts.envelope_opening_only else 'envelope_open_insert' if opts.envelope_review else 'paper_pickup_fold',START,END),paper_review=True,paper_closeup=close)
+        report['previews'][name]=render(bpy,scene,state,layout,folder,window=('envelope_insertion_only' if opts.envelope_insertion_only else 'envelope_opening_only' if opts.envelope_opening_only else 'envelope_open_insert' if opts.envelope_review else 'paper_pickup_fold',START,END),paper_review=True,paper_closeup=close,cutaway_objects=cutaway)
         save()
     (out/'review_index.html').write_text('<!doctype html><meta charset="utf-8"><h1>SC001 paper pickup/fold</h1><p>Formed pinch through fold only. Insertion/pocketing pending.</p><ul><li><a href="arm_context/motion_preview.html">Arm context</a></li><li><a href="paper_contact/motion_preview.html">Paper contact</a></li></ul>',encoding='utf-8')
     if opts.envelope_review:
         index=out/'review_index.html';index.write_text(index.read_text().replace('SC001 paper pickup/fold','SC001 envelope opening/insertion').replace('Formed pinch through fold only. Insertion/pocketing pending.','Opening, pickup, insertion and release diagnostic. Pocketing and integrated timing pending.'))
     if opts.envelope_opening_only:
         index=out/'review_index.html';index.write_text(index.read_text().replace('SC001 envelope opening/insertion','SC001 envelope opening only').replace('Opening, pickup, insertion and release diagnostic. Pocketing and integrated timing pending.','Opening and transfer only. Insertion and pocketing excluded.'))
-    report['status']='envelope_opening_validated_visual_review_pending' if opts.envelope_opening_only else 'envelope_validated_visual_review_pending' if opts.envelope_review else 'paper_fold_validated_visual_review_pending';save();print('SC001 PAPER OUTPUT:',out,flush=True)
+    if opts.envelope_insertion_only:
+        (out/'review_index.html').write_text('<!doctype html><meta charset="utf-8"><h1>SC001 envelope insertion/withdrawal</h1><p>Normal view retains all geometry. Cutaway hides front, flap and label for inspection only. Pocketing/scene integration pending.</p><ul><li><a href="normal_context/motion_preview.html">Normal context</a></li><li><a href="cutaway_contact/motion_preview.html">Diagnostic cutaway contact</a></li></ul>',encoding='utf-8')
+    report['status']='envelope_insertion_validated_visual_review_pending' if opts.envelope_insertion_only else 'envelope_opening_validated_visual_review_pending' if opts.envelope_opening_only else 'envelope_validated_visual_review_pending' if opts.envelope_review else 'paper_fold_validated_visual_review_pending';save();print('SC001 PAPER OUTPUT:',out,flush=True)
 
 if __name__=='__main__':main()

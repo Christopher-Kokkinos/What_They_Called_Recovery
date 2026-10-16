@@ -22,7 +22,7 @@ def second_schedule():
     return list(range(2430,2511)),list(range(2430,2511,2))
 
 
-def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False):
+def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False,cutaway_objects=()):
     """One fixed camera/scale for the full path, avoiding auto-frame pumping."""
     bake_frames,render_frames=second_schedule() if second_pickup else cycle_schedule() if contact_cycle else (BAKE_FRAMES,RENDER_FRAMES)
     if window is not None:
@@ -38,10 +38,12 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
     data=bpy.data.cameras.new('CAM_mug_motion_review')
     cam=bpy.data.objects.new('CAM_mug_motion_review',data);scene.collection.objects.link(cam)
     data.type='ORTHO';data.clip_start=.01;data.clip_end=100
+    cutaway_previous={name:scene.objects[name].hide_render for name in cutaway_objects}
     active=[]
     def guard(render_scene,*unused):
         if render_scene==scene:
             assert render_scene.camera==cam,'Timeline overrode motion review camera'
+            assert all(scene.objects[name].hide_render for name in cutaway_objects),'Cutaway visibility overridden'
             active.append(cam.name)
     try:
         for marker,_ in bindings:marker.camera=None
@@ -76,12 +78,14 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
         folder=out/'motion_frames';folder.mkdir(exist_ok=False);entries=[]
         for index,frame in enumerate(render_frames):
             scene.frame_set(frame);bpy.context.view_layer.update()
+            for name in cutaway_objects:scene.objects[name].hide_render=True
+            bpy.context.view_layer.update()
             path=folder/f'frame_{index:04d}.png';scene.render.filepath=str(path);before=len(active)
             bpy.ops.render.render(write_still=True)
             assert len(active)==before+1,'Motion review camera guard did not run'
             entries.append({'image':path.relative_to(out).as_posix(),'source_frame':frame,
                 'time_seconds':(frame-start)/SOURCE_FPS,'image_sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
-        manifest={'status':'rendered_visual_review_pending','source_fps':SOURCE_FPS,'preview_fps':SOURCE_FPS/step,
+        manifest={'diagnostic_cutaway':bool(cutaway_objects),'hidden_objects':list(cutaway_objects),'status':'rendered_visual_review_pending','source_fps':SOURCE_FPS,'preview_fps':SOURCE_FPS/step,
             'source_start':start,'source_end':end,'duration_seconds':(end-start+1)/SOURCE_FPS,
             'entries':entries,'camera':{'name':cam.name,'location':list(cam.location),'target':list(target),'ortho_scale':data.ortho_scale,
             'fixed_for_entire_clip':True,'containment_pass':True,'occlusion_status':'visual_review_pending'},
@@ -105,6 +109,8 @@ show(0);requestAnimationFrame(tick);
         if paper_review:player=player.replace('Boundary transition review; full-scene Blender validation remains pending.','Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.')
         if window is not None and window[0]=='envelope_open_insert':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Envelope opening, supported letter pickup, insertion and release. Pocketing and integrated transitions remain pending.')
         if window is not None and window[0]=='envelope_opening_only':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Envelope opening and transfer only. Insertion, release and pocketing excluded.')
+        if window is not None and window[0]=='envelope_insertion_only':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Insertion and slower hand withdrawal. Opening excluded; pocketing and integrated timing pending.')
+        if cutaway_objects:player=player.replace('<h1>','<h1>DIAGNOSTIC CUTAWAY — ',1).replace('<img id=', '<p>Front panel, flap and label hidden for inspection only. Full geometry was retained for validation and the normal view.</p><img id=',1)
         if second_pickup:player=player.replace('SC001 first mug lift and return','SC001 second mug pickup').replace('Grip already formed; approach and release excluded.','Second pickup after letter pocketing. Table height/posture correction remains deferred.')
         if contact_cycle:player=player.replace('Grip already formed; approach and release excluded.','Contact-cycle trial includes approach, grip formation, placement and release. Scene integration remains pending.')
         (out/'motion_preview.html').write_text(player.replace('__MANIFEST__',json.dumps(manifest)),encoding='utf-8')
@@ -113,6 +119,8 @@ show(0);requestAnimationFrame(tick);
         if guard in bpy.app.handlers.render_pre:bpy.app.handlers.render_pre.remove(guard)
         for marker,camera in bindings:marker.camera=camera
         camera,frame,path,x,y,percentage,fmt=old
-        scene.frame_set(frame);scene.camera=camera;scene.render.filepath=path
+        scene.frame_set(frame)
+        for name,value in cutaway_previous.items():scene.objects[name].hide_render=value
+        scene.camera=camera;scene.render.filepath=path
         scene.render.resolution_x=x;scene.render.resolution_y=y;scene.render.resolution_percentage=percentage;scene.render.image_settings.file_format=fmt
         bpy.data.objects.remove(cam,do_unlink=True);bpy.data.cameras.remove(data)

@@ -59,3 +59,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0082: envelope opening/insertion diagnostic prepared (160 poses/108 images). Fold remains working blockout; mechanical pause and crease press open. Envelope runtime/visual check, transition, pocketing and coordinated scene retiming pending.
 
 - DEC-0083: wrong-side opening elbow correction prepared; 60-pose/42-image opening-only preview available. Later insertion targets unchanged; visual confirmation, withdrawal and occlusion remain open.
+
+- DEC-0084: opening elbow author stage pass recorded. Insertion inspection/staged withdrawal prepared (110 poses/76 images, normal+labelled cutaway). Fingertip/withdrawal visual review, pocketing and integration remain open.

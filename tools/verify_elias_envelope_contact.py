@@ -45,11 +45,29 @@ for f in range(START,END+1):
                         assert p[1]<env[1]+.084
                         assert p[2]>env[2]+.001
                         assert dot(sub(p,front),normal)<-.001,('Paper/front penetration',f)
+    if 2420<f<=2434:
+        start=state(2420,layout);tip=s['_hand_plan']['right']['chains']['index'][-1]
+        assert abs(tip[2]-start['_hand_plan']['right']['chains']['index'][-1][2])<1e-8
+        if tip[1]>=s['envelope'][1]-.085:
+            mouth=s['_envelope_mouth_angle'];normal=(0,math.sin(mouth),math.cos(mouth));env=s['envelope']
+            front=(env[0],env[1]+.085-.085*math.cos(mouth),env[2]+.008+.085*math.sin(mouth))
+            assert dot(sub(tip,front),normal)+.008<-.001,('Withdrawal index hits front',f)
+            assert tip[2]-.008>env[2]+.001
+    if f>2434:
+        for digit,chain in s['_hand_plan']['right']['chains'].items():
+            radius=.010 if digit=='thumb' else .008
+            assert max(p[1] for p in chain)+radius<s['envelope'][1]-.085,('Hand lowered before clearing slot',f,digit)
     previous=s
 assert step<.055,step
+withdraw_steps=[math.dist(state(f,layout)['joints']['right_arm'][-1],state(f-1,layout)['joints']['right_arm'][-1]) for f in range(2421,END+1)]
+assert max(withdraw_steps)<.025,('Abrupt withdrawal',max(withdraw_steps))
+# Endpoint velocity settles rather than snapping to rest.
+assert withdraw_steps[-1]<.002
+assert len(list(range(2365,END+1,3)))+(1 if (END-2365)%3 else 0)==38
+
 end=state(END,layout);env=end['envelope'];paper=end['letter']
 assert end['_paper_support']=='envelope' and end['_insertion']==1
 assert env[1]-.085<paper[1]-.1485 and paper[1]<env[1]+.084
 assert state(START,layout)['_envelope_flap_angle']==0
 assert abs(end['_envelope_flap_angle']-math.pi)<1e-8
-print(json.dumps({'status':'envelope_math_pass','frames':END-START+1,'bones':50,'maximum_wrist_step_m':step,'maximum_wrist_axis_bend_degrees':max_bend,'images':108,'limitations':['Blender/evaluated skin collision review pending','Isolated opening/insertion stage; fold transfer and pocketing excluded']}))
+print(json.dumps({'status':'envelope_math_pass','frames':END-START+1,'bones':50,'maximum_wrist_step_m':step,'maximum_wrist_axis_bend_degrees':max_bend,'images':132,'limitations':['Blender/evaluated skin collision review pending','Isolated opening/insertion stage; fold transfer and pocketing excluded']}))

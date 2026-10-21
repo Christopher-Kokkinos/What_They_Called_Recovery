@@ -8,8 +8,11 @@ sys.path[:0]=[str(Path(__file__).parent),str(ROOT/'Active/Film/03_Assets/Charact
 def main():
     import bpy
     from mathutils import Vector,Matrix
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--envelope-review',action='store_true');parser.add_argument('--paper-sequence-review',action='store_true');parser.add_argument('--mug-paper-handover-review',action='store_true');scope=parser.add_mutually_exclusive_group();scope.add_argument('--envelope-opening-only',action='store_true');scope.add_argument('--envelope-insertion-only',action='store_true');scope.add_argument('--envelope-finish-only',action='store_true')
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--envelope-review',action='store_true');parser.add_argument('--paper-sequence-review',action='store_true');parser.add_argument('--mug-paper-handover-review',action='store_true');parser.add_argument('--pocket-review',action='store_true');scope=parser.add_mutually_exclusive_group();scope.add_argument('--envelope-opening-only',action='store_true');scope.add_argument('--envelope-insertion-only',action='store_true');scope.add_argument('--envelope-finish-only',action='store_true')
     opts=parser.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
+    if opts.pocket_review:
+        if opts.mug_paper_handover_review or opts.paper_sequence_review or opts.envelope_review or opts.envelope_opening_only or opts.envelope_insertion_only or opts.envelope_finish_only:parser.error('Pocket is a standalone mode')
+        opts.envelope_review=True
     if opts.mug_paper_handover_review:
         if opts.paper_sequence_review or opts.envelope_review or opts.envelope_opening_only or opts.envelope_insertion_only or opts.envelope_finish_only:parser.error('Handover is a standalone mode')
         opts.envelope_review=True
@@ -30,6 +33,9 @@ def main():
         from elias_paper_refinement import state,START,END
     if opts.mug_paper_handover_review:
         from elias_table_handover import state,START,END,WINDOWS
+    if opts.pocket_review:
+        from elias_pocket import state,START,END
+        from sc001_pocket_review_blender import create as create_pocket,validate as validate_pocket
     from elias_mug_contact import HANDLE
     from elias_rig_blender import animate_and_validate
     from sc001_mug_motion_review import render
@@ -45,13 +51,14 @@ def main():
     assert matches(spec,old['spec_sha256']),'Layout checkpoint mismatch'
     assert matches(Path(__file__).parent/'sc001_room_performance.py',old['module_sha256']['sc001_room_performance.py']),'Source choreography checkpoint mismatch'
     layout=json.loads(spec.read_text());scene=bpy.context.scene
-    out=local/(('table_handover_' if opts.mug_paper_handover_review else 'paper_sequence_' if opts.paper_sequence_review else 'envelope_finish_' if opts.envelope_finish_only else 'envelope_insert_' if opts.envelope_insertion_only else 'envelope_open_' if opts.envelope_opening_only else 'envelope_' if opts.envelope_review else 'paper_fold_')+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(exist_ok=False)
+    out=local/(('pocket_' if opts.pocket_review else 'table_handover_' if opts.mug_paper_handover_review else 'paper_sequence_' if opts.paper_sequence_review else 'envelope_finish_' if opts.envelope_finish_only else 'envelope_insert_' if opts.envelope_insertion_only else 'envelope_open_' if opts.envelope_opening_only else 'envelope_' if opts.envelope_review else 'paper_fold_')+datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S_')+uuid.uuid4().hex[:8]);out.mkdir(exist_ok=False)
     for obj in list(scene.objects):
         obj.select_set(False)
         if obj.name.startswith('CHR_Elias'):obj.hide_render=True;obj.name='BASELINE_'+obj.name
     table=scene.objects['SET_table'];assert abs(table.location.z-.73)<1e-4,'Use original checkpoint table';table.location.z+=.20
     for name,position,size,angle in HANDLE:
         obj=scene.objects['Mug_handle_'+name];obj.rotation_euler=(0,0,0);obj.location=position;obj.dimensions=size;obj.rotation_euler=(0,angle,0)
+    if opts.pocket_review:create_pocket(bpy,scene,state(START,layout))
     names={'letter':'PRP_ResignationLetter','envelope':'PRP_MACEnvelope','mug':'PRP_CoffeeMug','keys':'PRP_Keys'}
     owned=[scene.objects[n] for n in names.values()]+[scene.objects[n] for n in ('Letter_fold','Envelope_text_anchor','Notice_exact_text')]
     if opts.envelope_review:
@@ -80,6 +87,7 @@ def main():
     if opts.envelope_finish_only:report.update(scope='2474–2654: closure, handover and provisional pocket approach/hold',limitations=['No cloth pocket or insertion/release certification; packet remains held at existing target','No adhesive simulation or full skin collision certification','Isolated diagnostic; full scene retiming pending'])
     if opts.paper_sequence_review:report.update(scope='2161–2720: continuous paper sequence with shorter regrip and direct flap transfer',limitations=['Starts with paper grip formed; clothing pocket insertion/release and full-scene timing pending','Parked envelope staged180mm closer for reachable pickup','No force simulation or full skin collision certification'])
     if opts.mug_paper_handover_review:report.update(scope='1500–2271: mug set-down, connected paper sequence and second pickup; only handover windows rendered',limitations=['Packet remains held in right hand; pocket insertion/release pending','Retimed diagnostic only; complete scene schedule not integrated','No full skin collision certification'])
+    if opts.pocket_review:report.update(scope='2720–2940: align, insert to rigid pocket floor, release and withdraw',limitations=['Temporary open breast-pocket proxy; final garment/cloth absent','Standalone action, not integrated into mug/keys/departure timing','No complete skin collision certification'])
     report['rig']=animate_and_validate(bpy,scene,layout,state,END,list(range(START,END+1)))
     errors=[]
     for f in range(START,END+1):
@@ -95,6 +103,7 @@ def main():
                     obj=scene.objects[name].evaluated_get(deps);return [(obj.matrix_world@Vector(p)).z for p in obj.bound_box]
                 assert abs(min(z_bounds('Mug_body'))-max(z_bounds('SET_table')))<1e-4,(f,'Mug/table support')
         assert abs(scene.objects['Letter_fold'].rotation_euler.x-math.pi*s['fold'])<1e-5
+        if opts.pocket_review:errors.append(validate_pocket(bpy,scene,s,f))
         if opts.envelope_review and '_envelope_contacts' in s:
             errors.append(validate_envelope(bpy,scene,s,f));continue
         if '_paper_contacts' not in s:continue
@@ -123,15 +132,16 @@ def main():
         report['handover_phases']=[{'frame':f,'phase':state(f,layout)['_handover_phase'],'mug_on_table':state(f,layout)['_mug_on_table']} for f in range(START,END+1)]
         report['render_windows']=WINDOWS
     report['maximum_prop_or_pad_target_error_m']=max(errors)
-    report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_handover.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_refinement.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_sequence.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_finish.py',Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_contact.py',Path(__file__).parent/'sc001_envelope_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_reach.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_mug_motion_review.py']}
+    report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'Active/Film/03_Assets/Characters/Elias/elias_pocket.py',Path(__file__).parent/'sc001_pocket_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_handover.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_refinement.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_sequence.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_finish.py',Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_contact.py',Path(__file__).parent/'sc001_envelope_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_reach.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_mug_motion_review.py']}
     scene.frame_start=START;scene.frame_end=END;scene.frame_set(START)
     report['status']='envelope_checkpoint_validated_render_pending' if opts.envelope_review else 'paper_fold_checkpoint_validated_render_pending'
-    bpy.ops.wm.save_as_mainfile(filepath=str(out/('SC001_table_handover_diagnostic.blend' if opts.mug_paper_handover_review else 'SC001_envelope_diagnostic.blend' if opts.envelope_review else 'SC001_paper_fold_diagnostic.blend')))
+    bpy.ops.wm.save_as_mainfile(filepath=str(out/('SC001_pocket_diagnostic.blend' if opts.pocket_review else 'SC001_table_handover_diagnostic.blend' if opts.mug_paper_handover_review else 'SC001_envelope_diagnostic.blend' if opts.envelope_review else 'SC001_paper_fold_diagnostic.blend')))
     def save():(out/'validation.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
     save();print('PAPER CHECKPOINT:',out,flush=True)
     report['previews']={}
     views=[('normal_context',False,()),('cutaway_contact',True,('Envelope_front','Envelope_flap','MAC_label'))] if opts.envelope_insertion_only else [('arm_context',False,()),('paper_contact',True,())]
-    default_window=('paper_sequence' if opts.paper_sequence_review else 'envelope_finish_only' if opts.envelope_finish_only else 'envelope_insertion_only' if opts.envelope_insertion_only else 'envelope_opening_only' if opts.envelope_opening_only else 'envelope_open_insert' if opts.envelope_review else 'paper_pickup_fold',START,END)
+    if opts.pocket_review:views=[('normal_context',False,()),('cutaway_contact',True,('REVIEW_Pocket_front',))]
+    default_window=('pocket_insert_release' if opts.pocket_review else 'paper_sequence' if opts.paper_sequence_review else 'envelope_finish_only' if opts.envelope_finish_only else 'envelope_insertion_only' if opts.envelope_insertion_only else 'envelope_opening_only' if opts.envelope_opening_only else 'envelope_open_insert' if opts.envelope_review else 'paper_pickup_fold',START,END)
     windows=WINDOWS if opts.mug_paper_handover_review else [default_window]
     for window in windows:
         for name,close,cutaway in views:
@@ -153,6 +163,8 @@ def main():
     if opts.mug_paper_handover_review:
         links=''.join('<li><a href="'+name+'/motion_preview.html">'+name+'</a></li>' for name in report['previews'])
         (out/'review_index.html').write_text('<!doctype html><meta charset="utf-8"><h1>SC001 mug/paper handovers</h1><p>All772 poses validated; two handover windows rendered. Packet remains held, pocket release and complete scene timing pending.</p><ul>'+links+'</ul>',encoding='utf-8')
-    report['status']='table_handover_validated_visual_review_pending' if opts.mug_paper_handover_review else 'paper_sequence_validated_visual_review_pending' if opts.paper_sequence_review else 'envelope_finish_validated_visual_review_pending' if opts.envelope_finish_only else 'envelope_insertion_validated_visual_review_pending' if opts.envelope_insertion_only else 'envelope_opening_validated_visual_review_pending' if opts.envelope_opening_only else 'envelope_validated_visual_review_pending' if opts.envelope_review else 'paper_fold_validated_visual_review_pending';save();print('SC001 PAPER OUTPUT:',out,flush=True)
+    if opts.pocket_review:
+        (out/'review_index.html').write_text('<!doctype html><meta charset="utf-8"><h1>Pocket insertion and release</h1><p>Rigid proxy only. Normal view keeps all geometry; diagnostic cutaway hides pocket front only. Clothing and sequence integration pending.</p><a href="normal_context/motion_preview.html">Normal context</a> | <a href="cutaway_contact/motion_preview.html">Pocket cutaway</a>',encoding='utf-8')
+    report['status']='pocket_validated_visual_review_pending' if opts.pocket_review else 'table_handover_validated_visual_review_pending' if opts.mug_paper_handover_review else 'paper_sequence_validated_visual_review_pending' if opts.paper_sequence_review else 'envelope_finish_validated_visual_review_pending' if opts.envelope_finish_only else 'envelope_insertion_validated_visual_review_pending' if opts.envelope_insertion_only else 'envelope_opening_validated_visual_review_pending' if opts.envelope_opening_only else 'envelope_validated_visual_review_pending' if opts.envelope_review else 'paper_fold_validated_visual_review_pending';save();print('SC001 PAPER OUTPUT:',out,flush=True)
 
 if __name__=='__main__':main()

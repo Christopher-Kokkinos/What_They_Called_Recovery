@@ -35,3 +35,7 @@ Same `--paper-sequence-review` command and original checkpoint. Now560 poses/190
 ## Mug/paper handovers (DEC-0089)
 
 Use original rig checkpoint with `build_sc001_paper_contact_review.py -- --mug-paper-handover-review` (standalone flag). Output `Active/Film/_local/SC001/table_handover_<timestamp>_<id>/`.772 poses validated;172 images render only the two handovers, in context/contact views. Open `review_index.html` for four links; ZIP entire new output folder. Connected bake is `SC001_table_handover_diagnostic.blend`. Right hand retains packet during left second pickup; pocket release and full-scene/key/departure timing pending. Source checkpoint read-only.
+
+## Pocket proxy insertion/release (DEC-0090)
+
+Use the original rig checkpoint and `build_sc001_paper_contact_review.py -- --pocket-review` (standalone flag). Output `Active/Film/_local/SC001/pocket_<timestamp>_<id>/`.221 poses/150 images; normal context plus labelled cutaway hiding only REVIEW_Pocket_front. Full geometry retained for validation/saved blend. Open `review_index.html`, then ZIP the whole new folder. Temporary shallow rigid pocket; no cloth/final wardrobe claim. Prior handover remains unchanged; later integrate before keys.

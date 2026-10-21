@@ -63,7 +63,7 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
             if not paper_closeup:points.extend(Vector(s['joints'][name]) for name in ('head','pelvis'))
             deps=bpy.context.evaluated_depsgraph_get()
             for obj in scene.objects:
-                if obj.type=='MESH' and (obj.name.startswith('Mug_') or (second_pickup and obj.name.startswith('Key_')) or (paper_review and obj.name.startswith(('Letter_','Envelope_')))) and not obj.hide_render:
+                if obj.type=='MESH' and (obj.name.startswith('Mug_') or (second_pickup and obj.name.startswith('Key_')) or (paper_review and obj.name.startswith(('Letter_','Envelope_','REVIEW_Pocket_')))) and not obj.hide_render:
                     evaluated=obj.evaluated_get(deps)
                     points.extend(evaluated.matrix_world@Vector(v) for v in evaluated.bound_box)
         low=Vector(tuple(min(p[i] for p in points) for i in range(3)))
@@ -114,7 +114,8 @@ show(0);requestAnimationFrame(tick);
         if window is not None and window[0]=='paper_sequence':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Continuous fold, table set-down, envelope pickup, insertion and closure. Packet held at pocket target; release/full scene pending.')
         if window is not None and window[0]=='envelope_finish_only':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Closure, handover and provisional pocket approach; clothing fit/release pending.')
         if window is not None and window[0] in ('mug_release_to_paper','paper_to_second_mug_pickup'):player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Mug/paper handover review. Packet remains held; pocket release and complete scene integration pending.')
-        if cutaway_objects:player=player.replace('<h1>','<h1>DIAGNOSTIC CUTAWAY — ',1).replace('<img id=', '<p>Front panel, flap and label hidden for inspection only. Full geometry was retained for validation and the normal view.</p><img id=',1)
+        if window is not None and window[0]=='pocket_insert_release':player=player.replace('Formed edge grip, pickup and fold diagnostic only; insertion and pocketing pending.','Pocket proxy insertion, supported release and withdrawal. Final clothing and sequence integration pending.')
+        if cutaway_objects:player=player.replace('<h1>','<h1>DIAGNOSTIC CUTAWAY — ',1).replace('<img id=', '<p>Hidden for inspection only: '+', '.join(cutaway_objects)+'. Full geometry retained for validation and normal view.</p><img id=',1)
         if second_pickup:player=player.replace('SC001 first mug lift and return','SC001 second mug pickup').replace('Grip already formed; approach and release excluded.','Second pickup after letter pocketing. Table height/posture correction remains deferred.')
         if contact_cycle:player=player.replace('Grip already formed; approach and release excluded.','Contact-cycle trial includes approach, grip formation, placement and release. Scene integration remains pending.')
         (out/'motion_preview.html').write_text(player.replace('__MANIFEST__',json.dumps(manifest)),encoding='utf-8')

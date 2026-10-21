@@ -77,3 +77,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0091: author rejected rigid outer-pocket motion. New two-hand inner-jacket test prepared: lapel pull/lining bulge, bottom-first45-degree insertion, Child Of switch44, upward withdrawal and settling.70 semantic poses/140 images; local math passes, Blender/visual checks pending. Prior pocket not accepted; integration and envelope flex remain open.
 
 - DEC-0092: frame22 evaluated lining mismatch blocks inner-pocket runtime pass. Independent shape construction prepared; exact evaluated gate retained, rerun required before rendering/visual acceptance.
+
+- DEC-0092 desktop evidence:70-pose runtime and140 image hashes pass. Visual hold: packet edge-on in cutaway, off-hand elbow elevated; clearer contact framing and bounded posture refinement next. See Reports/Film/2026-10-21_inner_pocket_desktop_review.md.

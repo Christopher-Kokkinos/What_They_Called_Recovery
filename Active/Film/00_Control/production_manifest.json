@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0093",
+    "decision": "DEC-0094",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "inner_pocket_elbow_camera_refinement_prepared",
+    "status": "inner_pocket_diagnostic_isolation_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -205,7 +205,7 @@
     "pocket_review_scope": "standalone_semantic_1_70",
     "pocket_review_pose_count": 70,
     "pocket_review_image_count": 140,
-    "pocket_runtime_pass": false,
+    "pocket_runtime_pass": true,
     "pocket_visual_pass": false,
     "pocket_previous_visual_result": "author_rejected_rigid_outer_pocket_motion",
     "inner_pocket_release_frame": 44,
@@ -213,10 +213,12 @@
     "inner_pocket_lining_control": "HandBulge_shape_key",
     "inner_pocket_last_runtime_failure": "c29b322 semantic frame22: Evaluated lining bulge",
     "inner_pocket_shape_key_basis": "explicit_independent_Basis_coordinates",
-    "inner_pocket_review_report": "Reports/Film/2026-10-21_inner_pocket_desktop_review.md",
+    "inner_pocket_review_report": "Reports/Film/2026-10-21_inner_pocket_foreground_obstruction.md",
     "inner_pocket_review_zip": "inner_pocket_20261021_091221_5f748865.zip",
-    "inner_pocket_visual_result": "refinement_pending_runtime_and_visual_review",
+    "inner_pocket_visual_result": "hold_foreground_obstruction",
     "inner_pocket_previous_runtime_pass": true,
-    "inner_pocket_preparation_report": "Reports/Film/2026-10-21_inner_pocket_elbow_camera_preparation.md"
+    "inner_pocket_preparation_report": "Reports/Film/2026-10-21_inner_pocket_elbow_camera_preparation.md",
+    "inner_pocket_latest_runtime_zip": "inner_pocket_20261021_105918_5da5040f.zip",
+    "inner_pocket_isolation_render_pass": false
   }
 }

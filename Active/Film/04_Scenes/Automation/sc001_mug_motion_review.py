@@ -22,7 +22,12 @@ def second_schedule():
     return list(range(2430,2511)),list(range(2430,2511,2))
 
 
-def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False,cutaway_objects=(),window_step=3,camera_offset=None,framing_prefixes=None,minimum_packet_face_cosine=None):
+def diagnostic_environment_names(objects,subject_prefixes):
+    """Explicit diagnostic isolation; never modify the saved production geometry."""
+    return tuple(obj.name for obj in objects if obj.type=='MESH' and not obj.name.startswith(subject_prefixes))
+
+
+def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False,cutaway_objects=(),window_step=3,camera_offset=None,framing_prefixes=None,minimum_packet_face_cosine=None,isolated_subject_prefixes=None):
     """One fixed camera/scale for the full path, avoiding auto-frame pumping."""
     bake_frames,render_frames=second_schedule() if second_pickup else cycle_schedule() if contact_cycle else (BAKE_FRAMES,RENDER_FRAMES)
     if window is not None:
@@ -39,6 +44,8 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
     data=bpy.data.cameras.new('CAM_mug_motion_review')
     cam=bpy.data.objects.new('CAM_mug_motion_review',data);scene.collection.objects.link(cam)
     data.type='ORTHO';data.clip_start=.01;data.clip_end=100
+    environment_names=diagnostic_environment_names(scene.objects,isolated_subject_prefixes) if isolated_subject_prefixes is not None else ()
+    cutaway_objects=tuple(dict.fromkeys((*cutaway_objects,*environment_names)))
     cutaway_previous={name:scene.objects[name].hide_render for name in cutaway_objects}
     active=[]
     def guard(render_scene,*unused):
@@ -80,6 +87,14 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
         if minimum_packet_face_cosine is not None:
             face_cosine=min(abs(Vector(state(f,layout)['_packet_basis_override'][2]).normalized().dot((cam.location-Vector(state(f,layout)['envelope'])).normalized())) for f in bake_frames)
             assert face_cosine>=minimum_packet_face_cosine,('Packet face is edge-on',face_cosine)
+        # Preflight every integer pose: animation must not restore foreground set meshes.
+        if isolated_subject_prefixes is not None:
+            for frame in bake_frames:
+                scene.frame_set(frame)
+                for name in cutaway_objects:scene.objects[name].hide_render=True
+                bpy.context.view_layer.update()
+                unexpected=[obj.name for obj in scene.objects if obj.type=='MESH' and not obj.hide_render and not obj.name.startswith(isolated_subject_prefixes)]
+                assert not unexpected,('Diagnostic environment obstruction',frame,unexpected)
         folder=out/'motion_frames';folder.mkdir(exist_ok=False);entries=[]
         for index,frame in enumerate(render_frames):
             scene.frame_set(frame);bpy.context.view_layer.update()
@@ -90,7 +105,7 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
             assert len(active)==before+1,'Motion review camera guard did not run'
             entries.append({'image':path.relative_to(out).as_posix(),'source_frame':frame,
                 'time_seconds':(frame-start)/SOURCE_FPS,'image_sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
-        manifest={'diagnostic_cutaway':bool(cutaway_objects),'hidden_objects':list(cutaway_objects),'status':'rendered_visual_review_pending','source_fps':SOURCE_FPS,'preview_fps':SOURCE_FPS/step,
+        manifest={'diagnostic_cutaway':bool(cutaway_objects),'environment_isolation':{'enabled':isolated_subject_prefixes is not None,'hidden_meshes':list(environment_names),'all_integer_frames_preflight':isolated_subject_prefixes is not None,'scope':'Background geometry only; hand/packet/garment self-occlusion requires visual review'},'hidden_objects':list(cutaway_objects),'status':'rendered_visual_review_pending','source_fps':SOURCE_FPS,'preview_fps':SOURCE_FPS/step,
             'source_start':start,'source_end':end,'duration_seconds':(end-start+1)/SOURCE_FPS,
             'entries':entries,'camera':{'name':cam.name,'location':list(cam.location),'target':list(target),'ortho_scale':data.ortho_scale,
             'fixed_for_entire_clip':True,'minimum_packet_face_cosine':face_cosine,'containment_pass':True,'occlusion_status':'visual_review_pending'},

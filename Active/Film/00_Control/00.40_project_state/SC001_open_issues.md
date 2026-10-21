@@ -75,3 +75,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0090: handover ZIP technical/hash checks passed; Codex provisional blockout recommendation. Pocket proxy insertion/release prepared (221 poses/150 images), with floor support and outward hand withdrawal. Local checks pass; Blender/visual review and full sequence integration pending. Temporary pocket is not final clothing.
 
 - DEC-0091: author rejected rigid outer-pocket motion. New two-hand inner-jacket test prepared: lapel pull/lining bulge, bottom-first45-degree insertion, Child Of switch44, upward withdrawal and settling.70 semantic poses/140 images; local math passes, Blender/visual checks pending. Prior pocket not accepted; integration and envelope flex remain open.
+
+- DEC-0092: frame22 evaluated lining mismatch blocks inner-pocket runtime pass. Independent shape construction prepared; exact evaluated gate retained, rerun required before rendering/visual acceptance.

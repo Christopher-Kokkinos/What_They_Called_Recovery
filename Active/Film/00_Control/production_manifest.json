@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0091",
+    "decision": "DEC-0092",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "two_hand_inner_pocket_prepared",
+    "status": "inner_pocket_lining_fix_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -210,6 +210,8 @@
     "pocket_previous_visual_result": "author_rejected_rigid_outer_pocket_motion",
     "inner_pocket_release_frame": 44,
     "inner_pocket_lapel_control": "PullOpen_shape_key",
-    "inner_pocket_lining_control": "HandBulge_shape_key"
+    "inner_pocket_lining_control": "HandBulge_shape_key",
+    "inner_pocket_last_runtime_failure": "c29b322 semantic frame22: Evaluated lining bulge",
+    "inner_pocket_shape_key_basis": "explicit_independent_Basis_coordinates"
   }
 }

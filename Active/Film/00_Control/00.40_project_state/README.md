@@ -177,3 +177,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0090: handover ZIP technical/hash checks passed; Codex provisional blockout recommendation. Pocket proxy insertion/release prepared (221 poses/150 images), with floor support and outward hand withdrawal. Local checks pass; Blender/visual review and full sequence integration pending. Temporary pocket is not final clothing.
 
 - DEC-0091: author rejected rigid outer-pocket motion. New two-hand inner-jacket test prepared: lapel pull/lining bulge, bottom-first45-degree insertion, Child Of switch44, upward withdrawal and settling.70 semantic poses/140 images; local math passes, Blender/visual checks pending. Prior pocket not accepted; integration and envelope flex remain open.
+
+- DEC-0092: desktop inner-pocket run stopped at lining readback frame22. Explicit independent Basis-relative shape construction and coordinate diagnostics prepared; local regression passes, same focused Blender rerun pending.

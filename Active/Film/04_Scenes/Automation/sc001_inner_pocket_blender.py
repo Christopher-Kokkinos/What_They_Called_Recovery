@@ -5,16 +5,24 @@ def body_matrix(s):
     from mathutils import Matrix,Vector
     j=s['joints'];m=Matrix((tuple(-v for v in j['lateral']),j['up'],j['forward'])).transposed().to_4x4();m.translation=Vector(j['pelvis']);return m
 
+def independent_key(obj,name,basis,coordinates):
+    """Never inherit an active/mixed key when building additive jacket controls."""
+    key=obj.shape_key_add(name=name,from_mix=False)
+    key.relative_key=basis
+    for item,co in zip(key.data,coordinates):item.co=co
+    return key
+
 def create(bpy,scene,s):
     for name,lo,hi,front in [('REVIEW_Jacket_lapel',(-.02,.20),(.32,.58),.17),('REVIEW_InnerPocket_lining',(-.08,.20),(.28,.48),.22)]:
         verts=[(lo[0]+(hi[0]-lo[0])*x/4,lo[1]+(hi[1]-lo[1])*y/4,front) for y in range(5) for x in range(5)]
         faces=[(y*5+x,y*5+x+1,(y+1)*5+x+1,(y+1)*5+x) for y in range(4) for x in range(4)]
         mesh=bpy.data.meshes.new(name);mesh.from_pydata(verts,[],faces);mesh.update();obj=bpy.data.objects.new(name,mesh);scene.collection.objects.link(obj);obj.matrix_world=body_matrix(s)
-        obj.shape_key_add(name='Basis');pull=obj.shape_key_add(name='PullOpen');pull.slider_min=-.15;pull.slider_max=1.15
+        basis=obj.shape_key_add(name='Basis',from_mix=False);obj.data.shape_keys.use_relative=True
+        pull=independent_key(obj,'PullOpen',basis,verts);pull.slider_min=-.15;pull.slider_max=1.15
         for i,v in enumerate(verts):
             x=(v[0]-lo[0])/(hi[0]-lo[0]);pull.data[i].co.x+=.09*(1-x) if 'lapel' in name else 0;pull.data[i].co.z+=.23*(1-x) if 'lapel' in name else .11
         if 'lining' in name:
-            bulge=obj.shape_key_add(name='HandBulge')
+            bulge=independent_key(obj,'HandBulge',basis,verts)
             for i,v in enumerate(verts):
                 x=(v[0]-lo[0])/(hi[0]-lo[0]);y=(v[1]-lo[1])/(hi[1]-lo[1]);bulge.data[i].co.z+=.025*math.sin(math.pi*x)*math.sin(math.pi*y)
         obj['status']='controlled_jacket_patch_not_final_wardrobe_or_cloth_simulation'
@@ -98,7 +106,8 @@ def validate(bpy,scene,s,frame):
     lining=scene.objects['REVIEW_InnerPocket_lining'].evaluated_get(deps);mesh=lining.to_mesh()
     try:
         expected=body_matrix(s)@Vector((.10,.34,.22+.11*meta['opening']+.025*meta['bulge']))
-        assert (lining.matrix_world@mesh.vertices[12].co-expected).length<1e-4,(frame,'Evaluated lining bulge')
+        actual=lining.matrix_world@mesh.vertices[12].co;error=(actual-expected).length;maximum=max(maximum,error)
+        assert error<1e-4,(frame,'Evaluated lining bulge',{'actual':tuple(actual),'expected':tuple(expected),'error_m':error,'opening':meta['opening'],'bulge':meta['bulge']})
     finally:lining.to_mesh_clear()
     c=scene.objects['PRP_MACEnvelope'].constraints['Pocket_hand_custody'];assert c.influence==meta['hand_influence']
     if frame>=40:

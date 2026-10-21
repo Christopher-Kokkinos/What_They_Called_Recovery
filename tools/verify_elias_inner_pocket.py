@@ -3,7 +3,7 @@ import sys,json,math
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'Active/Film/03_Assets/Characters/Elias'),str(ROOT/'Active/Film/04_Scenes/Automation')]
-from elias_inner_pocket import state,START,END,RELEASE,FLOOR,local
+from elias_inner_pocket import state,START,END,RELEASE,FLOOR,local,review_camera_offset
 from elias_rig_math import bones
 from elias_articulation import dot,unit,sub,mul
 l=json.loads((ROOT/'Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json').read_text());rest=bones(state(889,l));worst=[];steps={};previous=None
@@ -15,6 +15,11 @@ for f in range(START,END+1):
   if previous:
    for key,k in [('wrist',2),('elbow',1)]:
     name=side+'_'+key;steps[name]=max(steps.get(name,0),math.dist(j[side+'_arm'][k],previous['joints'][side+'_arm'][k]))
+ # Off-hand elbow stays below shoulder without moving its hand/contact targets.
+ sh,e,w=j['left_arm'];assert dot(sub(e,sh),j['up'])<-.02,(f,'Elevated off-hand elbow')
+ for close in (False,True):
+  view=unit(review_camera_offset(s,close));normal=s['_packet_basis_override'][2]
+  assert abs(dot(view,normal))>.8,(f,'Edge-on review direction')
  if 21<=f<=40:assert p['opening']>.99 and p['left_active']
  if f<=43:
   # A fixed hand-relative packet transform is required for Child Of custody.

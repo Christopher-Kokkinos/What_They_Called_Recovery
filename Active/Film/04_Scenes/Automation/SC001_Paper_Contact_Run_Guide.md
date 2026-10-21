@@ -43,3 +43,5 @@ Use the original rig checkpoint and `build_sc001_paper_contact_review.py -- --po
 ## Two-hand inner pocket (DEC-0091 — replaces rejected pocket movement)
 
 Use original rig checkpoint and `build_sc001_paper_contact_review.py -- --inner-pocket-review` alone. Output `Active/Film/_local/SC001/inner_pocket_<timestamp>_<id>/`;70 semantic poses/140 images. Open `review_index.html`, ZIP whole folder. Normal context and diagnostic cutaway (lapel/lining hidden only). Shape-key jacket patches and Child Of custody switch44; evaluated gates precede rendering. Restaged isolated test, no automatic join to old scene. Final clothing/skin collision checks and envelope bending remain pending. Previous `--pocket-review` retained only for failure reproduction.
+
+DEC-0093: same `--inner-pocket-review` invocation now lowers the off-hand elbow and uses fixed packet-facing cameras. Cutaway close-up excludes the parked mug from framing.70 poses/140 images; camera face-orientation gate does not replace visual occlusion/contact review.

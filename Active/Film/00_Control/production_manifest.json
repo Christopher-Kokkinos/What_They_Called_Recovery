@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0092",
+    "decision": "DEC-0093",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "inner_pocket_runtime_pass_visual_hold",
+    "status": "inner_pocket_elbow_camera_refinement_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -205,7 +205,7 @@
     "pocket_review_scope": "standalone_semantic_1_70",
     "pocket_review_pose_count": 70,
     "pocket_review_image_count": 140,
-    "pocket_runtime_pass": true,
+    "pocket_runtime_pass": false,
     "pocket_visual_pass": false,
     "pocket_previous_visual_result": "author_rejected_rigid_outer_pocket_motion",
     "inner_pocket_release_frame": 44,
@@ -215,6 +215,8 @@
     "inner_pocket_shape_key_basis": "explicit_independent_Basis_coordinates",
     "inner_pocket_review_report": "Reports/Film/2026-10-21_inner_pocket_desktop_review.md",
     "inner_pocket_review_zip": "inner_pocket_20261021_091221_5f748865.zip",
-    "inner_pocket_visual_result": "hold_edge_on_packet_view_and_elevated_off_hand_elbow"
+    "inner_pocket_visual_result": "refinement_pending_runtime_and_visual_review",
+    "inner_pocket_previous_runtime_pass": true,
+    "inner_pocket_preparation_report": "Reports/Film/2026-10-21_inner_pocket_elbow_camera_preparation.md"
   }
 }

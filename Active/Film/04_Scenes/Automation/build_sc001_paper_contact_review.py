@@ -160,7 +160,11 @@ def main():
         for name,close,cutaway in views:
             name=window[0]+'_'+name if opts.mug_paper_handover_review else name
             folder=out/name;folder.mkdir(exist_ok=False)
-            report['previews'][name]=render(bpy,scene,state,layout,folder,window=window,paper_review=True,paper_closeup=close,cutaway_objects=cutaway,window_step=1 if opts.inner_pocket_review else 6 if opts.paper_sequence_review else 3)
+            camera_options={}
+            if opts.inner_pocket_review:
+                from elias_inner_pocket import review_camera_offset
+                camera_options=dict(camera_offset=review_camera_offset(state(35,layout),close),framing_prefixes=('Letter_','Envelope_','REVIEW_Jacket_','REVIEW_InnerPocket_'),minimum_packet_face_cosine=.8)
+            report['previews'][name]=render(bpy,scene,state,layout,folder,window=window,paper_review=True,paper_closeup=close,cutaway_objects=cutaway,window_step=1 if opts.inner_pocket_review else 6 if opts.paper_sequence_review else 3,**camera_options)
             save()
     (out/'review_index.html').write_text('<!doctype html><meta charset="utf-8"><h1>SC001 paper pickup/fold</h1><p>Formed pinch through fold only. Insertion/pocketing pending.</p><ul><li><a href="arm_context/motion_preview.html">Arm context</a></li><li><a href="paper_contact/motion_preview.html">Paper contact</a></li></ul>',encoding='utf-8')
     if opts.envelope_review:

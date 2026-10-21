@@ -181,3 +181,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0092: desktop inner-pocket run stopped at lining readback frame22. Explicit independent Basis-relative shape construction and coordinate diagnostics prepared; local regression passes, same focused Blender rerun pending.
 
 - DEC-0092 desktop evidence:70-pose runtime and140 image hashes pass. Visual hold: packet edge-on in cutaway, off-hand elbow elevated; clearer contact framing and bounded posture refinement next. See Reports/Film/2026-10-21_inner_pocket_desktop_review.md.
+
+- DEC-0093: lower off-hand elbow and packet-facing focused cameras prepared; all70 hand/packet/control targets unchanged. Local checks pass; rerender --inner-pocket-review for new runtime/visual confirmation.

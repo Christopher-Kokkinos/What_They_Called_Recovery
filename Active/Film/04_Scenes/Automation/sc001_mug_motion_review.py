@@ -22,7 +22,7 @@ def second_schedule():
     return list(range(2430,2511)),list(range(2430,2511,2))
 
 
-def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False,cutaway_objects=(),window_step=3):
+def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,window=None,paper_review=False,paper_closeup=False,cutaway_objects=(),window_step=3,camera_offset=None,framing_prefixes=None,minimum_packet_face_cosine=None):
     """One fixed camera/scale for the full path, avoiding auto-frame pumping."""
     bake_frames,render_frames=second_schedule() if second_pickup else cycle_schedule() if contact_cycle else (BAKE_FRAMES,RENDER_FRAMES)
     if window is not None:
@@ -63,19 +63,23 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
             if not paper_closeup:points.extend(Vector(s['joints'][name]) for name in ('head','pelvis'))
             deps=bpy.context.evaluated_depsgraph_get()
             for obj in scene.objects:
-                if obj.type=='MESH' and (obj.name.startswith('Mug_') or (second_pickup and obj.name.startswith('Key_')) or (paper_review and obj.name.startswith(('Letter_','Envelope_','REVIEW_Pocket_','REVIEW_Jacket_','REVIEW_InnerPocket_')))) and not obj.hide_render:
+                if obj.type=='MESH' and (framing_prefixes is None or obj.name.startswith(framing_prefixes)) and (obj.name.startswith('Mug_') or (second_pickup and obj.name.startswith('Key_')) or (paper_review and obj.name.startswith(('Letter_','Envelope_','REVIEW_Pocket_','REVIEW_Jacket_','REVIEW_InnerPocket_')))) and not obj.hide_render:
                     evaluated=obj.evaluated_get(deps)
                     points.extend(evaluated.matrix_world@Vector(v) for v in evaluated.bound_box)
         low=Vector(tuple(min(p[i] for p in points) for i in range(3)))
         high=Vector(tuple(max(p[i] for p in points) for i in range(3)))
-        target=(low+high)/2;cam.location=target+Vector((1.8,-2.2,1.5))
+        target=(low+high)/2;cam.location=target+Vector(camera_offset if camera_offset is not None else (1.8,-2.2,1.5))
         cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();scene.camera=cam
-        data.ortho_scale=1.5;bpy.context.view_layer.update()
+        data.ortho_scale=.35 if camera_offset is not None and paper_closeup else 1.5;bpy.context.view_layer.update()
         for _ in range(40):
             projected=[world_to_camera_view(scene,cam,p) for p in points]
             if all(.08<=p.x<=.92 and .08<=p.y<=.92 and p.z>0 for p in projected):break
             data.ortho_scale*=1.08
         else:raise RuntimeError('Fixed mug motion framing failed')
+        face_cosine=None
+        if minimum_packet_face_cosine is not None:
+            face_cosine=min(abs(Vector(state(f,layout)['_packet_basis_override'][2]).normalized().dot((cam.location-Vector(state(f,layout)['envelope'])).normalized())) for f in bake_frames)
+            assert face_cosine>=minimum_packet_face_cosine,('Packet face is edge-on',face_cosine)
         folder=out/'motion_frames';folder.mkdir(exist_ok=False);entries=[]
         for index,frame in enumerate(render_frames):
             scene.frame_set(frame);bpy.context.view_layer.update()
@@ -89,7 +93,7 @@ def render(bpy,scene,state,layout,out,contact_cycle=False,second_pickup=False,wi
         manifest={'diagnostic_cutaway':bool(cutaway_objects),'hidden_objects':list(cutaway_objects),'status':'rendered_visual_review_pending','source_fps':SOURCE_FPS,'preview_fps':SOURCE_FPS/step,
             'source_start':start,'source_end':end,'duration_seconds':(end-start+1)/SOURCE_FPS,
             'entries':entries,'camera':{'name':cam.name,'location':list(cam.location),'target':list(target),'ortho_scale':data.ortho_scale,
-            'fixed_for_entire_clip':True,'containment_pass':True,'occlusion_status':'visual_review_pending'},
+            'fixed_for_entire_clip':True,'minimum_packet_face_cosine':face_cosine,'containment_pass':True,'occlusion_status':'visual_review_pending'},
             'limitations':['Boundary join clip; full-scene Blender validation pending' if window is not None else 'Second pickup only; table/posture correction and scene integration pending' if second_pickup else 'Bounded contact cycle; integration with previous/following scene motion pending' if contact_cycle else 'Starts with grip formed; approach/release excluded',str(len(render_frames))+' low-resolution samples; every integer pose validated separately','Final sample may have shorter interval; use timestamps for exact timing','No force simulation or evaluated skin collision pass']}
         (out/'motion_preview_manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
         # Local image-sequence player: no video encoder or new software required.

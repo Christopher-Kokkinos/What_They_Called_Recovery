@@ -57,9 +57,16 @@ def state(frame,layout):
         shift=vector(j,.16,-.16,.10);lh['palm']['center']=add(lh['palm']['center'],mul(shift,progress(f,55,70)));lh['chains']={d:[add(p,mul(shift,progress(f,55,70))) for p in ch] for d,ch in lh['chains'].items()};lw=add(lw,mul(shift,progress(f,55,70)))
     s['_hand_plan']={'left':lh,'right':h};s['_hand_origins']={'left':lw,'right':rw};s['_palm_controls']=('left','right')
     for side,w in [('left',lw),('right',rw)]:
-        sh=j[side+'_arm'][0];axis=mul(s['_hand_plan'][side]['palm']['basis'][2],-1);e=two_segment(sh,w,sub(w,mul(axis,FOREARM_LENGTH)),UPPER_ARM_LENGTH,FOREARM_LENGTH);j[side+'_arm']=(sh,e,w)
+        sh=j[side+'_arm'][0];axis=mul(s['_hand_plan'][side]['palm']['basis'][2],-1);pole=sub(w,mul(axis,FOREARM_LENGTH))
+        if side=='left':pole=mix(pole,point(j,-.30,.12,.20),.20)
+        e=two_segment(sh,w,pole,UPPER_ARM_LENGTH,FOREARM_LENGTH);j[side+'_arm']=(sh,e,w)
     s.update(frame=f,fold=1,mug=(11.24,8.98,1.06),keys=(11.65,9.05,.978),_envelope_flap_angle=0,_envelope_mouth_angle=0,_notice_hidden=True)
     s['_inner_pocket']={'opening':o,'bulge':.65*progress(f,21,35)*(1-progress(f,48,60))+.15*progress(f,35,44),'hand_influence':1 if f<RELEASE else 0,'left_contact':grab,'left_normal':normal,'left_active':7<=f<=55,'right_index_active':f<=45,'right_thumb_active':f<=40}
     s['_sequence_phase']='lapel_pull' if f<=20 else 'bottom_first_insert' if f<=40 else 'release_with_pad_drag' if f<=50 else 'upward_withdrawal_and_lapel_settle'
     s['_paper_support']='right_hand' if f<RELEASE else 'inner_pocket';s['_insertion']=insert
     return s
+
+
+def review_camera_offset(s,closeup=False):
+    """Face the packet normal; keep a modest side/elevation cue for depth."""
+    return vector(s['joints'],.35 if closeup else .8,.25 if closeup else .6,2.0)

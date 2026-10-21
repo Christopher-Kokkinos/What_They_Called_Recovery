@@ -39,3 +39,7 @@ Use original rig checkpoint with `build_sc001_paper_contact_review.py -- --mug-p
 ## Pocket proxy insertion/release (DEC-0090)
 
 Use the original rig checkpoint and `build_sc001_paper_contact_review.py -- --pocket-review` (standalone flag). Output `Active/Film/_local/SC001/pocket_<timestamp>_<id>/`.221 poses/150 images; normal context plus labelled cutaway hiding only REVIEW_Pocket_front. Full geometry retained for validation/saved blend. Open `review_index.html`, then ZIP the whole new folder. Temporary shallow rigid pocket; no cloth/final wardrobe claim. Prior handover remains unchanged; later integrate before keys.
+
+## Two-hand inner pocket (DEC-0091 — replaces rejected pocket movement)
+
+Use original rig checkpoint and `build_sc001_paper_contact_review.py -- --inner-pocket-review` alone. Output `Active/Film/_local/SC001/inner_pocket_<timestamp>_<id>/`;70 semantic poses/140 images. Open `review_index.html`, ZIP whole folder. Normal context and diagnostic cutaway (lapel/lining hidden only). Shape-key jacket patches and Child Of custody switch44; evaluated gates precede rendering. Restaged isolated test, no automatic join to old scene. Final clothing/skin collision checks and envelope bending remain pending. Previous `--pocket-review` retained only for failure reproduction.

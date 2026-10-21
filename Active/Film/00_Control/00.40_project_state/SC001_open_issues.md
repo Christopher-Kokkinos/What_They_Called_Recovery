@@ -73,3 +73,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0089: author provisionally accepted refined paper blockout. Mug/paper handover diagnostic prepared:772 connected poses,172 images across two handover windows. Mug supported during paper; envelope remains held in right hand for second pickup. Local checks pass; Blender/visual review, pocket release and complete-scene retiming pending.
 
 - DEC-0090: handover ZIP technical/hash checks passed; Codex provisional blockout recommendation. Pocket proxy insertion/release prepared (221 poses/150 images), with floor support and outward hand withdrawal. Local checks pass; Blender/visual review and full sequence integration pending. Temporary pocket is not final clothing.
+
+- DEC-0091: author rejected rigid outer-pocket motion. New two-hand inner-jacket test prepared: lapel pull/lining bulge, bottom-first45-degree insertion, Child Of switch44, upward withdrawal and settling.70 semantic poses/140 images; local math passes, Blender/visual checks pending. Prior pocket not accepted; integration and envelope flex remain open.

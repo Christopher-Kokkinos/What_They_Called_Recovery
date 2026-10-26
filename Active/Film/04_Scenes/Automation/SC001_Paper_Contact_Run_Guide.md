@@ -63,3 +63,5 @@ git pull --ff-only
 ```
 
 Open `review_index.html` in the new `Active/Film/_local/SC001/pocket_handover_...` directory. Zip that whole directory, including validation.json, manifests and renders. Environment is hidden for diagnosis; final garment and full-scene camera/collision review remain open.
+
+DEC-0096: same `--pocket-handover-review` command corrects the left supporting grip/arm in17–156. The new `left_support_torso_proxy` report must check140 evaluated poses with minimum score>=1. This expanded central torso proxy does not certify final skin/garment contact.397 poses and134 images unchanged.

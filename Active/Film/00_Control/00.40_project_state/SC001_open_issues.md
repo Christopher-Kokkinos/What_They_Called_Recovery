@@ -89,3 +89,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0095: author accepted inner-pocket movement provisionally.397-pose paper→supported regrip→pocket→second mug joins prepared;134 sampled images, --pocket-handover-review. Local checks pass; Blender/visual review pending. Low pocket/garment/fine contact limitations remain open.
 
 - DEC-0095 desktop ZIP:397 planned-pose checks and134 image hashes pass, but new left support/regrip runs behind torso (frame55 elbow317mm posterior). Author concern confirmed in cutaway. Joined visual pass held; restage grip/arm in front and add torso-clearance gate. Accepted standalone pocket remains provisional pass. See Reports/Film/2026-10-26_pocket_handover_left_arm_diagnosis.md.
+
+- DEC-0096: supporting pinch moved to forward packet edge; left elbow/wrist now in front.397-pose local regression and analytic torso-proxy gate pass; legacy posterior fixture rejected. All prop/right-hand paths and poses outside17–156 unchanged. Same --pocket-handover-review runtime/visual rerun pending.

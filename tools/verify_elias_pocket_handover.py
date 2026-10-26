@@ -3,16 +3,19 @@ import sys,json,math
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path[:0]=[str(ROOT/'Active/Film/03_Assets/Characters/Elias'),str(ROOT/'Active/Film/04_Scenes/Automation')]
-from elias_pocket_handover import state,END,ATTACH,RELEASE,POCKET_END,PICKUP_START,PAPER_BASIS
+from elias_pocket_handover import state,END,ATTACH,RELEASE,POCKET_END,PICKUP_START,PAPER_BASIS,SUPPORT_EDGE
 from elias_inner_pocket import state as pocket
 from elias_table_reach import state as mug
 from elias_rig_math import bones
+from elias_torso_clearance import validate_left_support,segment_clearance
 from elias_articulation import sub,dot,mul,unit,cross
 layout=json.loads((ROOT/'Active/Film/03_Assets/Sets/EliasFlat/EliasFlat_layout_v0.1.json').read_text())
-rest=bones(state(889,layout));previous=None;maximum={};worst=0
+rest=bones(state(889,layout));previous=None;maximum={};worst=0;clearance=[]
 assert len(rest)==50
 for f in range(1,END+1):
- s=state(f,layout);j=s['joints'];B=s['_packet_basis_override']
+ s=state(f,layout);j=s['joints']
+ if 17<=f<=156:clearance.append(validate_left_support(j))
+ B=s['_packet_basis_override']
  for name,b in bones(s).items():assert abs(b['length']-rest[name]['length'])<1e-8,(f,name)
  for i in range(3):
   for k in range(3):assert abs(dot(B[i],B[k])-(i==k))<1e-8
@@ -20,7 +23,7 @@ for f in range(1,END+1):
  for side in ('left','right'):
   sh,e,w=j[side+'_arm'];axis=mul(s['_hand_plan'][side]['palm']['basis'][2],-1);angle=math.degrees(math.acos(max(-1,min(1,dot(unit(sub(w,e)),axis)))));worst=max(worst,angle);assert angle<65,(f,side,angle)
  if 56<=f<=96:
-  contact=tuple(s['envelope'][i]-.08*B[0][i]-.03*B[1][i] for i in range(3))
+  contact=tuple(s['envelope'][i]+SUPPORT_EDGE[0]*B[0][i]+SUPPORT_EDGE[1]*B[1][i] for i in range(3))
   for digit,gap in [('index',.016),('thumb',-.011)]:assert abs(dot(sub(s['_hand_plan']['left']['chains'][digit][-1],contact),B[2])-gap)<1e-8,(f,'Supported regrip',digit)
  if 97<=f<RELEASE:
   h=s['_hand_plan']['right'];relative=sub(s['envelope'],h['palm']['center']);signature=tuple(dot(relative,axis) for axis in h['palm']['basis'])
@@ -44,4 +47,13 @@ for f in range(1,END+1):
   for key in ('envelope','letter','mug'):maximum[key]=max(maximum.get(key,0),math.dist(s[key],previous[key]))
  previous=s
 assert max(maximum.values())<.065,maximum
-print(json.dumps({'poses':END,'maximum_step_m':maximum,'maximum_wrist_bend_deg':worst,'status':'pocket_handover_math_pass','runtime_visual':'pending'}))
+from elias_inner_pocket import point
+j=state(55,layout)['joints']
+assert segment_clearance(j,point(j,-.4,.3,0),point(j,.4,.3,0))<1e-12
+assert abs(segment_clearance(j,point(j,-.4,.3,.125),point(j,.4,.3,.125))-1)<1e-10
+assert math.isinf(segment_clearance(j,point(j,-.4,.7,0),point(j,.4,.7,0)))
+legacy=tuple(point(j,*p) for p in ((.225,.570,0),(.062724,.622493,-.317035),(-.079424,.423,-.081)))
+try:validate_left_support(j,legacy)
+except AssertionError:pass
+else:raise AssertionError('Legacy posterior support arm incorrectly accepted')
+print(json.dumps({'poses':END,'maximum_step_m':maximum,'maximum_wrist_bend_deg':worst,'minimum_support_torso_proxy_score':min(clearance),'status':'pocket_handover_math_pass','runtime_visual':'pending'}))

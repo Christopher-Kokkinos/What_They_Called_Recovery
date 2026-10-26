@@ -46,7 +46,7 @@ def main():
         from elias_inner_pocket import state,START,END
         from sc001_inner_pocket_blender import create as create_pocket,validate as validate_pocket,key_geometry as key_inner,custody
     if opts.pocket_handover_review:
-        from elias_pocket_handover import state,START,END,ATTACH,RELEASE
+        from elias_pocket_handover import state,START,END,ATTACH,RELEASE,SUPPORT_EDGE
     from elias_mug_contact import HANDLE
     from elias_rig_blender import animate_and_validate
     from sc001_mug_motion_review import render
@@ -103,8 +103,8 @@ def main():
     if opts.inner_pocket_review:report.update(scope='Semantic frames1–70: off-hand lapel pull, bottom-first45-degree insertion, Child Of switch44, upward withdrawal and shape-key settling',limitations=['Standalone restaged two-hand blockout; previous mug/paper boundary not integrated','Controlled jacket patches and lining shape keys, not final clothing or cloth simulation','No complete skin/garment collision certification; envelope bend deferred'])
     if opts.pocket_handover_review:report.update(scope='397 diagnostic poses: closed-paper tail, left-supported right regrip, carry/lapel approach, inner pocket, hands to second mug pickup',limitations=['Focused joins only; earlier paper and full-scene retiming not baked here','Low proxy pocket and detached garment panels retained from provisional pass','No full skin collision or final cloth/contact pass'])
     report['rig']=animate_and_validate(bpy,scene,layout,state,END,list(range(START,END+1)))
-    if opts.inner_pocket_review:report['custody']=custody(bpy,scene,state,layout,START,END,ATTACH,RELEASE) if opts.pocket_handover_review else custody(bpy,scene,state,layout)
-    errors=[]
+    if opts.inner_pocket_review:report['custody']=custody(bpy,scene,state,layout,START,END,ATTACH,RELEASE,SUPPORT_EDGE) if opts.pocket_handover_review else custody(bpy,scene,state,layout)
+    errors=[];support_clearances=[]
     for f in range(START,END+1):
         scene.frame_set(f);bpy.context.view_layer.update();s=state(f,layout);deps=bpy.context.evaluated_depsgraph_get()
         for field,name in names.items():
@@ -119,10 +119,15 @@ def main():
                 assert abs(min(z_bounds('Mug_body'))-max(z_bounds('SET_table')))<1e-4,(f,'Mug/table support')
         assert abs(scene.objects['Letter_fold'].rotation_euler.x-math.pi*s['fold'])<1e-5
         if opts.pocket_review:errors.append(validate_pocket(bpy,scene,s,f))
+        if opts.pocket_handover_review and 17<=f<=156:
+            from elias_torso_clearance import validate_left_support
+            rig=scene.objects['CHR_Elias_RIG'].evaluated_get(deps)
+            arm=(rig.matrix_world@rig.pose.bones['upper_arm.L'].head,rig.matrix_world@rig.pose.bones['upper_arm.L'].tail,rig.matrix_world@rig.pose.bones['forearm.L'].tail)
+            support_clearances.append(validate_left_support(s['joints'],arm))
         if opts.pocket_handover_review and 56<=f<=96:
             # Read actual rendered packet plane and rig fingertips during support.
             packet=scene.objects['Envelope_back'].evaluated_get(deps)
-            contact=packet.matrix_world@Vector((-.08/.22,-.03/.17,0));normal=packet.matrix_world.to_3x3().col[2].normalized()
+            contact=packet.matrix_world@Vector((SUPPORT_EDGE[0]/.22,SUPPORT_EDGE[1]/.17,0));normal=packet.matrix_world.to_3x3().col[2].normalized()
             rig=scene.objects['CHR_Elias_RIG'].evaluated_get(deps)
             for digit,gap in [('index',.016),('thumb',-.011)]:
                 tip=rig.matrix_world@rig.pose.bones[digit+'_3.L'].tail
@@ -158,7 +163,8 @@ def main():
         report['contact_surface_readback']='Evaluated lapel point/pad gaps, lining bulge, finger targets, inner-pocket floor support and Child Of influence; free-hand phases excluded from contact claims'
         report['custody']['evaluated_readback']=f'all{END-START+1} integer prop poses plus custody boundary half-frame checks passed'
     report['maximum_prop_or_pad_target_error_m']=max(errors)
-    report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'Active/Film/03_Assets/Characters/Elias/elias_pocket_handover.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_inner_pocket.py',Path(__file__).parent/'sc001_inner_pocket_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_pocket.py',Path(__file__).parent/'sc001_pocket_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_handover.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_refinement.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_sequence.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_finish.py',Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_contact.py',Path(__file__).parent/'sc001_envelope_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_reach.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_mug_motion_review.py']}
+    if opts.pocket_handover_review:report['left_support_torso_proxy']={'frames_checked':len(support_clearances),'source_start':17,'source_end':156,'minimum_score':min(support_clearances),'required_score':1,'scope':'Analytic expanded central torso proxy plus outward/posterior elbow gate on evaluated arm bones; not full skin collision'}
+    report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [ROOT/'Active/Film/03_Assets/Characters/Elias/elias_torso_clearance.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_pocket_handover.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_inner_pocket.py',Path(__file__).parent/'sc001_inner_pocket_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_pocket.py',Path(__file__).parent/'sc001_pocket_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_handover.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_refinement.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_sequence.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_finish.py',Path(__file__),ROOT/'Active/Film/03_Assets/Characters/Elias/elias_envelope_contact.py',Path(__file__).parent/'sc001_envelope_review_blender.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_paper_contact.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_table_reach.py',ROOT/'Active/Film/03_Assets/Characters/Elias/elias_rig_math.py',Path(__file__).parent/'elias_rig_blender.py',Path(__file__).parent/'sc001_mug_motion_review.py']}
     scene.frame_start=START;scene.frame_end=END;scene.frame_set(START)
     report['status']='envelope_checkpoint_validated_render_pending' if opts.envelope_review else 'paper_fold_checkpoint_validated_render_pending'
     bpy.ops.wm.save_as_mainfile(filepath=str(out/('SC001_inner_pocket_diagnostic.blend' if opts.inner_pocket_review else 'SC001_pocket_diagnostic.blend' if opts.pocket_review else 'SC001_table_handover_diagnostic.blend' if opts.mug_paper_handover_review else 'SC001_envelope_diagnostic.blend' if opts.envelope_review else 'SC001_paper_fold_diagnostic.blend')))

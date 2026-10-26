@@ -134,10 +134,10 @@
     "grain": "subtle_strength_pending_moving_image_review"
   },
   "elias_rig_motion_test": {
-    "decision": "DEC-0095",
+    "decision": "DEC-0096",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "paper_pocket_mug_join_visual_hold_left_arm",
+    "status": "front_support_grip_clearance_fix_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -225,10 +225,16 @@
     "pocket_handover_pose_count": 397,
     "pocket_handover_image_count": 134,
     "pocket_handover_release_frame": 200,
-    "pocket_handover_runtime_pass": true,
+    "pocket_handover_runtime_pass": false,
     "pocket_handover_visual_pass": false,
-    "pocket_handover_preparation_report": "Reports/Film/2026-10-26_paper_pocket_mug_join_preparation.md",
+    "pocket_handover_preparation_report": "Reports/Film/2026-10-26_front_support_grip_correction.md",
     "pocket_handover_review_report": "Reports/Film/2026-10-26_pocket_handover_left_arm_diagnosis.md",
-    "pocket_handover_open_blocker": "Left support/regrip wrist and elbow pass behind torso; front grip and body clearance correction required"
+    "pocket_handover_open_blocker": "Front support grip/pole correction prepared; evaluated torso-proxy gate and visual rerun pending",
+    "pocket_handover_previous_runtime_pass": true,
+    "pocket_handover_support_clearance_frames": [
+      17,
+      156
+    ],
+    "pocket_handover_minimum_local_proxy_score": 1.311425064287076
   }
 }

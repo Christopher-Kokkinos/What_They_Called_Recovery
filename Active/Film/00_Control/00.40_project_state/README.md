@@ -189,3 +189,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0094 isolated desktop ZIP:70-pose runtime/140 hashes pass; foreground obstruction resolved. Codex recommends provisional movement-scaffold pass, author acceptance pending. Detached jacket panels, low pocket staging, fine skin contact and integration remain open. See Reports/Film/2026-10-21_inner_pocket_isolated_desktop_review.md.
 
 - DEC-0095: author accepted inner-pocket movement provisionally.397-pose paper→supported regrip→pocket→second mug joins prepared;134 sampled images, --pocket-handover-review. Local checks pass; Blender/visual review pending. Low pocket/garment/fine contact limitations remain open.
+
+- DEC-0095 desktop ZIP:397 planned-pose checks and134 image hashes pass, but new left support/regrip runs behind torso (frame55 elbow317mm posterior). Author concern confirmed in cutaway. Joined visual pass held; restage grip/arm in front and add torso-clearance gate. Accepted standalone pocket remains provisional pass. See Reports/Film/2026-10-26_pocket_handover_left_arm_diagnosis.md.

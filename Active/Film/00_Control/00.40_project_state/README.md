@@ -193,3 +193,5 @@ V0.25 desktop rejects all eight global tracking offsets at lintel. V0.26 uses fi
 - DEC-0095 desktop ZIP:397 planned-pose checks and134 image hashes pass, but new left support/regrip runs behind torso (frame55 elbow317mm posterior). Author concern confirmed in cutaway. Joined visual pass held; restage grip/arm in front and add torso-clearance gate. Accepted standalone pocket remains provisional pass. See Reports/Film/2026-10-26_pocket_handover_left_arm_diagnosis.md.
 
 - DEC-0096: supporting pinch moved to forward packet edge; left elbow/wrist now in front.397-pose local regression and analytic torso-proxy gate pass; legacy posterior fixture rejected. All prop/right-hand paths and poses outside17–156 unchanged. Same --pocket-handover-review runtime/visual rerun pending.
+
+- DEC-0096 follow-up: desktop run failed because SUPPORT_EDGE was erroneously passed as ninth custody argument. Explicit scheduling options and actual-call signature regression pass locally; same focused runtime/visual rerun pending. See Reports/Film/2026-10-26_custody_argument_interface_fix.md.

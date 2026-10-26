@@ -103,7 +103,9 @@ def main():
     if opts.inner_pocket_review:report.update(scope='Semantic frames1–70: off-hand lapel pull, bottom-first45-degree insertion, Child Of switch44, upward withdrawal and shape-key settling',limitations=['Standalone restaged two-hand blockout; previous mug/paper boundary not integrated','Controlled jacket patches and lining shape keys, not final clothing or cloth simulation','No complete skin/garment collision certification; envelope bend deferred'])
     if opts.pocket_handover_review:report.update(scope='397 diagnostic poses: closed-paper tail, left-supported right regrip, carry/lapel approach, inner pocket, hands to second mug pickup',limitations=['Focused joins only; earlier paper and full-scene retiming not baked here','Low proxy pocket and detached garment panels retained from provisional pass','No full skin collision or final cloth/contact pass'])
     report['rig']=animate_and_validate(bpy,scene,layout,state,END,list(range(START,END+1)))
-    if opts.inner_pocket_review:report['custody']=custody(bpy,scene,state,layout,START,END,ATTACH,RELEASE,SUPPORT_EDGE) if opts.pocket_handover_review else custody(bpy,scene,state,layout)
+    if opts.inner_pocket_review:
+        custody_options=dict(start=START,end=END,attach=ATTACH,release=RELEASE) if opts.pocket_handover_review else {}
+        report['custody']=custody(bpy,scene,state,layout,**custody_options)
     errors=[];support_clearances=[]
     for f in range(START,END+1):
         scene.frame_set(f);bpy.context.view_layer.update();s=state(f,layout);deps=bpy.context.evaluated_depsgraph_get()

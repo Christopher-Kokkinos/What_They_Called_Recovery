@@ -137,7 +137,7 @@
     "decision": "DEC-0096",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "front_support_grip_clearance_fix_prepared",
+    "status": "front_support_custody_interface_fix_prepared",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -235,6 +235,8 @@
       17,
       156
     ],
-    "pocket_handover_minimum_local_proxy_score": 1.311425064287076
+    "pocket_handover_minimum_local_proxy_score": 1.311425064287076,
+    "pocket_handover_last_runtime_failure": "f13580d: custody call supplied9 positional arguments",
+    "pocket_handover_interface_fix_report": "Reports/Film/2026-10-26_custody_argument_interface_fix.md"
   }
 }

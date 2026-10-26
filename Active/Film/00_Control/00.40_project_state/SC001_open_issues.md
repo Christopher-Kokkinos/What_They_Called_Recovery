@@ -93,3 +93,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0096: supporting pinch moved to forward packet edge; left elbow/wrist now in front.397-pose local regression and analytic torso-proxy gate pass; legacy posterior fixture rejected. All prop/right-hand paths and poses outside17–156 unchanged. Same --pocket-handover-review runtime/visual rerun pending.
 
 - DEC-0096 follow-up: desktop run failed because SUPPORT_EDGE was erroneously passed as ninth custody argument. Explicit scheduling options and actual-call signature regression pass locally; same focused runtime/visual rerun pending. See Reports/Film/2026-10-26_custody_argument_interface_fix.md.
+
+- DEC-0096 desktop review:397-pose runtime/134 hashes and140-pose evaluated torso gate pass (minimum1.311426). Posterior supporting-arm route resolved visually; Codex recommends provisional blockout pass, author acceptance pending. Garment fit/low pocket/fine contact and whole-scene integration remain open. See Reports/Film/2026-10-26_front_support_join_desktop_review.md.

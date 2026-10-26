@@ -137,7 +137,7 @@
     "decision": "DEC-0096",
     "builder": "Active/Film/04_Scenes/Automation/build_sc001_room_performance.py",
     "flag": "--rig-test",
-    "status": "front_support_custody_interface_fix_prepared",
+    "status": "paper_pocket_mug_join_runtime_pass_blockout_recommended",
     "author_gallery_visual_pass": true,
     "review": "Reports/Film/2026-10-14_sc001_weighted_rig_desktop_review.md",
     "author_scene_visual_pass": false,
@@ -225,11 +225,11 @@
     "pocket_handover_pose_count": 397,
     "pocket_handover_image_count": 134,
     "pocket_handover_release_frame": 200,
-    "pocket_handover_runtime_pass": false,
+    "pocket_handover_runtime_pass": true,
     "pocket_handover_visual_pass": false,
     "pocket_handover_preparation_report": "Reports/Film/2026-10-26_front_support_grip_correction.md",
-    "pocket_handover_review_report": "Reports/Film/2026-10-26_pocket_handover_left_arm_diagnosis.md",
-    "pocket_handover_open_blocker": "Front support grip/pole correction prepared; evaluated torso-proxy gate and visual rerun pending",
+    "pocket_handover_review_report": "Reports/Film/2026-10-26_front_support_join_desktop_review.md",
+    "pocket_handover_open_blocker": "Posterior arm issue resolved in reviewed cutaway; author provisional acceptance pending",
     "pocket_handover_previous_runtime_pass": true,
     "pocket_handover_support_clearance_frames": [
       17,
@@ -237,6 +237,10 @@
     ],
     "pocket_handover_minimum_local_proxy_score": 1.311425064287076,
     "pocket_handover_last_runtime_failure": "f13580d: custody call supplied9 positional arguments",
-    "pocket_handover_interface_fix_report": "Reports/Film/2026-10-26_custody_argument_interface_fix.md"
+    "pocket_handover_interface_fix_report": "Reports/Film/2026-10-26_custody_argument_interface_fix.md",
+    "pocket_handover_codex_provisional_blockout_recommendation": true,
+    "pocket_handover_author_visual_pass": false,
+    "pocket_handover_latest_runtime_zip": "pocket_handover_20261026_150133_d445b970.zip",
+    "pocket_handover_evaluated_proxy_minimum_score": 1.3114256654123415
   }
 }

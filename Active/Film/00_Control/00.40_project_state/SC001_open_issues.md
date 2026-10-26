@@ -85,3 +85,5 @@ Author passes bounded mug contact-cycle motion for this stage, flags telescopic 
 - DEC-0094: new ZIP runtime/hash checks pass but foreground scenery blocks both views; visual hold. Labelled environment-isolated diagnostic views prepared with all-frame visibility preflight. Same focused rerun required.
 
 - DEC-0094 isolated desktop ZIP:70-pose runtime/140 hashes pass; foreground obstruction resolved. Codex recommends provisional movement-scaffold pass, author acceptance pending. Detached jacket panels, low pocket staging, fine skin contact and integration remain open. See Reports/Film/2026-10-21_inner_pocket_isolated_desktop_review.md.
+
+- DEC-0095: author accepted inner-pocket movement provisionally.397-pose paper→supported regrip→pocket→second mug joins prepared;134 sampled images, --pocket-handover-review. Local checks pass; Blender/visual review pending. Low pocket/garment/fine contact limitations remain open.

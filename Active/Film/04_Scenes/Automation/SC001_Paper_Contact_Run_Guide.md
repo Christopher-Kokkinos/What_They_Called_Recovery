@@ -47,3 +47,19 @@ Use original rig checkpoint and `build_sc001_paper_contact_review.py -- --inner-
 DEC-0093: same `--inner-pocket-review` invocation now lowers the off-hand elbow and uses fixed packet-facing cameras. Cutaway close-up excludes the parked mug from framing.70 poses/140 images; camera face-orientation gate does not replace visual occlusion/contact review.
 
 DEC-0094: both inner-pocket views are now labelled diagnostic cutaways with apartment/background meshes hidden; the second also hides lapel/lining. Full saved checkpoint retained. Same invocation; inspect review_index.html. Background exclusion preflight is not a self-occlusion or collision pass.
+
+## Paper → pocket → second mug joins (DEC-0095)
+
+From the repository root and the original rig checkpoint, use `--pocket-handover-review` by itself.397 poses baked/read back,134 images across two labelled isolated views. These are diagnostic frames, not final scene timing; release200 corresponds to original pocket44. Earlier paper and full-scene retiming are excluded.
+
+```bash
+cd /c/Projects/what_they_called_recovery
+git pull --ff-only
+"/c/Program Files/Blender Foundation/Blender 5.2/blender.exe" \
+  --background "Active/Film/_local/SC001/rig_scene_20261014_204455_57a2b099/SC001_rig_performance_v0.1.blend" \
+  --python-exit-code 1 \
+  --python "Active/Film/04_Scenes/Automation/build_sc001_paper_contact_review.py" \
+  -- --pocket-handover-review
+```
+
+Open `review_index.html` in the new `Active/Film/_local/SC001/pocket_handover_...` directory. Zip that whole directory, including validation.json, manifests and renders. Environment is hidden for diagnosis; final garment and full-scene camera/collision review remain open.

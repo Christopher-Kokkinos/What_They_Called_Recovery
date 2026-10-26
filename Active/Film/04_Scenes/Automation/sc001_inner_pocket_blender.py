@@ -40,21 +40,21 @@ def key_geometry(bpy,scene,s,frame):
     obj=scene.objects['REVIEW_InnerPocket_bottom'];obj.location=base@Vector((.10,.195,.24));obj.rotation_euler=base.to_euler()
     for field in ('location','rotation_euler'):obj.keyframe_insert(data_path=field,frame=frame)
 
-def custody(bpy,scene,state,layout):
+def custody(bpy,scene,state,layout,start=1,end=70,attach=1,release=44):
     from mathutils import Matrix,Vector
     from sc001_motion_blender import linearise_owned_actions
     rig=scene.objects['CHR_Elias_RIG'];names=[('PRP_MACEnvelope','envelope'),('PRP_ResignationLetter','letter'),('Envelope_text_anchor','envelope')]
     def goal(s,field):
         m=Matrix(s['_packet_basis_override']).transposed().to_4x4();m.translation=Vector(s[field]);return m
-    scene.frame_set(1);bpy.context.view_layer.update();driver=rig.matrix_world@rig.pose.bones['palm.R'].matrix
-    binds={name:driver.inverted()@goal(state(1,layout),field) for name,field in names}
+    scene.frame_set(attach);bpy.context.view_layer.update();driver=rig.matrix_world@rig.pose.bones['palm.R'].matrix
+    binds={name:driver.inverted()@goal(state(attach,layout),field) for name,field in names}
     constraints={}
     for name,_ in names:
         obj=scene.objects[name];c=obj.constraints.new('CHILD_OF');c.name='Pocket_hand_custody';c.target=rig;c.subtarget='palm.R';c.inverse_matrix=Matrix.Identity(4);constraints[name]=c
-    for frame in range(1,71):
+    for frame in range(start,end+1):
         scene.frame_set(frame);s=state(frame,layout)
         for name,field in names:
-            obj=scene.objects[name];c=constraints[name];c.influence=s['_inner_pocket']['hand_influence'];obj.matrix_basis=binds[name] if frame<44 else goal(s,field)
+            obj=scene.objects[name];c=constraints[name];c.influence=s['_inner_pocket']['hand_influence'];obj.matrix_basis=binds[name] if attach<=frame<release else goal(s,field)
             for path in ('location','rotation_euler','scale'):obj.keyframe_insert(data_path=path,frame=frame)
             c.keyframe_insert(data_path='influence',frame=frame)
     objects=[scene.objects[n] for n,_ in names]+[scene.objects[n] for n in ('REVIEW_Jacket_lapel','REVIEW_InnerPocket_lining','REVIEW_InnerPocket_bottom')]
@@ -72,15 +72,16 @@ def custody(bpy,scene,state,layout):
                 for key in curve.keyframe_points:key.interpolation='CONSTANT'
             elif curve.data_path in ('location','rotation_euler','scale'):
                 for key in curve.keyframe_points:
-                    if abs(key.co.x-43)<1e-6:key.interpolation='CONSTANT'
+                    if any(abs(key.co.x-boundary)<1e-6 for boundary in (attach-1,release-1)):key.interpolation='CONSTANT'
     # Reject handoff pops at the half-frame immediately before release.
-    for f in (43,43.5,44,44.5):
+    samples=[release-1,release-.5,release,release+.5]+([attach-1,attach-.5,attach] if attach>start else [])
+    for f in sorted(set(x for x in samples if start<=x<=end)):
         scene.frame_set(int(f),subframe=f-int(f));bpy.context.view_layer.update();deps=bpy.context.evaluated_depsgraph_get()
         for name,field in names:
             actual=scene.objects[name].evaluated_get(deps).matrix_world
-            expected=goal(state(43 if f<44 else 44,layout),field)
+            expected=goal(state(int(f),layout),field)
             assert max(abs(actual[i][k]-expected[i][k]) for i in range(4) for k in range(4))<1e-4,(name,f,'Custody handoff discontinuity')
-    return {'release_frame':44,'target':'CHR_Elias_RIG:palm.R','objects':[n for n,_ in names],'mode':'Child Of holding, pocket-relative keyed placement after release; evaluated gate pending'}
+    return {'release_frame':release,'attach_frame':attach,'target':'CHR_Elias_RIG:palm.R','objects':[n for n,_ in names],'mode':'Child Of holding, pocket-relative keyed placement after release; evaluated gate pending'}
 
 def validate(bpy,scene,s,frame):
     from mathutils import Vector
@@ -110,7 +111,7 @@ def validate(bpy,scene,s,frame):
         assert error<1e-4,(frame,'Evaluated lining bulge',{'actual':tuple(actual),'expected':tuple(expected),'error_m':error,'opening':meta['opening'],'bulge':meta['bulge']})
     finally:lining.to_mesh_clear()
     c=scene.objects['PRP_MACEnvelope'].constraints['Pocket_hand_custody'];assert c.influence==meta['hand_influence']
-    if frame>=40:
+    if meta.get('support_active',frame>=40):
         up=Vector(s['joints']['up']);origin=Vector(s['joints']['pelvis'])
         def heights(name):
             obj=scene.objects[name].evaluated_get(deps);return [((obj.matrix_world@Vector(p))-origin).dot(up) for p in obj.bound_box]
